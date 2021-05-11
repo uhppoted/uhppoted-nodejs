@@ -32,3 +32,6 @@ get-devices: build
 
 get-device: build
 	node examples/get-device.js
+
+set-address: build
+	node examples/set-address.js	

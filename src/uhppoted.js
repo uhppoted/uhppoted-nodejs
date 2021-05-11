@@ -90,21 +90,21 @@ module.exports = {
     * @param {object}   request  Operation parameters for use by codec.encode
     *
     */
-  //  send: async function (ctx, deviceId, op, request) {
-  //    const c = context(deviceId, ctx.config, ctx.logger)
-  //
-  //    const receiver = new Promise((resolve, reject) => {
-  //      resolve()
-  //    })
-  //
-  //    const decode = function (reply) {
-  //      return {}
-  //    }
-  //
-  //    receiver.received = (message) => {}
-  //
-  //    return exec(c, op, request, receiver).then(decode)
-  //  },
+  send: async function (ctx, deviceId, op, request) {
+    const c = context(deviceId, ctx.config, ctx.logger)
+
+    const receiver = new Promise((resolve, reject) => {
+      resolve()
+    })
+
+    const decode = function (reply) {
+      return {}
+    }
+
+    receiver.received = (message) => {}
+
+    return exec(c, op, request, receiver).then(decode)
+  },
 
   /**
     * Broadcasts a command to retrieve information from all responding UHPPOTE access
