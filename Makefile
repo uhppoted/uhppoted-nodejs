@@ -33,5 +33,8 @@ get-devices: build
 get-device: build
 	node examples/get-device.js
 
+get-status: build
+	node examples/get-status.js
+
 set-address: build
 	node examples/set-address.js	
