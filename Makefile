@@ -15,6 +15,7 @@ DEBUG    ?= --debug
 build:
 	npx eslint --fix *.js  
 	npx eslint --fix src/*.js  
+	npx eslint --fix examples/*.js  
 
 run: build
 	node example.js
@@ -25,3 +26,9 @@ test: build
 
 release:
 	npm pack
+
+get-devices: build
+	node examples/get-devices.js
+
+get-device: build
+	node examples/get-device.js

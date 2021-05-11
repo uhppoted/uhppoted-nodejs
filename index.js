@@ -4,6 +4,6 @@ const getDevice = require('./src/get-device.js')
 
 module.exports = {
   Config: config.Config,
-  GetDevices: getDevices,
-  GetDevice: getDevice
+  getDevices: getDevices,
+  getDevice: getDevice
 }
