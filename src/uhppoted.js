@@ -282,14 +282,14 @@ function context (device, config, logger) {
   let dest = '255.255.255.255:60000'
   let listen = '0.0.0.0:60001'
   let forceBroadcast = false
-  const debug = false
+  let debug = false
 
   if (config) {
     timeout = config.timeout
     bind = config.bind
     dest = config.broadcast
     listen = config.listen
-    // debug = config.debug ? function (l, m) { logger(l + '\n' + m) } : null
+    debug = config.debug ? function (l, m) { logger(l + '\n' + m) } : null
 
     if (config.controllers) {
       try {
@@ -307,8 +307,7 @@ function context (device, config, logger) {
           }
         }
       } catch (error) {
-        console.log(`Error parsing config.controllers JSON (${error})`)
-        // logger(`Error parsing config.controllers JSON ${error}`)
+        logger(`Error parsing config.controllers JSON ${error}`)
       }
     }
   }
