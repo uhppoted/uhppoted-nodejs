@@ -57,27 +57,27 @@ module.exports = {
     *
     * @exports
     */
-  //  set: async function (ctx, deviceId, op, request) {
-  //    const c = context(deviceId, ctx.config, ctx.logger)
-  //    const receiver = receiveAny(c.timeout)
-  //
-  //    try {
-  //      const decode = function (reply) {
-  //        if (reply) {
-  //          const response = codec.decode(reply, ctx.translator)
-  //          if (response && (response.deviceId === c.deviceId)) {
-  //            return response
-  //          }
-  //        }
-  //
-  //        throw new Error(`no reply from ${deviceId}`)
-  //      }
-  //
-  //      return exec(c, op, request, receiver).then(decode)
-  //    } finally {
-  //      receiver.cancel()
-  //    }
-  //  },
+  set: async function (ctx, deviceId, op, request) {
+    const c = context(deviceId, ctx.config, ctx.logger)
+    const receiver = receiveAny(c.timeout)
+
+    try {
+      const decode = function (reply) {
+        if (reply) {
+          const response = codec.decode(reply, ctx.translator)
+          if (response && (response.deviceId === c.deviceId)) {
+            return response
+          }
+        }
+
+        throw new Error(`no reply from ${deviceId}`)
+      }
+
+      return exec(c, op, request, receiver).then(decode)
+    } finally {
+      receiver.cancel()
+    }
+  },
 
   /**
     * Sends a command to update information on a UHPPOTE access controller without

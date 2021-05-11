@@ -36,5 +36,11 @@ get-device: build
 get-status: build
 	node examples/get-status.js
 
+get-time: build
+	node examples/get-time.js
+
+set-time: build
+	node examples/set-time.js
+
 set-address: build
 	node examples/set-address.js	
