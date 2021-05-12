@@ -153,7 +153,7 @@ module.exports = {
     }
 
     return exec(c, op, request, receiver).then(decode)
-  }
+  },
 
   /**
     * Establishes a 'listening' UDP connection on the 'listen' port defined in the
@@ -166,31 +166,31 @@ module.exports = {
     *
     * @exports
     */
-//  listen: function (ctx, handler) {
-//    const c = context(0, ctx.config, ctx.logger)
-//    const sock = dgram.createSocket(opts)
-//
-//    sock.on('error', (err) => {
-//      handler.onerror(err)
-//    })
-//
-//    sock.on('message', (message, rinfo) => {
-//      log(c.debug, 'received', message, rinfo)
-//
-//      const event = codec.decode(message, context.translator)
-//
-//      if (event) {
-//        handler.received(event)
-//      }
-//    })
-//
-//    sock.bind({
-//      address: c.listen.address,
-//      port: c.listen.port
-//    })
-//
-//    return sock
-//  }
+  listen: function (ctx, handler) {
+    const c = context(0, ctx.config, ctx.logger)
+    const sock = dgram.createSocket(opts)
+
+    sock.on('error', (err) => {
+      handler.onerror(err)
+    })
+
+    sock.on('message', (message, rinfo) => {
+      log(c.debug, 'received', message, rinfo)
+
+      const event = codec.decode(message, context.translator)
+
+      if (event) {
+        handler.received(event)
+      }
+    })
+
+    sock.bind({
+      address: c.listen.address,
+      port: c.listen.port
+    })
+
+    return sock
+  }
 }
 
 /**
