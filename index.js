@@ -3,12 +3,16 @@ module.exports = {
 
   getDevices: require('./src/get-devices.js'),
   getDevice: require('./src/get-device.js'),
+
   setIP: require('./src/set-ip.js'),
   getListener: require('./src/get-listener.js'),
   setListener: require('./src/set-listener.js'),
-  getStatus: require('./src/get-status.js'),
   getTime: require('./src/get-time.js'),
   setTime: require('./src/set-time.js'),
+  getDoorControl: require('./src/get-door-control.js'),
+  setDoorControl: require('./src/set-door-control.js'),
+
+  getStatus: require('./src/get-status.js'),
 
   listen: require('./src/listen.js')
 }

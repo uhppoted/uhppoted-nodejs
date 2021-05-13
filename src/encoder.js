@@ -129,7 +129,7 @@ module.exports = {
     * @return {buffer} 64 byte NodeJS buffer with encoded set-door-control request
     */
   SetDoorControl: function (deviceId, { door, delay, control } = {}) {
-    const opcodes = require('../nodes/opcodes.js')
+    const opcodes = require('./opcodes.js')
 
     const request = Buffer.alloc(64)
 

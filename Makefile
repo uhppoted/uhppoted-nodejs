@@ -33,14 +33,14 @@ get-devices: build
 get-device: build
 	node examples/get-device.js
 
+set-ip: build
+	node examples/set-ip.js
+
 get-listener: build
 	node examples/get-listener.js
 
 set-listener: build
 	node examples/set-listener.js
-
-get-status: build
-	node examples/get-status.js
 
 get-time: build
 	node examples/get-time.js
@@ -48,8 +48,14 @@ get-time: build
 set-time: build
 	node examples/set-time.js
 
-set-ip: build
-	node examples/set-ip.js
+get-door-control: build
+	node examples/get-door-control.js
+
+set-door-control: build
+	node examples/set-door-control.js
+
+get-status: build
+	node examples/get-status.js
 
 listen: build
 	node examples/listen.js

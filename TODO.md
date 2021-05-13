@@ -1,7 +1,5 @@
 ### IN PROGRESS
 
-- [ ] `get-door-control`
-- [ ] `set-door-control`
 - [ ] `get-cards`
 - [ ] `get-card`
 - [ ] `get-card-by-index`
@@ -20,6 +18,8 @@
 - [ ] Use logger from context if provided
 - [ ] Consolidate boilerplate
 
+- [x] `get-door-control`
+- [x] `set-door-control`
 - [x] `listen`
 - [x] `set-listener`
 - [x] `get-listener`

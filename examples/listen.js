@@ -1,9 +1,5 @@
+const ctx = require('./common.js')
 const uhppoted = require('../index.js')
-
-const config = new uhppoted.Config('uhppoted', '192.168.1.100', '192.168.1.255:60000', '192.168.1.100:60001', false)
-const ctx = {
-  config: config
-}
 
 const onEvent = function (event) {
   console.log(
