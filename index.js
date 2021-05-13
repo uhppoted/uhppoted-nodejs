@@ -16,6 +16,8 @@ module.exports = {
   getCards: require('./src/get-cards.js'),
   getCard: require('./src/get-card.js'),
   getCardByIndex: require('./src/get-card-by-index.js'),
+  deleteCard: require('./src/delete-card.js'),
+  deleteCards: require('./src/delete-cards.js'),
 
   listen: require('./src/listen.js')
 }

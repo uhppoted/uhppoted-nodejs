@@ -66,5 +66,11 @@ get-card: build
 get-card-by-index: build
 	node examples/get-card-by-index.js
 
+delete-card: build
+	node examples/delete-card.js
+
+delete-cards: build
+	node examples/delete-cards.js
+
 listen: build
 	node examples/listen.js
