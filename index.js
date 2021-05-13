@@ -13,6 +13,9 @@ module.exports = {
   setDoorControl: require('./src/set-door-control.js'),
 
   getStatus: require('./src/get-status.js'),
+  getCards: require('./src/get-cards.js'),
+  getCard: require('./src/get-card.js'),
+  getCardByIndex: require('./src/get-card-by-index.js'),
 
   listen: require('./src/listen.js')
 }

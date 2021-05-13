@@ -57,5 +57,14 @@ set-door-control: build
 get-status: build
 	node examples/get-status.js
 
+get-cards: build
+	node examples/get-cards.js
+
+get-card: build
+	node examples/get-card.js
+
+get-card-by-index: build
+	node examples/get-card-by-index.js
+
 listen: build
 	node examples/listen.js

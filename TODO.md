@@ -1,8 +1,5 @@
 ### IN PROGRESS
 
-- [ ] `get-cards`
-- [ ] `get-card`
-- [ ] `get-card-by-index`
 - [ ] `put-card`
 - [ ] `delete-card`
 - [ ] `delete-cards`
@@ -18,6 +15,9 @@
 - [ ] Use logger from context if provided
 - [ ] Consolidate boilerplate
 
+- [x] `get-card-by-index`
+- [x] `get-card`
+- [x] `get-cards`
 - [x] `get-door-control`
 - [x] `set-door-control`
 - [x] `listen`
