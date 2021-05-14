@@ -1,8 +1,10 @@
 const uhppoted = require('uhppoted')
 const ctx = require('./common.js')
+
+const deviceID = 405419896
 const card = 8165538
 
-uhppoted.getCard(ctx, 405419896, card)
+uhppoted.getCard(ctx, deviceID, card)
   .then(response => {
     switch (response.card.number) {
       case 0:

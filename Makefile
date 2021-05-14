@@ -82,6 +82,9 @@ delete-cards: build
 open-door: build
 	node examples/open-door.js $(ARGS)
 
+record-special-events: build
+	node examples/record-special-events.js $(ARGS)
+
 listen: build
 	node examples/listen.js $(ARGS)
 

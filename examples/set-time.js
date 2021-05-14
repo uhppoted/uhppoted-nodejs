@@ -1,7 +1,8 @@
 const uhppoted = require('uhppoted')
 const ctx = require('./common.js')
-
 const format = (n, l) => String(n).padStart(l, '0')
+
+const deviceID = 405419896
 const now = new Date()
 
 const year = format(now.getFullYear(), 4)
@@ -12,6 +13,6 @@ const minutes = format(now.getMinutes(), 2)
 const seconds = format(now.getSeconds(), 2)
 const datetime = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds
 
-uhppoted.setTime(ctx, 405419896, datetime)
+uhppoted.setTime(ctx, deviceID, datetime)
   .then(response => console.log('\nset-time:\n', response))
   .catch(err => console.log('ERROR', err))

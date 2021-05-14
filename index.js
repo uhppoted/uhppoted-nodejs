@@ -22,5 +22,6 @@ module.exports = {
 
   openDoor: require('./src/open-door.js'),
 
+  recordSpecialEvents: require('./src/record-special-events.js'),
   listen: require('./src/listen.js')
 }
