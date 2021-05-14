@@ -18,6 +18,10 @@ module.exports = {
   getCardByIndex: require('./src/get-card-by-index.js'),
   deleteCard: require('./src/delete-card.js'),
   deleteCards: require('./src/delete-cards.js'),
+  putCard: require('./src/put-card.js'),
 
-  listen: require('./src/listen.js')
+  listen: require('./src/listen.js'),
+
+
+  openDoor: require('./src/open-door.js')
 }
