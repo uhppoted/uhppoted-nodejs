@@ -1,5 +1,5 @@
+const uhppoted = require('uhppoted')
 const ctx = require('./common.js')
-const uhppoted = require('../index.js')
 const card = 8165538
 
 uhppoted.getCard(ctx, 405419896, card)

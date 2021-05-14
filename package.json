@@ -1,5 +1,5 @@
 {
-  "name": "uhppoted-nodejs",
+  "name": "uhppoted",
   "version": "0.6.13",
   "description": "NodeJS module wrapper for the interface to UHPPOTE TCP/IP Wiegand Access Controllers",
   "main": "index.js",

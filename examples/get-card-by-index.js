@@ -1,5 +1,5 @@
+const uhppoted = require('uhppoted')
 const ctx = require('./common.js')
-const uhppoted = require('../index.js')
 const index = 2
 
 uhppoted.getCardByIndex(ctx, 405419896, index)

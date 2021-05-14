@@ -1,5 +1,5 @@
+const uhppoted = require('uhppoted')
 const ctx = require('./common.js')
-const uhppoted = require('../index.js')
 
 const onEvent = function (event) {
   console.log(

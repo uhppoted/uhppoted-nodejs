@@ -1,5 +1,6 @@
+const uhppoted = require('uhppoted')
 const ctx = require('./common.js')
-const uhppoted = require('../index.js')
+
 const cardNumber = '123456789'
 const validFrom = '2020-01-01'
 const validUntil = '2025-01-01'

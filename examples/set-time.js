@@ -1,5 +1,5 @@
+const uhppoted = require('uhppoted')
 const ctx = require('./common.js')
-const uhppoted = require('../index.js')
 
 const format = (n, l) => String(n).padStart(l, '0')
 const now = new Date()

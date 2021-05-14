@@ -16,11 +16,11 @@ module.exports = {
   getCards: require('./src/get-cards.js'),
   getCard: require('./src/get-card.js'),
   getCardByIndex: require('./src/get-card-by-index.js'),
+  putCard: require('./src/put-card.js'),
   deleteCard: require('./src/delete-card.js'),
   deleteCards: require('./src/delete-cards.js'),
-  putCard: require('./src/put-card.js'),
 
-  listen: require('./src/listen.js'),
+  openDoor: require('./src/open-door.js'),
 
-  openDoor: require('./src/open-door.js')
+  listen: require('./src/listen.js')
 }

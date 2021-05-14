@@ -2,8 +2,8 @@
 
 ### IN PROGRESS
 
+- [ ] Rework examples to use `uhppoted` as a package
 - [ ] Default the examples bind address to 0.0.0.0 and implement an option to set it something else.
-- [ ] Rework examples to use installed `uhppoted`
 - [ ] `record-special-events`
 - [ ] `get-events`
 - [ ] `get-event`
@@ -11,6 +11,7 @@
 - [ ] `set-event-index`
 
 - [ ] Commonalise context code
+- [ ] Parameter validation
 - [ ] Implement `logger`
 - [ ] Implement `translator`
 - [ ] Use logger from context if provided

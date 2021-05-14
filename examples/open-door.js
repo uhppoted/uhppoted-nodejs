@@ -1,5 +1,5 @@
+const uhppoted = require('uhppoted')
 const ctx = require('./common.js')
-const uhppoted = require('../index.js')
 const door = 1
 
 uhppoted.openDoor(ctx, 405419896, door)
