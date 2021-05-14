@@ -85,6 +85,9 @@ open-door: build
 record-special-events: build
 	node examples/record-special-events.js $(ARGS)
 
+get-event: build
+	node examples/get-event.js $(ARGS)
+
 listen: build
 	node examples/listen.js $(ARGS)
 
