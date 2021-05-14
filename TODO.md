@@ -2,14 +2,13 @@
 
 ### IN PROGRESS
 
-- [ ] Rework examples to use `uhppoted` as a package
-- [ ] Default the examples bind address to 0.0.0.0 and implement an option to set it something else.
 - [ ] `record-special-events`
 - [ ] `get-events`
 - [ ] `get-event`
 - [ ] `get-event-index`
 - [ ] `set-event-index`
 
+- [ ] Add device specific configuration
 - [ ] Commonalise context code
 - [ ] Parameter validation
 - [ ] Implement `logger`
@@ -20,6 +19,8 @@
 - [ ] Integration tests
 - [ ] Documentation
 
+- [x] Default the examples bind address to 0.0.0.0, changeable with a command line argument
+- [x] Rework examples to use `uhppoted` as a package
 - [x] `open-door`
 - [x] `delete-card`
 - [x] `delete-cards`
@@ -44,3 +45,4 @@
 1. Time profiles
 2. Task lists
 3. Remote control
+4. Device by name

@@ -25,6 +25,18 @@ function Config (name, bindAddr, broadcastAddr, listenAddr, debug) {
   if (debug) {
     this.debug = debug
   }
+
+  this.setBindAddr = function (address) {
+    this.bind = address
+  }
+
+  this.setBroadcastAddr = function (address) {
+    this.broadcast = address
+  }
+
+  this.setListenAddr = function (address) {
+    this.listen = address
+  }
 }
 
 module.exports = {
