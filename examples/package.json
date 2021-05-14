@@ -20,6 +20,7 @@
     "open-door": "node open-door.js",
     "record-special-events": "record-special-events.js",
     "get-event-index": "get-event-index.js",
+    "set-event-index": "set-event-index.js",
     "get-event": "get-event.js",
     "listen": "node listen.js"
   },

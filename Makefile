@@ -88,6 +88,9 @@ record-special-events: build
 get-event-index: build
 	node examples/get-event-index.js $(ARGS)
 
+set-event-index: build
+	node examples/set-event-index.js $(ARGS)
+
 get-event: build
 	node examples/get-event.js $(ARGS)
 

@@ -2,9 +2,9 @@
 
 ### IN PROGRESS
 
-- [ ] `set-event-index`
 - [ ] `get-events`
 
+- [ ] Integration tests
 - [ ] Commonalise context code
 - [ ] Add device specific configuration
 - [ ] Rethink function-per-file structure
@@ -15,11 +15,13 @@
 - [ ] Use logger from context if provided
 - [ ] Consolidate boilerplate
 - [ ] Unit tests
-- [ ] Integration tests
 - [ ] Documentation
+- [ ] Internationalisation
 
 - [x] Default the examples bind address to 0.0.0.0, changeable with a command line argument
 - [x] Rework examples to use `uhppoted` as a package
+
+- [x] `set-event-index`
 - [x] `get-event`
 - [x] `get-event-index`
 - [x] `record-special-events`
