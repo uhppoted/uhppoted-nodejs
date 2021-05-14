@@ -22,6 +22,5 @@ module.exports = {
 
   listen: require('./src/listen.js'),
 
-
   openDoor: require('./src/open-door.js')
 }

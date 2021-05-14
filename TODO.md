@@ -1,20 +1,28 @@
+## v0.6.x
+
 ### IN PROGRESS
 
-- [ ] `put-card`
-- [ ] `delete-card`
-- [ ] `delete-cards`
-- [ ] `open-door`
+- [ ] Default the examples bind address to 0.0.0.0 and implement an option to set it something else.
+- [ ] Rework examples to use installed `uhppoted`
 - [ ] `record-special-events`
 - [ ] `get-events`
 - [ ] `get-event`
 - [ ] `get-event-index`
 - [ ] `set-event-index`
 
+- [ ] Commonalise context code
 - [ ] Implement `logger`
 - [ ] Implement `translator`
 - [ ] Use logger from context if provided
 - [ ] Consolidate boilerplate
+- [ ] Unit tests
+- [ ] Integration tests
+- [ ] Documentation
 
+- [x] `open-door`
+- [x] `delete-card`
+- [x] `delete-cards`
+- [x] `put-card`
 - [x] `get-card-by-index`
 - [x] `get-card`
 - [x] `get-cards`
@@ -31,3 +39,7 @@
 - [x] `get-devices`
 
 ### TODO
+
+1. Time profiles
+2. Task lists
+3. Remote control
