@@ -1,4 +1,4 @@
-VERSION   = v0.6.12
+VERSION   = v0.6.13
 DIST     ?= development
 
 SERIALNO ?= 405419896
@@ -71,6 +71,12 @@ delete-card: build
 
 delete-cards: build
 	node examples/delete-cards.js
+
+put-card: build
+	node examples/put-card.js
+
+open-door: build
+	node examples/open-door.js
 
 listen: build
 	node examples/listen.js
