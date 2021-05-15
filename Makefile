@@ -91,6 +91,9 @@ get-event-index: build
 set-event-index: build
 	node examples/set-event-index.js $(ARGS)
 
+get-events: build
+	node examples/get-events.js $(ARGS)
+
 get-event: build
 	node examples/get-event.js $(ARGS)
 

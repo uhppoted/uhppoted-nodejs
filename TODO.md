@@ -2,8 +2,6 @@
 
 ### IN PROGRESS
 
-- [ ] `get-events`
-
 - [ ] Integration tests
 - [ ] Commonalise context code
 - [ ] Add device specific configuration
@@ -21,8 +19,9 @@
 - [x] Default the examples bind address to 0.0.0.0, changeable with a command line argument
 - [x] Rework examples to use `uhppoted` as a package
 
-- [x] `set-event-index`
 - [x] `get-event`
+- [x] `get-events`
+- [x] `set-event-index`
 - [x] `get-event-index`
 - [x] `record-special-events`
 - [x] `open-door`
