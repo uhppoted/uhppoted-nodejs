@@ -1,5 +1,6 @@
 const uhppoted = require('./uhppoted.js')
 const opcodes = require('./opcodes.js')
+const log = require('./logger.js')
 const validateDeviceId = require('./common.js').validateDeviceId
 
 function getEvents (ctx, deviceId) {
@@ -7,7 +8,7 @@ function getEvents (ctx, deviceId) {
 
   const context = {
     config: ctx.config,
-    logger: (m) => { console.log(m) }
+    logger: (m) => { log(m) }
   }
 
   const first = uhppoted.get(context, deviceId, opcodes.GetEvent, { index: 0 })

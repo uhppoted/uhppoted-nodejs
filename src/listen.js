@@ -1,9 +1,10 @@
 const uhppoted = require('./uhppoted.js')
+const log = require('./logger.js')
 
 function listen (ctx, onEvent, onError) {
   const context = {
     config: ctx.config,
-    logger: (m) => { console.log(m) }
+    logger: (m) => { log(m) }
   }
 
   const handler = {

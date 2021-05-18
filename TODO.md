@@ -2,8 +2,7 @@
 
 ### IN PROGRESS
 
-- [ ] Restructure functions so that don't need duplicate error handling
-- [ ] Implement `logger`
+- [ ] Restructure functions to avoid duplicate error handling
 - [ ] Use logger from context if provided
 - [ ] Implement device specific configuration
 - [ ] Unit tests
@@ -18,6 +17,7 @@
 - [ ] Documentation
 - [ ] Internationalisation
 
+- [x] Implement `logger`
 - [x] Parameter validation
 - [x] Add timeout to command line config
 - [x] Doesn't timeout on a request if broadcast address is wrong (e.g. 192.168.1.255:6000)

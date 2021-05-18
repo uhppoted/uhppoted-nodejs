@@ -1,5 +1,6 @@
 const uhppoted = require('./uhppoted.js')
 const opcodes = require('./opcodes.js')
+const log = require('./logger.js')
 const validateDeviceId = require('./common.js').validateDeviceId
 const validateDoor = require('./common.js').validateDoor
 
@@ -9,7 +10,7 @@ function setDoorControl (ctx, deviceId, door, delay, control) {
 
   const context = {
     config: ctx.config,
-    logger: (m) => { console.log(m) }
+    logger: (m) => { log(m) }
   }
 
   let controlv = 0x00
