@@ -21,26 +21,21 @@ module.exports = {
     */
   get: async function (ctx, deviceId, op, request) {
     const c = context(deviceId, ctx.config, ctx.logger)
-
     const receiver = receiveAny(c.timeout)
 
-    try {
-      const decode = function (reply) {
-        if (reply) {
-          const response = codec.decode(reply, ctx.translator)
+    const decode = function (reply) {
+      if (reply) {
+        const response = codec.decode(reply, ctx.translator)
 
-          if (response && (response.deviceId === c.deviceId)) {
-            return response
-          }
+        if (response && (response.deviceId === c.deviceId)) {
+          return response
         }
-
-        throw new Error(`no reply from ${deviceId}`)
       }
 
-      return exec(c, op, request, receiver).then(decode)
-    } finally {
-      receiver.cancel()
+      throw new Error(`no reply from ${deviceId}`)
     }
+
+    return exec(c, op, request, receiver).then(decode)
   },
 
   /**
@@ -61,22 +56,18 @@ module.exports = {
     const c = context(deviceId, ctx.config, ctx.logger)
     const receiver = receiveAny(c.timeout)
 
-    try {
-      const decode = function (reply) {
-        if (reply) {
-          const response = codec.decode(reply, ctx.translator)
-          if (response && (response.deviceId === c.deviceId)) {
-            return response
-          }
+    const decode = function (reply) {
+      if (reply) {
+        const response = codec.decode(reply, ctx.translator)
+        if (response && (response.deviceId === c.deviceId)) {
+          return response
         }
-
-        throw new Error(`no reply from ${deviceId}`)
       }
 
-      return exec(c, op, request, receiver).then(decode)
-    } finally {
-      receiver.cancel()
+      throw new Error(`no reply from ${deviceId}`)
     }
+
+    return exec(c, op, request, receiver).then(decode)
   },
 
   /**
@@ -102,6 +93,7 @@ module.exports = {
     }
 
     receiver.received = (message) => {}
+    receiver.cancel = () => { }
 
     return exec(c, op, request, receiver).then(decode)
   },
@@ -151,6 +143,8 @@ module.exports = {
     receiver.received = (message) => {
       replies.push(new Uint8Array(message))
     }
+
+    receiver.cancel = () => { }
 
     return exec(c, op, request, receiver).then(decode)
   },
@@ -255,6 +249,7 @@ async function exec (ctx, op, request, receive) {
     }
   } finally {
     sock.close()
+    receive.cancel()
   }
 
   throw new Error('no reply to request')

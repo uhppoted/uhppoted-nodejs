@@ -5,4 +5,4 @@ const deviceID = 405419896
 
 uhppoted.getStatus(ctx, deviceID)
   .then(response => console.log('\nget-status:\n', response))
-  .catch(err => console.log('ERROR', err))
+  .catch(err => console.log(err))

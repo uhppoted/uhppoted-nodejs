@@ -32,7 +32,7 @@ release:
 	npm pack
 
 get-devices: build
-	node examples/get-devices.js
+	node examples/get-devices.js $(ARGS)
 
 get-device: build
 	node examples/get-device.js $(ARGS)

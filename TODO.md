@@ -2,14 +2,13 @@
 
 ### IN PROGRESS
 
-- [ ] Doesn't timeout on a request if broadcast address is wrong (e.g. 192.168.1.255:6000)
+- [ ] Parameter validation
 - [ ] Add timeout to command line config
 - [ ] Implement device specific configuration
 - [ ] Integration tests
 - [ ] Commonalise context code
 - [ ] Rethink function-per-file structure
 - [ ] Reconsider making functions async (rather than returning Promise)
-- [ ] Parameter validation
 - [ ] Implement `logger`
 - [ ] Implement `translator`
 - [ ] Use logger from context if provided
@@ -18,6 +17,7 @@
 - [ ] Documentation
 - [ ] Internationalisation
 
+- [x] Doesn't timeout on a request if broadcast address is wrong (e.g. 192.168.1.255:6000)
 - [x] Default the examples bind address to 0.0.0.0, changeable with a command line argument
 - [x] Rework examples to use `uhppoted` as a package
 - [x] `get-event`
