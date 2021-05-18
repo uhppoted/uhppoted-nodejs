@@ -4,8 +4,6 @@
 
 - [ ] Implement `logger`
 - [ ] Use logger from context if provided
-- [ ] Parameter validation
-      - card number
 - [ ] Implement device specific configuration
 - [ ] Unit tests
       - invalid/missing parameters
@@ -19,6 +17,7 @@
 - [ ] Documentation
 - [ ] Internationalisation
 
+- [x] Parameter validation
 - [x] Add timeout to command line config
 - [x] Doesn't timeout on a request if broadcast address is wrong (e.g. 192.168.1.255:6000)
 - [x] Default the examples bind address to 0.0.0.0, changeable with a command line argument
