@@ -2,6 +2,7 @@
 
 ### IN PROGRESS
 
+- [ ] Restructure functions so that don't need duplicate error handling
 - [ ] Implement `logger`
 - [ ] Use logger from context if provided
 - [ ] Implement device specific configuration

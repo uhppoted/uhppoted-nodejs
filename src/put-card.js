@@ -1,15 +1,11 @@
 const uhppoted = require('./uhppoted.js')
 const opcodes = require('./opcodes.js')
-const common = require('./common.js')
+const validateDeviceId = require('./common.js').validateDeviceId
+const validateCardNumber = require('./common.js').validateCardNumber
 
 function putCard (ctx, deviceId, card, validFrom, validUntil, doors) {
-  if (!common.isValidDeviceId(deviceId)) {
-    throw new Error(`invalid device ID ${deviceId}`)
-  }
-
-  if (!common.isValidCardNumber(card)) {
-    throw new Error(`invalid card number ${card}`)
-  }
+  validateDeviceId(deviceId)
+  validateCardNumber(card)
 
   const context = {
     config: ctx.config,

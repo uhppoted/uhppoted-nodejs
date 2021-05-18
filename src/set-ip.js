@@ -1,11 +1,9 @@
 const uhppoted = require('./uhppoted.js')
 const opcodes = require('./opcodes.js')
-const common = require('./common.js')
+const validateDeviceId = require('./common.js').validateDeviceId
 
 function setIP (ctx, deviceId, address, netmask, gateway) {
-  if (!common.isValidDeviceId(deviceId)) {
-    throw new Error(`invalid device ID ${deviceId}`)
-  }
+  validateDeviceId(deviceId)
 
   const context = {
     config: ctx.config,

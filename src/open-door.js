@@ -1,15 +1,11 @@
 const uhppoted = require('./uhppoted.js')
 const opcodes = require('./opcodes.js')
-const common = require('./common.js')
+const validateDeviceId = require('./common.js').validateDeviceId
+const validateDoor = require('./common.js').validateDoor
 
 function openDoor (ctx, deviceId, door) {
-  if (!common.isValidDeviceId(deviceId)) {
-    throw new Error(`invalid device ID ${deviceId}`)
-  }
-
-  if (!common.isValidDoor(door)) {
-    throw new Error(`invalid door ${door}`)
-  }
+  validateDeviceId(deviceId)
+  validateDoor(door)
 
   const context = {
     config: ctx.config,

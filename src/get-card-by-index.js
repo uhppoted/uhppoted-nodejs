@@ -1,15 +1,11 @@
 const uhppoted = require('./uhppoted.js')
 const opcodes = require('./opcodes.js')
-const common = require('./common.js')
+const validateDeviceId = require('./common.js').validateDeviceId
+const validateCardIndex = require('./common.js').validateCardIndex
 
 function getCardByIndex (ctx, deviceId, index) {
-  if (!common.isValidDeviceId(deviceId)) {
-    throw new Error(`invalid device ID ${deviceId}`)
-  }
-
-  if (!common.isValidCardIndex(index)) {
-    throw new Error(`invalid card index ${index}`)
-  }
+  validateDeviceId(deviceId)
+  validateCardIndex(index)
 
   const context = {
     config: ctx.config,
