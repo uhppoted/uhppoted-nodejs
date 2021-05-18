@@ -10,7 +10,7 @@ function getCardByIndex (ctx, deviceId, index) {
 
   const context = {
     config: ctx.config,
-    logger: (m) => { log(m) }
+    logger: ctx.logger ? ctx.logger : (m) => { log(m) }
   }
 
   return uhppoted.get(context, deviceId, opcodes.GetCardByIndex, { index: index })

@@ -10,7 +10,7 @@ function setDoorControl (ctx, deviceId, door, delay, control) {
 
   const context = {
     config: ctx.config,
-    logger: (m) => { log(m) }
+    logger: ctx.logger ? ctx.logger : (m) => { log(m) }
   }
 
   let controlv = 0x00

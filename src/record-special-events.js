@@ -8,7 +8,7 @@ function recordSpecialEvents (ctx, deviceId, enable) {
 
   const context = {
     config: ctx.config,
-    logger: (m) => { log(m) }
+    logger: ctx.logger ? ctx.logger : (m) => { log(m) }
   }
 
   return uhppoted.set(context, deviceId, opcodes.RecordSpecialEvents, { enable: enable })

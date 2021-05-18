@@ -8,7 +8,7 @@ function setListener (ctx, deviceId, address, port) {
 
   const context = {
     config: ctx.config,
-    logger: (m) => { log(m) }
+    logger: ctx.logger ? ctx.logger : (m) => { log(m) }
   }
 
   return uhppoted.set(context, deviceId, opcodes.SetListener, { address: address, port: port })

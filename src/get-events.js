@@ -8,7 +8,7 @@ function getEvents (ctx, deviceId) {
 
   const context = {
     config: ctx.config,
-    logger: (m) => { log(m) }
+    logger: ctx.logger ? ctx.logger : (m) => { log(m) }
   }
 
   const first = uhppoted.get(context, deviceId, opcodes.GetEvent, { index: 0 })

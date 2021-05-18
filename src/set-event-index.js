@@ -10,7 +10,7 @@ function setEventIndex (ctx, deviceId, index) {
 
   const context = {
     config: ctx.config,
-    logger: (m) => { log(m) }
+    logger: ctx.logger ? ctx.logger : (m) => { log(m) }
   }
 
   return uhppoted.set(context, deviceId, opcodes.SetEventIndex, { index: index })

@@ -4,7 +4,7 @@ const log = require('./logger.js')
 function listen (ctx, onEvent, onError) {
   const context = {
     config: ctx.config,
-    logger: (m) => { log(m) }
+    logger: ctx.logger ? ctx.logger : (m) => { log(m) }
   }
 
   const handler = {

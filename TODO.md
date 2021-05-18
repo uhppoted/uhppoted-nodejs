@@ -3,7 +3,6 @@
 ### IN PROGRESS
 
 - [ ] Restructure functions to avoid duplicate error handling
-- [ ] Use logger from context if provided
 - [ ] Implement device specific configuration
 - [ ] Unit tests
       - invalid/missing parameters
@@ -17,6 +16,7 @@
 - [ ] Documentation
 - [ ] Internationalisation
 
+- [x] Use logger from context if provided
 - [x] Implement `logger`
 - [x] Parameter validation
 - [x] Add timeout to command line config

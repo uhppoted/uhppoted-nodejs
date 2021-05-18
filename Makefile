@@ -38,6 +38,9 @@ get-devices: build
 get-device: build
 	node examples/get-device.js $(ARGS)
 
+get-device-with-custom-logger: build
+	node examples/get-device-with-custom-logger.js $(ARGS)
+
 set-ip: build
 	node examples/set-ip.js $(ARGS)
 
