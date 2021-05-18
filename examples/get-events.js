@@ -5,4 +5,4 @@ const deviceID = 405419896
 
 uhppoted.getEvents(ctx, deviceID)
   .then(response => console.log('\nget-events:\n', response))
-  .catch(err => console.log('ERROR', err))
+  .catch(err => console.log(err))

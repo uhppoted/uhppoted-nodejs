@@ -6,4 +6,4 @@ const index = 29
 
 uhppoted.getEvent(ctx, deviceID, index)
   .then(response => console.log('\nget-event:\n', response))
-  .catch(err => console.log('ERROR', err))
+  .catch(err => console.log(err))

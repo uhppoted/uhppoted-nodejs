@@ -5,4 +5,4 @@ const deviceID = 405419896
 
 uhppoted.deleteCards(ctx, deviceID)
   .then(response => console.log('\ndelete-cards:\n', response))
-  .catch(err => console.log('ERROR', err))
+  .catch(err => console.log(err))

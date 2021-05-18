@@ -19,4 +19,4 @@ uhppoted.getCardByIndex(ctx, deviceID, index)
         console.log('\nget-card-by-index:\n', response)
     }
   })
-  .catch(err => console.log('ERROR', err))
+  .catch(err => console.log(err))

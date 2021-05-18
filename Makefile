@@ -10,8 +10,9 @@ DATETIME  = $(shell date "+%Y-%m-%d %H:%M:%S")
 BIND      ?= 192.168.1.100
 BROADCAST ?= 192.168.1.255:60000
 LISTEN    ?= 192.168.1.100:60001
+TIMEOUT   ?= 1000
 DEBUG     ?= true
-ARGS       = bind=$(BIND) broadcast=$(BROADCAST) listen=$(LISTEN) debug=$(DEBUG)
+ARGS       = bind=$(BIND) broadcast=$(BROADCAST) listen=$(LISTEN) timeout=$(TIMEOUT) debug=$(DEBUG)
 
 .PHONY: build
 .PHONY: test

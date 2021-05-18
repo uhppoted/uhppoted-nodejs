@@ -5,4 +5,4 @@ const deviceID = 405419896
 
 uhppoted.recordSpecialEvents(ctx, deviceID, true)
   .then(response => console.log('\nrecord-special-events:\n', response))
-  .catch(err => console.log('ERROR', err))
+  .catch(err => console.log(err))

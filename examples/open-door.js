@@ -8,4 +8,4 @@ uhppoted.openDoor(ctx, deviceID, door)
   .then(response => {
     console.log(response)
   })
-  .catch(err => console.log('ERROR', err))
+  .catch(err => console.log(err))

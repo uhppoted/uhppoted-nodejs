@@ -3,4 +3,4 @@ const uhppoted = require('../index.js')
 
 uhppoted.getDevices(ctx)
   .then(response => console.log('\nget-devices:\n', response))
-  .catch(err => console.log('ERROR', err))
+  .catch(err => console.log(err))

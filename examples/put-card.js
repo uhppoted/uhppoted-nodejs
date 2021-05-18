@@ -11,4 +11,4 @@ uhppoted.putCard(ctx, deviceID, cardNumber, validFrom, validUntil, doors)
   .then(response => {
     console.log(response)
   })
-  .catch(err => console.log('ERROR', err))
+  .catch(err => console.log(err))

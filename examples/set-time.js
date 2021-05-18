@@ -15,4 +15,4 @@ const datetime = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + 
 
 uhppoted.setTime(ctx, deviceID, datetime)
   .then(response => console.log('\nset-time:\n', response))
-  .catch(err => console.log('ERROR', err))
+  .catch(err => console.log(err))

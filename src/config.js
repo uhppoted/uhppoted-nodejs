@@ -1,4 +1,4 @@
-function Config (name, bindAddr, broadcastAddr, listenAddr, debug) {
+function Config (name, bindAddr, broadcastAddr, listenAddr, timeout, debug) {
   this.name = 'uhppoted'
   this.bind = '0.0.0.0'
   this.broadcast = '255.255.255.255:60000'
@@ -26,16 +26,8 @@ function Config (name, bindAddr, broadcastAddr, listenAddr, debug) {
     this.debug = debug
   }
 
-  this.setBindAddr = function (address) {
-    this.bind = address
-  }
-
-  this.setBroadcastAddr = function (address) {
-    this.broadcast = address
-  }
-
-  this.setListenAddr = function (address) {
-    this.listen = address
+  if (timeout && !Number.isNaN(timeout) && timeout >= 0 && timeout < 60000) {
+    this.timeout = timeout
   }
 }
 

@@ -19,4 +19,4 @@ uhppoted.getCard(ctx, deviceID, card)
         console.log('\nget-card:\n', response)
     }
   })
-  .catch(err => console.log('ERROR', err))
+  .catch(err => console.log(err))
