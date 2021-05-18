@@ -2,17 +2,20 @@
 
 ### IN PROGRESS
 
+- [ ] Implement `logger`
+- [ ] Use logger from context if provided
 - [ ] Parameter validation
+      - card number
 - [ ] Implement device specific configuration
+- [ ] Unit tests
+      - invalid/missing parameters
 - [ ] Integration tests
 - [ ] Commonalise context code
+- [ ] Commonalise validation code
 - [ ] Rethink function-per-file structure
 - [ ] Reconsider making functions async (rather than returning Promise)
-- [ ] Implement `logger`
 - [ ] Implement `translator`
-- [ ] Use logger from context if provided
 - [ ] Consolidate boilerplate
-- [ ] Unit tests
 - [ ] Documentation
 - [ ] Internationalisation
 

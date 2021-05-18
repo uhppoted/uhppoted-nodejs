@@ -2,6 +2,10 @@ const uhppoted = require('./uhppoted.js')
 const opcodes = require('./opcodes.js')
 
 function setDoorControl (ctx, deviceId, door, delay, control) {
+  if (!deviceId || Number.isNaN(deviceId) || deviceId < 1) {
+    throw new Error(`invalid device ID ${deviceId}`)
+  }
+
   const context = {
     config: ctx.config,
     logger: (m) => { console.log(m) }

@@ -3,6 +3,12 @@ const ctx = require('./common.js')
 
 const deviceID = 405419896
 
-uhppoted.getEvents(ctx, deviceID)
-  .then(response => console.log('\nget-events:\n', response))
-  .catch(err => console.log(err))
+try {
+  uhppoted.getEvents(ctx, deviceID)
+    .then(response => console.log('\nget-events:\n', response))
+    .catch(err => {
+      console.log(err.toString())
+    })
+} catch (err) {
+  console.log(err.toString())
+}
