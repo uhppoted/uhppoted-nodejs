@@ -7,12 +7,10 @@ const validFrom = '2020-01-01'
 const validUntil = '2025-01-01'
 const doors = { 1: true, 2: false, 3: true, 4: true }
 
-try {
-  uhppoted.putCard(ctx, deviceID, cardNumber, validFrom, validUntil, doors)
-    .then(response => console.log('\nput-card:\n', response))
-    .catch(err => {
-      console.log(err.toString())
-    })
-} catch (err) {
-  console.log(err.toString())
-}
+uhppoted.putCard(ctx, deviceID, cardNumber, validFrom, validUntil, doors)
+  .then(response => {
+    console.log('\nput-card:\n', response)
+  })
+  .catch(err => {
+    console.log(`\n   *** ERROR ${err.message}\n`)
+  })

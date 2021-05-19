@@ -1,19 +1,29 @@
 const uhppoted = require('./uhppoted.js')
 const opcodes = require('./opcodes.js')
 const log = require('./logger.js')
-const validateDeviceId = require('./common.js').validateDeviceId
-const validateDoor = require('./common.js').validateDoor
+const isValidDeviceId = require('./common.js').isValidDeviceId
+const isValidDoor = require('./common.js').isValidDoor
 
 function openDoor (ctx, deviceId, door) {
-  validateDeviceId(deviceId)
-  validateDoor(door)
+  const initialise = new Promise((resolve, reject) => {
+    if (!isValidDeviceId(deviceId)) {
+      reject(new Error(`invalid device ID '${deviceId}'`))
+      return
+    }
 
-  const context = {
-    config: ctx.config,
-    logger: ctx.logger ? ctx.logger : (m) => { log(m) }
-  }
+    if (!isValidDoor(door)) {
+      reject(new Error(`invalid door '${door}'`))
+      return
+    }
 
-  return uhppoted.get(context, deviceId, opcodes.OpenDoor, { door: door })
+    resolve({
+      config: ctx.config,
+      logger: ctx.logger ? ctx.logger : (m) => { log(m) }
+    })
+  })
+
+  return initialise
+    .then(context => uhppoted.get(context, deviceId, opcodes.OpenDoor, { door: door }))
 }
 
 exports = module.exports = openDoor

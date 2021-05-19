@@ -4,12 +4,10 @@ const ctx = require('./common.js')
 const deviceID = 405419896
 const index = 29
 
-try {
-  uhppoted.getEvent(ctx, deviceID, index)
-    .then(response => console.log('\nget-event:\n', response))
-    .catch(err => {
-      console.log(err.toString())
-    })
-} catch (err) {
-  console.log(err.toString())
-}
+uhppoted.getEvent(ctx, deviceID, index)
+  .then(response => {
+    console.log('\nget-event:\n', response)
+  })
+  .catch(err => {
+    console.log(`\n   *** ERROR ${err.message}\n`)
+  })

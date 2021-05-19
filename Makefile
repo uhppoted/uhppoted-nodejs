@@ -25,6 +25,9 @@ build:
 run: build
 	node example.js
 
+debug: build
+	node examples/error-handling.js $(ARGS)
+
 test: build
 	npx eslint --fix test/*.js  
 	npm test
@@ -103,4 +106,30 @@ get-event: build
 
 listen: build
 	node examples/listen.js $(ARGS)
+
+run-all: build
+	@node examples/get-devices.js $(ARGS)
+	@node examples/get-device.js $(ARGS)
+	@node examples/get-device-with-custom-logger.js $(ARGS)
+	@node examples/set-ip.js $(ARGS)
+	@node examples/get-listener.js $(ARGS)
+	@node examples/set-listener.js $(ARGS)
+	@node examples/get-time.js $(ARGS)
+	@node examples/set-time.js $(ARGS)
+	@node examples/get-door-control.js $(ARGS)
+	@node examples/set-door-control.js $(ARGS)
+	@node examples/get-status.js $(ARGS)
+	@node examples/get-cards.js $(ARGS)
+	@node examples/get-card.js $(ARGS)
+	@node examples/get-card-by-index.js $(ARGS)
+	@node examples/put-card.js $(ARGS)
+	@node examples/delete-card.js $(ARGS)
+	@node examples/delete-cards.js $(ARGS)
+	@node examples/open-door.js $(ARGS)
+	@node examples/record-special-events.js $(ARGS)
+	@node examples/get-event-index.js $(ARGS)
+	@node examples/set-event-index.js $(ARGS)
+	@node examples/get-events.js $(ARGS)
+	@node examples/get-event.js $(ARGS)
+
 

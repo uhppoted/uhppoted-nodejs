@@ -3,12 +3,10 @@ const ctx = require('./common.js')
 
 const deviceID = 405419896
 
-try {
-  uhppoted.getDoorControl(ctx, deviceID, 3)
-    .then(response => console.log('\nget-door-control:\n', response))
-    .catch(err => {
-      console.log(err.toString())
-    })
-} catch (err) {
-  console.log(err.toString())
-}
+uhppoted.getDoorControl(ctx, deviceID, 3)
+  .then(response => {
+    console.log('\nget-door-control:\n', response)
+  })
+  .catch(err => {
+    console.log(`\n   *** ERROR ${err.message}\n`)
+  })

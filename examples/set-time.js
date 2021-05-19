@@ -13,12 +13,10 @@ const minutes = format(now.getMinutes(), 2)
 const seconds = format(now.getSeconds(), 2)
 const datetime = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds
 
-try {
-  uhppoted.setTime(ctx, deviceID, datetime)
-    .then(response => console.log('\nset-time:\n', response))
-    .catch(err => {
-      console.log(err.toString())
-    })
-} catch (err) {
-  console.log(err.toString())
-}
+uhppoted.setTime(ctx, deviceID, datetime)
+  .then(response => {
+    console.log('\nset-time:\n', response)
+  })
+  .catch(err => {
+    console.log(`\n   *** ERROR ${err.message}\n`)
+  })

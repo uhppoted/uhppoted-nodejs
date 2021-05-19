@@ -1,19 +1,29 @@
 const uhppoted = require('./uhppoted.js')
 const opcodes = require('./opcodes.js')
 const log = require('./logger.js')
-const validateDeviceId = require('./common.js').validateDeviceId
-const validateEventIndex = require('./common.js').validateEventIndex
+const isValidDeviceId = require('./common.js').isValidDeviceId
+const isValidEventIndex = require('./common.js').isValidEventIndex
 
 function getEvent (ctx, deviceId, index) {
-  validateDeviceId(deviceId)
-  validateEventIndex(index)
+  const initialise = new Promise((resolve, reject) => {
+    if (!isValidDeviceId(deviceId)) {
+      reject(new Error(`invalid device ID '${deviceId}'`))
+      return
+    }
 
-  const context = {
-    config: ctx.config,
-    logger: ctx.logger ? ctx.logger : (m) => { log(m) }
-  }
+    if (!isValidEventIndex(index)) {
+      reject(new Error(`invalid event index '${index}'`))
+      return
+    }
 
-  return uhppoted.get(context, deviceId, opcodes.GetEvent, { index: index })
+    resolve({
+      config: ctx.config,
+      logger: ctx.logger ? ctx.logger : (m) => { log(m) }
+    })
+  })
+
+  return initialise
+    .then(context => uhppoted.get(context, deviceId, opcodes.GetEvent, { index: index }))
 }
 
 exports = module.exports = getEvent

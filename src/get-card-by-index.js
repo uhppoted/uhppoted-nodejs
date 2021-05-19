@@ -1,19 +1,29 @@
 const uhppoted = require('./uhppoted.js')
 const opcodes = require('./opcodes.js')
 const log = require('./logger.js')
-const validateDeviceId = require('./common.js').validateDeviceId
-const validateCardIndex = require('./common.js').validateCardIndex
+const isValidDeviceId = require('./common.js').isValidDeviceId
+const isValidCardIndex = require('./common.js').isValidCardIndex
 
 function getCardByIndex (ctx, deviceId, index) {
-  validateDeviceId(deviceId)
-  validateCardIndex(index)
+  const initialise = new Promise((resolve, reject) => {
+    if (!isValidDeviceId(deviceId)) {
+      reject(new Error(`invalid device ID '${deviceId}'`))
+      return
+    }
 
-  const context = {
-    config: ctx.config,
-    logger: ctx.logger ? ctx.logger : (m) => { log(m) }
-  }
+    if (!isValidCardIndex(index)) {
+      reject(new Error(`invalid card index '${index}'`))
+      return
+    }
 
-  return uhppoted.get(context, deviceId, opcodes.GetCardByIndex, { index: index })
+    resolve({
+      config: ctx.config,
+      logger: ctx.logger ? ctx.logger : (m) => { log(m) }
+    })
+  })
+
+  return initialise
+    .then(context => uhppoted.get(context, deviceId, opcodes.GetCardByIndex, { index: index }))
 }
 
 exports = module.exports = getCardByIndex

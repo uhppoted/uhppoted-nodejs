@@ -1,11 +1,9 @@
 const uhppoted = require('uhppoted')
 const ctx = require('./common.js')
 
-const deviceID = 405419896
-
-uhppoted.getTime(ctx, deviceID)
+uhppoted.getDevice(ctx, 0)
   .then(response => {
-    console.log('\nget-time:\n', response)
+    console.log('get-device:\n', response)
   })
   .catch(err => {
     console.log(`\n   *** ERROR ${err.message}\n`)

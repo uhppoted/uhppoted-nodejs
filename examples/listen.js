@@ -12,7 +12,7 @@ const onEvent = function (event) {
 }
 
 const onError = function (err) {
-  console.log('ERROR:', err)
+  console.log(`\n   *** ERROR ${err.message}\n`)
 }
 
 const listener = uhppoted.listen(ctx, onEvent, onError)

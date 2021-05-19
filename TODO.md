@@ -2,20 +2,19 @@
 
 ### IN PROGRESS
 
-- [ ] Restructure functions to avoid duplicate error handling
+- [ ] `await` example
 - [ ] Implement device specific configuration
 - [ ] Unit tests
       - invalid/missing parameters
 - [ ] Integration tests
 - [ ] Commonalise context code
 - [ ] Commonalise validation code
-- [ ] Rethink function-per-file structure
-- [ ] Reconsider making functions async (rather than returning Promise)
-- [ ] Implement `translator`
 - [ ] Consolidate boilerplate
-- [ ] Documentation
+- [ ] Implement `translator`
 - [ ] Internationalisation
+- [ ] Documentation
 
+- [x] Restructure functions to avoid duplicate error handling
 - [x] Use logger from context if provided
 - [x] Implement `logger`
 - [x] Parameter validation
