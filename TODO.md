@@ -2,7 +2,6 @@
 
 ### IN PROGRESS
 
-- [ ] `await` example
 - [ ] Implement device specific configuration
 - [ ] Unit tests
       - invalid/missing parameters
@@ -14,6 +13,7 @@
 - [ ] Internationalisation
 - [ ] Documentation
 
+- [x] `await` example
 - [x] Restructure functions to avoid duplicate error handling
 - [x] Use logger from context if provided
 - [x] Implement `logger`

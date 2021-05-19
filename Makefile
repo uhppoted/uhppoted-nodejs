@@ -26,7 +26,7 @@ run: build
 	node example.js
 
 debug: build
-	node examples/error-handling.js $(ARGS)
+	node examples/await.js $(ARGS)
 
 test: build
 	npx eslint --fix test/*.js  
@@ -34,6 +34,9 @@ test: build
 
 release:
 	npm pack
+
+error-handling: build
+	node examples/error-handling.js $(ARGS)
 
 get-devices: build
 	node examples/get-devices.js $(ARGS)
