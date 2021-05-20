@@ -2,17 +2,18 @@
 
 ### IN PROGRESS
 
-- [ ] Implement device specific configuration
+- [ ] Implement `translator`
 - [ ] Unit tests
       - invalid/missing parameters
+      - configuration
 - [ ] Integration tests
 - [ ] Commonalise context code
 - [ ] Commonalise validation code
 - [ ] Consolidate boilerplate
-- [ ] Implement `translator`
 - [ ] Internationalisation
 - [ ] Documentation
 
+- [x] Implement device specific configuration
 - [x] `await` example
 - [x] Restructure functions to avoid duplicate error handling
 - [x] Use logger from context if provided

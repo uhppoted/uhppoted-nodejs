@@ -1,9 +1,10 @@
-function Config (name, bindAddr, broadcastAddr, listenAddr, timeout, debug) {
+function Config (name, bindAddr, broadcastAddr, listenAddr, timeout, controllers, debug) {
   this.name = 'uhppoted'
   this.bind = '0.0.0.0'
   this.broadcast = '255.255.255.255:60000'
   this.listen = '0.0.0.0:60001'
   this.timeout = 5000
+  this.controllers = new Map()
   this.debug = false
 
   if (name) {
@@ -20,6 +21,24 @@ function Config (name, bindAddr, broadcastAddr, listenAddr, timeout, debug) {
 
   if (listenAddr) {
     this.listen = listenAddr
+  }
+
+  if (controllers && Array.isArray(controllers)) {
+    controllers.forEach(c => {
+      if (c.deviceId && !Number.isNaN(c.deviceId) && c.deviceId > 0) {
+        const object = {}
+
+        for (const [k, v] of Object.entries(c)) {
+          if (k === 'address') {
+            object.address = v
+          } else if (k === 'forceBroadcast') {
+            object.forceBroadcast = v
+          }
+        }
+
+        this.controllers.set(c.deviceId, object)
+      }
+    })
   }
 
   if (debug) {

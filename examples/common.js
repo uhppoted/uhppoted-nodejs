@@ -1,12 +1,19 @@
 const uhppoted = require('uhppoted')
 
+const controllers = [
+  {
+    deviceId: 201020304,
+    address: '192.168.1.100:59999',
+    forceBroadcast: true
+  }]
+
 let bind = '0.0.0.0'
 let broadcast = '255.255.255.255:60000'
 let listen = '0.0.0.0:60001'
 let timeout = 5000
 let debug = false
 
-// Override default bind, broadcast and listen address with command line values
+// Override default configuration with command line values
 const args = process.argv.slice(2)
 
 args.forEach(arg => {
@@ -39,5 +46,5 @@ args.forEach(arg => {
 })
 
 exports = module.exports = {
-  config: new uhppoted.Config('uhppoted', bind, broadcast, listen, timeout, debug)
+  config: new uhppoted.Config('uhppoted', bind, broadcast, listen, timeout, controllers, debug)
 }

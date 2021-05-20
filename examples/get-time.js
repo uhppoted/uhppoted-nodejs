@@ -1,6 +1,5 @@
 const uhppoted = require('uhppoted')
 const ctx = require('./common.js')
-
 const deviceID = 405419896
 
 uhppoted.getTime(ctx, deviceID)

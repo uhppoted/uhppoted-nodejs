@@ -286,23 +286,14 @@ function context (device, config, logger) {
     listen = config.listen
     debug = config.debug ? function (l, m) { logger(l + '\n' + m) } : null
 
-    if (config.controllers) {
-      try {
-        const devices = JSON.parse(config.controllers)
-
-        for (const [id, device] of Object.entries(devices)) {
-          if (parseInt(id) === deviceId) {
-            for (const [k, v] of Object.entries(device)) {
-              if (k === 'address') {
-                dest = v
-              } else if (k === 'broadcast') {
-                forceBroadcast = v
-              }
-            }
-          }
+    if (config.controllers && config.controllers.has(device)) {
+      device = config.controllers.get(device)
+      for (const [k, v] of Object.entries(device)) {
+        if (k === 'address') {
+          dest = v
+        } else if (k === 'forceBroadcast') {
+          forceBroadcast = v
         }
-      } catch (error) {
-        logger(`Error parsing config.controllers JSON ${error}`)
       }
     }
   }

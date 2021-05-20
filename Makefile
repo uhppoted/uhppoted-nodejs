@@ -26,7 +26,7 @@ run: build
 	node example.js
 
 debug: build
-	node examples/await.js $(ARGS)
+	node examples/get-device-with-device-specific-configuration.js $(ARGS)
 
 test: build
 	npx eslint --fix test/*.js  
@@ -46,6 +46,9 @@ get-device: build
 
 get-device-with-custom-logger: build
 	node examples/get-device-with-custom-logger.js $(ARGS)
+
+get-device-with-device-specific-configuration: build
+	node examples/get-device-with-device-specific-configuration.js $(ARGS)
 
 set-ip: build
 	node examples/set-ip.js $(ARGS)
@@ -113,6 +116,7 @@ listen: build
 run-all: build
 	@node examples/get-devices.js $(ARGS)
 	@node examples/get-device.js $(ARGS)
+	@node examples/get-device-with-device-specific-configuration.js $(ARGS)
 	@node examples/get-device-with-custom-logger.js $(ARGS)
 	@node examples/set-ip.js $(ARGS)
 	@node examples/get-listener.js $(ARGS)

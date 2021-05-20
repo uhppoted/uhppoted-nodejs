@@ -1,10 +1,9 @@
 const uhppoted = require('uhppoted')
 const ctx = require('./common.js')
-const format = (n, l) => String(n).padStart(l, '0')
-
 const deviceID = 405419896
 const now = new Date()
 
+const format = (n, l) => String(n).padStart(l, '0')
 const year = format(now.getFullYear(), 4)
 const month = format(now.getMonth() + 1, 2)
 const day = format(now.getDate(), 2)

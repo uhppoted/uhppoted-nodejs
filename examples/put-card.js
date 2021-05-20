@@ -1,6 +1,5 @@
 const uhppoted = require('uhppoted')
 const ctx = require('./common.js')
-
 const deviceID = 405419896
 const cardNumber = '123456789'
 const validFrom = '2020-01-01'
