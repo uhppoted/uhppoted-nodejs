@@ -19,8 +19,8 @@ ARGS       = bind=$(BIND) broadcast=$(BROADCAST) listen=$(LISTEN) timeout=$(TIME
 
 build:
 	npx eslint --fix *.js  
-	npx eslint --fix src/*.js  
-	npx eslint --fix examples/*.js  
+	npx eslint --fix src/**/*.js  
+	npx eslint --fix examples/**/*.js  
 
 run: build
 	node example.js

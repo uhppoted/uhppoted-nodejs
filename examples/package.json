@@ -1,5 +1,6 @@
 {
   "name": "uhppoted-nodejs-examples",
+  "private": true,
   "scripts": {
     "get-devices": "node get-devices.js",
     "get-device": "node get-device.js",

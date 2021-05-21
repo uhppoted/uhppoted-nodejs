@@ -3,12 +3,11 @@
 ### IN PROGRESS
 
 - [ ] Implement translation
-      - translate response
-      - remove translator from lookup
-      - set language dict
+      - lookup in language dictionay
 
 - [ ] Internationalisation
       - translate errors (?)
+      - set language dict (from Locale?)
 
 - [ ] Unit tests
       - invalid/missing parameters

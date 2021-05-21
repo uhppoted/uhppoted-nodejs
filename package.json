@@ -2,28 +2,31 @@
   "name": "uhppoted",
   "version": "0.6.13",
   "description": "NodeJS module wrapper for the interface to UHPPOTE TCP/IP Wiegand Access Controllers",
-  "main": "index.js",
-  "scripts": {
-    "test": "mocha 'test/**/*_spec.js'"
-  },
+  "author": "uhppoted",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/uhppoted/uhppoted-nodejs.git"
   },
+  "bugs": {
+    "url": "https://github.com/uhppoted/uhppoted-nodejs/issues"
+  },
+  "homepage": "https://github.com/uhppoted/uhppoted-nodejs#readme",
   "keywords": [
     "uhppote",
     "wiegand",
     "access control"
   ],
-  "author": "uhppoted",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/uhppoted/uhppoted-nodejs/issues"
+
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha 'test/**/*_spec.js'"
   },
-  "homepage": "https://github.com/uhppoted/uhppoted-nodejs#readme",
+
   "engines": {
     "node": ">=14.14.0"
   },
+
   "devDependencies": {
     "chai": "^4.3.4",
     "eslint": "^7.26.0",
@@ -33,6 +36,7 @@
     "eslint-plugin-promise": "^4.3.1",
     "mocha": "^8.4.0"
   },
+
   "dependencies": {
     "dgram": "^1.0.1",
     "ip": "^1.1.5",

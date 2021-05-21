@@ -281,7 +281,8 @@ module.exports = {
   },
 
   /**
-    * Translates a door state Expands a status door state byte into an object with the doors as keys.
+    * Expands a door control byte into a composite object with both the original status byte and a
+    * human friendly description.
     *
     * @param {array}    bytes      64 byte message as a Uint8Array
     * @param {number}   offset     Index of door state  byte in message
