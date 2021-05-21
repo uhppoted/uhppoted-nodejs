@@ -3,6 +3,8 @@
 ### IN PROGRESS
 
 - [ ] Implement `translator`
+          translator: (k) => { return RED._('delete-card.' + k) },
+
 - [ ] Unit tests
       - invalid/missing parameters
       - configuration
@@ -13,6 +15,7 @@
 - [ ] Internationalisation
 - [ ] Documentation
 
+- [x] Config.addDevice function
 - [x] Implement device specific configuration
 - [x] `await` example
 - [x] Restructure functions to avoid duplicate error handling

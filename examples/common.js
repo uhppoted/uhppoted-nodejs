@@ -46,5 +46,5 @@ args.forEach(arg => {
 })
 
 exports = module.exports = {
-  config: new uhppoted.Config('uhppoted', bind, broadcast, listen, timeout, controllers, debug)
+  config: new uhppoted.Config('examples', bind, broadcast, listen, timeout, controllers, debug)
 }
