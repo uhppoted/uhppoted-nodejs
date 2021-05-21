@@ -1,6 +1,7 @@
-const uhppoted = require('./uhppoted.js')
+const broadcast = require('./uhppoted.js').broadcast
 const opcodes = require('./opcodes.js')
 const log = require('./logger.js')
+const translate = require('./internationalisation.js').translate
 
 function getDevices (ctx) {
   const initialise = new Promise((resolve, reject) => {
@@ -11,7 +12,8 @@ function getDevices (ctx) {
   })
 
   return initialise
-    .then(context => uhppoted.broadcast(context, opcodes.GetDevice, {}))
+    .then(context => broadcast(context, opcodes.GetDevice, {}))
+    .then(response => translate(response))
 }
 
 exports = module.exports = getDevices

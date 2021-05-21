@@ -1,6 +1,7 @@
-const uhppoted = require('./uhppoted.js')
+const set = require('./uhppoted.js').set
 const opcodes = require('./opcodes.js')
 const log = require('./logger.js')
+const translate = require('./internationalisation.js').translate
 const isValidDeviceId = require('./common.js').isValidDeviceId
 const isValidCardNumber = require('./common.js').isValidCardNumber
 
@@ -23,7 +24,8 @@ function putCard (ctx, deviceId, card, validFrom, validUntil, doors) {
   })
 
   return initialise
-    .then(context => uhppoted.set(context, deviceId, opcodes.PutCard, { card: card, from: validFrom, to: validUntil, doors: doors }))
+    .then(context => set(context, deviceId, opcodes.PutCard, { card: card, from: validFrom, to: validUntil, doors: doors }))
+    .then(response => translate(response))
 }
 
 exports = module.exports = putCard

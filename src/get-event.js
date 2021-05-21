@@ -1,6 +1,7 @@
-const uhppoted = require('./uhppoted.js')
+const get = require('./uhppoted.js').get
 const opcodes = require('./opcodes.js')
 const log = require('./logger.js')
+const translate = require('./internationalisation.js').translate
 const isValidDeviceId = require('./common.js').isValidDeviceId
 const isValidEventIndex = require('./common.js').isValidEventIndex
 
@@ -23,7 +24,8 @@ function getEvent (ctx, deviceId, index) {
   })
 
   return initialise
-    .then(context => uhppoted.get(context, deviceId, opcodes.GetEvent, { index: index }))
+    .then(context => get(context, deviceId, opcodes.GetEvent, { index: index }))
+    .then(response => translate(response))
 }
 
 exports = module.exports = getEvent

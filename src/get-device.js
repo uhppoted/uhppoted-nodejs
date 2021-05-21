@@ -1,6 +1,7 @@
-const uhppoted = require('./uhppoted.js')
+const get = require('./uhppoted.js').get
 const opcodes = require('./opcodes.js')
 const log = require('./logger.js')
+const translate = require('./internationalisation.js').translate
 const isValidDeviceId = require('./common.js').isValidDeviceId
 
 function getDevice (ctx, deviceId) {
@@ -17,7 +18,8 @@ function getDevice (ctx, deviceId) {
   })
 
   return initialise
-    .then(context => uhppoted.get(context, deviceId, opcodes.GetDevice, {}))
+    .then(context => get(context, deviceId, opcodes.GetDevice, {}))
+    .then(response => translate(response))
 }
 
 exports = module.exports = getDevice

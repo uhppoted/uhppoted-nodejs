@@ -2,17 +2,23 @@
 
 ### IN PROGRESS
 
-- [ ] Implement `translator`
-          translator: (k) => { return RED._('delete-card.' + k) },
+- [ ] Implement translation
+      - translate response
+      - remove translator from lookup
+      - set language dict
+
+- [ ] Internationalisation
+      - translate errors (?)
 
 - [ ] Unit tests
       - invalid/missing parameters
       - configuration
+      - translation
+
 - [ ] Integration tests
 - [ ] Commonalise context code
 - [ ] Commonalise validation code
 - [ ] Consolidate boilerplate
-- [ ] Internationalisation
 - [ ] Documentation
 
 - [x] Config.addDevice function

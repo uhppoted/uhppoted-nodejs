@@ -10,7 +10,7 @@ module.exports = {
     * 'get' and 'set' are functionally identical but are defined separately for
     * semantic clarity.
     *
-    * @param {object}   ctx      Configuration, internationalisation translation and logger
+    * @param {object}   ctx      Configuration, logger and debug flags
     * @param {number}   deviceId The serial number for the target access controller
     * @param {byte}     op       Operation code from 'opcode' module
     * @param {object}   request  Operation parameters for use by codec.encode
@@ -25,7 +25,7 @@ module.exports = {
 
     const decode = function (reply) {
       if (reply) {
-        const response = codec.decode(reply, ctx.translator)
+        const response = codec.decode(reply)
 
         if (response && (response.deviceId === c.deviceId)) {
           return response
@@ -58,7 +58,7 @@ module.exports = {
 
     const decode = function (reply) {
       if (reply) {
-        const response = codec.decode(reply, ctx.translator)
+        const response = codec.decode(reply)
         if (response && (response.deviceId === c.deviceId)) {
           return response
         }
@@ -128,7 +128,7 @@ module.exports = {
     const decode = function (replies) {
       if (replies) {
         return replies.map((m) => {
-          const response = codec.decode(m, ctx.translator)
+          const response = codec.decode(m)
           if (response) {
             return response
           }
@@ -171,7 +171,7 @@ module.exports = {
     sock.on('message', (message, rinfo) => {
       log(c.debug, 'received', message, rinfo)
 
-      const event = codec.decode(message, context.translator)
+      const event = codec.decode(message)
 
       if (event) {
         handler.received(event)

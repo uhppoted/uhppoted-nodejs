@@ -1,6 +1,7 @@
-const uhppoted = require('./uhppoted.js')
+const set = require('./uhppoted.js').set
 const opcodes = require('./opcodes.js')
 const log = require('./logger.js')
+const translate = require('./internationalisation.js').translate
 const isValidDeviceId = require('./common.js').isValidDeviceId
 const isValidDoor = require('./common.js').isValidDoor
 
@@ -41,7 +42,8 @@ function setDoorControl (ctx, deviceId, door, delay, control) {
   }
 
   return initialise
-    .then(context => uhppoted.get(context, deviceId, opcodes.SetDoorControl, { door: door, delay: delay, control: controlv }))
+    .then(context => set(context, deviceId, opcodes.SetDoorControl, { door: door, delay: delay, control: controlv }))
+    .then(response => translate(response))
 }
 
 exports = module.exports = setDoorControl

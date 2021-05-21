@@ -1,6 +1,7 @@
-const uhppoted = require('./uhppoted.js')
+const get = require('./uhppoted.js').get
 const opcodes = require('./opcodes.js')
 const log = require('./logger.js')
+const translate = require('./internationalisation.js').translate
 const isValidDeviceId = require('./common.js').isValidDeviceId
 const isValidDoor = require('./common.js').isValidDoor
 
@@ -22,7 +23,9 @@ function getDoorControl (ctx, deviceId, door) {
   })
 
   return initialise
-    .then(context => uhppoted.get(context, deviceId, opcodes.GetDoorControl, { door: door }))
+    .then(context => get(context, deviceId, opcodes.GetDoorControl, { door: door }))
+    .then(response => translate(response))
+    .then(response => translate(response))
 }
 
 exports = module.exports = getDoorControl

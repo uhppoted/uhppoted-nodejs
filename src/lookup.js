@@ -1,60 +1,3 @@
-/**
-  * Lookup table to associate message text to the equivalent internationalisation key.
-  */
-const map = {
-  unknown: 'unknown',
-
-  // event type
-  none: 'eventNone',
-  'card swipe': 'eventSwipe',
-  door: 'eventDoor',
-  alarm: 'eventAlarm',
-  '<overwritten>': 'eventOverwritten',
-
-  // event direction
-  in: 'directionIn',
-  out: 'directionOut',
-
-  // event reason
-  swipe: 'swipe',
-  'swipe:denied (system)': 'swipeDenied',
-  'no access rights': 'noAccess',
-  'incorrect password': 'incorrectPassword',
-  'anti-passback': 'antiPassback',
-  'more cards': 'moreCards',
-  'first card open': 'firstCardOpen',
-  'door is normally closed': 'doorNormallyClosed',
-  interlock: 'interlock',
-  'not in allowed time period': 'notInAllowedTimePeriod',
-  'invalid timezone': 'invalidTimezone',
-  'access denied': 'accessDenied',
-  'push button ok': 'pushbuttonOk',
-  'door opened': 'doorOpened',
-  'door closed': 'doorClosed',
-  'door opened (supervisor password)': 'supervisorDoorOpen',
-  'controller power on': 'controllerPowerOn',
-  'controller reset': 'controllerReset',
-  'pushbutton invalid (door locked)': 'pushbuttonDoorLocked',
-  'pushbutton invalid (offline)': 'pushbuttonOffline',
-  'pushbutton invalid (interlock)': 'pushbuttonInterlock',
-  'pushbutton invalid (threat)': 'pushbuttonThreat',
-  'door open too long': 'doorOpenTooLong',
-  'forced open': 'forcedOpen',
-  fire: 'fire',
-  'forced closed': 'forcedClosed',
-  'theft prevention': 'theftPrevention',
-  '24x7 zone': 'zone24x7',
-  emergency: 'emergency',
-  'remote open door': 'remoteOpenDoor',
-  'remote open door (USB reader)': 'usbOpenDoor',
-  '(reserved)': 'reserved',
-
-  // doors
-  'normally open': 'normallyOpen',
-  'normally closed': 'normallyClosed',
-  controlled: 'controlled'
-}
-
 module.exports = {
   /**
     * Expands an event type byte into an object with event code and internationalised
@@ -62,13 +5,12 @@ module.exports = {
     *
     * @param {array}    bytes      64 byte message as a Uint8Array
     * @param {number}   offset     Index of event type byte in message
-    * @param {function} translator (optional) function to translate event message.
     *
     * @param {object}   { code:byte, event:string }
     *
     * @exports
     */
-  eventType: function (bytes, offset, translator) {
+  eventType: function (bytes, offset) {
     const byte = bytes.getUint8(offset, true)
 
     const event = {
@@ -77,27 +19,27 @@ module.exports = {
 
     switch (byte) {
       case 0x00:
-        event.event = translate(translator, 'none')
+        event.event = '{{none}}'
         break
 
       case 0x01:
-        event.event = translate(translator, 'card swipe')
+        event.event = '{{card swipe}}'
         break
 
       case 0x02:
-        event.event = translate(translator, 'door')
+        event.event = '{{door}}'
         break
 
       case 0x03:
-        event.event = translate(translator, 'alarm')
+        event.event = '{{alarm}}'
         break
 
       case 0xff:
-        event.event = translate(translator, '<overwritten>')
+        event.event = '{{<overwritten>}}'
         break
 
       default:
-        event.event = translate(translator, 'unknown')
+        event.event = '{{unknown}}'
         break
     }
 
@@ -110,13 +52,12 @@ module.exports = {
     *
     * @param {array}    bytes      64 byte message as a Uint8Array
     * @param {number}   offset     Index of event direction byte in message
-    * @param {function} translator (optional) function to translate direction description.
     *
     * @param {object}   { code: byte, direction: string }
     *
     * @exports
     */
-  direction: function (bytes, offset, translator) {
+  direction: function (bytes, offset) {
     const byte = bytes.getUint8(offset, true)
 
     const direction = {
@@ -125,15 +66,15 @@ module.exports = {
 
     switch (byte) {
       case 0x01:
-        direction.direction = translate(translator, 'in')
+        direction.direction = '{{in}}'
         break
 
       case 0x02:
-        direction.direction = translate(translator, 'out')
+        direction.direction = '{{out}}'
         break
 
       default:
-        direction.direction = translate(translator, 'unknown')
+        direction.direction = '{{unknown}}'
         break
     }
 
@@ -146,13 +87,12 @@ module.exports = {
     *
     * @param {array}    bytes      64 byte message as a Uint8Array
     * @param {number}   offset     Index of event reason byte in message
-    * @param {function} translator (optional) function to translate reason description.
     *
     * @param {object}   { code: byte, reason: string }
     *
     * @exports
     */
-  reason: function (bytes, offset, translator) {
+  reason: function (bytes, offset) {
     const byte = bytes.getUint8(offset, true)
 
     const reason = {
@@ -161,131 +101,131 @@ module.exports = {
 
     switch (byte) {
       case 1:
-        reason.reason = translate(translator, 'swipe')
+        reason.reason = '{{swipe}}'
         break
 
       case 5:
-        reason.reason = translate(translator, 'swipe:denied (system)') // Access is managed by the system not the controller
+        reason.reason = '{{swipe:denied (system)}}' // Access is managed by the system not the controller
         break
 
       case 6:
-        reason.reason = translate(translator, 'no access rights') // swipe denied
+        reason.reason = '{{no access rights}}' // swipe denied
         break
 
       case 7:
-        reason.reason = translate(translator, 'incorrect password') // swipe denied
+        reason.reason = '{{incorrect password}}' // swipe denied
         break
 
       case 8:
-        reason.reason = translate(translator, 'anti-passback') // swipe denied
+        reason.reason = '{{anti-passback}}' // swipe denied
         break
 
       case 9:
-        reason.reason = translate(translator, 'more cards') // swipe denied (absolutely no idea what this means :-()
+        reason.reason = '{{more cards}}' // swipe denied (absolutely no idea what this means :-()
         break
 
       case 10:
-        reason.reason = translate(translator, 'first card open') // swipe denied (no idea what this means either)
+        reason.reason = '{{first card open}}' // swipe denied (no idea what this means either)
         break
 
       case 11:
-        reason.reason = translate(translator, 'door is normally closed') // swipe denied
+        reason.reason = '{{door is normally closed}}' // swipe denied
         break
 
       case 12:
-        reason.reason = translate(translator, 'interlock') // swipe denied
+        reason.reason = '{{interlock}}' // swipe denied
         break
 
       case 13:
-        reason.reason = translate(translator, 'not in allowed time period') // swipe denied
+        reason.reason = '{{not in allowed time period}}' // swipe denied
         break
 
       case 15:
-        reason.reason = translate(translator, 'invalid timezone') // swipe denied
+        reason.reason = '{{invalid timezone}}' // swipe denied
         break
 
       case 18:
-        reason.reason = translate(translator, 'access denied') // swipe denied
+        reason.reason = '{{access denied}}' // swipe denied
         break
 
       case 20:
-        reason.reason = translate(translator, 'push button ok')
+        reason.reason = '{{push button ok}}'
         break
 
       case 23:
-        reason.reason = translate(translator, 'door opened')
+        reason.reason = '{{door opened}}'
         break
 
       case 24:
-        reason.reason = translate(translator, 'door closed')
+        reason.reason = '{{door closed}}'
         break
 
       case 25:
-        reason.reason = translate(translator, 'door opened (supervisor password)')
+        reason.reason = '{{door opened (supervisor password)}}'
         break
 
       case 28:
-        reason.reason = translate(translator, 'controller power on')
+        reason.reason = '{{controller power on}}'
         break
 
       case 29:
-        reason.reason = translate(translator, 'controller reset')
+        reason.reason = '{{controller reset}}'
         break
 
       case 31:
-        reason.reason = translate(translator, 'pushbutton invalid (door locked)')
+        reason.reason = '{{pushbutton invalid (door locked)}}'
         break
 
       case 32:
-        reason.reason = translate(translator, 'pushbutton invalid (offline)')
+        reason.reason = '{{pushbutton invalid (offline)}}'
         break
 
       case 33:
-        reason.reason = translate(translator, 'pushbutton invalid (interlock)')
+        reason.reason = '{{pushbutton invalid (interlock)}}'
         break
 
       case 34:
-        reason.reason = translate(translator, 'pushbutton invalid (threat)')
+        reason.reason = '{{pushbutton invalid (threat)}}'
         break
 
       case 37:
-        reason.reason = translate(translator, 'door open too long')
+        reason.reason = '{{door open too long}}'
         break
 
       case 38:
-        reason.reason = translate(translator, 'forced open')
+        reason.reason = '{{forced open}}'
         break
 
       case 39:
-        reason.reason = translate(translator, 'fire')
+        reason.reason = '{{fire}}'
         break
 
       case 40:
-        reason.reason = translate(translator, 'forced closed')
+        reason.reason = '{{forced closed}}'
         break
 
       case 41:
-        reason.reason = translate(translator, 'theft prevention')
+        reason.reason = '{{theft prevention}}'
         break
 
       case 42:
-        reason.reason = translate(translator, '24x7 zone')
+        reason.reason = '{{24x7 zone}}'
         break
 
       case 43:
-        reason.reason = translate(translator, 'emergency')
+        reason.reason = '{{emergency}}'
         break
 
       case 44:
-        reason.reason = translate(translator, 'remote open door')
+        reason.reason = '{{remote open door}}'
         break
 
       case 45:
-        reason.reason = translate(translator, 'remote open door (USB reader)')
+        reason.reason = '{{remote open door (USB reader)}}'
         break
 
       default:
-        reason.reason = translate(translator, '(reserved)')
+        reason.reason = '{{(reserved)}}'
         break
     }
 
@@ -350,7 +290,7 @@ module.exports = {
     *
     * @exports
     */
-  doorState: function (bytes, offset, translator) {
+  doorState: function (bytes, offset) {
     const byte = bytes.getUint8(offset, true)
 
     const control = {
@@ -359,30 +299,22 @@ module.exports = {
 
     switch (byte) {
       case 1:
-        control.state = translate(translator, 'normally open')
+        control.state = '{{normally open}}'
         break
 
       case 2:
-        control.state = translate(translator, 'normally closed')
+        control.state = '{{normally closed}}'
         break
 
       case 3:
-        control.state = translate(translator, 'controlled')
+        control.state = '{{controlled}}'
         break
 
       default:
-        control.state = translate(translator, 'unknown')
+        control.state = '{{unknown}}'
         break
     }
 
     return control
   }
-}
-
-function translate (translator, text) {
-  if (translator && Object.keys(map).includes(text)) {
-    return translator(map[text])
-  }
-
-  return text
 }

@@ -1,6 +1,7 @@
-const uhppoted = require('./uhppoted.js')
+const set = require('./uhppoted.js').set
 const opcodes = require('./opcodes.js')
 const log = require('./logger.js')
+const translate = require('./internationalisation.js').translate
 const isValidDeviceId = require('./common.js').isValidDeviceId
 
 function setListener (ctx, deviceId, address, port) {
@@ -17,7 +18,8 @@ function setListener (ctx, deviceId, address, port) {
   })
 
   return initialise
-    .then(context => uhppoted.set(context, deviceId, opcodes.SetListener, { address: address, port: port }))
+    .then(context => set(context, deviceId, opcodes.SetListener, { address: address, port: port }))
+    .then(response => translate(response))
 }
 
 exports = module.exports = setListener

@@ -1,6 +1,7 @@
-const uhppoted = require('./uhppoted.js')
+const set = require('./uhppoted.js').set
 const opcodes = require('./opcodes.js')
 const log = require('./logger.js')
+const translate = require('./internationalisation.js').translate
 const isValidDeviceId = require('./common.js').isValidDeviceId
 
 function deleteCards (ctx, deviceId) {
@@ -17,7 +18,8 @@ function deleteCards (ctx, deviceId) {
   })
 
   return initialise
-    .then(context => uhppoted.get(context, deviceId, opcodes.DeleteCards, {}))
+    .then(context => set(context, deviceId, opcodes.DeleteCards, {}))
+    .then(response => translate(response))
 }
 
 exports = module.exports = deleteCards

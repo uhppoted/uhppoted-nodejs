@@ -1,6 +1,7 @@
-const uhppoted = require('./uhppoted.js')
+const set = require('./uhppoted.js').set
 const opcodes = require('./opcodes.js')
 const log = require('./logger.js')
+const translate = require('./internationalisation.js').translate
 const isValidDeviceId = require('./common.js').isValidDeviceId
 const isValidEventIndex = require('./common.js').isValidEventIndex
 
@@ -22,7 +23,8 @@ function setEventIndex (ctx, deviceId, index) {
   })
 
   return initialise
-    .then(context => uhppoted.set(context, deviceId, opcodes.SetEventIndex, { index: index }))
+    .then(context => set(context, deviceId, opcodes.SetEventIndex, { index: index }))
+    .then(response => translate(response))
 }
 
 exports = module.exports = setEventIndex

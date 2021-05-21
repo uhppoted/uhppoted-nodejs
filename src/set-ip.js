@@ -1,6 +1,7 @@
-const uhppoted = require('./uhppoted.js')
+const send = require('./uhppoted.js').send
 const opcodes = require('./opcodes.js')
 const log = require('./logger.js')
+const translate = require('./internationalisation.js').translate
 const isValidDeviceId = require('./common.js').isValidDeviceId
 
 function setIP (ctx, deviceId, address, netmask, gateway) {
@@ -17,7 +18,8 @@ function setIP (ctx, deviceId, address, netmask, gateway) {
   })
 
   return initialise
-    .then(context => uhppoted.send(context, deviceId, opcodes.SetIP, { address: address, netmask: netmask, gateway: gateway }))
+    .then(context => send(context, deviceId, opcodes.SetIP, { address: address, netmask: netmask, gateway: gateway }))
+    .then(response => translate(response))
 }
 
 exports = module.exports = setIP

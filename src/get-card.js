@@ -1,6 +1,7 @@
-const uhppoted = require('./uhppoted.js')
+const get = require('./uhppoted.js').get
 const opcodes = require('./opcodes.js')
 const log = require('./logger.js')
+const translate = require('./internationalisation.js').translate
 const isValidDeviceId = require('./common.js').isValidDeviceId
 const isValidCardNumber = require('./common.js').isValidCardNumber
 
@@ -23,7 +24,8 @@ function getCard (ctx, deviceId, card) {
   })
 
   return initialise
-    .then(context => uhppoted.get(context, deviceId, opcodes.GetCardByID, { card: card }))
+    .then(context => get(context, deviceId, opcodes.GetCardByID, { card: card }))
+    .then(response => translate(response))
 }
 
 exports = module.exports = getCard
