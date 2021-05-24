@@ -19,7 +19,7 @@ function getTime (ctx, deviceId) {
 
   return initialise
     .then(context => get(context, deviceId, opcodes.GetTime, {}))
-    .then(response => translate(response))
+    .then(response => translate(response, ctx.locale))
 }
 
 exports = module.exports = getTime

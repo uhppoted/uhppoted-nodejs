@@ -19,7 +19,7 @@ function setListener (ctx, deviceId, address, port) {
 
   return initialise
     .then(context => set(context, deviceId, opcodes.SetListener, { address: address, port: port }))
-    .then(response => translate(response))
+    .then(response => translate(response, ctx.locale))
 }
 
 exports = module.exports = setListener

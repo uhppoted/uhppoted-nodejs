@@ -19,7 +19,7 @@ function setTime (ctx, deviceId, datetime) {
 
   return initialise
     .then(context => set(context, deviceId, opcodes.SetTime, { datetime }))
-    .then(response => translate(response))
+    .then(response => translate(response, ctx.locale))
 }
 
 exports = module.exports = setTime

@@ -25,7 +25,7 @@ function getCardByIndex (ctx, deviceId, index) {
 
   return initialise
     .then(context => get(context, deviceId, opcodes.GetCardByIndex, { index: index }))
-    .then(response => translate(response))
+    .then(response => translate(response, ctx.locale))
 }
 
 exports = module.exports = getCardByIndex

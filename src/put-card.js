@@ -25,7 +25,7 @@ function putCard (ctx, deviceId, card, validFrom, validUntil, doors) {
 
   return initialise
     .then(context => set(context, deviceId, opcodes.PutCard, { card: card, from: validFrom, to: validUntil, doors: doors }))
-    .then(response => translate(response))
+    .then(response => translate(response, ctx.locale))
 }
 
 exports = module.exports = putCard

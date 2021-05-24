@@ -110,6 +110,12 @@ get-events: build
 get-event: build
 	node examples/get-event.js $(ARGS)
 
+get-event-with-locale: build
+	node examples/get-event-with-locale.js $(ARGS)
+
+get-event-with-unsupported-locale: build
+	node examples/get-event-with-unsupported-locale.js $(ARGS)
+
 listen: build
 	node examples/listen.js $(ARGS)
 
@@ -138,5 +144,7 @@ run-all: build
 	@node examples/set-event-index.js $(ARGS)
 	@node examples/get-events.js $(ARGS)
 	@node examples/get-event.js $(ARGS)
+	@node examples/get-event-with-locale.js $(ARGS)
+	@node examples/get-event-with-unsupported-locale.js $(ARGS)
 
 

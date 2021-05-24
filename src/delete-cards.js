@@ -19,7 +19,7 @@ function deleteCards (ctx, deviceId) {
 
   return initialise
     .then(context => set(context, deviceId, opcodes.DeleteCards, {}))
-    .then(response => translate(response))
+    .then(response => translate(response, ctx.locale))
 }
 
 exports = module.exports = deleteCards

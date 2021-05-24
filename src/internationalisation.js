@@ -1,3 +1,8 @@
+const dictionaries = new Map([
+  ['en-US', require('./locales/en-US/en-US.js')],
+  ['klingon', require('./locales/klingon/klingon.js')]
+])
+
 const enUS = require('./locales/en-US/en-US.js')
 
 /**
@@ -57,22 +62,27 @@ const map = new Map([
   ['controlled', 'controlled']
 ])
 
-function translate (object) {
+function translate (object, locale) {
+  let dict = enUS
+  if (locale && dictionaries.has(locale)) {
+    dict = dictionaries.get(locale)
+  }
+
+  const lookup = function (match, token, offset, string) {
+    if (map.has(token)) {
+      const key = map.get(token)
+      if (dict.has(key)) {
+        return dict.get(key)
+      }
+    }
+
+    return token
+  }
+
   const blob = JSON.stringify(object)
   const translated = blob.replaceAll(/{{(.*?)}}/g, lookup)
 
   return JSON.parse(translated)
-}
-
-function lookup (match, token, offset, string) {
-  if (map.has(token)) {
-    const key = map.get(token)
-    if (enUS.has(key)) {
-      return enUS.get(key)
-    }
-  }
-
-  return token
 }
 
 module.exports = {

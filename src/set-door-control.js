@@ -43,7 +43,7 @@ function setDoorControl (ctx, deviceId, door, delay, control) {
 
   return initialise
     .then(context => set(context, deviceId, opcodes.SetDoorControl, { door: door, delay: delay, control: controlv }))
-    .then(response => translate(response))
+    .then(response => translate(response, ctx.locale))
 }
 
 exports = module.exports = setDoorControl

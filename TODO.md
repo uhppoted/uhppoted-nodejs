@@ -2,12 +2,8 @@
 
 ### IN PROGRESS
 
-- [ ] Implement translation
-      - lookup in language dictionay
-
 - [ ] Internationalisation
       - translate errors (?)
-      - set language dict (from Locale?)
 
 - [ ] Unit tests
       - invalid/missing parameters
@@ -20,6 +16,7 @@
 - [ ] Consolidate boilerplate
 - [ ] Documentation
 
+- [x] Implement translation
 - [x] Config.addDevice function
 - [x] Implement device specific configuration
 - [x] `await` example

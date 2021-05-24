@@ -19,7 +19,7 @@ function getDevice (ctx, deviceId) {
 
   return initialise
     .then(context => get(context, deviceId, opcodes.GetDevice, {}))
-    .then(response => translate(response))
+    .then(response => translate(response, ctx.locale))
 }
 
 exports = module.exports = getDevice

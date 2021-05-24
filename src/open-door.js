@@ -25,7 +25,7 @@ function openDoor (ctx, deviceId, door) {
 
   return initialise
     .then(context => set(context, deviceId, opcodes.OpenDoor, { door: door }))
-    .then(response => translate(response))
+    .then(response => translate(response, ctx.locale))
 }
 
 exports = module.exports = openDoor

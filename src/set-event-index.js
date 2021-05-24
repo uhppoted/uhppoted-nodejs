@@ -24,7 +24,7 @@ function setEventIndex (ctx, deviceId, index) {
 
   return initialise
     .then(context => set(context, deviceId, opcodes.SetEventIndex, { index: index }))
-    .then(response => translate(response))
+    .then(response => translate(response, ctx.locale))
 }
 
 exports = module.exports = setEventIndex

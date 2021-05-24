@@ -38,7 +38,7 @@ function getEvents (ctx, deviceId) {
   })
 
   return promise
-    .then(response => translate(response))
+    .then(response => translate(response, ctx.locale))
 }
 
 exports = module.exports = getEvents

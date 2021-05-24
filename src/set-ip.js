@@ -19,7 +19,7 @@ function setIP (ctx, deviceId, address, netmask, gateway) {
 
   return initialise
     .then(context => send(context, deviceId, opcodes.SetIP, { address: address, netmask: netmask, gateway: gateway }))
-    .then(response => translate(response))
+    .then(response => translate(response, ctx.locale))
 }
 
 exports = module.exports = setIP

@@ -19,7 +19,7 @@ function getEventIndex (ctx, deviceId) {
 
   return initialise
     .then(context => get(context, deviceId, opcodes.GetEventIndex, { }))
-    .then(response => translate(response))
+    .then(response => translate(response, ctx.locale))
 }
 
 exports = module.exports = getEventIndex

@@ -25,7 +25,7 @@ function getCard (ctx, deviceId, card) {
 
   return initialise
     .then(context => get(context, deviceId, opcodes.GetCardByID, { card: card }))
-    .then(response => translate(response))
+    .then(response => translate(response, ctx.locale))
 }
 
 exports = module.exports = getCard

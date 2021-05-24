@@ -19,7 +19,7 @@ function getListener (ctx, deviceId) {
 
   return initialise
     .then(context => get(context, deviceId, opcodes.GetListener, {}))
-    .then(response => translate(response))
+    .then(response => translate(response, ctx.locale))
 }
 
 exports = module.exports = getListener

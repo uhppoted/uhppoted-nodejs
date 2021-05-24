@@ -24,8 +24,8 @@ function getDoorControl (ctx, deviceId, door) {
 
   return initialise
     .then(context => get(context, deviceId, opcodes.GetDoorControl, { door: door }))
-    .then(response => translate(response))
-    .then(response => translate(response))
+    .then(response => translate(response, ctx.locale))
+    .then(response => translate(response, ctx.locale))
 }
 
 exports = module.exports = getDoorControl
