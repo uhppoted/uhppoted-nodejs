@@ -7,6 +7,7 @@ function getDevices (ctx) {
   const initialise = new Promise((resolve, reject) => {
     resolve({
       config: ctx.config,
+      locale: ctx.locale,
       logger: ctx.logger ? ctx.logger : (m) => { log(m) }
     })
   })

@@ -37,6 +37,7 @@ release:
 
 error-handling: build
 	node examples/error-handling.js $(ARGS)
+	node examples/error-handling-with-locale.js $(ARGS)
 
 get-devices: build
 	node examples/get-devices.js $(ARGS)
@@ -146,5 +147,7 @@ run-all: build
 	@node examples/get-event.js $(ARGS)
 	@node examples/get-event-with-locale.js $(ARGS)
 	@node examples/get-event-with-unsupported-locale.js $(ARGS)
+	@node examples/error-handling.js $(ARGS)
+	@node examples/error-handling-with-locale.js $(ARGS)
 
 

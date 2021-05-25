@@ -2,8 +2,6 @@
 
 ### IN PROGRESS
 
-- [ ] Internationalisation: translate errors
-
 - [ ] Unit tests
       - invalid/missing parameters
       - configuration
@@ -14,7 +12,8 @@
 - [ ] Consolidate boilerplate
 - [ ] Documentation
 
-- [x] Implement translation
+- [x] Internationalisation: translate errors
+- [x] Implement locale based translation
 - [x] Config.addDevice function
 - [x] Implement device specific configuration
 - [x] `await` example

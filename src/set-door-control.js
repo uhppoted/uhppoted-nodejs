@@ -9,16 +9,17 @@ const isValidDoor = require('./common.js').isValidDoor
 function setDoorControl (ctx, deviceId, door, delay, control) {
   const initialise = new Promise((resolve, reject) => {
     if (!isValidDeviceId(deviceId)) {
-      reject(errors.InvalidDeviceID(deviceId))
+      reject(errors.InvalidDeviceID(deviceId, ctx.locale))
       return
     }
 
     if (!isValidDoor(door)) {
-      reject(errors.InvalidDoor(door))
+      reject(errors.InvalidDoor(door, ctx.locale))
       return
     }
     resolve({
       config: ctx.config,
+      locale: ctx.locale,
       logger: ctx.logger ? ctx.logger : (m) => { log(m) }
     })
   })
@@ -39,7 +40,7 @@ function setDoorControl (ctx, deviceId, door, delay, control) {
       break
 
     default:
-      throw errors.InvalidDoorControl(control)
+      throw errors.InvalidDoorControl(control, ctx.locale)
   }
 
   return initialise

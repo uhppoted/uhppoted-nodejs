@@ -49,7 +49,21 @@ const dict = new Map([
   // doors
   ['normallyOpen', 'motlh'],
   ['normallyClosed', "jajlo'"],
-  ['controlled', 'ngeD']
+  ['controlled', 'ngeD'],
+
+  // errors
+  ['invalidDeviceID', 'jItoj'],
+  ['invalidCardNumber', "puqwI'"],
+  ['invalidCardIndex', "pe'vIl"],
+  ['invalidDoor', 'pIv'],
+  ['invalidEventIndex', 'jot'],
+  ['invalidFunctionCode', "yotlhHa'taHvIS qaD"],
+  ['invalidDoorControl', 'lojmIt'],
+  ['noReply', 'jach'],
+  ['noBroadcastReply', "ghu' vIqelnIS"],
+  ['invalidBroadcastReply', "tlhoy ghoghDI' vay' lughajlaHbe'taHvIS,"],
+  ['timeout', 'run']
+
 ])
 
 exports = module.exports = dict

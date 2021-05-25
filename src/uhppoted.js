@@ -21,8 +21,8 @@ module.exports = {
     * @exports
     */
   get: async function (ctx, deviceId, op, request) {
-    const c = context(deviceId, ctx.config, ctx.logger)
-    const receiver = receiveAny(c.timeout)
+    const c = context(deviceId, ctx.config, ctx.logger, ctx.locale)
+    const receiver = receiveAny(c.timeout, ctx.locale)
 
     const decode = function (reply) {
       if (reply) {
@@ -33,7 +33,7 @@ module.exports = {
         }
       }
 
-      throw errors.NoReply(deviceId)
+      throw errors.NoReplyFromDevice(deviceId, ctx.locale)
     }
 
     return exec(c, op, request, receiver).then(decode)
@@ -55,7 +55,7 @@ module.exports = {
     */
   set: async function (ctx, deviceId, op, request) {
     const c = context(deviceId, ctx.config, ctx.logger)
-    const receiver = receiveAny(c.timeout)
+    const receiver = receiveAny(c.timeout, ctx.locale)
 
     const decode = function (reply) {
       if (reply) {
@@ -65,7 +65,7 @@ module.exports = {
         }
       }
 
-      throw errors.NoReply(deviceId)
+      throw errors.NoReplyFromDevice(deviceId, ctx.locale)
     }
 
     return exec(c, op, request, receiver).then(decode)
@@ -134,11 +134,11 @@ module.exports = {
             return response
           }
 
-          throw errors.InvalidBroadcastReply()
+          throw errors.InvalidBroadcastReply(ctx.locale)
         })
       }
 
-      throw errors.NoBroadcastReply()
+      throw errors.NoReplyToBroadcast(ctx.locale)
     }
 
     receiver.received = (message) => {
@@ -253,7 +253,7 @@ async function exec (ctx, op, request, receive) {
     receive.cancel()
   }
 
-  throw errors.NoReply()
+  throw errors.NoReply(ctx.locale)
 }
 
 /**
@@ -271,7 +271,7 @@ async function exec (ctx, op, request, receive) {
   * @param {object} Valid working context
   *
   */
-function context (device, config, logger) {
+function context (device, config, logger, locale) {
   const deviceId = Number(device)
   let timeout = 5000
   let bind = '0.0.0.0'
@@ -306,6 +306,7 @@ function context (device, config, logger) {
     addr: stringToIP(dest),
     listen: stringToIP(listen),
     forceBroadcast: forceBroadcast,
+    locale: locale,
     debug: debug
   }
 }
@@ -423,14 +424,14 @@ function isBroadcast (addr) {
   * @returns {promise} Constructed Promised with a 'received' function.
   *
   */
-function receiveAny (timeout) {
+function receiveAny (timeout, locale) {
   let timer = null
   let f = null
 
   const p = new Promise((resolve, reject) => {
     f = resolve
     if (timeout) {
-      timer = setTimeout(() => { reject(errors.Timeout()) }, timeout)
+      timer = setTimeout(() => { reject(errors.Timeout(locale)) }, timeout)
     }
   })
 

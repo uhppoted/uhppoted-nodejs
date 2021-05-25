@@ -5,13 +5,14 @@ const log = require('./logger.js')
 function listen (ctx, onEvent, onError) {
   const context = {
     config: ctx.config,
+    locale: ctx.locale,
     logger: ctx.logger ? ctx.logger : (m) => { log(m) }
   }
 
   const handler = {
     received: function (event) {
       if (onEvent) {
-        onEvent(translate(event))
+        onEvent(translate(event, ctx.locale))
       }
     },
 

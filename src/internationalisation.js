@@ -59,7 +59,20 @@ const map = new Map([
   // doors
   ['normally open', 'normallyOpen'],
   ['normally closed', 'normallyClosed'],
-  ['controlled', 'controlled']
+  ['controlled', 'controlled'],
+
+  // errors
+  ['invalid device ID', 'invalidDeviceID'],
+  ['invalid card number', 'invalidCardNumber'],
+  ['invalid card index', 'invalidCardIndex'],
+  ['invalid door', 'invalidDoor'],
+  ['invalid event index', 'invalidEventIndex'],
+  ['invalid protocol function code', 'invalidFunctionCode'],
+  ['invalid door control', 'invalidDoorControl'],
+  ['no reply from', 'noReply'],
+  ['no reply to broadcasted request', 'noBroadcastReply'],
+  ['invalid reply to broadcasted request', 'invalidBroadcastReply'],
+  ['timeout', 'timeout']
 ])
 
 function translate (object, locale) {

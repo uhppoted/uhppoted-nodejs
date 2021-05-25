@@ -9,17 +9,18 @@ const isValidEventIndex = require('./common.js').isValidEventIndex
 function getEvent (ctx, deviceId, index) {
   const initialise = new Promise((resolve, reject) => {
     if (!isValidDeviceId(deviceId)) {
-      reject(errors.InvalidDeviceID(deviceId))
+      reject(errors.InvalidDeviceID(deviceId, ctx.locale))
       return
     }
 
     if (!isValidEventIndex(index)) {
-      reject(errors.InvalidEventIndex(index))
+      reject(errors.InvalidEventIndex(index, ctx.locale))
       return
     }
 
     resolve({
       config: ctx.config,
+      locale: ctx.locale,
       logger: ctx.logger ? ctx.logger : (m) => { log(m) }
     })
   })

@@ -9,17 +9,18 @@ const isValidCardIndex = require('./common.js').isValidCardIndex
 function getCardByIndex (ctx, deviceId, index) {
   const initialise = new Promise((resolve, reject) => {
     if (!isValidDeviceId(deviceId)) {
-      reject(errors.InvalidDeviceID(deviceId))
+      reject(errors.InvalidDeviceID(deviceId, ctx.locale))
       return
     }
 
     if (!isValidCardIndex(index)) {
-      reject(errors.InvalidCardIndex(index))
+      reject(errors.InvalidCardIndex(index, ctx.locale))
       return
     }
 
     resolve({
       config: ctx.config,
+      locale: ctx.locale,
       logger: ctx.logger ? ctx.logger : (m) => { log(m) }
     })
   })
