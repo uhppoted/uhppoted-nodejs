@@ -1,5 +1,6 @@
 const set = require('./uhppoted.js').set
 const opcodes = require('./opcodes.js')
+const errors = require('./errors.js')
 const log = require('./logger.js')
 const translate = require('./internationalisation.js').translate
 const isValidDeviceId = require('./common.js').isValidDeviceId
@@ -8,12 +9,12 @@ const isValidDoor = require('./common.js').isValidDoor
 function openDoor (ctx, deviceId, door) {
   const initialise = new Promise((resolve, reject) => {
     if (!isValidDeviceId(deviceId)) {
-      reject(new Error(`invalid device ID '${deviceId}'`))
+      reject(errors.InvalidDeviceID(deviceId))
       return
     }
 
     if (!isValidDoor(door)) {
-      reject(new Error(`invalid door '${door}'`))
+      reject(errors.InvalidDoor(door))
       return
     }
 

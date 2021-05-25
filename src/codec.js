@@ -1,4 +1,5 @@
 const opcodes = require('./opcodes.js')
+const errors = require('./errors.js')
 const encoder = require('./encoder.js')
 const decoder = require('./decoder.js')
 
@@ -76,7 +77,7 @@ module.exports = {
       return f(deviceId, object)
     }
 
-    throw new Error(`invalid protocol function code ${code}`)
+    throw errors.InvalidFunctionCode(code)
   },
 
   /**

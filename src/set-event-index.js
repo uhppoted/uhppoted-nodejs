@@ -1,21 +1,24 @@
 const set = require('./uhppoted.js').set
 const opcodes = require('./opcodes.js')
+const errors = require('./errors.js')
 const log = require('./logger.js')
 const translate = require('./internationalisation.js').translate
+
 const isValidDeviceId = require('./common.js').isValidDeviceId
 const isValidEventIndex = require('./common.js').isValidEventIndex
 
 function setEventIndex (ctx, deviceId, index) {
   const initialise = new Promise((resolve, reject) => {
     if (!isValidDeviceId(deviceId)) {
-      reject(new Error(`invalid device ID '${deviceId}'`))
+      reject(errors.InvalidDeviceID(deviceId))
       return
     }
 
     if (!isValidEventIndex(index)) {
-      reject(new Error(`invalid event index '${index}'`))
+      reject(errors.InvalidEventIndex(index))
       return
     }
+
     resolve({
       config: ctx.config,
       logger: ctx.logger ? ctx.logger : (m) => { log(m) }

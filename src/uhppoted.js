@@ -1,4 +1,5 @@
 const codec = require('./codec.js')
+const errors = require('./errors.js')
 const dgram = require('dgram')
 const os = require('os')
 const ip = require('ip')
@@ -32,7 +33,7 @@ module.exports = {
         }
       }
 
-      throw new Error(`no reply from ${deviceId}`)
+      throw errors.NoReply(deviceId)
     }
 
     return exec(c, op, request, receiver).then(decode)
@@ -64,7 +65,7 @@ module.exports = {
         }
       }
 
-      throw new Error(`no reply from ${deviceId}`)
+      throw errors.NoReply(deviceId)
     }
 
     return exec(c, op, request, receiver).then(decode)
@@ -133,11 +134,11 @@ module.exports = {
             return response
           }
 
-          throw new Error('invalid reply to broadcasted request')
+          throw errors.InvalidBroadcastReply()
         })
       }
 
-      throw new Error('no reply to broadcasted request')
+      throw errors.NoBroadcastReply()
     }
 
     receiver.received = (message) => {
@@ -252,7 +253,7 @@ async function exec (ctx, op, request, receive) {
     receive.cancel()
   }
 
-  throw new Error('no reply to request')
+  throw errors.NoReply()
 }
 
 /**
@@ -429,7 +430,7 @@ function receiveAny (timeout) {
   const p = new Promise((resolve, reject) => {
     f = resolve
     if (timeout) {
-      timer = setTimeout(() => { reject(new Error('timeout')) }, timeout)
+      timer = setTimeout(() => { reject(errors.Timeout()) }, timeout)
     }
   })
 

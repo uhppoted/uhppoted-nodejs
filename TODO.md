@@ -2,14 +2,12 @@
 
 ### IN PROGRESS
 
-- [ ] Internationalisation
-      - translate errors (?)
+- [ ] Internationalisation: translate errors
 
 - [ ] Unit tests
       - invalid/missing parameters
       - configuration
       - translation
-
 - [ ] Integration tests
 - [ ] Commonalise context code
 - [ ] Commonalise validation code
@@ -58,3 +56,4 @@
 2. Task lists
 3. Remote control
 4. Device by name
+

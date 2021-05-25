@@ -1,7 +1,7 @@
 const uhppoted = require('./uhppoted.js')
+const translate = require('./internationalisation.js').translate
 const log = require('./logger.js')
 
-const translate = require('./internationalisation.js').translate
 function listen (ctx, onEvent, onError) {
   const context = {
     config: ctx.config,

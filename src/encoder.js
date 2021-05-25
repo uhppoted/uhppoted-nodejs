@@ -1,3 +1,5 @@
+const errors = require('./errors.js')
+
 module.exports = {
   /**
     * Encodes a get-device request.
@@ -152,7 +154,7 @@ module.exports = {
         break
 
       default:
-        throw new Error(`invalid door control ${control}`)
+        throw errors.InvalidDoorControl(control)
     }
 
     return request
