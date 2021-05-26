@@ -2,11 +2,16 @@
 
 ### IN PROGRESS
 
+- [ ] Integration tests
+      - get-device
+      - get-devices
+
 - [ ] Unit tests
+      - codec
       - invalid/missing parameters
       - configuration
-      - translation
-- [ ] Integration tests
+      - internationalisation
+
 - [ ] Commonalise context code
 - [ ] Commonalise validation code
 - [ ] Consolidate boilerplate

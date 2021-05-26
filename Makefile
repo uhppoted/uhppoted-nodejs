@@ -16,6 +16,7 @@ ARGS       = bind=$(BIND) broadcast=$(BROADCAST) listen=$(LISTEN) timeout=$(TIME
 
 .PHONY: build
 .PHONY: test
+.PHONY: integration-tests
 
 build:
 	npx eslint --fix *.js  
@@ -29,8 +30,12 @@ debug: build
 	node examples/get-device-with-device-specific-configuration.js $(ARGS)
 
 test: build
-	npx eslint --fix test/*.js  
+	npx eslint --fix test/**/*.js  
 	npm test
+
+integration-tests: build
+	npx eslint --fix integration-tests/**/*.js  
+	npx mocha 'integration-tests/**/*_spec.js' --broadcast='192.168.1.255'
 
 release:
 	npm pack
