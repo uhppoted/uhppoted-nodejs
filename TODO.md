@@ -6,7 +6,6 @@
 
 - [ ] Integration tests
       - commonalise setup/teardown code
-      - set-ip
       - get-time
       - set-time
       - get-listener

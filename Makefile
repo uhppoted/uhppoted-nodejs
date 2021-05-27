@@ -26,8 +26,9 @@ build:
 run: build
 	node example.js
 
-debug: build
-	node examples/get-device-with-device-specific-configuration.js $(ARGS)
+debug: 
+	npx eslint --fix integration-tests/**/*.js  
+	npx mocha 'integration-tests/get-devices_spec.js' --broadcast='192.168.1.255:59999'
 
 test: build
 	npx eslint --fix test/**/*.js  
@@ -35,7 +36,7 @@ test: build
 
 integration-tests: build
 	npx eslint --fix integration-tests/**/*.js  
-	npx mocha 'integration-tests/**/*_spec.js' --broadcast='192.168.1.255'
+	npx mocha 'integration-tests/**/*_spec.js' --broadcast='192.168.1.255:59999'
 
 release:
 	npm pack
