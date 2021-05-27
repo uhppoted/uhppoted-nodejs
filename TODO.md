@@ -3,14 +3,14 @@
 ### IN PROGRESS
 
 - [ ] Integration tests
-      - get-device
+      - commonalise setup/teardown code
       - get-devices
 
 - [ ] Unit tests
       - codec
-      - invalid/missing parameters
-      - configuration
       - internationalisation
+      - configuration
+      - invalid/missing parameters
 
 - [ ] Commonalise context code
 - [ ] Commonalise validation code

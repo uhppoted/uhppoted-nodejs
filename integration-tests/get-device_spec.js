@@ -18,7 +18,7 @@ describe('#getDevice(...)', function () {
   let sock = null
   const bind = '0.0.0.0'
   const listen = '0.0.0.0:60001'
-  let broadcast = '255.255.255.255:60000'
+  let broadcast = '255.255.255.255:59999'
 
   before(function () {
     const args = process.argv.slice(3)
@@ -42,7 +42,7 @@ describe('#getDevice(...)', function () {
       sock.send(new Uint8Array(reply), 0, 64, rinfo.port, rinfo.address)
     })
 
-    sock.bind({ address: '0.0.0.0', port: 60000 })
+    sock.bind({ address: '0.0.0.0', port: 59999 })
   })
 
   after(function () {
