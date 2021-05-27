@@ -2,12 +2,33 @@
 
 ### IN PROGRESS
 
+- [ ] `listen`: add `close` function to handler
+
 - [ ] Integration tests
       - commonalise setup/teardown code
-      - get-devices
+      - set-ip
+      - get-time
+      - set-time
+      - get-listener
+      - set-listener
+      - listen
+      - set-door-control
+      - get-door-control
+      - get-status
+      - get-cards
+      - get-card
+      - get-card-by-index
+      - put-card
+      - delete-cards
+      - delete-card
+      - open-door
+      - record-special-events
+      - get-event-index
+      - set-event-index
+      - get-event
+      - get-events
 
 - [ ] Unit tests
-      - codec
       - internationalisation
       - configuration
       - invalid/missing parameters
