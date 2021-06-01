@@ -2,19 +2,18 @@
 
 ### IN PROGRESS
 
-- [ ] `listen`: implement a `close` function
-- [ ] Integration tests
-      - listen
-
 - [ ] Unit tests
       - internationalisation
       - configuration
       - invalid/missing parameters
 
+- [ ] Github workflow
 - [ ] Commonalise context code
 - [ ] Commonalise validation code
 - [ ] Consolidate boilerplate
 - [ ] Documentation
+
+- [x] Integration tests
 
 - [x] Internationalisation: translate errors
 - [x] Implement locale based translation

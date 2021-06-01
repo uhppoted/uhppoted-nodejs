@@ -3,17 +3,21 @@ const dgram = require('dgram')
 const uhppoted = require('../index.js')
 
 const bind = '0.0.0.0'
-const listen = '0.0.0.0:60001'
 let broadcast = '255.255.255.255:59999'
+let listen = '0.0.0.0:60001'
 
 process.argv.slice(3).forEach(arg => {
-  const re = /(--broadcast)=(.*)/gm
+  const re = /(--broadcast|--listen)=(.*)/gm
   const matches = re.exec(arg)
 
   if (matches && matches.length === 3) {
     switch (matches[1]) {
       case '--broadcast':
         broadcast = matches[2]
+        break
+
+      case '--listen':
+        listen = matches[2]
         break
     }
   }
@@ -42,8 +46,30 @@ function teardown (sock) {
   sock.close()
 }
 
+function stringToIP (addr) {
+  let address = addr
+  let port = 60000
+
+  const re = /^(.*?)(?::([0-9]+))?$/
+  const match = addr.match(re)
+
+  if ((match.length > 1) && match[1]) {
+    address = match[1]
+  }
+
+  if ((match.length > 2) && match[2]) {
+    port = parseInt(match[2], 10)
+  }
+
+  return {
+    address: address,
+    port: port
+  }
+}
+
 module.exports = {
   context: ctx,
   setup: setup,
-  teardown: teardown
+  teardown: teardown,
+  stringToIP: stringToIP
 }

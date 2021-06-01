@@ -21,7 +21,7 @@ if (listener) {
   console.log("\n  Type 'exit' to stop event listener...\n")
   process
     .openStdin()
-    .addListener('data', function (d) {
+    .addListener('listener', function (d) {
       if (d.toString().trim() === 'exit') {
         listener.close()
         process.exit(0)

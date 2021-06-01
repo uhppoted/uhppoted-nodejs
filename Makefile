@@ -28,7 +28,7 @@ run: build
 
 debug: 
 	npx eslint --fix integration-tests/**/*.js  
-	npx mocha 'integration-tests/get-devices_spec.js' --broadcast='192.168.1.255:59999'
+	npx mocha 'integration-tests/listen_spec.js' --broadcast='192.168.1.255:59999' --listen='192.168.1.100:60001'
 
 test: build
 	npx eslint --fix test/**/*.js  
@@ -36,7 +36,7 @@ test: build
 
 integration-tests: build
 	npx eslint --fix integration-tests/**/*.js  
-	npx mocha 'integration-tests/**/*_spec.js' --broadcast='192.168.1.255:59999'
+	npx mocha 'integration-tests/**/*_spec.js' --broadcast='192.168.1.255:59999' --listen='192.168.1.100:60001'
 
 release:
 	npm pack
