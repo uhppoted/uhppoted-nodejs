@@ -2,15 +2,14 @@
 
 ### IN PROGRESS
 
+- [ ] Rework custom translation as a dictionary
 - [ ] Unit tests
-      - internationalisation
       - configuration
       - invalid/missing parameters
 
 - [ ] Github workflow
 - [ ] Commonalise context code
 - [ ] Commonalise validation code
-- [ ] Consolidate boilerplate
 - [ ] Documentation
 
 - [x] Integration tests

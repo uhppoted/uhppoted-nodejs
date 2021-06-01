@@ -27,8 +27,8 @@ run: build
 	node example.js
 
 debug: 
-	npx eslint --fix integration-tests/**/*.js  
-	npx mocha 'integration-tests/listen_spec.js' --broadcast='192.168.1.255:59999' --listen='192.168.1.100:60001'
+	npx eslint --fix test/**/*.js  
+	npx mocha 'test/internationalisation_spec.js' 
 
 test: build
 	npx eslint --fix test/**/*.js  
