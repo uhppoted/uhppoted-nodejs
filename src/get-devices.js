@@ -2,6 +2,7 @@ const broadcast = require('./uhppoted.js').broadcast
 const opcodes = require('./opcodes.js')
 const log = require('./logger.js')
 const translate = require('./internationalisation.js').translate
+const validate = require('./common.js').validate
 
 function getDevices (ctx) {
   const initialise = new Promise((resolve, reject) => {
@@ -12,7 +13,8 @@ function getDevices (ctx) {
     })
   })
 
-  return initialise
+  return validate({ }, ctx.locale)
+    .then(ok => initialise)
     .then(context => broadcast(context, opcodes.GetDevice, {}))
     .then(response => translate(response, ctx.locale))
 }

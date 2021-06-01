@@ -1,24 +1,66 @@
+const errors = require('./errors.js')
+
+function validate (args, locale) {
+  return new Promise((resolve, reject) => {
+    Object.entries(args).forEach(([k, v]) => {
+      switch (`${k}`) {
+        case 'deviceId':
+          if (!isValidDeviceId(v)) {
+            reject(errors.InvalidDeviceID(v, locale))
+          }
+          break
+
+        case 'cardNumber':
+          if (!isValidCardNumber(v)) {
+            reject(errors.InvalidCardNumber(v, locale))
+          }
+          break
+
+        case 'cardIndex':
+          if (!isValidCardIndex(v)) {
+            reject(errors.InvalidCardIndex(v, locale))
+          }
+          break
+
+        case 'door':
+          if (!isValidDoor(v)) {
+            reject(errors.InvalidDoor(v, locale))
+          }
+          break
+
+        case 'eventIndex':
+          if (!isValidEventIndex(v)) {
+            reject(errors.InvalidEventIndex(v, locale))
+          }
+          break
+      }
+    })
+
+    resolve()
+  })
+}
+
 function isValidDeviceId (deviceId) {
-  return validate(deviceId, 1, 4294967295)
+  return isValid(deviceId, 1, 4294967295)
 }
 
 function isValidCardNumber (card) {
-  return validate(card, 1, 4294967295)
+  return isValid(card, 1, 4294967295)
 }
 
 function isValidCardIndex (index) {
-  return validate(index, 0, 4294967295)
+  return isValid(index, 0, 4294967295)
 }
 
 function isValidDoor (door) {
-  return validate(door, 1, 4)
+  return isValid(door, 1, 4)
 }
 
 function isValidEventIndex (index) {
-  return validate(index, 0, 4294967295)
+  return isValid(index, 0, 4294967295)
 }
 
-function validate (value, min, max) {
+function isValid (value, min, max) {
   if (!value || Number.isNaN(value)) {
     return false
   }
@@ -31,9 +73,5 @@ function validate (value, min, max) {
 }
 
 module.exports = {
-  isValidDeviceId: isValidDeviceId,
-  isValidCardNumber: isValidCardNumber,
-  isValidCardIndex: isValidCardIndex,
-  isValidDoor: isValidDoor,
-  isValidEventIndex: isValidEventIndex
+  validate: validate
 }

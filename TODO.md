@@ -2,18 +2,16 @@
 
 ### IN PROGRESS
 
-- [ ] Rework custom translation as a dictionary
 - [ ] Unit tests
-      - configuration
       - invalid/missing parameters
-
-- [ ] Github workflow
+      - configuration
 - [ ] Commonalise context code
-- [ ] Commonalise validation code
+- [ ] Github workflow
 - [ ] Documentation
 
 - [x] Integration tests
 
+- [x] Commonalise validation code
 - [x] Internationalisation: translate errors
 - [x] Implement locale based translation
 - [x] Config.addDevice function

@@ -8,7 +8,7 @@ const opcodes = require('../src/opcodes.js')
 describe('codec', function () {
   describe('#encode(...)', function () {
     it('should fail with error when encoding an invalid function code', function () {
-      expect(() => { codec.encode(0xff) }).to.throw('{{invalid protocol function code}} 255')
+      expect(() => { codec.encode(0xff) }).to.throw('invalid protocol function code 255')
     })
 
     it('should encode get-devices request', function () {

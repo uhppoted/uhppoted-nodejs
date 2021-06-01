@@ -5,47 +5,47 @@ function InvalidDeviceID (deviceId, locale) {
 }
 
 function InvalidCardNumber (card, locale) {
-  return new Error(`{{invalid card number}} '${card}'`)
+  return new Error(translate(`{{invalid card number}} '${card}'`, locale))
 }
 
 function InvalidCardIndex (index, locale) {
-  return new Error(`{{invalid card index}} '${index}'`)
+  return new Error(translate(`{{invalid card index}} '${index}'`, locale))
 }
 
 function InvalidDoor (door, locale) {
-  return new Error(`{{invalid door}} '${door}'`)
+  return new Error(translate(`{{invalid door}} '${door}'`, locale))
 }
 
 function InvalidEventIndex (index, locale) {
-  return new Error(`{{invalid event index}} '${index}'`)
+  return new Error(translate(`{{invalid event index}} '${index}'`, locale))
 }
 
 function InvalidFunctionCode (code, locale) {
-  return new Error(`{{invalid protocol function code}} ${code}`)
+  return new Error(translate(`{{invalid protocol function code}} ${code}`, locale))
 }
 
 function InvalidDoorControl (control, locale) {
-  return new Error(`{{invalid door control}} ${control}`)
+  return new Error(translate(`{{invalid door control}} ${control}`, locale))
 }
 
 function NoReply (locale) {
-  return new Error('{{no reply}}')
+  return new Error(translate('{{no reply}}', locale))
 }
 
 function NoReplyFromDevice (deviceId, locale) {
-  return new Error(`${deviceId}: {{no reply}}`)
+  return new Error(translate(`${deviceId}: {{no reply}}`, locale))
 }
 
 function NoReplyToBroadcast (locale) {
-  return new Error('{{no reply to broadcasted request}}')
+  return new Error(translate('{{no reply to broadcasted request}}', locale))
 }
 
 function InvalidBroadcastReply (locale) {
-  return new Error('{{invalid reply to broadcasted request}}')
+  return new Error(translate('{{invalid reply to broadcasted request}}', locale))
 }
 
 function Timeout (locale) {
-  return new Error('{{timeout}}')
+  return new Error(translate('{{timeout}}', locale))
 }
 
 module.exports = {

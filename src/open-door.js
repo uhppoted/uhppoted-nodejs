@@ -1,23 +1,11 @@
 const set = require('./uhppoted.js').set
 const opcodes = require('./opcodes.js')
-const errors = require('./errors.js')
 const log = require('./logger.js')
 const translate = require('./internationalisation.js').translate
-const isValidDeviceId = require('./common.js').isValidDeviceId
-const isValidDoor = require('./common.js').isValidDoor
+const validate = require('./common.js').validate
 
 function openDoor (ctx, deviceId, door) {
   const initialise = new Promise((resolve, reject) => {
-    if (!isValidDeviceId(deviceId)) {
-      reject(errors.InvalidDeviceID(deviceId, ctx.locale))
-      return
-    }
-
-    if (!isValidDoor(door)) {
-      reject(errors.InvalidDoor(door, ctx.locale))
-      return
-    }
-
     resolve({
       config: ctx.config,
       locale: ctx.locale,
@@ -25,7 +13,8 @@ function openDoor (ctx, deviceId, door) {
     })
   })
 
-  return initialise
+  return validate({ deviceId: deviceId, door: door }, ctx.locale)
+    .then(ok => initialise)
     .then(context => set(context, deviceId, opcodes.OpenDoor, { door: door }))
     .then(response => translate(response, ctx.locale))
 }

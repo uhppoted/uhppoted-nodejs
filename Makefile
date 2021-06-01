@@ -28,7 +28,7 @@ run: build
 
 debug: 
 	npx eslint --fix test/**/*.js  
-	npx mocha 'test/internationalisation_spec.js' 
+	npx mocha 'test/common_spec.js' 
 
 test: build
 	npx eslint --fix test/**/*.js  

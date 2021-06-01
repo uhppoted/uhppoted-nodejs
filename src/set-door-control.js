@@ -3,20 +3,10 @@ const opcodes = require('./opcodes.js')
 const errors = require('./errors.js')
 const log = require('./logger.js')
 const translate = require('./internationalisation.js').translate
-const isValidDeviceId = require('./common.js').isValidDeviceId
-const isValidDoor = require('./common.js').isValidDoor
+const validate = require('./common.js').validate
 
 function setDoorControl (ctx, deviceId, door, delay, control) {
   const initialise = new Promise((resolve, reject) => {
-    if (!isValidDeviceId(deviceId)) {
-      reject(errors.InvalidDeviceID(deviceId, ctx.locale))
-      return
-    }
-
-    if (!isValidDoor(door)) {
-      reject(errors.InvalidDoor(door, ctx.locale))
-      return
-    }
     resolve({
       config: ctx.config,
       locale: ctx.locale,
@@ -43,7 +33,8 @@ function setDoorControl (ctx, deviceId, door, delay, control) {
       throw errors.InvalidDoorControl(control, ctx.locale)
   }
 
-  return initialise
+  return validate({ deviceId: deviceId, door: door }, ctx.locale)
+    .then(ok => initialise)
     .then(context => set(context, deviceId, opcodes.SetDoorControl, { door: door, delay: delay, control: controlv }))
     .then(response => translate(response, ctx.locale))
 }

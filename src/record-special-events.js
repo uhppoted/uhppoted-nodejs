@@ -1,17 +1,11 @@
 const set = require('./uhppoted.js').set
 const opcodes = require('./opcodes.js')
-const errors = require('./errors.js')
 const log = require('./logger.js')
 const translate = require('./internationalisation.js').translate
-const isValidDeviceId = require('./common.js').isValidDeviceId
+const validate = require('./common.js').validate
 
 function recordSpecialEvents (ctx, deviceId, enable) {
   const initialise = new Promise((resolve, reject) => {
-    if (!isValidDeviceId(deviceId)) {
-      reject(errors.InvalidDeviceID(deviceId, ctx.locale))
-      return
-    }
-
     resolve({
       config: ctx.config,
       locale: ctx.locale,
@@ -19,7 +13,8 @@ function recordSpecialEvents (ctx, deviceId, enable) {
     })
   })
 
-  return initialise
+  return validate({ deviceId: deviceId }, ctx.locale)
+    .then(ok => initialise)
     .then(context => set(context, deviceId, opcodes.RecordSpecialEvents, { enable: enable }))
     .then(response => translate(response, ctx.locale))
 }
