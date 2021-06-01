@@ -6,7 +6,7 @@ const validate = require('../src/common.js').validate
 
 describe('validate', function () {
   describe('#validate({deviceID...})', function () {
-    it('should return Promise that rejects with an invalid device ID', function () {
+    it('should fail with invalid device ID (0)', function () {
       return validate({ deviceId: 0 })
         .then(() => {
           assert.fail()
@@ -16,7 +16,7 @@ describe('validate', function () {
         })
     })
 
-    it('should return Promise that resolves', function () {
+    it('should succeed with valid device ID (1)', function () {
       return validate({ deviceId: 1 })
         .then(() => {
         })
@@ -25,7 +25,7 @@ describe('validate', function () {
         })
     })
 
-    it('should return Promise that resolves', function () {
+    it('should succeed with valid device ID (4294967295)', function () {
       return validate({ deviceId: 4294967295 })
         .then(() => {
         })
@@ -34,7 +34,7 @@ describe('validate', function () {
         })
     })
 
-    it('should return Promise that rejects with an invalid device ID', function () {
+    it('should fail with invalid device ID (4294967296)', function () {
       return validate({ deviceId: 4294967296 })
         .then(() => {
           assert.fail()
@@ -46,7 +46,7 @@ describe('validate', function () {
   })
 
   describe('#validate({cardNumber...})', function () {
-    it('should return Promise that rejects with an invalid card number', function () {
+    it('should fail with invalid card number (0)', function () {
       return validate({ deviceId: 405419896, cardNumber: 0 })
         .then(() => {
           assert.fail()
@@ -56,7 +56,7 @@ describe('validate', function () {
         })
     })
 
-    it('should return Promise that resolves', function () {
+    it('should succeed with valid card number (1)', function () {
       return validate({ deviceId: 405419896, cardNumber: 1 })
         .then(() => {
         })
@@ -65,7 +65,7 @@ describe('validate', function () {
         })
     })
 
-    it('should return Promise that resolves', function () {
+    it('should succeed with valid card number (4294967295)', function () {
       return validate({ deviceId: 405419896, cardNumber: 4294967295 })
         .then(() => {
         })
@@ -74,7 +74,7 @@ describe('validate', function () {
         })
     })
 
-    it('should return Promise that rejects with an invalid card number', function () {
+    it('should fail with an invalid card number (4294967296)', function () {
       return validate({ deviceId: 405419896, cardNumber: 4294967296 })
         .then(() => {
           assert.fail()
@@ -86,7 +86,7 @@ describe('validate', function () {
   })
 
   describe('#validate({cardIndex...})', function () {
-    it('should return Promise that rejects with an invalid card index', function () {
+    it('should fail with invalid card index (0)', function () {
       return validate({ deviceId: 405419896, cardNumber: 8165538, cardIndex: 0 })
         .then(() => {
           assert.fail()
@@ -96,7 +96,7 @@ describe('validate', function () {
         })
     })
 
-    it('should return Promise that resolves', function () {
+    it('should succeed with valid card index (1)', function () {
       return validate({ deviceId: 405419896, cardNumber: 8165538, cardIndex: 1 })
         .then(() => {
         })
@@ -105,7 +105,7 @@ describe('validate', function () {
         })
     })
 
-    it('should return Promise that resolves', function () {
+    it('should succeed with valid card index (4294967295)', function () {
       return validate({ deviceId: 405419896, cardNumber: 8165538, cardIndex: 4294967295 })
         .then(() => {
         })
@@ -114,7 +114,7 @@ describe('validate', function () {
         })
     })
 
-    it('should return Promise that rejects with an invalid card index', function () {
+    it('should fail with invalid card index (4294967296)', function () {
       return validate({ deviceId: 405419896, cardNumber: 8165538, cardIndex: 4294967296 })
         .then(() => {
           assert.fail()
@@ -126,7 +126,7 @@ describe('validate', function () {
   })
 
   describe('#validate({door...})', function () {
-    it('should return Promise that rejects with an invalid door', function () {
+    it('should fail with invalid door (0)', function () {
       return validate({ deviceId: 405419896, cardNumber: 8165538, cardIndex: 29, door: 0 })
         .then(() => {
           assert.fail()
@@ -136,7 +136,7 @@ describe('validate', function () {
         })
     })
 
-    it('should return Promise that resolves', function () {
+    it('should succeed with valid door (1)', function () {
       return validate({ deviceId: 405419896, cardNumber: 8165538, cardIndex: 29, door: 1 })
         .then(() => {
         })
@@ -145,7 +145,7 @@ describe('validate', function () {
         })
     })
 
-    it('should return Promise that resolves', function () {
+    it('should succeed with valid door (4)', function () {
       return validate({ deviceId: 405419896, cardNumber: 8165538, cardIndex: 29, door: 4 })
         .then(() => {
         })
@@ -154,7 +154,7 @@ describe('validate', function () {
         })
     })
 
-    it('should return Promise that rejects with an invalid door', function () {
+    it('should fail with invalid door (5)', function () {
       return validate({ deviceId: 405419896, cardNumber: 8165538, cardIndex: 29, door: 5 })
         .then(() => {
           assert.fail()
@@ -166,7 +166,7 @@ describe('validate', function () {
   })
 
   describe('#validate({eventIndex...})', function () {
-    it('should return Promise that rejects with an invalid event index', function () {
+    it('should fail with invalid event index (0)', function () {
       return validate({ deviceId: 405419896, cardNumber: 8165538, cardIndex: 29, door: 3, eventIndex: 0 })
         .then(() => {
           assert.fail()
@@ -176,7 +176,7 @@ describe('validate', function () {
         })
     })
 
-    it('should return Promise that resolves', function () {
+    it('should succeed with valid event index (1)', function () {
       return validate({ deviceId: 405419896, cardNumber: 8165538, cardIndex: 29, door: 3, eventIndex: 1 })
         .then(() => {
         })
@@ -185,7 +185,7 @@ describe('validate', function () {
         })
     })
 
-    it('should return Promise that resolves', function () {
+    it('should succeed with valid event index (4294967295)', function () {
       return validate({ deviceId: 405419896, cardNumber: 8165538, cardIndex: 29, door: 3, eventIndex: 4294967295 })
         .then(() => {
         })
@@ -194,7 +194,7 @@ describe('validate', function () {
         })
     })
 
-    it('should return Promise that rejects with an invalid card index', function () {
+    it('should fail with invalid card index (4294967296)', function () {
       return validate({ deviceId: 405419896, cardNumber: 8165538, cardIndex: 29, door: 3, eventIndex: 4294967296 })
         .then(() => {
           assert.fail()

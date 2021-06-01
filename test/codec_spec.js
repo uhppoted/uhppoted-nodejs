@@ -1,7 +1,6 @@
 const describe = require('mocha').describe
 const it = require('mocha').it
 const expect = require('chai').expect
-
 const codec = require('../src/codec.js')
 const opcodes = require('../src/opcodes.js')
 

@@ -2,15 +2,16 @@
 
 ### IN PROGRESS
 
-- [ ] Unit tests
-      - invalid/missing parameters
-      - configuration
 - [ ] Commonalise context code
+- [ ] Unit tests
+      - missing parameters
+      - configuration
 - [ ] Github workflow
 - [ ] Documentation
+      - README
+      - functions
 
 - [x] Integration tests
-
 - [x] Commonalise validation code
 - [x] Internationalisation: translate errors
 - [x] Implement locale based translation
