@@ -5,29 +5,29 @@ const translate = require('./internationalisation.js').translate
 const validate = require('./common.js').validate
 const initialise = require('./common.js').initialise
 
-function setDoorControl (ctx, deviceId, door, delay, control) {
-  let controlv = 0x00
+function setDoorControl (ctx, deviceId, door, delay, mode) {
+  let control = 0x00
 
-  switch (control) {
+  switch (mode) {
     case 'normally open':
-      controlv = opcodes.NormallyOpen
+      control = opcodes.NormallyOpen
       break
 
     case 'normally closed':
-      controlv = opcodes.NormallyClosed
+      control = opcodes.NormallyClosed
       break
 
     case 'controlled':
-      controlv = opcodes.Controlled
+      control = opcodes.Controlled
       break
 
     default:
-      throw errors.InvalidDoorControl(control, ctx.locale)
+      throw errors.InvalidDoorControl(mode, ctx.locale)
   }
 
   return validate({ deviceId: deviceId, door: door }, ctx.locale)
     .then(ok => initialise(ctx))
-    .then(context => set(context, deviceId, opcodes.SetDoorControl, { door: door, delay: delay, control: controlv }))
+    .then(context => set(context, deviceId, opcodes.SetDoorControl, { door: door, delay: delay, control: control }))
     .then(response => translate(response, ctx.locale))
 }
 

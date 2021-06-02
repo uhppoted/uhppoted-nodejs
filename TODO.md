@@ -4,7 +4,7 @@
 
 - [ ] Documentation
       - README
-      - functions
+      - JSDoc (https://jsdoc.app/about-getting-started.html)
 - [ ] Github workflow
 - [ ] Publish
 
