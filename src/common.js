@@ -1,4 +1,15 @@
 const errors = require('./errors.js')
+const log = require('./logger.js')
+
+function initialise (ctx) {
+  return new Promise((resolve, reject) => {
+    resolve({
+      config: ctx.config,
+      locale: ctx.locale,
+      logger: ctx.logger ? ctx.logger : (m) => { log(m) }
+    })
+  })
+}
 
 function validate (args, locale) {
   return new Promise((resolve, reject) => {
@@ -73,5 +84,6 @@ function isValid (value, min, max) {
 }
 
 module.exports = {
+  initialise: initialise,
   validate: validate
 }

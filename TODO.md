@@ -2,15 +2,14 @@
 
 ### IN PROGRESS
 
-- [ ] Commonalise context code
 - [ ] Unit tests
-      - missing parameters
       - configuration
 - [ ] Github workflow
 - [ ] Documentation
       - README
       - functions
 
+- [x] Commonalise context code
 - [x] Integration tests
 - [x] Commonalise validation code
 - [x] Internationalisation: translate errors
