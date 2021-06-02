@@ -2,7 +2,7 @@ const uhppoted = require('uhppoted')
 const ctx = require('./common.js')
 const deviceID = 405419896
 
-ctx.config.addDevice(deviceID, '192.168.1.100:60000', 'asdfasd')
+uhppoted.addDevice(ctx.config, deviceID, '192.168.1.100:60000', 'asdfasd')
 
 uhppoted.getDevice(ctx, deviceID)
   .then(response => {

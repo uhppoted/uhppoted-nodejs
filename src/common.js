@@ -1,11 +1,23 @@
+const config = require('./config.js')
 const errors = require('./errors.js')
 const log = require('./logger.js')
 
 function initialise (ctx) {
   return new Promise((resolve, reject) => {
+    let cfg = new config.Config()
+    let locale = 'en-US'
+
+    if (ctx.config) {
+      cfg = ctx.config
+    }
+
+    if (ctx.locale) {
+      locale = ctx.locale
+    }
+
     resolve({
-      config: ctx.config,
-      locale: ctx.locale,
+      config: cfg,
+      locale: locale,
       logger: ctx.logger ? ctx.logger : (m) => { log(m) }
     })
   })

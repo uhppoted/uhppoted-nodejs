@@ -48,31 +48,32 @@ function Config (name, bindAddr, broadcastAddr, listenAddr, timeout, controllers
   if (timeout && !Number.isNaN(timeout) && timeout >= 0 && timeout < 60000) {
     this.timeout = timeout
   }
+}
 
-  this.addDevice = function (deviceId, address, forceBroadcast) {
-    if (deviceId) {
-      const id = parseInt(deviceId.toString(), 10)
+function addDevice (config, deviceId, address, forceBroadcast) {
+  if (config && deviceId) {
+    const id = parseInt(deviceId.toString(), 10)
 
-      if (id && !Number.isNaN(id) && id > 0) {
-        const controller = {
-          address: '',
-          forceBroadcast: false
-        }
-
-        if (address) {
-          controller.address = address.toString()
-        }
-
-        if (forceBroadcast && forceBroadcast.toString() === 'true') {
-          controller.forceBroadcast = true
-        }
-
-        this.controllers.set(id, controller)
+    if (id && !Number.isNaN(id) && id > 0) {
+      const controller = {
+        address: '',
+        forceBroadcast: false
       }
+
+      if (address) {
+        controller.address = address.toString()
+      }
+
+      if (forceBroadcast && forceBroadcast.toString() === 'true') {
+        controller.forceBroadcast = true
+      }
+
+      config.controllers.set(id, controller)
     }
   }
 }
 
 module.exports = {
-  Config
+  Config: Config,
+  addDevice: addDevice
 }

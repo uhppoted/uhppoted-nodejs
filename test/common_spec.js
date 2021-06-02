@@ -2,7 +2,82 @@ const describe = require('mocha').describe
 const it = require('mocha').it
 const assert = require('chai').assert
 const expect = require('chai').expect
+const uhppoted = require('../index.js')
 const validate = require('../src/common.js').validate
+const initialise = require('../src/common.js').initialise
+
+describe('initialise', function () {
+  describe('#initialise({})', function () {
+    it('should build a valid uhppoted context from a minimal CTX object', function () {
+      return initialise({})
+        .then((context) => {
+          expect(context.config).to.deep.equal(new uhppoted.Config())
+          expect(context.locale).to.equal('en-US')
+          expect(context.logger.toString()).to.deep.equal('(m) => { log(m) }')
+        })
+        .catch((err) => {
+          assert.fail(err.message)
+        })
+    })
+  })
+
+  describe('#initialise(ctx)', function () {
+    it('should build a valid uhppoted context from a CTX object with just a config', function () {
+      const ctx = {
+        config: new uhppoted.Config('examples', '192.168.1.100', '192.168.1.255:60000', '192.168.1.100:60001', 5000, [], false)
+      }
+
+      return initialise(ctx)
+        .then((context) => {
+          expect(context.config).to.deep.equal(ctx.config)
+          expect(context.locale).to.equal('en-US')
+          expect(context.logger.toString()).to.deep.equal('(m) => { log(m) }')
+        })
+        .catch((err) => {
+          assert.fail(err.message)
+        })
+    })
+  })
+
+  describe('#initialise(ctx)', function () {
+    it('should build a valid uhppoted context from a CTX object with a config and locale', function () {
+      const ctx = {
+        config: new uhppoted.Config('examples', '192.168.1.100', '192.168.1.255:60000', '192.168.1.100:60001', 5000, [], false),
+        locale: 'klingon'
+      }
+
+      return initialise(ctx)
+        .then((context) => {
+          expect(context.config).to.deep.equal(ctx.config)
+          expect(context.locale).to.equal('klingon')
+          expect(context.logger.toString()).to.deep.equal('(m) => { log(m) }')
+        })
+        .catch((err) => {
+          assert.fail(err.message)
+        })
+    })
+  })
+
+  describe('#initialise(ctx)', function () {
+    it('should build a valid uhppoted context from a CTX object with a config, locale and logger', function () {
+      const ctx = {
+        config: new uhppoted.Config('examples', '192.168.1.100', '192.168.1.255:60000', '192.168.1.100:60001', 5000, [], false),
+        locale: 'klingon',
+        logger: function log (msg) { console.log('TEST: ', msg) }
+      }
+
+      return initialise(ctx)
+        .then((context) => {
+          expect(context.config).to.deep.equal(ctx.config)
+          expect(context.locale).to.equal('klingon')
+          expect(context.logger.toString()).to.deep.equal("function log (msg) { console.log('TEST: ', msg) }")
+        })
+        .catch((err) => {
+          assert.fail(err.message)
+        })
+    })
+  })
+})
 
 describe('validate', function () {
   describe('#validate({deviceID...})', function () {

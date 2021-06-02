@@ -1,5 +1,6 @@
 module.exports = {
   Config: require('./src/config.js').Config,
+  addDevice: require('./src/config.js').addDevice,
 
   getDevices: require('./src/get-devices.js'),
   getDevice: require('./src/get-device.js'),

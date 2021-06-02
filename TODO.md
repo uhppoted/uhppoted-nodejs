@@ -2,13 +2,13 @@
 
 ### IN PROGRESS
 
-- [ ] Unit tests
-      - configuration
-- [ ] Github workflow
 - [ ] Documentation
       - README
       - functions
+- [ ] Github workflow
+- [ ] Publish
 
+- [x] Unit tests
 - [x] Commonalise context code
 - [x] Integration tests
 - [x] Commonalise validation code
