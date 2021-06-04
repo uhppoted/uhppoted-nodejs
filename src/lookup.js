@@ -1,3 +1,10 @@
+/**
+ * Translates UHPPOTE controller codes into human readable text.
+ *
+ * @module lookup
+ * @private
+ */
+
 module.exports = {
   /**
     * Expands an event type byte into an object with event code and internationalised
@@ -7,8 +14,6 @@ module.exports = {
     * @param {number}   offset     Index of event type byte in message
     *
     * @param {object}   { code:byte, event:string }
-    *
-    * @exports
     */
   eventType: function (bytes, offset) {
     const byte = bytes.getUint8(offset, true)
@@ -54,8 +59,6 @@ module.exports = {
     * @param {number}   offset     Index of event direction byte in message
     *
     * @param {object}   { code: byte, direction: string }
-    *
-    * @exports
     */
   direction: function (bytes, offset) {
     const byte = bytes.getUint8(offset, true)
@@ -89,8 +92,6 @@ module.exports = {
     * @param {number}   offset     Index of event reason byte in message
     *
     * @param {object}   { code: byte, reason: string }
-    *
-    * @exports
     */
   reason: function (bytes, offset) {
     const byte = bytes.getUint8(offset, true)
@@ -239,8 +240,6 @@ module.exports = {
     * @param {number}   offset     Index of relay state  byte in message
     *
     * @param {object}   { state: byte, 1: open/closed, 2: open/closed, 3: open/closed, 4: open/closed }
-    *
-    * @exports
     */
   relays: function (bytes, offset) {
     const byte = bytes.getUint8(offset, true)
@@ -265,8 +264,6 @@ module.exports = {
     * @param {number}   offset     Index of relay state  byte in message
     *
     * @param {object}   { state: byte, forceLock: open/closed, fireAlarm: open/closed }
-    *
-    * @exports
     */
   inputs: function (bytes, offset) {
     const byte = bytes.getUint8(offset, true)
@@ -288,8 +285,6 @@ module.exports = {
     * @param {number}   offset     Index of door state  byte in message
     *
     * @param {object}   { value: byte, state: 'normally open', 'normally closed', 'controlled' or 'unknown' }
-    *
-    * @exports
     */
   doorState: function (bytes, offset) {
     const byte = bytes.getUint8(offset, true)

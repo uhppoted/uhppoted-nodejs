@@ -38,6 +38,9 @@ integration-tests: build
 	npx eslint --fix integration-tests/**/*.js  
 	npx mocha 'integration-tests/**/*_spec.js' --broadcast='192.168.1.255:59999' --listen='192.168.1.100:60001'
 
+jsdoc: build
+	npx jsdoc src --destination jsdoc --package package.json --readme README.md
+
 release:
 	npm pack
 

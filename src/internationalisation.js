@@ -7,6 +7,7 @@ const enUS = require('./locales/en-US/en-US.js')
 
 /**
   * Lookup table to associate message text to the equivalent internationalisation key.
+  * @private
   */
 const map = new Map([
   ['unknown', 'unknown'],

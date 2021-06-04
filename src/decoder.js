@@ -363,6 +363,7 @@ module.exports = {
   * @param {number} offset  Index of bool in buffer
   *
   * @param {bool}   true if the byte at the offset is 1, false otherwise.
+  * @private
   */
 function bool (bytes, offset) {
   return bytes.getUint8(offset, true) === 0x01
@@ -375,6 +376,7 @@ function bool (bytes, offset) {
   * @param {number} offset  Index of uint8 in buffer
   *
   * @param {uint8}  uint8 at offset in buffer.
+  * @private
   */
 function uint8 (bytes, offset) {
   return bytes.getUint8(offset, true)
@@ -387,6 +389,7 @@ function uint8 (bytes, offset) {
   * @param {number} offset  Index of uint16 in buffer
   *
   * @param {uint16}  Litte-endian uint16 at offset in buffer.
+  * @private
   */
 function uint16 (bytes, offset) {
   return bytes.getUint16(offset, true)
@@ -399,6 +402,7 @@ function uint16 (bytes, offset) {
   * @param {number} offset  Index of uint32 in buffer
   *
   * @param {uint32}  Litte-endian uint32 at offset in buffer.
+  * @private
   */
 function uint32 (bytes, offset) {
   return bytes.getUint32(offset, true)
@@ -412,6 +416,7 @@ function uint32 (bytes, offset) {
   * @param {number} length  Number of bytes to decode
   *
   * @param {string}  Decoded number as a string.
+  * @private
   */
 function bcd (bytes, offset, length) {
   const slice = new Uint8Array(bytes.buffer.slice(offset, offset + length))
@@ -432,6 +437,7 @@ function bcd (bytes, offset, length) {
   * @param {number} offset  Index of timestamp in buffer
   *
   * @param {string}  Decoded 6 byte timestamp in yyy-mm-dd HH:mm:ss format.
+  * @private
   */
 function yyyymmddHHmmss (bytes, offset) {
   const datetime = bcd(bytes, offset, 7)
@@ -448,6 +454,7 @@ function yyyymmddHHmmss (bytes, offset) {
   * @param {number} offset  Index of date in buffer
   *
   * @param {string}  Decoded 4 byte date in yyyy-mm-dd format.
+  * @private
   */
 function yyyymmdd (bytes, offset) {
   const date = bcd(bytes, offset, 4)
@@ -466,6 +473,7 @@ function yyyymmdd (bytes, offset) {
   * @param {number} offset  Index of date in buffer
   *
   * @param {string}  Decoded 3 byte date in yyyy-mm-dd format (assumes base centry is 2000).
+  * @private
   */
 function yymmdd (bytes, offset) {
   const date = '20' + bcd(bytes, offset, 3)
@@ -480,6 +488,7 @@ function yymmdd (bytes, offset) {
   * @param {number} offset  Index of time in buffer
   *
   * @param {string}  Decoded 3 byte time in HH:mm:ss format.
+  * @private
   */
 function HHmmss (bytes, offset) {
   const time = bcd(bytes, offset, 3)
@@ -494,6 +503,7 @@ function HHmmss (bytes, offset) {
   * @param {number} offset  Index of IP address in buffer
   *
   * @param {string}  Decoded 4 byte IPv4 address as a IP address object.
+  * @private
   */
 function address (bytes, offset) {
   const ip = require('ip')
@@ -508,6 +518,7 @@ function address (bytes, offset) {
   * @param {number} offset  Index of MAC address in buffer
   *
   * @param {string}  Decoded 6 byte MAC address as a colon delimited string.
+  * @private
   */
 function mac (bytes, offset) {
   const slice = new Uint8Array(bytes.buffer.slice(offset, offset + 6))

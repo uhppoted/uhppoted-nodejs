@@ -17,16 +17,13 @@
     "wiegand",
     "access control"
   ],
-
   "main": "index.js",
   "scripts": {
     "test": "mocha 'test/**/*_spec.js'"
   },
-
   "engines": {
     "node": ">=14.14.0"
   },
-
   "devDependencies": {
     "chai": "^4.3.4",
     "eslint": "^7.26.0",
@@ -34,9 +31,9 @@
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.3.1",
+    "jsdoc": "^3.6.7",
     "mocha": "^8.4.0"
   },
-
   "dependencies": {
     "dgram": "^1.0.1",
     "ip": "^1.1.5",

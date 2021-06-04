@@ -2,12 +2,12 @@ module.exports = {
   Config: require('./src/config.js').Config,
   addDevice: require('./src/config.js').addDevice,
 
-  getDevices: require('./src/get-devices.js'),
-  getDevice: require('./src/get-device.js'),
+  getDevices: require('./src/uhppoted.js').getDevices,
+  getDevice: require('./src/uhppoted.js').getDevice,
 
-  setIP: require('./src/set-ip.js'),
-  getListener: require('./src/get-listener.js'),
-  setListener: require('./src/set-listener.js'),
+  setIP: require('./src/uhppoted.js').setIP,
+  getListener: require('./src/uhppoted.js').getListener,
+  setListener: require('./src/uhppoted.js').setListener,
   getTime: require('./src/get-time.js'),
   setTime: require('./src/set-time.js'),
   getDoorControl: require('./src/get-door-control.js'),

@@ -1,5 +1,3 @@
-# uhppoted-nodejs
-
 NodeJS module that implements an API for interacting with a UHPPOTE TCP/IP Wiegand access controller board. The API supports device and card management as well as handling for events.
 
 #### Requirements:
@@ -137,9 +135,8 @@ Retrieves the host:port IP address to which controller events are sent.
 
 ```
 uhppoted.getListener (ctx, deviceId) 
-- `deviceId`: serial number of controller
 ```
-
+- `deviceId`: serial number of controller
 
 #### `setListener`
 

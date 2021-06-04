@@ -1,4 +1,4 @@
-const uhppoted = require('./uhppoted.js')
+const uhppoted = require('./driver.js')
 const translate = require('./internationalisation.js').translate
 const log = require('./logger.js')
 

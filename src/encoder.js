@@ -423,6 +423,7 @@ module.exports = {
   * @param {number} offset   Index of time in buffer
   *
   * @param {buffer} 6 byte NodeJS buffer with BCD encoded timestamp.
+  * @private
   */
 function datetime2bin (datetime) {
   const bytes = []
@@ -445,7 +446,7 @@ function datetime2bin (datetime) {
   * @param {number} offset  Index of time in buffer
   *
   * @param {buffer} 4 byte NodeJS buffer with BCD encoded timestamp
-  *
+  * @private
   */
 function date2bin (date) {
   const bytes = []

@@ -1,3 +1,10 @@
+/**
+ * Encodes and decodes binary UHPPOTE controller messages.
+ *
+ * @module codec
+ * @private
+ */
+
 const opcodes = require('./opcodes.js')
 const errors = require('./errors.js')
 const encoder = require('./encoder.js')
@@ -63,8 +70,6 @@ module.exports = {
     * @param {object}   object   Additional request specific information.
     *
     * @param {buffer}   64 byte NodeJS Buffer
-    *
-    * @exports
     */
   encode: function (code, deviceId, object) {
     const request = Buffer.alloc(64)
@@ -86,8 +91,6 @@ module.exports = {
     * @param {buffer}   buffer     64 byte NodeJS buffer
     *
     * @param {object}   Decoded object (or null)
-    *
-    * @exports
     */
   decode: function (buffer) {
     // NOTE: v6.62 firmware sends events with SOM code 0x19
