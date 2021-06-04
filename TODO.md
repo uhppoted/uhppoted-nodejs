@@ -2,12 +2,10 @@
 
 ### IN PROGRESS
 
-- [ ] Documentation
-      - README
-      - JSDoc (https://jsdoc.app/about-getting-started.html)
 - [ ] Github workflow
 - [ ] Publish
 
+- [x] Documentation
 - [x] Unit tests
 - [x] Commonalise context code
 - [x] Integration tests

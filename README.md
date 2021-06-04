@@ -10,7 +10,10 @@ For the latest updates see the [CHANGELOG.md](https://github.com/uhppoted/uhppot
 
 ### API
 
-Each API call takes a `context` _object_ as the first argument, comprising:
+Each API call takes a `context` _object_ as the first argument, followed by the function specific parameters and returns a `Promise`
+that resolves to a response.
+
+A `context` object comprises:
 ```
    {
       config: { ... },
@@ -66,7 +69,24 @@ Fetches a list of access controllers on the local LAN.
 ```
 uhppoted.getDevices(ctx)
 ````
-
+Returns a list of `device` objects, e.g.:
+```
+[
+  {
+    deviceId: controller ,
+    device: {
+      serialNumber: 201020304,
+      address: '192.168.1.101',
+      netmask: '255.255.255.0',
+      gateway: '192.168.1.1',
+      MAC: '52:fd:fc:07:21:82',
+      version: '0662',
+      date: '2020-01-01'
+    }
+  },
+  ...
+]
+```
 
 #### `getDevice`
 
@@ -76,6 +96,21 @@ uhppoted.getDevice(ctx, deviceId)
 ```
 - `deviceId`: serial number of controller
 
+Returns a `device` object, e.g.:
+```
+{
+  deviceId: controller ,
+  device: {
+    serialNumber: 201020304,
+    address: '192.168.1.101',
+    netmask: '255.255.255.0',
+    gateway: '192.168.1.1',
+    MAC: '52:fd:fc:07:21:82',
+    version: '0662',
+    date: '2020-01-01'
+  }
+   }
+```
 
 #### `setIP`
 
@@ -88,6 +123,10 @@ uhppoted.setIP (ctx, deviceId, address, netmask, gateway)
 - `netmask`: IPv4 subnet mask of controller
 - `gateway`: IPv4 address of the LAN gateway
 
+Returns an _empty_ object, e.g.:
+```
+{}
+```
 
 #### `getTime`
 
@@ -97,6 +136,10 @@ uhppoted.getTime (ctx, deviceId)
 ```
 - `deviceId`: serial number of controller
 
+Returns a `datetime` object, e.g.:
+```
+{ deviceId: 405419896, datetime: '2021-06-04 14:29:08' }
+```
 
 #### `setTime`
 
@@ -107,6 +150,10 @@ uhppoted.setTime (ctx, deviceId, datetime)
 - `deviceId`: serial number of controller
 - `datetime`: YYYY-mm-dd HH:mm:ss
 
+Returns a `datetime` object, e.g.:
+```
+{ deviceId: 405419896, datetime: '2021-06-04 14:29:08' }
+```
 
 #### `getDoorControl`
 
@@ -116,6 +163,18 @@ uhppoted.getDoorControl (ctx, deviceId, door)
 ```
 - `deviceId`: serial number of controller
 - `door`: 1-4
+
+Returns a `door-control` object, e.g.:
+```
+{
+  deviceId: 405419896,
+  doorControlState: { 
+    door: 3, 
+    delay: 7, 
+    control: { value: 3, state: 'controlled' } 
+  }
+}
+```
 
 #### `setDoorControl`
 
@@ -128,6 +187,17 @@ uhppoted.setDoorControl (ctx, deviceId, door, delay, mode)
 - `delay`: seconds
 - `mode`: _normally open_, _normally closed_ or _controlled_
 
+Returns a door control object, e.g.:
+```
+{
+  deviceId: 405419896,
+  doorControlState: {
+    door: 3,
+    delay: 4,
+    control: { value: 2, state: 'normally closed' }
+  }
+}
+```
 
 #### `getListener`
 
@@ -137,6 +207,11 @@ Retrieves the host:port IP address to which controller events are sent.
 uhppoted.getListener (ctx, deviceId) 
 ```
 - `deviceId`: serial number of controller
+
+Returns a `listener` object, e.g.:
+```
+{ deviceId: 405419896, address: '192.168.1.100', port: 60001 }
+```
 
 #### `setListener`
 
@@ -148,6 +223,11 @@ uhppoted.setListener (ctx, deviceId, address, port)
 - `address`: IPv4 address of event listener
 - `port`: UDP port on which event listener is expecting events
 
+Returns an `updated` result object, e.g.:
+```
+{ deviceId: 405419896, updated: true }
+```
+
 #### `getStatus`
 
 Retrieves a controller status.
@@ -157,6 +237,31 @@ uhppoted.getStatus (ctx, deviceId)
 ```
 - `deviceId`: serial number of controller
 
+Returns a `status` object, e.g.:
+```
+{
+  deviceId: 405419896,
+  state: {
+    serialNumber: 405419896,
+    event: {
+      index: 69,
+      type: [Object],
+      granted: true,
+      door: 1,
+      direction: [Object],
+      card: 0,
+      timestamp: '2019-08-10 10:28:32',
+      reason: [Object]
+    },
+    doors: { '1': false, '2': false, '3': false, '4': false },
+    buttons: { '1': false, '2': false, '3': false, '4': false },
+    system: { status: 0, date: '2021-06-04', time: '15:48:07' },
+    specialInfo: 0,
+    relays: { state: 0, relays: [Object] },
+    inputs: { state: 0, forceLock: false, fireAlarm: false }
+  }
+}
+```
 
 #### `getCards`
 
@@ -168,6 +273,10 @@ uhppoted.getCards (ctx, deviceId)
 ```
 - `deviceId`: serial number of controller
 
+Returns the a `cards` object, e.g.:
+```
+{ deviceId: 405419896, cards: 37 }
+```
 
 #### `deleteCards`
 
@@ -178,6 +287,10 @@ uhppoted.deleteCards (ctx, deviceId)
 ```
 - `deviceId`: serial number of controller
 
+Returns a `deleted` result object, e.g.:
+```
+{ deviceId: 405419896, deleted: true }
+```
 
 #### `getCard`
 
@@ -189,6 +302,18 @@ uhppoted.getCard (ctx, deviceId, cardNumber)
 - `deviceId`: serial number of controller
 - `cardNumber`: card number
 
+Returns the card record for the card number, e.g.:
+```
+{
+  deviceId: 405419896,
+  card: {
+    number: 8165538,
+    valid: { from: '2021-01-01', to: '2021-12-31' },
+    doors: { '1': true, '2': false, '3': false, '4': true }
+  }
+}
+```
+
 #### `getCardByIndex`
 
 Retrieves a single card record from a controller by record number.
@@ -199,6 +324,17 @@ uhppoted.getCardByIndex (ctx, deviceId, index)
 - `deviceId`: serial number of controller
 - `index`: record index of card
 
+Returns the card record at the index, e.g.:
+```
+{
+  deviceId: 405419896,
+  card: {
+    number: 8165539,
+    valid: { from: '2021-01-01', to: '2021-12-31' },
+    doors: { '1': false, '2': false, '3': false, '4': false }
+  }
+}
+```
 #### `putCard`
 
 Adds or updates a single card record on a controller.
@@ -212,6 +348,11 @@ uhppoted.putCard (ctx, deviceId, cardNumber, validFrom, validUntil, doors)
 - `validUntil`: date after which which card is no longer valid (YYYY-mm-dd)
 - `doors`: map of doors to which the card should be allowed access e.g. _{ 1: true, 2: false, 3: true, 4: true }_
 
+Returns a `stored` result object, e.g.:
+```
+{ deviceId: 405419896, stored: true }
+```
+
 #### `deleteCard`
 
 Deletes a single card record from a controller.
@@ -222,6 +363,10 @@ uhppoted.deleteCard (ctx, deviceId, cardNumber)
 - `deviceId`: serial number of controller
 - `cardNumber`: card number
 
+Returns a `deleted` result object, e.g.:
+```
+{ deviceId: 405419896, deleted: true }
+```
 
 #### `openDoor`
 
@@ -233,6 +378,25 @@ uhppoted.openDoor (ctx, deviceId, door)
 - `deviceId`: serial number of controller
 - `door`: 1-4
 
+Returns an `opened` result object, e.g.
+```
+{ deviceId: 405419896, opened: true }
+```
+
+#### `getEvents`
+
+Retrieves the indices of the first and last event records stored on a controller.
+
+```
+uhppoted.getEvents (ctx, deviceId)
+```
+- `deviceId`: serial number of controller
+- `index`: index of event (1-100000)
+
+Returns an `events` record, e.g.:
+```
+{ deviceId: 405419896, first: 1, last: 70 }
+```
 
 #### `getEvent`
 
@@ -244,6 +408,22 @@ uhppoted.getEvent (ctx, deviceId, index)
 - `deviceId`: serial number of controller
 - `index`: index of event (1-100000)
 
+Returns an event record, e.g.:
+```
+{
+  deviceId: 405419896,
+  event: {
+    index: 29,
+    type: { code: 2, event: 'door' },
+    granted: true,
+    door: 1,
+    direction: { code: 1, direction: 'in' },
+    card: 0,
+    timestamp: '2019-08-03 10:34:29',
+    reason: { code: 0, reason: '(reserved)' }
+  }
+}
+```
 
 #### `getEventIndex`
 
@@ -254,6 +434,10 @@ uhppoted.getEventIndex (ctx, deviceId)
 ```
 - `deviceId`: serial number of controller
 
+Returns an `event-index` object, e.g.:
+```
+{ deviceId: 405419896, index: 29 }
+```
 
 #### `setEventIndex`
 
@@ -265,16 +449,25 @@ uhppoted.setEventIndex (ctx, deviceId, index)
 - `deviceId`: serial number of controller
 - `index`: 1-100000
 
+Returns an `updated` result object, e.g.:
+```
+{ deviceId: 405419896, updated: true }
+```
 
 #### `recordSpecialEvents`
 
-Enables or disables door events.
+Enables or disables door open and close input events.
 
 ```
-uhppoted.recordSpecialEvents (ctx, deviceId, enabled)
+uhppoted.recordSpecialEvents (ctx, deviceId, enable)
 ```
 - `deviceId`: serial number of controller
-- `enabled`: enables door open and closed events if _true_
+- `enable`: enables door open and closed events if _true_
+
+Returns an `updated` result object, e.g.:
+```
+{ deviceId: 405419896, updated: true }
+```
 
 #### `listen`
 
@@ -286,6 +479,31 @@ uhppoted.listen (ctx, onEvent, onError)
 - `onEvent`: function that accepts and processes a received _event_ object
 - `onError`: function that accepts and processes an Error object
 
+Example `event` object:
+```
+{
+  deviceId: 405419896,
+  state: {
+    serialNumber: 405419896,
+    event: {
+      index: 72,
+      type: [Object],
+      granted: false,
+      door: 3,
+      direction: [Object],
+      card: 8165538,
+      timestamp: '2021-06-04 16:37:01',
+      reason: [Object]
+    },
+    doors: { '1': false, '2': false, '3': false, '4': false },
+    buttons: { '1': false, '2': false, '3': false, '4': false },
+    system: { status: 0, date: '2021-06-04', time: '16:37:01' },
+    specialInfo: 0,
+    relays: { state: 0, relays: [Object] },
+    inputs: { state: 0, forceLock: false, fireAlarm: false }
+  }
+}
+```
 
 ### Examples
 

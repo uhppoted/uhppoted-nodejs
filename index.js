@@ -8,26 +8,27 @@ module.exports = {
   setIP: require('./src/uhppoted.js').setIP,
   getListener: require('./src/uhppoted.js').getListener,
   setListener: require('./src/uhppoted.js').setListener,
-  getTime: require('./src/get-time.js'),
-  setTime: require('./src/set-time.js'),
-  getDoorControl: require('./src/get-door-control.js'),
-  setDoorControl: require('./src/set-door-control.js'),
+  getTime: require('./src/uhppoted.js').getTime,
+  setTime: require('./src/uhppoted.js').setTime,
+  getDoorControl: require('./src/uhppoted.js').getDoorControl,
+  setDoorControl: require('./src/uhppoted.js').setDoorControl,
 
-  getStatus: require('./src/get-status.js'),
-  getCards: require('./src/get-cards.js'),
-  getCard: require('./src/get-card.js'),
-  getCardByIndex: require('./src/get-card-by-index.js'),
-  putCard: require('./src/put-card.js'),
-  deleteCard: require('./src/delete-card.js'),
-  deleteCards: require('./src/delete-cards.js'),
+  getStatus: require('./src/uhppoted.js').getStatus,
+  getCards: require('./src/uhppoted.js').getCards,
+  getCard: require('./src/uhppoted.js').getCard,
+  getCardByIndex: require('./src/uhppoted.js').getCardByIndex,
+  putCard: require('./src/uhppoted.js').putCard,
+  deleteCard: require('./src/uhppoted.js').deleteCard,
+  deleteCards: require('./src/uhppoted.js').deleteCards,
 
-  openDoor: require('./src/open-door.js'),
+  openDoor: require('./src/uhppoted.js').openDoor,
 
-  recordSpecialEvents: require('./src/record-special-events.js'),
-  getEventIndex: require('./src/get-event-index.js'),
-  setEventIndex: require('./src/set-event-index.js'),
-  getEvents: require('./src/get-events.js'),
-  getEvent: require('./src/get-event.js'),
+  getEvents: require('./src/uhppoted.js').getEvents,
+  getEvent: require('./src/uhppoted.js').getEvent,
+  getEventIndex: require('./src/uhppoted.js').getEventIndex,
+  setEventIndex: require('./src/uhppoted.js').setEventIndex,
 
-  listen: require('./src/listen.js')
+  recordSpecialEvents: require('./src/uhppoted.js').recordSpecialEvents,
+
+  listen: require('./src/uhppoted.js').listen
 }
