@@ -4,7 +4,7 @@ const uhppoted = require('../index.js')
 const ip = require('ip')
 
 const addr = ip.address()
-const subnet = ip.subnet(addr, '255.255.255.0')
+const subnet = ip.subnet(addr, '255.255.0.0')
 
 const bind = addr
 let broadcast = subnet.broadcastAddress + ':59999'
