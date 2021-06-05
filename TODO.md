@@ -2,9 +2,9 @@
 
 ### IN PROGRESS
 
-- [ ] Github workflow
 - [ ] Publish
 
+- [x] Github workflow
 - [x] Documentation
 - [x] Unit tests
 - [x] Commonalise context code

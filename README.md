@@ -1,3 +1,5 @@
+![build](https://github.com/uhppoted/uhppoted-nodejs/workflows/build/badge.svg)
+
 NodeJS module that implements an API for interacting with a UHPPOTE TCP/IP Wiegand access controller board. The API supports device and card management as well as handling for events.
 
 #### Requirements:
