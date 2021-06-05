@@ -6,7 +6,7 @@ const os = require('os')
 
 const interfaces = os.networkInterfaces()
 const addr = ip.address()
-const subnet = ip.subnet(addr, '255.255.0.0')
+const subnet = ip.subnet(addr, '255.255.255.0')
 
 let bind = '0.0.0.0'
 let broadcast = `${subnet.broadcastAddress}:59999`
@@ -22,8 +22,13 @@ for (const name of Object.keys(interfaces)) {
   }
 }
 
+console.log('>>> IP(1):    ', ip.address())
+console.log('>>> IP(2):    ', ip.subnet(ip.address(), '255.255.0.0'))
 console.log('>>> BIND:     ', bind)
 console.log('>>> BROADCAST:', broadcast)
+
+bind = ip.address()
+broadcast = ip.subnet(ip.address(), '255.255.0.0').broadcastAddress
 
 process.argv.slice(3).forEach(arg => {
   const re = /(--broadcast|--listen)=(.*)/gm
