@@ -14,11 +14,14 @@ let listen = '0.0.0.0:60001'
 
 for (const name of Object.keys(interfaces)) {
   for (const network of interfaces[name]) {
+    console.log(network)
     if (network.family === 'IPv4' && !network.internal) {
       broadcast = ip.subnet(network.address, network.netmask).broadcastAddress
     }
   }
 }
+
+console.log('>>>', broadcast)
 
 process.argv.slice(3).forEach(arg => {
   const re = /(--broadcast|--listen)=(.*)/gm
