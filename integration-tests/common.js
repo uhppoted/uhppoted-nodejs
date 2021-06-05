@@ -13,11 +13,11 @@ let broadcast = `${subnet.broadcastAddress}:59999`
 let listen = '0.0.0.0:60001'
 
 for (const name of Object.keys(interfaces)) {
-    for (const network of interfaces[name]) {
-        if (network.family === 'IPv4' && !network.internal) {
-            broadcast = ip.subnet(network.address, network.netmask).broadcastAddress
-        }
+  for (const network of interfaces[name]) {
+    if (network.family === 'IPv4' && !network.internal) {
+      broadcast = ip.subnet(network.address, network.netmask).broadcastAddress
     }
+  }
 }
 
 process.argv.slice(3).forEach(arg => {

@@ -62,6 +62,7 @@ describe('#getEvents(...)', function () {
 
   it('should execute get-events', function (done) {
     const expected = {
+      deviceId: 405419896,
       first: 1,
       last: 70
     }
