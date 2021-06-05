@@ -16,12 +16,14 @@ for (const name of Object.keys(interfaces)) {
   for (const network of interfaces[name]) {
     console.log(network)
     if (network.family === 'IPv4' && !network.internal) {
+      bind = network.address
       broadcast = ip.subnet(network.address, network.netmask).broadcastAddress
     }
   }
 }
 
-console.log('>>>', broadcast)
+console.log('>>> BIND:     ', bind)
+console.log('>>> BROADCAST:', broadcast)
 
 process.argv.slice(3).forEach(arg => {
   const re = /(--broadcast|--listen)=(.*)/gm
