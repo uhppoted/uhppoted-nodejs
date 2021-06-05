@@ -1,9 +1,13 @@
 const expect = require('chai').expect
 const dgram = require('dgram')
 const uhppoted = require('../index.js')
+const ip = require('ip')
+
+const addr = ip.address()
+const subnet = ip.subnet(addr,'255.255.255.0')
 
 const bind = '0.0.0.0'
-let broadcast = '255.255.255.255:59999'
+let broadcast = subnet.broadcastAddress + ':59999' // '255.255.255.255:59999'
 let listen = '0.0.0.0:60001'
 
 process.argv.slice(3).forEach(arg => {
