@@ -19,6 +19,7 @@
   ],
   "main": "index.js",
   "scripts": {
+    "build": "eslint ./**/*.js",
     "test": "mocha 'test/**/*_spec.js'"
   },
   "engines": {
