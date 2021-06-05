@@ -27,8 +27,11 @@ console.log('>>> IP(2):    ', ip.subnet(ip.address(), '255.255.0.0'))
 console.log('>>> BIND:     ', bind)
 console.log('>>> BROADCAST:', broadcast)
 
-bind = ip.address()
+bind = '0.0.0.0'
 broadcast = ip.subnet(ip.address(), '255.255.0.0').broadcastAddress
+
+console.log('>>> BIND(2):     ', bind)
+console.log('>>> BROADCAST(2):', broadcast)
 
 process.argv.slice(3).forEach(arg => {
   const re = /(--broadcast|--listen)=(.*)/gm
