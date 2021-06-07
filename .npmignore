@@ -1,0 +1,8 @@
+Makefile
+examples
+integration-tests
+test
+jsdoc
+TODO.md
+.eslintrc.js                  
+.github/workflows/node-js.yml 
