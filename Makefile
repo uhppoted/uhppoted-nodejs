@@ -16,33 +16,32 @@ ARGS       = bind=$(BIND) broadcast=$(BROADCAST) listen=$(LISTEN) timeout=$(TIME
 
 .PHONY: build
 .PHONY: test
-.PHONY: integration-tests
 
 build:
 	npx eslint --fix *.js  
 	npx eslint --fix src/**/*.js  
 	npx eslint --fix examples/**/*.js  
 
-run: build
-	node example.js
-
-debug: 
-	npx eslint --fix test/**/*.js  
-	npx mocha 'integration-tests/get-device_spec.js'
-
 test: build
 	npx eslint --fix test/**/*.js  
 	npm test
 
-integration-tests: build
+integration-tests: test
 	npx eslint --fix integration-tests/**/*.js  
 	npx mocha 'integration-tests/**/*_spec.js' --broadcast='192.168.1.255:59999' --listen='192.168.1.100:60001'
 
 jsdoc: build
 	npx jsdoc src --destination jsdoc --package package.json --readme README.md
 
-release:
+release: integration-tests jsdoc
 	npm pack
+
+publish: release
+	npm --dry-run publish
+
+debug: 
+	npx eslint --fix test/**/*.js  
+	npx mocha 'integration-tests/get-device_spec.js'
 
 error-handling: build
 	node examples/error-handling.js $(ARGS)
