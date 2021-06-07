@@ -10,7 +10,39 @@ For the latest updates see the [CHANGELOG.md](https://github.com/uhppoted/uhppot
 
 #### Installation
 
+```
+npm install uhppoted
+```
+
+#### Example
+```
+const uhppoted = require('uhppoted')
+
+const bind = '0.0.0.0'
+const broadcast = '255.255.255.255:60000'
+const listen = '0.0.0.0:60001'
+const timeout = 5000
+const debug = true
+
+const ctx = {
+  config: new uhppoted.Config('example', bind, broadcast, listen, timeout, [], debug)
+}
+
+uhppoted.getDevices(ctx)
+  .then(response => {
+    console.log('\nget-devices:\n', response)
+  })
+  .catch(err => {
+    console.log(`\n   *** ERROR ${err.message}\n`)
+  })
+```
+
+The full set of _examples_ is not included in the NPM module but can be viewed or downloaded from the
+[uhpppoted-nodejs](https://github.com/uhppoted/uhppoted-nodejs) Github repository:
+
 ### API
+
+#### Context
 
 Each API call takes a `context` _object_ as the first argument, followed by the function specific parameters and returns a `Promise`
 that resolves to a response.
