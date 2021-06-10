@@ -208,6 +208,25 @@ module.exports = {
   },
 
   /**
+   * Enables or disables door open and closed input events.
+   *
+   * @param {object} ctx - Context with configuration, locale (optional) and logger (optional).
+   * @param {uint}   deviceId - Controller serial number
+   * @param {bool}   enable - Enable/disable door open/close events
+   *
+   * @example
+   * uhppoted.recordSpecialEvents(ctx, 405419896, true)
+   *  .then(response => { console.log(response) })
+   *  .catch(err => { console.log(`${err.message}`)
+   */
+  recordSpecialEvents: function (ctx, deviceId, enable) {
+    return validate({ deviceId: deviceId }, ctx.locale)
+      .then(ok => initialise(ctx))
+      .then(context => set(context, deviceId, opcodes.RecordSpecialEvents, { enable: enable }))
+      .then(response => translate(response, ctx.locale))
+  },
+
+  /**
    * Retrieves the controller status, including the most recent event (if any).
    *
    * @param {object} ctx - Context with configuration, locale (optional) and logger (optional).
@@ -341,21 +360,21 @@ module.exports = {
   },
 
   /**
-   * Remotely unlocks a door.
+   * Retrieves a time profile from a controller.
    *
    * @param {object} ctx - Context with configuration, locale (optional) and logger (optional).
-   * @param {uint}   deviceId - Controller serial number
-   * @param {uint}   door - Door ([1..4])
+   * @param {uint32} deviceId - Controller serial number
+   * @param {uint8}  profieId - Time profile ID ([2..254])
    *
    * @example
-   * uhppoted.openDoor(ctx, 405419896, 3)
+   * uhppoted.getTimeProfile(ctx, 405419896, 29)
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  openDoor: function (ctx, deviceId, door) {
-    return validate({ deviceId: deviceId, door: door }, ctx.locale)
+  getTimeProfile: function (ctx, deviceId, profileId) {
+    return validate({ deviceId: deviceId, profileId: profileId }, ctx.locale)
       .then(ok => initialise(ctx))
-      .then(context => set(context, deviceId, opcodes.OpenDoor, { door: door }))
+      .then(context => get(context, deviceId, opcodes.GetTimeProfile, { profileId: profileId }))
       .then(response => translate(response, ctx.locale))
   },
 
@@ -454,21 +473,21 @@ module.exports = {
   },
 
   /**
-   * Enables or disables door open and closed input events.
+   * Remotely unlocks a door.
    *
    * @param {object} ctx - Context with configuration, locale (optional) and logger (optional).
    * @param {uint}   deviceId - Controller serial number
-   * @param {bool}   enable - Enable/disable door open/close events
+   * @param {uint}   door - Door ([1..4])
    *
    * @example
-   * uhppoted.recordSpecialEvents(ctx, 405419896, true)
+   * uhppoted.openDoor(ctx, 405419896, 3)
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  recordSpecialEvents: function (ctx, deviceId, enable) {
-    return validate({ deviceId: deviceId }, ctx.locale)
+  openDoor: function (ctx, deviceId, door) {
+    return validate({ deviceId: deviceId, door: door }, ctx.locale)
       .then(ok => initialise(ctx))
-      .then(context => set(context, deviceId, opcodes.RecordSpecialEvents, { enable: enable }))
+      .then(context => set(context, deviceId, opcodes.OpenDoor, { door: door }))
       .then(response => translate(response, ctx.locale))
   },
 

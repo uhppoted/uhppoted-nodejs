@@ -4,7 +4,6 @@ module.exports = {
 
   getDevices: require('./src/uhppoted.js').getDevices,
   getDevice: require('./src/uhppoted.js').getDevice,
-
   setIP: require('./src/uhppoted.js').setIP,
   getListener: require('./src/uhppoted.js').getListener,
   setListener: require('./src/uhppoted.js').setListener,
@@ -12,6 +11,7 @@ module.exports = {
   setTime: require('./src/uhppoted.js').setTime,
   getDoorControl: require('./src/uhppoted.js').getDoorControl,
   setDoorControl: require('./src/uhppoted.js').setDoorControl,
+  recordSpecialEvents: require('./src/uhppoted.js').recordSpecialEvents,
 
   getStatus: require('./src/uhppoted.js').getStatus,
   getCards: require('./src/uhppoted.js').getCards,
@@ -21,14 +21,14 @@ module.exports = {
   deleteCard: require('./src/uhppoted.js').deleteCard,
   deleteCards: require('./src/uhppoted.js').deleteCards,
 
-  openDoor: require('./src/uhppoted.js').openDoor,
+  getTimeProfile: require('./src/uhppoted.js').getTimeProfile,
 
   getEvents: require('./src/uhppoted.js').getEvents,
   getEvent: require('./src/uhppoted.js').getEvent,
   getEventIndex: require('./src/uhppoted.js').getEventIndex,
   setEventIndex: require('./src/uhppoted.js').setEventIndex,
 
-  recordSpecialEvents: require('./src/uhppoted.js').recordSpecialEvents,
+  openDoor: require('./src/uhppoted.js').openDoor,
 
   listen: require('./src/uhppoted.js').listen
 }

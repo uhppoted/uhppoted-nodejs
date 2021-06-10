@@ -22,18 +22,24 @@ const enc = new Map([
   [opcodes.SetTime, encoder.SetTime],
   [opcodes.GetDoorControl, encoder.GetDoorControl],
   [opcodes.SetDoorControl, encoder.SetDoorControl],
+  [opcodes.RecordSpecialEvents, encoder.RecordSpecialEvents],
+
   [opcodes.GetStatus, encoder.GetStatus],
-  [opcodes.OpenDoor, encoder.OpenDoor],
+
   [opcodes.GetCards, encoder.GetCards],
   [opcodes.GetCardByID, encoder.GetCardByID],
   [opcodes.GetCardByIndex, encoder.GetCardByIndex],
   [opcodes.PutCard, encoder.PutCard],
   [opcodes.DeleteCard, encoder.DeleteCard],
   [opcodes.DeleteCards, encoder.DeleteCards],
-  [opcodes.RecordSpecialEvents, encoder.RecordSpecialEvents],
+
+  [opcodes.GetTimeProfile, encoder.GetTimeProfile],
+
   [opcodes.GetEventIndex, encoder.GetEventIndex],
   [opcodes.SetEventIndex, encoder.SetEventIndex],
-  [opcodes.GetEvent, encoder.GetEvent]
+  [opcodes.GetEvent, encoder.GetEvent],
+
+  [opcodes.OpenDoor, encoder.OpenDoor]
 ])
 
 /**
@@ -55,6 +61,7 @@ const dec = new Map([
   [0x90, decoder.SetListener],
   [0x92, decoder.GetListener],
   [0x94, decoder.GetDevice],
+  [0x98, decoder.GetTimeProfile],
   [0x8e, decoder.RecordSpecialEvents],
   [0xb0, decoder.GetEvent],
   [0xb2, decoder.SetEventIndex],

@@ -11,6 +11,7 @@
     "set-time": "node set-time.js",
     "get-door-control": "node get-door-control.js",
     "set-door-control": "node set-door-control.js",
+    "record-special-events": "record-special-events.js",
     "get-status": "node get-status.js",
     "get-cards": "node get-cards.js",
     "get-card": "node get-card.js",
@@ -18,12 +19,12 @@
     "put-card": "node put-card.js",
     "delete-card": "node delete-card.js",
     "delete-cards": "node delete-cards.js",
-    "open-door": "node open-door.js",
-    "record-special-events": "record-special-events.js",
+    "get-time-profile": "node get-time-profile.js",
     "get-event-index": "get-event-index.js",
     "set-event-index": "set-event-index.js",
     "get-events": "get-events.js",
     "get-event": "get-event.js",
+    "open-door": "node open-door.js",
     "listen": "node listen.js"
   },
   "dependencies": {

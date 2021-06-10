@@ -80,6 +80,9 @@ get-door-control: build
 set-door-control: build
 	node examples/set-door-control.js $(ARGS)
 
+record-special-events: build
+	node examples/record-special-events.js $(ARGS)
+
 get-status: build
 	node examples/get-status.js $(ARGS)
 
@@ -101,11 +104,8 @@ delete-card: build
 delete-cards: build
 	node examples/delete-cards.js $(ARGS)
 
-open-door: build
-	node examples/open-door.js $(ARGS)
-
-record-special-events: build
-	node examples/record-special-events.js $(ARGS)
+get-time-profile: build
+	node examples/get-time-profile.js $(ARGS)
 
 get-event-index: build
 	node examples/get-event-index.js $(ARGS)
@@ -124,6 +124,10 @@ get-event-with-locale: build
 
 get-event-with-unsupported-locale: build
 	node examples/get-event-with-unsupported-locale.js $(ARGS)
+
+
+open-door: build
+	node examples/open-door.js $(ARGS)
 
 listen: build
 	node examples/listen.js $(ARGS)

@@ -1,9 +1,24 @@
-## v0.6.x
+## v0.7.x
+
+### IN PROGRESS
+
+- [ ] `set-time-profile`
+- [ ] `clear-time-profiles`
+- [ ] Rework `get-card` to support time profiles
+- [ ] Rework `get-card-by-index` to support time profiles
+- [ ] Rework `put-card` to support time profiles
+- [ ] Update integration tests with time profiles
+- [ ] Add time profiles to README
+- [ ] Add time profiles to jsdoc
+- [ ] Update CHANGELOG
+- [ ] Reorganise README API section
+- [ ] Bump package.json version to 0.7.0 for release
+
+- [x] `get-time-profile`
 
 ### TODO
 
-1. Time profiles
-2. Task lists
-3. Remote control
-4. Device by name
+1. Task lists
+2. Remote control
+3. Device by name
 

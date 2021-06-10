@@ -289,6 +289,75 @@ module.exports = {
   },
 
   /**
+    * Decodes the response to a get-time-profile request (function code 0x98).
+    *
+    * @param {buffer}   buffer     64 byte NodeJS buffer
+    * @param {function} translator (optional) function to internationalise the text in a
+    *                              decoded object
+    *
+    * @param {object}   Decoded response to a get-time-profile object
+    */
+  GetTimeProfile: function (bytes, translator) {
+    const map = new Map([
+      [17, 'Monday'],
+      [18, 'Tuesday'],
+      [19, 'Wednesday'],
+      [20, 'Thursday'],
+      [21, 'Friday'],
+      [22, 'Saturday'],
+      [23, 'Sunday']
+    ])
+
+    let profile = null
+
+    const profileID = uint8(bytes, 8)
+
+    if (profileID !== 0) {
+      const weekdays = []
+      const segments = []
+
+      map.forEach((v, k) => {
+        if (bool(bytes, k)) {
+          weekdays.push(v)
+        }
+      })
+
+      let offset = 24
+      for (let i = 0; i < 3; i++) {
+        const start = HHmm(bytes, offset)
+        const end = HHmm(bytes, offset + 2)
+
+        if (start !== '00:00' || end !== '00:00') {
+          segments.push({ start: start, end: end })
+        }
+
+        offset = offset + 4
+      }
+
+      const linked = uint8(bytes, 36)
+
+      profile = {
+        id: profileID,
+        valid: {
+          from: yyyymmdd(bytes, 9),
+          to: yyyymmdd(bytes, 13)
+        },
+        weekdays: weekdays,
+        segments: segments
+      }
+
+      if (linked !== 0) {
+        profile.linkedTo = linked
+      }
+    }
+
+    return {
+      deviceId: uint32(bytes, 4),
+      profile: profile
+    }
+  },
+
+  /**
     * Decodes the response to a record-special-events request (function code 0x8e).
     *
     * @param {buffer}   buffer     64 byte NodeJS buffer
@@ -479,6 +548,20 @@ function yymmdd (bytes, offset) {
   const date = '20' + bcd(bytes, offset, 3)
 
   return date.substr(0, 4) + '-' + date.substr(4, 2) + '-' + date.substr(6, 2)
+}
+
+/**
+  * Internal utility function to extract a BCD segment start/end from a response message.
+  *
+  * @param {array}  buffer  64 byte DataView
+  * @param {number} offset  Index of time in buffer
+  *
+  * @param {string}  Decoded 2 byte time in HH:mm format.
+  */
+function HHmm (bytes, offset) {
+  const time = bcd(bytes, offset, 2)
+
+  return time.substr(0, 2) + ':' + time.substr(2, 2)
 }
 
 /**

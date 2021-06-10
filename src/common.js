@@ -45,6 +45,12 @@ function validate (args, locale) {
           }
           break
 
+        case 'profileId':
+          if (!isValidProfileId(v)) {
+            reject(errors.InvalidProfileID(v, locale))
+          }
+          break
+
         case 'door':
           if (!isValidDoor(v)) {
             reject(errors.InvalidDoor(v, locale))
@@ -73,6 +79,10 @@ function isValidCardNumber (card) {
 
 function isValidCardIndex (index) {
   return isValid(index, 0, 4294967295)
+}
+
+function isValidProfileId (profileId) {
+  return isValid(profileId, 2, 254)
 }
 
 function isValidDoor (door) {

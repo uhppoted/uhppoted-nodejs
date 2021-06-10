@@ -336,6 +336,25 @@ module.exports = {
   },
 
   /**
+    * Encodes a get-time-profile request.
+    *
+    * @param {number} deviceId  Controller serial number
+    * @param {number} profileId Time profile ID [2..254]
+    *
+    * @return {buffer} 64 byte NodeJS buffer with encoded get-time-profile request.
+    */
+  GetTimeProfile: function (deviceId, { profileId } = {}) {
+    const request = Buffer.alloc(64)
+
+    request.writeUInt8(0x17, 0)
+    request.writeUInt8(0x98, 1)
+    request.writeUInt32LE(deviceId, 4)
+    request.writeUInt8(profileId, 8)
+
+    return request
+  },
+
+  /**
     * Encode a record-special-events request.
     *
     * @param {number} deviceId  Controller serial number

@@ -545,6 +545,17 @@ Example `event` object:
 
 A minimal example showing the usage for each API can be found in the [_examples_](https://github.com/uhppoted/uhppoted-nodejs/tree/master/examples) folder. 
 
+The _examples_ have `uhppoted` as a dependency - install either the published `uhppoted` module in the examples folder:
+```
+cd examples
+npm install uhppoted
+```
+or if working from a cloned repository, install the development version:
+```
+cd examples
+npm install ..
+```
+
 ### Issues and Feature Requests
 
 Please create an issue in the [uhppoted-nodejs](https://github.com/uhppoted/uhppoted-nodejs) _github_ repository.
