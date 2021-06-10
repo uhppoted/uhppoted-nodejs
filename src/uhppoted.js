@@ -364,7 +364,7 @@ module.exports = {
    *
    * @param {object} ctx - Context with configuration, locale (optional) and logger (optional).
    * @param {uint32} deviceId - Controller serial number
-   * @param {uint8}  profieId - Time profile ID ([2..254])
+   * @param {uint8}  profileId - Time profile ID ([2..254])
    *
    * @example
    * uhppoted.getTimeProfile(ctx, 405419896, 29)
@@ -375,6 +375,43 @@ module.exports = {
     return validate({ deviceId: deviceId, profileId: profileId }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => get(context, deviceId, opcodes.GetTimeProfile, { profileId: profileId }))
+      .then(response => translate(response, ctx.locale))
+  },
+
+  /**
+   * Defines a time profile on a controller.
+   *
+   * @param {object} ctx - Context with configuration, locale (optional) and logger (optional).
+   * @param {uint32} deviceId - Controller serial number
+   * @param {object} profile - Time profile
+   *
+   * @example
+   * uhppoted.setTimeProfile(ctx, 405419896, {...})
+   *  .then(response => { console.log(response) })
+   *  .catch(err => { console.log(`${err.message}`)
+   */
+  setTimeProfile: function (ctx, deviceId, profile) {
+    return validate({ deviceId: deviceId, profile: profile }, ctx.locale)
+      .then(ok => initialise(ctx))
+      .then(context => get(context, deviceId, opcodes.SetTimeProfile, { profile: profile }))
+      .then(response => translate(response, ctx.locale))
+  },
+
+  /**
+   * Deletes all time profiles from a controller.
+   *
+   * @param {object} ctx - Context with configuration, locale (optional) and logger (optional).
+   * @param {uint32} deviceId - Controller serial number
+   *
+   * @example
+   * uhppoted.clearTimeProfiles(ctx, 405419896)
+   *  .then(response => { console.log(response) })
+   *  .catch(err => { console.log(`${err.message}`)
+   */
+  clearTimeProfiles: function (ctx, deviceId) {
+    return validate({ deviceId: deviceId }, ctx.locale)
+      .then(ok => initialise(ctx))
+      .then(context => get(context, deviceId, opcodes.ClearTimeProfiles, {}))
       .then(response => translate(response, ctx.locale))
   },
 

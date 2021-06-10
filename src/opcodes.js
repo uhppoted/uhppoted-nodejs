@@ -18,6 +18,8 @@ module.exports = {
   DeleteCards: 0x54,
 
   GetTimeProfile: 0x98,
+  SetTimeProfile: 0x88,
+  ClearTimeProfiles: 0x8a,
 
   GetEventIndex: 0xb4,
   SetEventIndex: 0xb2,

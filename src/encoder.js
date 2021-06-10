@@ -355,6 +355,99 @@ module.exports = {
   },
 
   /**
+    * Encodes a set-time-profile request.
+    *
+    * @param {number} deviceId  Controller serial number
+    * @param {object} profile   Time profile
+    *
+    * @return {buffer} 64 byte NodeJS buffer with encoded set-time-profile request.
+    */
+  SetTimeProfile: function (deviceId, { profile } = {}) {
+    const map = new Map([
+      ['mo', 17],
+      ['tu', 18],
+      ['we', 19],
+      ['th', 20],
+      ['fr', 21],
+      ['sa', 22],
+      ['su', 23]
+    ])
+
+    let profileID = 0
+    let linked = 0
+
+    if (profile.id) {
+      profileID = Number(profile.id)
+    }
+
+    if (Number.isNaN(profileID) || !Number.isInteger(profileID) || profileID < 2 || profileID > 254) {
+      throw new Error(`invalid profile ID (${profile.id})`)
+    }
+
+    if (profile.linkedTo) {
+      linked = Number(profile.linkedTo)
+
+      if (Number.isNaN(linked) || !Number.isInteger(linked) || linked < 2 || linked > 254) {
+        throw new Error(`invalid linked profile (${profile.linkedTo})`)
+      }
+    }
+
+    const request = Buffer.alloc(64)
+
+    request.writeUInt8(0x17, 0)
+    request.writeUInt8(0x88, 1)
+    request.writeUInt32LE(deviceId, 4)
+
+    request.writeUInt8(profile.id, 8)
+    date2bin(profile.valid.from).copy(request, 9)
+    date2bin(profile.valid.to).copy(request, 13)
+
+    if (profile.weekdays) {
+      profile.weekdays.forEach(day => {
+        map.forEach((v, k) => {
+          if (day.toLowerCase().startsWith(k)) {
+            request.writeUInt8(1, v)
+          }
+        })
+      })
+    }
+
+    if (profile.segments) {
+      const re = /[0-9]{2}:[0-9]{2}/
+      let offset = 24
+      profile.segments.slice(0, 3).forEach(segment => {
+        if (segment.start && segment.end && re.test(segment.start) && re.test(segment.end)) {
+          HHmm2bin(segment.start).copy(request, offset)
+          HHmm2bin(segment.end).copy(request, offset + 2)
+          offset = offset + 4
+        }
+      })
+    }
+
+    request.writeUInt8(linked, 36)
+
+    return request
+  },
+
+  /**
+    * Encodes a clear-time-profiles request.
+    *
+    * @param {number} deviceId  Controller serial number
+    *
+    * @return {buffer} 64 byte NodeJS buffer with encoded get-time-profile request.
+    */
+  ClearTimeProfiles: function (deviceId) {
+    const request = Buffer.alloc(64)
+
+    request.writeUInt8(0x17, 0)
+    request.writeUInt8(0x8a, 1)
+    request.writeUInt32LE(deviceId, 4)
+    request.writeUInt32LE(0x55aaaa55, 8)
+
+    return request
+  },
+
+  /**
     * Encode a record-special-events request.
     *
     * @param {number} deviceId  Controller serial number
@@ -471,6 +564,27 @@ function date2bin (date) {
   const bytes = []
   const re = /([0-9]{2})([0-9]{2})-([0-9]{2})-([0-9]{2})/
   const match = date.match(re)
+
+  for (const m of match.slice(1)) {
+    const b = parseInt(m, 10)
+    const byte = ((b / 10) << 4) | (b % 10)
+    bytes.push(byte)
+  }
+
+  return Buffer.from(bytes)
+}
+
+/**
+  * Internal utility function to convert an HHmm value to BCD
+  *
+  * @param {string} hhmm    HHmm, formatted as HH:mm
+  *
+  * @param {buffer} 4 byte NodeJS buffer with BCD encoded timestamp
+  */
+function HHmm2bin (hhmm) {
+  const bytes = []
+  const re = /([0-9]{2}):([0-9]{2})/
+  const match = hhmm.match(re)
 
   for (const m of match.slice(1)) {
     const b = parseInt(m, 10)

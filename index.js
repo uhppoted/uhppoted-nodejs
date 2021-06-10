@@ -22,6 +22,8 @@ module.exports = {
   deleteCards: require('./src/uhppoted.js').deleteCards,
 
   getTimeProfile: require('./src/uhppoted.js').getTimeProfile,
+  setTimeProfile: require('./src/uhppoted.js').setTimeProfile,
+  clearTimeProfiles: require('./src/uhppoted.js').clearTimeProfiles,
 
   getEvents: require('./src/uhppoted.js').getEvents,
   getEvent: require('./src/uhppoted.js').getEvent,

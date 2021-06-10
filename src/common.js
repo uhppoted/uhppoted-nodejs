@@ -45,15 +45,21 @@ function validate (args, locale) {
           }
           break
 
+        case 'door':
+          if (!isValidDoor(v)) {
+            reject(errors.InvalidDoor(v, locale))
+          }
+          break
+
         case 'profileId':
           if (!isValidProfileId(v)) {
             reject(errors.InvalidProfileID(v, locale))
           }
           break
 
-        case 'door':
-          if (!isValidDoor(v)) {
-            reject(errors.InvalidDoor(v, locale))
+        case 'profile':
+          if (!isValidProfileId(v.id)) {
+            reject(errors.InvalidProfileID(v.id, locale))
           }
           break
 

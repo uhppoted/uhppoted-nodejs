@@ -107,6 +107,12 @@ delete-cards: build
 get-time-profile: build
 	node examples/get-time-profile.js $(ARGS)
 
+set-time-profile: build
+	node examples/set-time-profile.js $(ARGS)
+
+clear-time-profiles: build
+	node examples/clear-time-profiles.js $(ARGS)
+
 get-event-index: build
 	node examples/get-event-index.js $(ARGS)
 
@@ -124,7 +130,6 @@ get-event-with-locale: build
 
 get-event-with-unsupported-locale: build
 	node examples/get-event-with-unsupported-locale.js $(ARGS)
-
 
 open-door: build
 	node examples/open-door.js $(ARGS)

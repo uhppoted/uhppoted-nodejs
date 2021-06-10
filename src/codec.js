@@ -34,6 +34,8 @@ const enc = new Map([
   [opcodes.DeleteCards, encoder.DeleteCards],
 
   [opcodes.GetTimeProfile, encoder.GetTimeProfile],
+  [opcodes.SetTimeProfile, encoder.SetTimeProfile],
+  [opcodes.ClearTimeProfiles, encoder.ClearTimeProfiles],
 
   [opcodes.GetEventIndex, encoder.GetEventIndex],
   [opcodes.SetEventIndex, encoder.SetEventIndex],
@@ -58,11 +60,13 @@ const dec = new Map([
   [0x5c, decoder.GetCardByIndex],
   [0x80, decoder.SetDoorControl],
   [0x82, decoder.GetDoorControl],
+  [0x88, decoder.SetTimeProfile],
+  [0x8a, decoder.ClearTimeProfiles],
+  [0x8e, decoder.RecordSpecialEvents],
   [0x90, decoder.SetListener],
   [0x92, decoder.GetListener],
   [0x94, decoder.GetDevice],
   [0x98, decoder.GetTimeProfile],
-  [0x8e, decoder.RecordSpecialEvents],
   [0xb0, decoder.GetEvent],
   [0xb2, decoder.SetEventIndex],
   [0xb4, decoder.GetEventIndex]

@@ -20,6 +20,7 @@
     "delete-card": "node delete-card.js",
     "delete-cards": "node delete-cards.js",
     "get-time-profile": "node get-time-profile.js",
+    "set-time-profile": "node set-time-profile.js",
     "get-event-index": "get-event-index.js",
     "set-event-index": "set-event-index.js",
     "get-events": "get-events.js",
