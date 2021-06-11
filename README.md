@@ -70,9 +70,8 @@ uhppoted.getDevices(ctx)
   })
 ```
 
-A minimal example showing the usage for each API can be found in the [_examples_](https://github.com/uhppoted/uhppoted-nodejs/tree/master/examples) folder. 
-
-The _examples_ have `uhppoted` as a dependency - install either the published `uhppoted` module in the examples folder:
+A minimal example showing the usage for each API can be found in the [_examples_](https://github.com/uhppoted/uhppoted-nodejs/tree/master/examples) folder. The _examples_ have `uhppoted` as a dependency - install either the published
+`uhppoted` module in the examples folder:
 ```
 cd examples
 npm install uhppoted
