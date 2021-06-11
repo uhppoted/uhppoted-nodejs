@@ -25,5 +25,35 @@ describe('put-card', function () {
           expect(err.message).to.equal("invalid card number '0'")
         })
     })
+
+    it('should fail with invalid time profile', function () {
+      return uhppoted.putCard({}, 405419896, 8112345, '2021-01-01', '2021-12-31', { 1: true, 2: false, 3: 0, 4: true })
+        .then(() => {
+          assert.fail()
+        })
+        .catch((err) => {
+          expect(err.message).to.equal('invalid time profile for door 3 (0)')
+        })
+    })
+
+    it('should fail with invalid time profile', function () {
+      return uhppoted.putCard({}, 405419896, 8112345, '2021-01-01', '2021-12-31', { 1: true, 2: false, 3: 1, 4: true })
+        .then(() => {
+          assert.fail()
+        })
+        .catch((err) => {
+          expect(err.message).to.equal('invalid time profile for door 3 (1)')
+        })
+    })
+
+    it('should fail with invalid time profile', function () {
+      return uhppoted.putCard({}, 405419896, 8112345, '2021-01-01', '2021-12-31', { 1: true, 2: false, 3: 255, 4: true })
+        .then(() => {
+          assert.fail()
+        })
+        .catch((err) => {
+          expect(err.message).to.equal('invalid time profile for door 3 (255)')
+        })
+    })
   })
 })

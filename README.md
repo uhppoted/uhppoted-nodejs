@@ -382,7 +382,8 @@ uhppoted.putCard (ctx, deviceId, cardNumber, validFrom, validUntil, doors)
 - `cardNumber`: card number
 - `validFrom`: date from which card is valid (YYYY-mm-dd)
 - `validUntil`: date after which which card is no longer valid (YYYY-mm-dd)
-- `doors`: map of doors to which the card should be allowed access e.g. _{ 1: true, 2: false, 3: true, 4: true }_
+- `doors`: map of doors to access permissions for the card e.g. _{ 1: true, 2: false, 3: 29, 4: true }_. A
+permission may be `true`, `false` or a time profile in the range [2..254].
 
 Returns a `stored` result object, e.g.:
 ```

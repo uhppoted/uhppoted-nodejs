@@ -2,10 +2,10 @@ const uhppoted = require('uhppoted')
 const ctx = require('./common.js')
 
 const deviceID = 405419896
-const cardNumber = '123456789'
+const cardNumber = '8112345'
 const validFrom = '2021-01-01'
-const validUntil = '2025-01-01'
-const doors = { 1: true, 2: false, 3: true, 4: true }
+const validUntil = '2021-12-31'
+const doors = { 1: true, 2: false, 3: 29, 4: true }
 
 uhppoted.putCard(ctx, deviceID, cardNumber, validFrom, validUntil, doors)
   .then(response => {

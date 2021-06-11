@@ -68,6 +68,17 @@ function validate (args, locale) {
             reject(errors.InvalidEventIndex(v, locale))
           }
           break
+
+        case 'doors':
+          ['1', '2', '3', '4'].forEach(door => {
+            if (Object.prototype.hasOwnProperty.call(v, door)) {
+              const permission = v[door]
+              if (!isValidPermission(door, permission)) {
+                reject(errors.InvalidPermission(door, permission, locale))
+              }
+            }
+          })
+          break
       }
     })
 
@@ -97,6 +108,19 @@ function isValidDoor (door) {
 
 function isValidEventIndex (index) {
   return isValid(index, 0, 4294967295)
+}
+
+function isValidPermission (door, permission) {
+  if (typeof permission === 'boolean') {
+    return true
+  }
+
+  const profileID = Number(permission)
+  if (Number.isNaN(profileID) || !Number.isInteger(profileID) || profileID < 2 || profileID > 254) {
+    return false
+  }
+
+  return true
 }
 
 function isValid (value, min, max) {

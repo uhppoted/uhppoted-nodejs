@@ -59,6 +59,7 @@ const dict = new Map([
   ['invalidEventIndex', 'invalid event index'],
   ['invalidFunctionCode', 'invalid protocol function code'],
   ['invalidDoorControl', 'invalid door control'],
+  ['invalidPermission', 'invalid time profile for door'],
   ['noReply', 'no reply'],
   ['noBroadcastReply', 'no reply to broadcasted request'],
   ['invalidBroadcastReply', 'invalid reply to broadcasted request'],

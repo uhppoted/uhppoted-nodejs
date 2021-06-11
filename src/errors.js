@@ -32,6 +32,10 @@ function InvalidDoorControl (control, locale) {
   return new Error(translate(`{{invalid door control}} ${control}`, locale))
 }
 
+function InvalidPermission (door, permission, locale) {
+  return new Error(translate(`{{invalid time profile for door}} ${door} (${permission})`, locale))
+}
+
 function NoReply (locale) {
   return new Error(translate('{{no reply}}', locale))
 }
@@ -62,6 +66,7 @@ module.exports = {
 
   InvalidFunctionCode: InvalidFunctionCode,
   InvalidDoorControl: InvalidDoorControl,
+  InvalidPermission: InvalidPermission,
 
   NoReply: NoReply,
   NoReplyFromDevice: NoReplyFromDevice,

@@ -308,15 +308,16 @@ module.exports = {
    * @param {uint}   card - Card number
    * @param {string} validFrom - Date from which card is valid (YYYY-mm-dd)
    * @param {string} validUntil - Date ater which card is no longer valid (YYYY-mm-dd)
-   * @param {object} doors - map of doors and associated permission
+   * @param {object} doors - map of doors and associated access permissions. A permission
+   *                         may be true, false or a time profile in the range [2..254].
    *
    * @example
-   * uhppoted.putCard(ctx, 405419896, 8165538, '2021-01-01', '2021-12-31', { 1: true, 2: false, 3: true, 4: true })
+   * uhppoted.putCard(ctx, 405419896, 8165538, '2021-01-01', '2021-12-31', { 1: true, 2: false, 3: 29, 4: true })
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
   putCard: function (ctx, deviceId, card, validFrom, validUntil, doors) {
-    return validate({ deviceId: deviceId, cardNumber: card }, ctx.locale)
+    return validate({ deviceId: deviceId, cardNumber: card, doors: doors }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => set(context, deviceId, opcodes.PutCard, { card: card, from: validFrom, to: validUntil, doors: doors }))
       .then(response => translate(response, ctx.locale))

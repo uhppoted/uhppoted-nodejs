@@ -197,25 +197,6 @@ module.exports = {
   },
 
   /**
-    * Encodes an open-door request.
-    *
-    * @param {number} deviceId  Controller serial number
-    * @param {number} door      Door number in the range [1..4]
-    *
-    * @return {buffer} 64 byte NodeJS buffer with encoded open-door request.
-    */
-  OpenDoor: function (deviceId, { door } = {}) {
-    const request = Buffer.alloc(64)
-
-    request.writeUInt8(0x17, 0)
-    request.writeUInt8(0x40, 1)
-    request.writeUInt32LE(deviceId, 4)
-    request.writeUInt8(door, 8)
-
-    return request
-  },
-
-  /**
     * Encodes a get-cards request.
     *
     * @param {number} deviceId  Controller serial number
@@ -277,7 +258,8 @@ module.exports = {
     * @param {number} card      Card number
     * @param {date}   from      Card validity start date
     * @param {date}   to        Card validity end date
-    * @param {object} doors     Object mapping door numbers 1..4 to true/false access rights
+    * @param {object} doors     Object mapping door numbers 1..4 to access permission. A permission
+    *                           may be true, false or a time profile in the range [2..254]
     *
     * @return {buffer} 64 byte NodeJS buffer with encoded put-card request.
     */
@@ -289,11 +271,24 @@ module.exports = {
     request.writeUInt32LE(deviceId, 4)
     request.writeUInt32LE(card, 8)
     date2bin(from).copy(request, 12)
-    date2bin(to).copy(request, 16)
-    request.writeUInt8(doors['1'] ? 0x01 : 0x00, 20)
-    request.writeUInt8(doors['2'] ? 0x01 : 0x00, 21)
-    request.writeUInt8(doors['3'] ? 0x01 : 0x00, 22)
-    request.writeUInt8(doors['4'] ? 0x01 : 0x00, 23)
+    date2bin(to).copy(request, 16);
+
+    ['1', '2', '3', '4'].forEach((door, index) => {
+      if (Object.prototype.hasOwnProperty.call(doors, door)) {
+        const permission = doors[door]
+        const offset = 20 + index
+
+        if (typeof permission === 'boolean') {
+          request.writeUInt8(permission ? 0x01 : 0x00, offset)
+        } else {
+          const profileID = Number(permission)
+
+          if (!Number.isNaN(profileID) && Number.isInteger(profileID) && profileID >= 2 && profileID <= 254) {
+            request.writeUInt8(profileID, offset)
+          }
+        }
+      }
+    })
 
     return request
   },
@@ -523,6 +518,25 @@ module.exports = {
     request.writeUInt8(0xb0, 1)
     request.writeUInt32LE(deviceId, 4)
     request.writeUInt32LE(index, 8)
+
+    return request
+  },
+
+  /**
+    * Encodes an open-door request.
+    *
+    * @param {number} deviceId  Controller serial number
+    * @param {number} door      Door number in the range [1..4]
+    *
+    * @return {buffer} 64 byte NodeJS buffer with encoded open-door request.
+    */
+  OpenDoor: function (deviceId, { door } = {}) {
+    const request = Buffer.alloc(64)
+
+    request.writeUInt8(0x17, 0)
+    request.writeUInt8(0x40, 1)
+    request.writeUInt32LE(deviceId, 4)
+    request.writeUInt8(door, 8)
 
     return request
   }
