@@ -23,7 +23,7 @@ const uhppoted = require('uhppoted')
 const bind = '0.0.0.0'
 const broadcast = '255.255.255.255:60000'
 const listen = '0.0.0.0:60001'
-const timeout = 5000
+const timeout = 2500
 const debug = true
 
 const ctx = {
@@ -39,8 +39,7 @@ uhppoted.getDevices(ctx)
   })
 ```
 
-The full set of _examples_ is not included in the NPM module but can be viewed or downloaded from the
-[uhpppoted-nodejs](https://github.com/uhppoted/uhppoted-nodejs) Github repository:
+The full set of _examples_ is not included in the NPM module but is downloadable from the [uhppoted-nodejs](https://github.com/uhppoted/uhppoted-nodejs) Github repository:
 
 ### API
 
@@ -264,6 +263,21 @@ Returns an `updated` result object, e.g.:
 { deviceId: 405419896, updated: true }
 ```
 
+#### `recordSpecialEvents`
+
+Enables or disables door open and close input events.
+
+```
+uhppoted.recordSpecialEvents (ctx, deviceId, enable)
+```
+- `deviceId`: serial number of controller
+- `enable`: enables door open and closed events if _true_
+
+Returns an `updated` result object, e.g.:
+```
+{ deviceId: 405419896, updated: true }
+```
+
 #### `getStatus`
 
 Retrieves a controller status.
@@ -405,19 +419,74 @@ Returns a `deleted` result object, e.g.:
 { deviceId: 405419896, deleted: true }
 ```
 
-#### `openDoor`
+#### `getTimeProfile`
 
-Remotely unlocks a door.
+Retrieves a time profile from a controller.
 
 ```
-uhppoted.openDoor (ctx, deviceId, door)
+uhppoted.getTimeProfile (ctx, deviceId, profileId) 
 ```
 - `deviceId`: serial number of controller
-- `door`: 1-4
+- `profileId`: time profile ID (in the range [2..254])
 
-Returns an `opened` result object, e.g.
+Returns the time profile defined (if any) for the profile ID, e.g.:
 ```
-{ deviceId: 405419896, opened: true }
+{
+  deviceId: 405419896,
+  profile: {
+    id: 29,
+    valid: { from: '2021-01-01', to: '2021-12-31' },
+    weekdays: [ 'Monday', 'Wednesday', 'Friday' ],
+    segments: [ 
+      { start:'08:30', end:'11:45' },
+      { start:'13:15', end:'17:30' }
+    ],
+    linkedTo: 3
+  }
+```
+
+#### `setTimeProfile`
+
+Creates or updates a time profile on a controller. The time profile have up to 3 segments and may
+optionally be _linked_ to another profile to extend the definition.
+
+```
+uhppoted.setTimeProfile (ctx, deviceId, profile) 
+```
+- `deviceId`: serial number of controller
+- `profile`: time profile e.g.
+```
+{
+  deviceId: 405419896,
+  profile: {
+    id: 29,
+    valid: { from: '2021-01-01', to: '2021-12-31' },
+    weekdays: [ 'Monday', 'Wednesday', 'Friday' ],
+    segments: [ 
+      { start:'08:30', end:'11:45' },
+      { start:'13:15', end:'17:30' }
+    ],
+    linkedTo: 3
+  }
+```
+
+Returns an `updated` result object, e.g.:
+```
+{ deviceId: 405419896, updated: true }
+```
+
+#### `clearTimeProfiles`
+
+Deletes all time profiles from a controller.
+
+```
+uhppoted.clearTimeProfiles (ctx, deviceId) 
+```
+- `deviceId`: serial number of controller
+
+Returns a `cleared` result object, e.g.:
+```
+{ deviceId: 405419896, cleared: true }
 ```
 
 #### `getEvents`
@@ -491,19 +560,19 @@ Returns an `updated` result object, e.g.:
 { deviceId: 405419896, updated: true }
 ```
 
-#### `recordSpecialEvents`
+#### `openDoor`
 
-Enables or disables door open and close input events.
+Remotely unlocks a door.
 
 ```
-uhppoted.recordSpecialEvents (ctx, deviceId, enable)
+uhppoted.openDoor (ctx, deviceId, door)
 ```
 - `deviceId`: serial number of controller
-- `enable`: enables door open and closed events if _true_
+- `door`: 1-4
 
-Returns an `updated` result object, e.g.:
+Returns an `opened` result object, e.g.
 ```
-{ deviceId: 405419896, updated: true }
+{ deviceId: 405419896, opened: true }
 ```
 
 #### `listen`
