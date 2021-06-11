@@ -16,6 +16,37 @@ For the latest updates see the [CHANGELOG.md](https://github.com/uhppoted/uhppot
 npm install uhppoted
 ```
 
+### API
+
+- [`getDevices`](#getdevices) fetches a list of access controllers on the local LAN
+- [`getDevice`](#getdevice) retrieves the information for a single access controller
+- [`setIP`](#setip) sets the controller IP address, net mask and gateway address
+- [`getTime`](#gettime) retrieves the current controller date and time
+- [`setTime`](#settime) sets the controller date and time
+- [`getDoorControl`](#getdoorcontrol) retrieves the controller door delay and control
+- [`setDoorControl`](#setdoorcontrol) sets the delay and control mode for a door
+- [`getListener`](#getlistener) retrieves the IP _address:port_ to which controller events are sent
+- [`setListener`](#setlistener) sets the IP _address:port_ to which controller events are sent
+- [`recordSpecialEvents`](#recordspecialevents) enables or disables door open and close input events
+- [`getStatus`](#getstatus) retrieves a controller status
+- [`getCards`](#getcards) retrieves the number of card records on a controller
+- [`getCard`](#getcard) retrieves a card record from a controller
+- [`getCardByIndex`](#getcardbyindex) retrieves a card record by record number
+- [`putCard`](#putcard) creates or updates a card record on a controller
+- [`deleteCard`](#deletecard) deletes a card record from a controller
+- [`deleteCards`](#deletecards) deletes all card records from a controller
+- [`getTimeProfile`](#getimeprofile) retrieves a time profile from a controller
+- [`setTimeProfile`](#settimeprofile) creates or updates a time profile on a controller
+- [`clearTimeProfiles`](#cleartimeprofile) deletes all time profiles from a controller
+- [`getEvents`](#getevents) retrieves the indices of the first and last event records stored on a controller
+- [`getEvent`](#getevent) retrieves an event from a controller
+- [`getEventIndex`](#geteventindex) retrieves the event index user value from a controller
+- [`setEventIndex`](#seteventindex) sets the event index user value on a controller
+- [`openDoor`](#opendoor) remotely unlocks a door
+- [`listen`](#listen) establishes a listening connection for controller events
+
+Each API call takes a `context` _object_ as the first argument, followed by the function specific parameters and returns a `Promise` that resolves to a response.
+
 #### Example
 ```
 const uhppoted = require('uhppoted')
@@ -41,12 +72,8 @@ uhppoted.getDevices(ctx)
 
 The full set of _examples_ is not included in the NPM module but is downloadable from the [uhppoted-nodejs](https://github.com/uhppoted/uhppoted-nodejs) Github repository:
 
-### API
 
 #### Context
-
-Each API call takes a `context` _object_ as the first argument, followed by the function specific parameters and returns a `Promise`
-that resolves to a response.
 
 A `context` object comprises:
 ```
@@ -328,20 +355,6 @@ Returns the a `cards` object, e.g.:
 { deviceId: 405419896, cards: 37 }
 ```
 
-#### `deleteCards`
-
-Deletes all card records stored on a controller.
-
-```
-uhppoted.deleteCards (ctx, deviceId) 
-```
-- `deviceId`: serial number of controller
-
-Returns a `deleted` result object, e.g.:
-```
-{ deviceId: 405419896, deleted: true }
-```
-
 #### `getCard`
 
 Retrieves a single card record from a controller.
@@ -413,6 +426,20 @@ uhppoted.deleteCard (ctx, deviceId, cardNumber)
 ```
 - `deviceId`: serial number of controller
 - `cardNumber`: card number
+
+Returns a `deleted` result object, e.g.:
+```
+{ deviceId: 405419896, deleted: true }
+```
+
+#### `deleteCards`
+
+Deletes all card records stored on a controller.
+
+```
+uhppoted.deleteCards (ctx, deviceId) 
+```
+- `deviceId`: serial number of controller
 
 Returns a `deleted` result object, e.g.:
 ```

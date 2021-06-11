@@ -2,10 +2,10 @@
 
 ### IN PROGRESS
 
-- [ ] Reorganise README API section
-- [ ] Update CHANGELOG
 - [ ] Bump package.json version to 0.7.0 for release
 
+- [x] Update CHANGELOG
+- [x] Reorganise README API section
 - [x] Add time profiles to jsdoc
 - [x] Add time profiles to README
 - [x] Update integration tests with time profiles
