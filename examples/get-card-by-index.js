@@ -2,7 +2,7 @@ const uhppoted = require('uhppoted')
 const ctx = require('./common.js')
 
 const deviceID = 405419896
-const index = 2
+const index = 3
 
 uhppoted.getCardByIndex(ctx, deviceID, index)
   .then(response => {
