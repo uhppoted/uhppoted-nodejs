@@ -35,9 +35,9 @@ npm install uhppoted
 - [`putCard`](#putcard) creates or updates a card record on a controller
 - [`deleteCard`](#deletecard) deletes a card record from a controller
 - [`deleteCards`](#deletecards) deletes all card records from a controller
-- [`getTimeProfile`](#getimeprofile) retrieves a time profile from a controller
+- [`getTimeProfile`](#gettimeprofile) retrieves a time profile from a controller
 - [`setTimeProfile`](#settimeprofile) creates or updates a time profile on a controller
-- [`clearTimeProfiles`](#cleartimeprofile) deletes all time profiles from a controller
+- [`clearTimeProfiles`](#cleartimeprofiles) deletes all time profiles from a controller
 - [`getEvents`](#getevents) retrieves the indices of the first and last event records stored on a controller
 - [`getEvent`](#getevent) retrieves an event from a controller
 - [`getEventIndex`](#geteventindex) retrieves the event index user value from a controller
@@ -70,8 +70,18 @@ uhppoted.getDevices(ctx)
   })
 ```
 
-The full set of _examples_ is not included in the NPM module but is downloadable from the [uhppoted-nodejs](https://github.com/uhppoted/uhppoted-nodejs) Github repository:
+A minimal example showing the usage for each API can be found in the [_examples_](https://github.com/uhppoted/uhppoted-nodejs/tree/master/examples) folder. 
 
+The _examples_ have `uhppoted` as a dependency - install either the published `uhppoted` module in the examples folder:
+```
+cd examples
+npm install uhppoted
+```
+or if working from a cloned repository, install the development version:
+```
+cd examples
+npm install ..
+```
 
 #### Context
 
@@ -636,21 +646,6 @@ Example `event` object:
     inputs: { state: 0, forceLock: false, fireAlarm: false }
   }
 }
-```
-
-### Examples
-
-A minimal example showing the usage for each API can be found in the [_examples_](https://github.com/uhppoted/uhppoted-nodejs/tree/master/examples) folder. 
-
-The _examples_ have `uhppoted` as a dependency - install either the published `uhppoted` module in the examples folder:
-```
-cd examples
-npm install uhppoted
-```
-or if working from a cloned repository, install the development version:
-```
-cd examples
-npm install ..
 ```
 
 ### Issues and Feature Requests
