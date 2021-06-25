@@ -426,6 +426,22 @@ module.exports = {
   },
 
   /**
+    * Decodes the response to an add-task request (function code 0xa8).
+    *
+    * @param {buffer}   buffer     64 byte NodeJS buffer
+    * @param {function} translator (optional) function to internationalise the text in a
+    *                              decoded object
+    *
+    * @param {object}   Decoded add-task response object
+    */
+  AddTask: function (bytes, translator) {
+    return {
+      deviceId: uint32(bytes, 4),
+      added: bool(bytes, 8)
+    }
+  },
+
+  /**
     * Decodes the response to a refresh-task-list request (function code 0xac).
     *
     * @param {buffer}   buffer     64 byte NodeJS buffer

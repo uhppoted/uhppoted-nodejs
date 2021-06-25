@@ -435,6 +435,26 @@ module.exports = {
   },
 
   /**
+   * Adds a task to the controller's task list. the task is not activated until refreshTaskList is
+   * invoked.
+   *
+   * @param {object} ctx - Context with configuration, locale (optional) and logger (optional).
+   * @param {uint32} deviceId - Controller serial number
+   * @param {object} task - Task definition
+   *
+   * @example
+   * uhppoted.addTask(ctx, 405419896, {...})
+   *  .then(response => { console.log(response) })
+   *  .catch(err => { console.log(`${err.message}`)
+   */
+  addTask: function (ctx, deviceId, task) {
+    return validate({ deviceId: deviceId, task: task }, ctx.locale)
+      .then(ok => initialise(ctx))
+      .then(context => get(context, deviceId, opcodes.AddTask, { task: task }))
+      .then(response => translate(response, ctx.locale))
+  },
+
+  /**
    * Refreshes the task list on a controller to activate the added tasks.
    *
    * @param {object} ctx - Context with configuration, locale (optional) and logger (optional).

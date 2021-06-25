@@ -36,6 +36,10 @@ function InvalidPermission (door, permission, locale) {
   return new Error(translate(`{{invalid time profile for door}} ${door} (${permission})`, locale))
 }
 
+function InvalidTaskType (task, locale) {
+  return new Error(translate(`{{invalid task type}} '${task}'`, locale))
+}
+
 function NoReply (locale) {
   return new Error(translate('{{no reply}}', locale))
 }
@@ -58,15 +62,16 @@ function Timeout (locale) {
 
 module.exports = {
   InvalidDeviceID: InvalidDeviceID,
+  InvalidDoor: InvalidDoor,
   InvalidCardNumber: InvalidCardNumber,
   InvalidCardIndex: InvalidCardIndex,
   InvalidProfileID: InvalidProfileID,
-  InvalidDoor: InvalidDoor,
   InvalidEventIndex: InvalidEventIndex,
 
   InvalidFunctionCode: InvalidFunctionCode,
   InvalidDoorControl: InvalidDoorControl,
   InvalidPermission: InvalidPermission,
+  InvalidTaskType: InvalidTaskType,
 
   NoReply: NoReply,
   NoReplyFromDevice: NoReplyFromDevice,

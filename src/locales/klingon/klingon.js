@@ -60,6 +60,7 @@ const dict = new Map([
   ['invalidFunctionCode', "yotlhHa'taHvIS qaD"],
   ['invalidDoorControl', 'lojmIt'],
   ['invalidPermission', 'qaStaHvIS ramvam,'],
+  ['invalidTaskType', "Soy'taH"],
   ['noReply', 'jach'],
   ['noBroadcastReply', "ghu' vIqelnIS"],
   ['invalidBroadcastReply', "tlhoy ghoghDI' vay' lughajlaHbe'taHvIS,"],

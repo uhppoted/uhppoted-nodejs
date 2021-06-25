@@ -461,6 +461,82 @@ module.exports = {
   },
 
   /**
+    * Encodes an add-task request.
+    *
+    * @param {number} deviceId  Controller serial number
+    * @param {object} task      Task definition
+    *
+    * @return {buffer} 64 byte NodeJS buffer with encoded add-task request.
+    */
+  AddTask: function (deviceId, { task } = {}) {
+    const days = new Map([
+      ['mo', 16],
+      ['tu', 17],
+      ['we', 18],
+      ['th', 19],
+      ['fr', 20],
+      ['sa', 21],
+      ['su', 22]
+    ])
+
+    const tasks = new Map([
+      ['doorcontrolled', 0],
+      ['doornormallyopen', 1],
+      ['doornormallyclosed', 2],
+      ['disabletimeprofile', 3],
+      ['enabletimeprofile', 4],
+      ['cardnopassword', 5],
+      ['cardinpassword', 6],
+      ['cardpassword', 7],
+      ['enablemorecards', 8],
+      ['disablemorecards', 9],
+      ['triggeronce', 10],
+      ['disablepushbutton', 11],
+      ['enablepushbutton', 12]
+    ])
+
+    const request = Buffer.alloc(64)
+
+    request.writeUInt8(0x17, 0)
+    request.writeUInt8(0xa8, 1)
+    request.writeUInt32LE(deviceId, 4)
+
+    date2bin(task.valid.from).copy(request, 8)
+    date2bin(task.valid.to).copy(request, 12)
+
+    if (task.weekdays) {
+      task.weekdays.forEach(day => {
+        days.forEach((v, k) => {
+          if (day.toLowerCase().startsWith(k)) {
+            request.writeUInt8(1, v)
+          }
+        })
+      })
+    }
+
+    HHmm2bin(task.start).copy(request, 23)
+
+    request.writeUInt8(task.door, 25)
+
+    if (!isNaN(task.task)) {
+      request.writeUInt8(task.task - 1, 26)
+    } else {
+      const key = task.task.replaceAll(/[^a-z]+/ig, '')
+      if (tasks.has(key)) {
+        request.writeUInt8(tasks.get(key), 26)
+      } else {
+        throw new Error(`invalid task '${task.task}'`)
+      }
+    }
+
+    if (task.cards) {
+      request.writeUInt8(task.cards, 27)
+    }
+
+    return request
+  },
+
+  /**
     * Encodes a refresh-task-list request.
     *
     * @param {number} deviceId  Controller serial number

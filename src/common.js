@@ -63,6 +63,17 @@ function validate (args, locale) {
           }
           break
 
+        case 'task':
+          if (!isValidTaskType(v.task)) {
+            reject(errors.InvalidTaskType(v.task, locale))
+          }
+
+          if (!isValidDoor(v.door)) {
+            reject(errors.InvalidDoor(v.door, locale))
+          }
+
+          break
+
         case 'eventIndex':
           if (!isValidEventIndex(v)) {
             reject(errors.InvalidEventIndex(v, locale))
@@ -87,27 +98,27 @@ function validate (args, locale) {
 }
 
 function isValidDeviceId (deviceId) {
-  return isValid(deviceId, 1, 4294967295)
+  return inRange(deviceId, 1, 4294967295)
 }
 
 function isValidCardNumber (card) {
-  return isValid(card, 1, 4294967295)
+  return inRange(card, 1, 4294967295)
 }
 
 function isValidCardIndex (index) {
-  return isValid(index, 0, 4294967295)
+  return inRange(index, 0, 4294967295)
 }
 
 function isValidProfileId (profileId) {
-  return isValid(profileId, 2, 254)
+  return inRange(profileId, 2, 254)
 }
 
 function isValidDoor (door) {
-  return isValid(door, 1, 4)
+  return inRange(door, 1, 4)
 }
 
 function isValidEventIndex (index) {
-  return isValid(index, 0, 4294967295)
+  return inRange(index, 0, 4294967295)
 }
 
 function isValidPermission (door, permission) {
@@ -123,7 +134,31 @@ function isValidPermission (door, permission) {
   return true
 }
 
-function isValid (value, min, max) {
+function isValidTaskType (task) {
+  const tasks = new Map([
+    ['doorcontrolled', 0],
+    ['doornormallyopen', 1],
+    ['doornormallyclosed', 2],
+    ['disabletimeprofile', 3],
+    ['enabletimeprofile', 4],
+    ['cardnopassword', 5],
+    ['cardinpassword', 6],
+    ['cardpassword', 7],
+    ['enablemorecards', 8],
+    ['disablemorecards', 9],
+    ['triggeronce', 10],
+    ['disablepushbutton', 11],
+    ['enablepushbutton', 12]
+  ])
+
+  if (isNaN(task)) {
+    return tasks.has(task.replaceAll(/[^a-z]+/ig, ''))
+  }
+
+  return inRange(task, 1, 13)
+}
+
+function inRange (value, min, max) {
   if (!value || Number.isNaN(value)) {
     return false
   }

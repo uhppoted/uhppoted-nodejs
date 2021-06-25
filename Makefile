@@ -40,8 +40,7 @@ publish: release
 	npm --dry-run publish
 
 debug: 
-	npx eslint --fix test/**/*.js  
-	npx mocha 'integration-tests/get-device_spec.js'
+	node examples/debug.js $(ARGS)
 
 error-handling: build
 	node examples/error-handling.js $(ARGS)
@@ -116,8 +115,14 @@ clear-time-profiles: build
 clear-task-list: build
 	node examples/clear-task-list.js $(ARGS)
 
+add-task: build
+	node examples/add-task.js $(ARGS)
+
 refresh-task-list: build
 	node examples/refresh-task-list.js $(ARGS)
+
+trigger-once: build
+	node examples/task-trigger-once.js $(ARGS)
 
 get-event-index: build
 	node examples/get-event-index.js $(ARGS)
