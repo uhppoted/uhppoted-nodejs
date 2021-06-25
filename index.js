@@ -25,6 +25,9 @@ module.exports = {
   setTimeProfile: require('./src/uhppoted.js').setTimeProfile,
   clearTimeProfiles: require('./src/uhppoted.js').clearTimeProfiles,
 
+  clearTaskList: require('./src/uhppoted.js').clearTaskList,
+  refreshTaskList: require('./src/uhppoted.js').refreshTaskList,
+
   getEvents: require('./src/uhppoted.js').getEvents,
   getEvent: require('./src/uhppoted.js').getEvent,
   getEventIndex: require('./src/uhppoted.js').getEventIndex,

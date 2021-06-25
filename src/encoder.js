@@ -429,13 +429,49 @@ module.exports = {
     *
     * @param {number} deviceId  Controller serial number
     *
-    * @return {buffer} 64 byte NodeJS buffer with encoded get-time-profile request.
+    * @return {buffer} 64 byte NodeJS buffer with encoded clear-time-profiles request.
     */
   ClearTimeProfiles: function (deviceId) {
     const request = Buffer.alloc(64)
 
     request.writeUInt8(0x17, 0)
     request.writeUInt8(0x8a, 1)
+    request.writeUInt32LE(deviceId, 4)
+    request.writeUInt32LE(0x55aaaa55, 8)
+
+    return request
+  },
+
+  /**
+    * Encodes a clear-task-list request.
+    *
+    * @param {number} deviceId  Controller serial number
+    *
+    * @return {buffer} 64 byte NodeJS buffer with encoded clear-task-list request.
+    */
+  ClearTaskList: function (deviceId) {
+    const request = Buffer.alloc(64)
+
+    request.writeUInt8(0x17, 0)
+    request.writeUInt8(0xa6, 1)
+    request.writeUInt32LE(deviceId, 4)
+    request.writeUInt32LE(0x55aaaa55, 8)
+
+    return request
+  },
+
+  /**
+    * Encodes a refresh-task-list request.
+    *
+    * @param {number} deviceId  Controller serial number
+    *
+    * @return {buffer} 64 byte NodeJS buffer with encoded refresh-task-list request.
+    */
+  RefreshTaskList: function (deviceId) {
+    const request = Buffer.alloc(64)
+
+    request.writeUInt8(0x17, 0)
+    request.writeUInt8(0xac, 1)
     request.writeUInt32LE(deviceId, 4)
     request.writeUInt32LE(0x55aaaa55, 8)
 

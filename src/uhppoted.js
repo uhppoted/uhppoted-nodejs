@@ -417,6 +417,42 @@ module.exports = {
   },
 
   /**
+   * Clears the task list on a controller.
+   *
+   * @param {object} ctx - Context with configuration, locale (optional) and logger (optional).
+   * @param {uint32} deviceId - Controller serial number
+   *
+   * @example
+   * uhppoted.clearTaskList(ctx, 405419896)
+   *  .then(response => { console.log(response) })
+   *  .catch(err => { console.log(`${err.message}`)
+   */
+  clearTaskList: function (ctx, deviceId) {
+    return validate({ deviceId: deviceId }, ctx.locale)
+      .then(ok => initialise(ctx))
+      .then(context => get(context, deviceId, opcodes.ClearTaskList, {}))
+      .then(response => translate(response, ctx.locale))
+  },
+
+  /**
+   * Refreshes the task list on a controller to activate the added tasks.
+   *
+   * @param {object} ctx - Context with configuration, locale (optional) and logger (optional).
+   * @param {uint32} deviceId - Controller serial number
+   *
+   * @example
+   * uhppoted.refreshTaskList(ctx, 405419896)
+   *  .then(response => { console.log(response) })
+   *  .catch(err => { console.log(`${err.message}`)
+   */
+  refreshTaskList: function (ctx, deviceId) {
+    return validate({ deviceId: deviceId }, ctx.locale)
+      .then(ok => initialise(ctx))
+      .then(context => get(context, deviceId, opcodes.RefreshTaskList, {}))
+      .then(response => translate(response, ctx.locale))
+  },
+
+  /**
    * Retrieves the indices of the first and last event records stored on a controller.
    *
    * @param {object} ctx - Context with configuration, locale (optional) and logger (optional).

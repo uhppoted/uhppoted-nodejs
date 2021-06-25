@@ -37,6 +37,9 @@ const enc = new Map([
   [opcodes.SetTimeProfile, encoder.SetTimeProfile],
   [opcodes.ClearTimeProfiles, encoder.ClearTimeProfiles],
 
+  [opcodes.ClearTaskList, encoder.ClearTaskList],
+  [opcodes.RefreshTaskList, encoder.RefreshTaskList],
+
   [opcodes.GetEventIndex, encoder.GetEventIndex],
   [opcodes.SetEventIndex, encoder.SetEventIndex],
   [opcodes.GetEvent, encoder.GetEvent],
@@ -67,6 +70,8 @@ const dec = new Map([
   [0x92, decoder.GetListener],
   [0x94, decoder.GetDevice],
   [0x98, decoder.GetTimeProfile],
+  [0xa6, decoder.ClearTaskList],
+  [0xac, decoder.RefreshTaskList],
   [0xb0, decoder.GetEvent],
   [0xb2, decoder.SetEventIndex],
   [0xb4, decoder.GetEventIndex]

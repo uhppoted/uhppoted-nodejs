@@ -410,6 +410,38 @@ module.exports = {
   },
 
   /**
+    * Decodes the response to a clear-task-list request (function code 0xa6).
+    *
+    * @param {buffer}   buffer     64 byte NodeJS buffer
+    * @param {function} translator (optional) function to internationalise the text in a
+    *                              decoded object
+    *
+    * @param {object}   Decoded clear-task-list response object
+    */
+  ClearTaskList: function (bytes, translator) {
+    return {
+      deviceId: uint32(bytes, 4),
+      cleared: bool(bytes, 8)
+    }
+  },
+
+  /**
+    * Decodes the response to a refresh-task-list request (function code 0xac).
+    *
+    * @param {buffer}   buffer     64 byte NodeJS buffer
+    * @param {function} translator (optional) function to internationalise the text in a
+    *                              decoded object
+    *
+    * @param {object}   Decoded refresh-task-list response object
+    */
+  RefreshTaskList: function (bytes, translator) {
+    return {
+      deviceId: uint32(bytes, 4),
+      refreshed: bool(bytes, 8)
+    }
+  },
+
+  /**
     * Decodes the response to a record-special-events request (function code 0x8e).
     *
     * @param {buffer}   buffer     64 byte NodeJS buffer

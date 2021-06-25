@@ -113,6 +113,12 @@ set-time-profile: build
 clear-time-profiles: build
 	node examples/clear-time-profiles.js $(ARGS)
 
+clear-task-list: build
+	node examples/clear-task-list.js $(ARGS)
+
+refresh-task-list: build
+	node examples/refresh-task-list.js $(ARGS)
+
 get-event-index: build
 	node examples/get-event-index.js $(ARGS)
 

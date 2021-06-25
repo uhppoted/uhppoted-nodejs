@@ -21,6 +21,10 @@ module.exports = {
   SetTimeProfile: 0x88,
   ClearTimeProfiles: 0x8a,
 
+  ClearTaskList: 0xa6,
+  AddTask: 0xa8,
+  RefreshTaskList: 0xac,
+
   GetEventIndex: 0xb4,
   SetEventIndex: 0xb2,
   GetEvent: 0xb0,
