@@ -38,6 +38,9 @@ npm install uhppoted
 - [`getTimeProfile`](#gettimeprofile) retrieves a time profile from a controller
 - [`setTimeProfile`](#settimeprofile) creates or updates a time profile on a controller
 - [`clearTimeProfiles`](#cleartimeprofiles) deletes all time profiles from a controller
+- [`clearTaskList`](#cleartasklist) clears the task list on a controller
+- [`addTask`](#addtask) adds a new task to the task list on a controller
+- [`refreshTaskList`](#refreshtasklist) refreshes the task list on a controller
 - [`getEvents`](#getevents) retrieves the indices of the first and last event records stored on a controller
 - [`getEvent`](#getevent) retrieves an event from a controller
 - [`getEventIndex`](#geteventindex) retrieves the event index user value from a controller
@@ -483,8 +486,8 @@ Returns the time profile defined (if any) for the profile ID, e.g.:
 
 #### `setTimeProfile`
 
-Creates or updates a time profile on a controller. The time profile have up to 3 segments and may
-optionally be _linked_ to another profile to extend the definition.
+Creates or updates a time profile on a controller. The time profile may have up to 3 segments 
+and may optionally be _linked_ to another profile to extend the definition.
 
 ```
 uhppoted.setTimeProfile (ctx, deviceId, profile) 
@@ -523,6 +526,83 @@ uhppoted.clearTimeProfiles (ctx, deviceId)
 Returns a `cleared` result object, e.g.:
 ```
 { deviceId: 405419896, cleared: true }
+```
+
+#### `clearTaskList`
+
+Clears the task list on controller.
+
+```
+uhppoted.clearTaskList (ctx, deviceId) 
+```
+- `deviceId`: serial number of controller
+
+Returns a `cleared` result object, e.g.:
+```
+{ deviceId: 405419896, cleared: true }
+```
+
+
+#### `addTask`
+
+Creates a new task definion on a controller.or updates a time profile on a controller. The task
+will be activated once `refreshTaskList` is invoked.
+
+A task definion comprises the following fields:
+- task type: numeric or string task type from the list below
+- door: door to which the task is assigned
+- valid: from/to dates (inclusive) between which the task is active
+- weekdays: days of the week on which the task is active
+- start: time at which to run task
+- cards: (for _enable more cards_ only) number of _more cards_ to allow
+
+Valid task type IDs and the corresponding task types are:
+- 1: door controlled
+- 2: door normallyopen
+- 3: door normallyclosed
+- 4: disable time profile
+- 5: enable time profile
+- 6: card + no password
+- 7: card + IN password
+- 8: card + password
+- 9: enable more cards
+- 10: disable more cards
+- 11: trigger once
+- 12: disable push button
+- 13: enable push button
+
+(the `addTask` function accepts both numeric and string task types)
+
+```
+uhppoted.addTask (ctx, deviceId, task) 
+```
+- `deviceId`: serial number of controller
+- `task`: task definition e.g.
+```
+{
+  deviceId: 405419896,
+  task: {
+    task: 'enable time profile',
+    door: 3,
+    valid: { from: '2021-01-01', to: '2021-12-31' },
+    weekdays: [ 'Monday', 'Wednesday', 'Friday' ],
+    start:'08:30',
+    cards: 3
+  }
+```
+
+#### `refreshTaskList`
+
+Refreshes the task list on controller, activating any tasks added with `addTask`.
+
+```
+uhppoted.refreshTaskList (ctx, deviceId) 
+```
+- `deviceId`: serial number of controller
+
+Returns a `refreshed` result object, e.g.:
+```
+{ deviceId: 405419896, refreshed: true }
 ```
 
 #### `getEvents`

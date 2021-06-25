@@ -1,3 +1,11 @@
+### v0.7.0: Added support for scheduled tasks
+
+1. New functions:
+   - `clearTaskList`
+   - `addTask`
+   - `refreshTaskList`
+
+
 ### v0.7.0: Added support for time profiles
 
 1. Implemented:
