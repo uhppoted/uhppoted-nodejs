@@ -1,6 +1,6 @@
-## v0.7.x
+## v0.7.1
 
-- [ ] Publish to NPM
+- [x] Publish to NPM
 - [x] Update README
 - [x] `clear-task-list`
 - [x] `add-task`
