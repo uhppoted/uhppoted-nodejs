@@ -37,7 +37,10 @@ publish: release
 	npm --dry-run publish
 
 debug: 
-	node examples/debug.js $(ARGS)
+	# node examples/debug.js $(ARGS)
+	# node examples/get-overwritten-event.js $(ARGS)
+	npx eslint --fix integration-tests/**/*.js  
+	npx mocha 'integration-tests/**/get-event_spec.js' --broadcast='192.168.1.255:59999' --listen='192.168.1.100:60001'
 
 error-handling: build
 	node examples/error-handling.js $(ARGS)
@@ -132,6 +135,7 @@ get-events: build
 
 get-event: build
 	node examples/get-event.js $(ARGS)
+	node examples/get-overwritten-event.js $(ARGS)
 
 get-event-with-locale: build
 	node examples/get-event-with-locale.js $(ARGS)

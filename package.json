@@ -37,6 +37,8 @@
   },
   "dependencies": {
     "ip": "^1.1.5",
-    "os": "^0.1.1"
+    "os": "^0.1.1",
+    "string-width": "^5.1.0",
+    "strip-ansi": "^7.0.1"
   }
 }

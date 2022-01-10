@@ -526,7 +526,13 @@ module.exports = {
     return validate({ deviceId: deviceId, eventIndex: index }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => get(context, deviceId, opcodes.GetEvent, { index: index }))
-      .then(response => translate(response, ctx.locale))
+      .then(response => {
+        if (response && response.event && response.event.type && response.event.type.code && response.event.type.code === 255) {
+          throw errors.EventOverwritten(deviceId, index, ctx.locale)
+        }
+
+        return translate(response, ctx.locale)
+      })
   },
 
   /**
