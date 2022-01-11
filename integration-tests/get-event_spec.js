@@ -126,6 +126,22 @@ describe('#getEvent(...) with missing event', function (done) {
         done()
       })
   })
+
+  it("should return 'missing' error for get-event with index after last event (internationalised)", function (done) {
+    const alt = {
+      config: ctx.config,
+      locale: 'klingon'
+    }
+
+    uhppoted.getEvent(alt, 405419896, 200)
+      .then(response => {
+        done(new Error('expected "405419896:200  yav"'))
+      })
+      .catch(err => {
+        expect(err.toString()).to.equal('Error: 405419896:200  yav')
+        done()
+      })
+  })
 })
 
 describe('#getEvent(...) with overwritten event', function (done) {
@@ -146,6 +162,22 @@ describe('#getEvent(...) with overwritten event', function (done) {
       })
       .catch(err => {
         expect(err.toString()).to.equal('Error: 201020304:73  event overwritten')
+        done()
+      })
+  })
+
+  it("should return 'overwritten' error for get-event with index before first event (internationalised)", function (done) {
+    const alt = {
+      config: ctx.config,
+      locale: 'klingon'
+    }
+
+    uhppoted.getEvent(alt, 201020304, 73)
+      .then(response => {
+        done(new Error('expected "201020304:73  jup"'))
+      })
+      .catch(err => {
+        expect(err.toString()).to.equal('Error: 201020304:73  jup')
         done()
       })
   })

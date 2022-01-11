@@ -6,6 +6,7 @@ const dict = new Map([
   ['eventSwipe', 'card swipe'],
   ['eventDoor', 'door'],
   ['eventAlarm', 'alarm'],
+  ['eventMissing', '<missing>'],
   ['eventOverwritten', '<overwritten>'],
 
   // event direction
@@ -64,7 +65,9 @@ const dict = new Map([
   ['noReply', 'no reply'],
   ['noBroadcastReply', 'no reply to broadcasted request'],
   ['invalidBroadcastReply', 'invalid reply to broadcasted request'],
-  ['timeout', 'timeout']
+  ['timeout', 'timeout'],
+  ['eventMissing', 'event does not exist'],
+  ['eventOverwritten', 'event overwritten']
 
 ])
 

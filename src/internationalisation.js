@@ -75,7 +75,9 @@ const map = new Map([
   ['no reply from', 'noReply'],
   ['no reply to broadcasted request', 'noBroadcastReply'],
   ['invalid reply to broadcasted request', 'invalidBroadcastReply'],
-  ['timeout', 'timeout']
+  ['timeout', 'timeout'],
+  ['event does not exist', 'eventMissing'],
+  ['event overwritten', 'eventOverwritten']
 ])
 
 function translate (object, locale) {

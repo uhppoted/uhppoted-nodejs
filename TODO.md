@@ -2,7 +2,8 @@
 
 - [x] Throw error on `getEvent` for overwritten event
 - [x] Throw error on `getEvent` for non-existent event
-- [ ] Add overwritten to internationalisation
+- [x] Add missing event error to internationalisation
+- [x] Add overwritten event error to internationalisation
 
 ### TODO
 

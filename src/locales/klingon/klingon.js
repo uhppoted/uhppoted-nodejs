@@ -64,8 +64,9 @@ const dict = new Map([
   ['noReply', 'jach'],
   ['noBroadcastReply', "ghu' vIqelnIS"],
   ['invalidBroadcastReply', "tlhoy ghoghDI' vay' lughajlaHbe'taHvIS,"],
-  ['timeout', 'run']
-
+  ['timeout', 'run'],
+  ['eventMissing', 'yav'],
+  ['eventOverwritten', 'jup']
 ])
 
 exports = module.exports = dict
