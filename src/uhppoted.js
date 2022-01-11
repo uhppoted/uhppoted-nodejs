@@ -531,6 +531,10 @@ module.exports = {
           throw errors.EventOverwritten(deviceId, index, ctx.locale)
         }
 
+        if (response && response.event && response.event.index === 0) {
+          throw errors.MissingEvent(deviceId, index, ctx.locale)
+        }
+
         return translate(response, ctx.locale)
       })
   },

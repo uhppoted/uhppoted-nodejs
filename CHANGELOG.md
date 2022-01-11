@@ -1,8 +1,7 @@
-### v0.7.2: Revised event handling
+### v0.7.2: Minor bug fixes
 
-1. `get-event` now throws 'overwritten error' if the `event type` in the reply
-    from the controller is `0xff`. This happens when the requested event index 
-    is less than the index of the first stored event.
+1. Throws an error if `get-event` retrieves an event that has been overwritten
+   (cf. https://github.com/uhppoted/uhppote-cli/issues/7)
 
 
 ### v0.7.1: Added support for scheduled tasks

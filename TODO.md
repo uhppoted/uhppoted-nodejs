@@ -1,10 +1,8 @@
-## v0.7.1
+## v0.7.2
 
-- [x] Publish to NPM
-- [x] Update README
-- [x] `clear-task-list`
-- [x] `add-task`
-- [x] `refresh-task-list`
+- [x] Throw error on `getEvent` for overwritten event
+- [x] Throw error on `getEvent` for non-existent event
+- [ ] Add overwritten to internationalisation
 
 ### TODO
 
