@@ -152,7 +152,7 @@ function isValidTaskType (task) {
   ])
 
   if (isNaN(task)) {
-    return tasks.has(task.replaceAll(/[^a-z]+/ig, ''))
+    return tasks.has(task.replace(/[^a-z]+/ig, ''))
   }
 
   return inRange(task, 1, 13)
