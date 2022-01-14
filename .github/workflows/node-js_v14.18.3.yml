@@ -1,11 +1,11 @@
 name:build-v14.18.3
 
-on:
-  workflow_dispatch:
-  push:
-    branches: [ node_v14.18.3 ]
-  pull_request:
-    branches: [ node_v14.18.3 ]
+  on:
+    workflow_dispatch:
+    push:
+      branches: [ node_v14.18.3 ]
+    pull_request:
+      branches: [ node_v14.18.3 ]
 
 jobs:
   build:
