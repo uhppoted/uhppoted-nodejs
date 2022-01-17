@@ -1,11 +1,11 @@
-name: build
+name: build-v14.18.3
 
 on:
   workflow_dispatch:
   push:
-    branches: [ master ]
+    branches: [ node_v14.18.3 ]
   pull_request:
-    branches: [ master ]
+    branches: [ node_v14.18.3 ]
 
 jobs:
   build:
@@ -25,4 +25,3 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
-

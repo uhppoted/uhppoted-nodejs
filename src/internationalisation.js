@@ -98,7 +98,7 @@ function translate (object, locale) {
   }
 
   const blob = JSON.stringify(object)
-  const translated = blob.replaceAll(/{{(.*?)}}/g, lookup)
+  const translated = blob.replace(/{{(.*?)}}/g, lookup)
 
   return JSON.parse(translated)
 }

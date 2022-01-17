@@ -23,7 +23,7 @@
     "test": "mocha 'test/**/*_spec.js'"
   },
   "engines": {
-    "node": ">=16.13.2"
+    "node": ">=14.18.3"
   },
   "devDependencies": {
     "chai": "^4.3.4",
