@@ -5,7 +5,7 @@
 NodeJS module that implements an API for interacting with a UHPPOTE TCP/IP Wiegand access controller board. The API supports device and card management as well as handling for events.
 
 #### Requirements:
-- `node.js` version 14.7.4+
+- `node.js` version 14.18.3+
 - `ip.js` version 1.1.5+ 
 
 For the latest updates see the [CHANGELOG.md](https://github.com/uhppoted/uhppoted-nodejs/blob/master/CHANGELOG.md)
