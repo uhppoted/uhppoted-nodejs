@@ -4,6 +4,7 @@
 - [x] Throw error on `getEvent` for non-existent event
 - [x] Add missing event error to internationalisation
 - [x] Add overwritten event error to internationalisation
+- [x] Downgrade NodeJS version to 14.18.3
 
 ### TODO
 

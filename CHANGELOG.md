@@ -1,7 +1,17 @@
-### v0.7.2: Minor bug fixes
+### v0.7.2: Downgrade NodeJS engine requirement to 14.18.3 LTS (Fermium)
 
-1. Throws an error if `get-event` retrieves an event that has been overwritten
-   (cf. https://github.com/uhppoted/uhppote-cli/issues/7)
+1. Downgraded required NodeJS engine from 15.x.x to 14.18.3 LTS (Fermium)
+   (cf. https://github.com/uhppoted/uhppoted-nodejs/issues/5)
+
+2. Updated github workflow to build against
+   - NodeJS v14.18.3 LTS (Fermium)
+   - NodeJS v16.13.2 LTS (Gallium)
+
+3. Throws an error if `get-event` retrieves an event that has been overwritten
+   (cf. https://github.com/uhppoted/uhppote-cli/issues/7).
+
+4. Throws an error if `get-event` retrieves an event with an index that does not
+   exist.
 
 
 ### v0.7.1: Added support for scheduled tasks
