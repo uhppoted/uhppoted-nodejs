@@ -6,3 +6,4 @@ jsdoc
 TODO.md
 .eslintrc.js                  
 .github/workflows/node-js.yml 
+.DS_Store

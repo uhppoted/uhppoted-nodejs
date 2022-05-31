@@ -1,3 +1,7 @@
+### v0.7.3: Update dependencies
+
+1. Updated dependencies for security fixes.
+
 ### v0.7.2: Downgrade NodeJS engine requirement to 14.18.3 LTS (Fermium)
 
 1. Downgraded required NodeJS engine from 15.x.x to 14.18.3 LTS (Fermium)
