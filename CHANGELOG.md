@@ -1,3 +1,7 @@
+### v0.8.0: Update dependencies
+
+1. Updated dependencies for security fixes.
+
 ### v0.7.3: Update dependencies
 
 1. Updated dependencies for security fixes.
