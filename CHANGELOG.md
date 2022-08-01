@@ -1,3 +1,10 @@
+# CHANGELOG
+
+## [v0.8.1] - 2022-08-01
+
+### Changed
+1. Maintenance release to update dependencies.
+
 ### v0.8.0: Update dependencies
 
 1. Updated dependencies for security fixes.

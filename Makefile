@@ -14,6 +14,14 @@ ARGS       = bind=$(BIND) broadcast=$(BROADCAST) listen=$(LISTEN) timeout=$(TIME
 .PHONY: build
 .PHONY: test
 
+update:
+	npm update	
+	npm audit fix
+
+update-release:
+	npm update	
+	npm audit fix
+
 build:
 	npx eslint --fix *.js  
 	npx eslint --fix src/**/*.js  
@@ -29,6 +37,8 @@ integration-tests: test
 
 jsdoc: build
 	npx jsdoc src --destination jsdoc --package package.json --readme README.md
+
+build-all: build
 
 release: integration-tests jsdoc
 	npm pack
