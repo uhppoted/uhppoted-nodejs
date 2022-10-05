@@ -105,6 +105,14 @@ module.exports = {
         reason.reason = '{{swipe}}'
         break
 
+      case 2:
+        reason.reason = '{{swipe open}}'
+        break
+
+      case 3:
+        reason.reason = '{{swipe close}}'
+        break
+
       case 5:
         reason.reason = '{{swipe:denied (system)}}' // Access is managed by the system not the controller
         break

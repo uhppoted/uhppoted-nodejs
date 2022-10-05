@@ -15,6 +15,8 @@ const dict = new Map([
 
   // event reason
   ['swipe', 'swipe'],
+  ['swipeOpen', 'swipe open'],
+  ['swipeClose', 'swipe close'],
   ['swipeDenied', 'swipe:denied (system)'],
   ['noAccess', 'no access rights'],
   ['incorrectPassword', 'incorrect password'],

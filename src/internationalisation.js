@@ -25,6 +25,8 @@ const map = new Map([
 
   // event reason
   ['swipe', 'swipe'],
+  ['swipe open', 'swipeOpen'],
+  ['swipe close', 'swipeClose'],
   ['swipe:denied (system)', 'swipeDenied'],
   ['no access rights', 'noAccess'],
   ['incorrect password', 'incorrectPassword'],
