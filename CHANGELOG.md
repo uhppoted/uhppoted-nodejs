@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## [Unreleased]
+
+### Changed
+1. Added 'swipe open' and 'swipe close' event reasons.
+
 ## [v0.8.1] - 2022-08-01
 
 ### Changed
