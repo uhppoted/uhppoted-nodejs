@@ -1,25 +1,32 @@
 # CHANGELOG
 
-## [Unreleased]
+## [0.8.2](https://github.com/uhppoted/uhppoted-nodejs/releases/tag/v0.8.2) - 2022-10-14
 
 ### Changed
 1. Added 'swipe open' and 'swipe close' event reasons.
 
-## [v0.8.1] - 2022-08-01
+
+## [0.8.1](https://github.com/uhppoted/uhppoted-nodejs/releases/tag/v0.8.1) - 2022-08-01
 
 ### Changed
 1. Maintenance release to update dependencies.
 
-### v0.8.0: Update dependencies
 
+## [0.8.0](https://github.com/uhppoted/uhppoted-nodejs/releases/tag/v0.8.0)
+
+### Changed
 1. Updated dependencies for security fixes.
 
-### v0.7.3: Update dependencies
 
+## [0.7.3](https://github.com/uhppoted/uhppoted-nodejs/releases/tag/v0.7.3)
+
+### Changed
 1. Updated dependencies for security fixes.
 
-### v0.7.2: Downgrade NodeJS engine requirement to 14.18.3 LTS (Fermium)
 
+## [0.7.2](https://github.com/uhppoted/uhppoted-nodejs/releases/tag/v0.7.2)
+
+### Changed
 1. Downgraded required NodeJS engine from 15.x.x to 14.18.3 LTS (Fermium)
    (cf. https://github.com/uhppoted/uhppoted-nodejs/issues/5)
 
@@ -34,17 +41,19 @@
    exist.
 
 
-### v0.7.1: Added support for scheduled tasks
+## [0.7.1](https://github.com/uhppoted/uhppoted-nodejs/releases/tag/v0.7.1)
 
-1. New functions:
+### Changed
+1. Added support for scheduled tasks:
    - `clearTaskList`
    - `addTask`
    - `refreshTaskList`
 
 
-### v0.7.0: Added support for time profiles
+## [0.7.0](https://github.com/uhppoted/uhppoted-nodejs/releases/tag/v0.7.0) 
 
-1. Implemented:
+### Changed
+1. Added support for time profiles:
    - `getTimeProfile`
    - `setTimeProfile`
    - `clearTimeProfiles`
@@ -55,8 +64,9 @@
 5. Reorganised README to (hopefully) make it more usable
 
 
-### v0.6.13: Initial release
+## [0.6.13](https://github.com/uhppoted/uhppoted-nodejs/releases/tag/v0.6.13) 
 
+### Added
 1. Initial API implementation for interacting with the UHPPOTE Wiegand TCP/IP access control boards.
 
 

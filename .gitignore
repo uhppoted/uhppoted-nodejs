@@ -3,3 +3,4 @@
 node_modules
 jsdoc
 examples/debug.js
+*.tgz
