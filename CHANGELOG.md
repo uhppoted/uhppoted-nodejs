@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## [0.8.3](https://github.com/uhppoted/uhppoted-nodejs/releases/tag/v0.8.3) - 2022-12-16
+
+1. Maintenance release for version compatibility.
+
+
 ## [0.8.2](https://github.com/uhppoted/uhppoted-nodejs/releases/tag/v0.8.2) - 2022-10-14
 
 ### Changed

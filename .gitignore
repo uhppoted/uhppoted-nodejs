@@ -4,3 +4,4 @@ node_modules
 jsdoc
 examples/debug.js
 *.tgz
+release-notes.md
