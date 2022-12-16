@@ -44,6 +44,8 @@ release: integration-tests jsdoc
 	npm pack
 
 publish: release
+	echo "Releasing version $(VERSION)"
+	gh release create "$(VERSION)" *.tgz --draft --prerelease --title "$(VERSION)-beta" --notes-file release-notes.md
 	npm --dry-run publish
 
 debug: 
