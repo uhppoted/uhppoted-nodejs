@@ -160,6 +160,9 @@ get-event-with-unsupported-locale: build
 open-door: build
 	node examples/open-door.js $(ARGS)
 
+set-pc-control: build
+	node examples/set-pc-control.js $(ARGS)
+
 listen: build
 	node examples/listen.js $(ARGS)
 

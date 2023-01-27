@@ -75,20 +75,6 @@ module.exports = {
   },
 
   /**
-    * Decodes the response to an open-door request (function code 0x40).
-    *
-    * @param {buffer}   bytes      64 byte array
-    *
-    * @return {object}   Decoded open-door response object
-    */
-  OpenDoor: function (bytes) {
-    return {
-      deviceId: uint32(bytes, 4),
-      opened: bool(bytes, 8)
-    }
-  },
-
-  /**
     * Decodes the response to a put-card request (function code 0x50).
     *
     * @param {buffer}   bytes      64 byte array
@@ -521,6 +507,34 @@ module.exports = {
     return {
       deviceId: uint32(bytes, 4),
       index: uint32(bytes, 8)
+    }
+  },
+
+  /**
+    * Decodes the response to an open-door request (function code 0x40).
+    *
+    * @param {buffer}   bytes      64 byte array
+    *
+    * @return {object}   Decoded open-door response object
+    */
+  OpenDoor: function (bytes) {
+    return {
+      deviceId: uint32(bytes, 4),
+      opened: bool(bytes, 8)
+    }
+  },
+
+  /**
+    * Decodes the response to a set-pc-control request (function code 0x8e).
+    *
+    * @param {buffer}   buffer     64 byte NodeJS buffer
+    *
+    * @param {object}   Decoded set-pc-control response object
+    */
+  SetPCControl: function (bytes) {
+    return {
+      deviceId: uint32(bytes, 4),
+      ok: bool(bytes, 8)
     }
   }
 }

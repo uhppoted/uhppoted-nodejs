@@ -596,6 +596,33 @@ module.exports = {
   },
 
   /**
+   * Enables or disables remote access control. When enabled, the controller expects a remote
+   * host to listen for card swipe events and open the associated door (after verifying the card
+   * access permissions). In remote access control mode, the controller will revert to local
+   * access control if it hasn't received any communication from the host within the last 30
+   * seconds (any command is sufficient - a set-pc-control command is not required). A controller
+   * will reassert remote control mode on receipt of any message from the host if it has reverted
+   * to local access management.
+   *
+   * Remote access control mode is not volatile and persists across controller restarts.
+   *
+   * @param {object} ctx - Context with configuration, locale (optional) and logger (optional).
+   * @param {uint}   deviceId - Controller serial number
+   * @param {bool}   enable - Enable/disable remote access control
+   *
+   * @example
+   * uhppoted.setPCControl(ctx, 405419896, true)
+   *  .then(response => { console.log(response) })
+   *  .catch(err => { console.log(`${err.message}`)
+   */
+  setPCControl: function (ctx, deviceId, enable) {
+    return validate({ deviceId: deviceId }, ctx.locale)
+      .then(ok => initialise(ctx))
+      .then(context => set(context, deviceId, opcodes.SetPCControl, { enable: enable }))
+      .then(response => translate(response, ctx.locale))
+  },
+
+  /**
    * Establishes a listening connection for controller events. Returns a listener object with
    * a close function that can be invoked when the listener should be shut down.
    *

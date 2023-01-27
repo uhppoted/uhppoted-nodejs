@@ -46,6 +46,7 @@ npm install uhppoted
 - [`getEventIndex`](#geteventindex) retrieves the event index user value from a controller
 - [`setEventIndex`](#seteventindex) sets the event index user value on a controller
 - [`openDoor`](#opendoor) remotely unlocks a door
+- [`setPCControl`](#setpccontrol) enables or disables remote access management
 - [`listen`](#listen) establishes a listening connection for controller events
 
 Each API call takes a `context` _object_ as the first argument, followed by the function specific parameters and returns a `Promise` that resolves to a response.
@@ -690,6 +691,33 @@ Returns an `opened` result object, e.g.
 ```
 { deviceId: 405419896, opened: true }
 ```
+
+#### `setPCControl`
+
+Enables or disables remote host access control.
+
+When remote host access control is enabled, the controller defers access control decisions to
+the host - the remote host is expected to listen for card swipe events and open the associated
+door after verifying the card access permissions. 
+
+The controller will revert to local access control if it hasn't received any communication from
+the host within the last 30 seconds (any command is sufficient - a `setPCControl` command is not
+required), but will reassert remote access control mode on receipt of any subsequent message from
+the host.
+
+Remote access control mode is not volatile and persists across controller restarts.
+
+```
+uhppoted.setPCControl (ctx, deviceId, enable)
+```
+- `deviceId`: serial number of controller
+- `enable`: enables remote host access control if _true_
+
+Returns an `ok` result object, e.g.:
+```
+{ deviceId: 405419896, ok: true }
+```
+
 
 #### `listen`
 

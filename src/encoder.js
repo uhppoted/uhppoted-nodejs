@@ -651,6 +651,31 @@ module.exports = {
     request.writeUInt8(door, 8)
 
     return request
+  },
+
+  /**
+    * Encode a set-pc-control request.
+    *
+    * @param {number} deviceId  Controller serial number
+    * @param {number} enable    true/false
+    *
+    * @return {buffer} 64 byte NodeJS buffer with encoded set-pc-control request.
+    */
+  SetPCControl: function (deviceId, { enable } = {}) {
+    const request = Buffer.alloc(64)
+
+    request.writeUInt8(0x17, 0)
+    request.writeUInt8(0xa0, 1)
+    request.writeUInt32LE(deviceId, 4)
+    request.writeUInt32LE(0x55aaaa55, 8)
+
+    if (enable) {
+      request.writeUInt8(1, 12)
+    } else {
+      request.writeUInt8(0, 12)
+    }
+
+    return request
   }
 }
 

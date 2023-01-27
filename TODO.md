@@ -1,8 +1,9 @@
 # TODO
 
-### IN PROGRESS
+- [x] `set-pc-control`
 
 ## TODO
+
 1. Remote control
 2. Device by name
 

@@ -5,9 +5,11 @@ module.exports = {
   SetListener: 0x90,
   GetTime: 0x32,
   SetTime: 0x30,
+  OpenDoor: 0x40,
   GetDoorControl: 0x82,
   SetDoorControl: 0x80,
   RecordSpecialEvents: 0x8e,
+  SetPCControl: 0xa0,
 
   GetStatus: 0x20,
   GetCards: 0x58,
@@ -28,8 +30,6 @@ module.exports = {
   GetEventIndex: 0xb4,
   SetEventIndex: 0xb2,
   GetEvent: 0xb0,
-
-  OpenDoor: 0x40,
 
   NormallyOpen: 0x01,
   NormallyClosed: 0x02,

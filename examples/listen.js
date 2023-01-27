@@ -18,7 +18,8 @@ const onError = function (err) {
 const listener = uhppoted.listen(ctx, onEvent, onError)
 
 if (listener) {
-  console.log("\n  Type 'exit' to stop event listener...\n")
+  console.log('\n  *** CTRL-C to exit ...\n')
+
   process
     .openStdin()
     .addListener('listener', function (d) {

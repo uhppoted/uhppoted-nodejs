@@ -35,6 +35,7 @@ module.exports = {
   setEventIndex: require('./src/uhppoted.js').setEventIndex,
 
   openDoor: require('./src/uhppoted.js').openDoor,
+  setPCControl: require('./src/uhppoted.js').setPCControl,
 
   listen: require('./src/uhppoted.js').listen
 }
