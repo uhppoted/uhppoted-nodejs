@@ -55,5 +55,35 @@ describe('put-card', function () {
           expect(err.message).to.equal('invalid time profile for door 3 (255)')
         })
     })
+
+    it('should fail with invalid PIN', function () {
+      return uhppoted.putCard({}, 405419896, 8112345, '2021-01-01', '2021-12-31', { 1: true, 2: false, 3: true, 4: true }, 1000000)
+        .then(() => {
+          assert.fail()
+        })
+        .catch((err) => {
+          expect(err.message).to.equal('invalid card keypad PIN 1000000')
+        })
+    })
+
+    it('should fail with invalid PIN', function () {
+      return uhppoted.putCard({}, 405419896, 8112345, '2021-01-01', '2021-12-31', { 1: true, 2: false, 3: true, 4: true }, -1)
+        .then(() => {
+          assert.fail()
+        })
+        .catch((err) => {
+          expect(err.message).to.equal('invalid card keypad PIN -1')
+        })
+    })
+
+    it('should fail with invalid PIN', function () {
+      return uhppoted.putCard({}, 405419896, 8112345, '2021-01-01', '2021-12-31', { 1: true, 2: false, 3: true, 4: true }, 'qwerty')
+        .then(() => {
+          assert.fail()
+        })
+        .catch((err) => {
+          expect(err.message).to.equal('invalid card keypad PIN qwerty')
+        })
+    })
   })
 })

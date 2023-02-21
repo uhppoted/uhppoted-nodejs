@@ -161,7 +161,8 @@ module.exports = {
           from: yyyymmdd(bytes, 12),
           to: yyyymmdd(bytes, 16)
         },
-        doors: doors
+        doors: doors,
+        PIN: uint24(bytes, 24)
       }
     }
   },
@@ -197,7 +198,8 @@ module.exports = {
           from: yyyymmdd(bytes, 12),
           to: yyyymmdd(bytes, 16)
         },
-        doors: doors
+        doors: doors,
+        PIN: uint24(bytes, 24)
       }
     }
   },
@@ -576,6 +578,26 @@ function uint8 (bytes, offset) {
   */
 function uint16 (bytes, offset) {
   return bytes.getUint16(offset, true)
+}
+
+/**
+  * Internal utility function to extract a uint24 from a response message.
+  *
+  * @param {array}  buffer  64 byte DataView
+  * @param {number} offset  Index of uint24 in buffer
+  *
+  * @param {uint32}  Litte-endian uint24 at offset in buffer.
+  */
+function uint24 (bytes, offset) {
+  let v = 0
+
+  v |= bytes.getUint8(offset + 2, true) & 0x00ff
+  v <<= 8
+  v |= bytes.getUint8(offset + 1, true) & 0x00ff
+  v <<= 8
+  v |= bytes.getUint8(offset, true) & 0x00ff
+
+  return v
 }
 
 /**

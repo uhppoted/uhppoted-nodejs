@@ -139,6 +139,51 @@ describe('internationalisation', function () {
     })
   })
 
+  // invalid card PIN
+  describe('#translate(...)', function () {
+    it('default translation should translate invalid card PIN error to en-US', function () {
+      const expected = { invalidCardPIN: 'invalid card keypad PIN 1000000' }
+      const object = { invalidCardPIN: '{{invalid card keypad PIN}} 1000000' }
+
+      const translated = translate(object)
+
+      expect(translated).to.deep.equal(expected)
+    })
+  })
+
+  describe('#translate(...)', function () {
+    it('en-US locale should translate invalid card PIN error to en-US', function () {
+      const expected = { invalidCardPIN: 'invalid card keypad PIN 1000000' }
+      const object = { invalidCardPIN: '{{invalid card keypad PIN}} 1000000' }
+
+      const translated = translate(object, 'en-US')
+
+      expect(translated).to.deep.equal(expected)
+    })
+  })
+
+  describe('#translate(...)', function () {
+    it('klingon locale should translate invalid card PIN error to klingon', function () {
+      const expected = { invalidCardPIN: 'porgh vengHom 1000000' }
+      const object = { invalidCardPIN: '{{invalid card keypad PIN}} 1000000' }
+
+      const translated = translate(object, 'klingon')
+
+      expect(translated).to.deep.equal(expected)
+    })
+  })
+
+  describe('#translate(...)', function () {
+    it('unsupported locale should translate invalid card PIN error to en-US', function () {
+      const expected = { invalidCardPIN: 'invalid card keypad PIN 1000000' }
+      const object = { invalidCardPIN: '{{invalid card keypad PIN}} 1000000' }
+
+      const translated = translate(object, 'ahdlfhauawroiuawbalsfjhbasuyeabdhbffy')
+
+      expect(translated).to.deep.equal(expected)
+    })
+  })
+
   // unknown
   it('unrecognised token should translate as token content', function () {
     const expected = { swipe: '** qwerty uiop **' }

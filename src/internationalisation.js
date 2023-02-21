@@ -69,6 +69,7 @@ const map = new Map([
   ['invalid card number', 'invalidCardNumber'],
   ['invalid card index', 'invalidCardIndex'],
   ['invalid door', 'invalidDoor'],
+  ['invalid card keypad PIN', 'invalidCardPIN'],
   ['invalid event index', 'invalidEventIndex'],
   ['invalid protocol function code', 'invalidFunctionCode'],
   ['invalid door control', 'invalidDoorControl'],

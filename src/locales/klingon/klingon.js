@@ -56,6 +56,7 @@ const dict = new Map([
   // errors
   ['invalidDeviceID', 'jItoj'],
   ['invalidCardNumber', "puqwI'"],
+  ['invalidCardPIN', 'porgh vengHom'],
   ['invalidCardIndex', "pe'vIl"],
   ['invalidDoor', 'pIv'],
   ['invalidEventIndex', 'jot'],

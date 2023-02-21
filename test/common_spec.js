@@ -160,6 +160,65 @@ describe('validate', function () {
     })
   })
 
+  describe('#validate({PIN...})', function () {
+    it('should succeed with valid card keypad PIN (7531)', function () {
+      return validate({ deviceId: 405419896, cardNumber: 10058399, PIN: 7531 })
+        .then(() => {
+        })
+        .catch((err) => {
+          assert.fail(err.message)
+        })
+    })
+
+    it('should succeed with valid card keypad PIN (0)', function () {
+      return validate({ deviceId: 405419896, cardNumber: 10058399, PIN: 0 })
+        .then(() => {
+        })
+        .catch((err) => {
+          assert.fail(err.message)
+        })
+    })
+
+    it('should succeed with valid card keypad PIN (999999)', function () {
+      return validate({ deviceId: 405419896, cardNumber: 10058399, PIN: 999999 })
+        .then(() => {
+        })
+        .catch((err) => {
+          assert.fail(err.message)
+        })
+    })
+
+    it('should fail with invalid card keypad PIN (1000000)', function () {
+      return validate({ deviceId: 405419896, cardNumber: 10058399, PIN: 1000000 })
+        .then(() => {
+          assert.fail()
+        })
+        .catch((err) => {
+          expect(err.message).to.equal('invalid card keypad PIN 1000000')
+        })
+    })
+
+    it('should fail with invalid card keypad PIN (-1)', function () {
+      return validate({ deviceId: 405419896, cardNumber: 10058399, PIN: -1 })
+        .then(() => {
+          assert.fail()
+        })
+        .catch((err) => {
+          expect(err.message).to.equal('invalid card keypad PIN -1')
+        })
+    })
+
+    it('should fail with invalid card keypad PIN (qwerty)', function () {
+      return validate({ deviceId: 405419896, cardNumber: 10058399, PIN: 'qwerty' })
+        .then(() => {
+          assert.fail()
+        })
+        .catch((err) => {
+          expect(err.message).to.equal('invalid card keypad PIN qwerty')
+        })
+    })
+  })
+
   describe('#validate({cardIndex...})', function () {
     it('should fail with invalid card index (0)', function () {
       return validate({ deviceId: 405419896, cardNumber: 8165538, cardIndex: 0 })

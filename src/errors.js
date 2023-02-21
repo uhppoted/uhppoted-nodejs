@@ -12,6 +12,10 @@ function InvalidCardIndex (index, locale) {
   return new Error(translate(`{{invalid card index}} '${index}'`, locale))
 }
 
+function InvalidCardPIN (pin, locale) {
+  return new Error(translate(`{{invalid card keypad PIN}} ${pin}`, locale))
+}
+
 function InvalidProfileID (profileId, locale) {
   return new Error(translate(`{{invalid time profile ID}} '${profileId}'`, locale))
 }
@@ -73,6 +77,7 @@ module.exports = {
   InvalidDoor: InvalidDoor,
   InvalidCardNumber: InvalidCardNumber,
   InvalidCardIndex: InvalidCardIndex,
+  InvalidCardPIN: InvalidCardPIN,
   InvalidProfileID: InvalidProfileID,
   InvalidEventIndex: InvalidEventIndex,
 

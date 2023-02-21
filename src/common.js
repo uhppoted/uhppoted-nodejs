@@ -90,6 +90,12 @@ function validate (args, locale) {
             }
           })
           break
+
+        case 'PIN':
+          if (!isValidPIN(v)) {
+            reject(errors.InvalidCardPIN(v, locale))
+          }
+          break
       }
     })
 
@@ -106,7 +112,7 @@ function isValidCardNumber (card) {
 }
 
 function isValidCardIndex (index) {
-  return inRange(index, 0, 4294967295)
+  return inRange(index, 1, 4294967295)
 }
 
 function isValidProfileId (profileId) {
@@ -117,8 +123,12 @@ function isValidDoor (door) {
   return inRange(door, 1, 4)
 }
 
+function isValidPIN (pin) {
+  return inRange(pin, 0, 999999)
+}
+
 function isValidEventIndex (index) {
-  return inRange(index, 0, 4294967295)
+  return inRange(index, 1, 4294967295)
 }
 
 function isValidPermission (door, permission) {
@@ -159,11 +169,9 @@ function isValidTaskType (task) {
 }
 
 function inRange (value, min, max) {
-  if (!value || Number.isNaN(value)) {
-    return false
-  }
+  const v = Number.parseInt(value)
 
-  if (value < min || value > max) {
+  if (Number.isNaN(v) || v < min || v > max) {
     return false
   }
 
