@@ -169,7 +169,7 @@ function isValidTaskType (task) {
 }
 
 function inRange (value, min, max) {
-  const v = Number.parseInt(value)
+  const v = Number.parseInt(`${value}`)
 
   if (Number.isNaN(v) || v < min || v > max) {
     return false
