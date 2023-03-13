@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## [Unreleased]
+## [0.8.4](https://github.com/uhppoted/uhppoted-nodejs/releases/tag/v0.8.4) - 2023-03-15
 
 ### Added
 1. `set-pc-control` command to enabled/disable remote access management.
