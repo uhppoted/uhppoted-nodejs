@@ -9,7 +9,6 @@ module.exports = {
   GetDoorControl: 0x82,
   SetDoorControl: 0x80,
   RecordSpecialEvents: 0x8e,
-  SetPCControl: 0xa0,
 
   GetStatus: 0x20,
   GetCards: 0x58,
@@ -23,6 +22,8 @@ module.exports = {
   SetTimeProfile: 0x88,
   ClearTimeProfiles: 0x8a,
 
+  SetPCControl: 0xa0,
+  SetInterlock: 0xa2,
   ClearTaskList: 0xa6,
   AddTask: 0xa8,
   RefreshTaskList: 0xac,

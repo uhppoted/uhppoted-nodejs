@@ -527,13 +527,27 @@ module.exports = {
   },
 
   /**
-    * Decodes the response to a set-pc-control request (function code 0x8e).
+    * Decodes the response to a set-pc-control request (function code 0xa0).
     *
     * @param {buffer}   buffer     64 byte NodeJS buffer
     *
     * @param {object}   Decoded set-pc-control response object
     */
   SetPCControl: function (bytes) {
+    return {
+      deviceId: uint32(bytes, 4),
+      ok: bool(bytes, 8)
+    }
+  },
+
+  /**
+    * Decodes the response to a set-interlock request (function code 0xa2).
+    *
+    * @param {buffer}   buffer     64 byte NodeJS buffer
+    *
+    * @param {object}   Decoded set-interlock response object
+    */
+  SetInterlock: function (bytes) {
     return {
       deviceId: uint32(bytes, 4),
       ok: bool(bytes, 8)

@@ -624,6 +624,31 @@ module.exports = {
   },
 
   /**
+   * Sets the controller door interlock mode:
+   * - 0: no interlock
+   * - 1: doors 1 & 2 interlocked
+   * - 2: doors 3 & 4 interlocked
+   * - 3: doors 1 & 2 and doors 3 & 4 interlocked
+   * - 4: doors 1 & 2 & 3 interlocked
+   * - 8: doors 1 & 2 & 3 & 4 interlocked
+   *
+   * @param {object} ctx - Context with configuration, locale (optional) and logger (optional).
+   * @param {uint}   deviceId - Controller serial number
+   * @param {uint}   interlock - Interlock mode (0,1,2,3,4 or 8)
+   *
+   * @example
+   * uhppoted.setInterlock(ctx, 405419896, 3)
+   *  .then(response => { console.log(response) })
+   *  .catch(err => { console.log(`${err.message}`)
+   */
+  setInterlock: function (ctx, deviceId, interlock) {
+    return validate({ deviceId: deviceId }, ctx.locale)
+      .then(ok => initialise(ctx))
+      .then(context => set(context, deviceId, opcodes.SetInterlock, { interlock: interlock }))
+      .then(response => translate(response, ctx.locale))
+  },
+
+  /**
    * Establishes a listening connection for controller events. Returns a listener object with
    * a close function that can be invoked when the listener should be shut down.
    *

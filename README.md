@@ -47,6 +47,7 @@ npm install uhppoted
 - [`setEventIndex`](#seteventindex) sets the event index user value on a controller
 - [`openDoor`](#opendoor) remotely unlocks a door
 - [`setPCControl`](#setpccontrol) enables or disables remote access management
+- [`setInterlock`](#setinterlock) sets controller door interlock mode
 - [`listen`](#listen) establishes a listening connection for controller events
 
 Each API call takes a `context` _object_ as the first argument, followed by the function specific parameters and returns a `Promise` that resolves to a response.
@@ -712,6 +713,35 @@ uhppoted.setPCControl (ctx, deviceId, enable)
 ```
 - `deviceId`: serial number of controller
 - `enable`: enables remote host access control if _true_
+
+Returns an `ok` result object, e.g.:
+```
+{ deviceId: 405419896, ok: true }
+```
+
+
+#### `setInterlock`
+
+Sets the controller door interlock mode.
+
+The door interlock prevents a door from opening unless the interlock condition is valid for that door. The
+controllers support the following modes:
+
+| Mode        | Description                                                                                                      |
+|-------------|------------------------------------------------------------------------------------------------------------------|
+| 0 (none)    | Any door can opened subject to access restrictions                                                               |
+| 1 (1&2)     | Door 1 can be opened if door 2 is closed and vice versa                                                          |
+| 2 (3&4)     | Door 3 can be opened if door 4 is closed and vice versa                                                          |
+| 3 (1&2,3&4) | Door 1 can be opened if door 2 is closed and vice versa, Door 3 can be opened if door 4 is closed and vice versa |
+| 4 (1&2&3)   | Door 1 can be opened if 2 and 3 are both closed, door 2 if 1 and 3 are closed and door 3 if 1 and 2 are closed   |
+| 8 (1&2&3&4) | A door can only be opened if all the other doors are closed                                                      |
+
+
+```
+uhppoted.setInterlock (ctx, deviceId, 3)
+```
+- `deviceId`:  serial number of controller
+- `interlock`: 0,1,2,3,4 or 8
 
 Returns an `ok` result object, e.g.:
 ```

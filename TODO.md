@@ -1,11 +1,17 @@
 # TODO
 
-- [x] `set-pc-control`
+- [x] `set-interlock`
+      - [x] function
+      - [x] tests
+      - [x] integration test
+      - [x] example
+      - [x] CHANGELOG
+      - [x] README
+      - [x] doc
 
 ## TODO
 
-1. Remote control
-2. Device by name
+1. Device by name
 
 ## NOTES
 

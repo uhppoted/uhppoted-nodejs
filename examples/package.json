@@ -26,6 +26,7 @@
     "get-events": "get-events.js",
     "get-event": "get-event.js",
     "open-door": "node open-door.js",
+    "set-interlock": "node set-interlock.js",
     "listen": "node listen.js"
   },
   "dependencies": {

@@ -163,6 +163,9 @@ open-door: build
 set-pc-control: build
 	node examples/set-pc-control.js $(ARGS)
 
+set-interlock: build
+	node examples/set-interlock.js $(ARGS)
+
 listen: build
 	node examples/listen.js $(ARGS)
 
@@ -194,6 +197,7 @@ run-all: build
 	@node examples/get-overwritten-event.js $(ARGS)
 	@node examples/get-event-with-locale.js $(ARGS)
 	@node examples/get-event-with-unsupported-locale.js $(ARGS)
+	@node examples/set-interlock.js $(ARGS)
 	@node examples/error-handling.js $(ARGS)
 	@node examples/error-handling-with-locale.js $(ARGS)
 
