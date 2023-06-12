@@ -1,9 +1,10 @@
 # CHANGELOG
 
-## Unreleased
+## [0.8.5](https://github.com/uhppoted/uhppoted-nodejs/releases/tag/v0.8.5) - 2023-06-14
 
 ### Added
 1. `set-interlock` command to set controller door interlock mode.
+
 
 ## [0.8.4](https://github.com/uhppoted/uhppoted-nodejs/releases/tag/v0.8.4) - 2023-03-17
 
