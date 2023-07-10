@@ -552,6 +552,20 @@ module.exports = {
       deviceId: uint32(bytes, 4),
       ok: bool(bytes, 8)
     }
+  },
+
+  /**
+    * Decodes the response to an activate-keypads request (function code 0xa4).
+    *
+    * @param {buffer}   buffer     64 byte NodeJS buffer
+    *
+    * @param {object}   Decoded acivate-keypads response object
+    */
+  ActivateKeypads: function (bytes) {
+    return {
+      deviceId: uint32(bytes, 4),
+      ok: bool(bytes, 8)
+    }
   }
 }
 

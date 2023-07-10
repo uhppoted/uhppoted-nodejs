@@ -24,6 +24,7 @@ module.exports = {
 
   SetPCControl: 0xa0,
   SetInterlock: 0xa2,
+  ActivateKeypads: 0xa4,
   ClearTaskList: 0xa6,
   AddTask: 0xa8,
   RefreshTaskList: 0xac,

@@ -608,7 +608,7 @@ module.exports = {
    * Remote access control mode is not volatile and persists across controller restarts.
    *
    * @param {object} ctx - Context with configuration, locale (optional) and logger (optional).
-   * @param {uint}   deviceId - Controller serial number
+   * @param {uint}   controller - Controller serial number
    * @param {bool}   enable - Enable/disable remote access control
    *
    * @example
@@ -616,10 +616,10 @@ module.exports = {
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  setPCControl: function (ctx, deviceId, enable) {
-    return validate({ deviceId: deviceId }, ctx.locale)
+  setPCControl: function (ctx, controller, enable) {
+    return validate({ deviceId: controller }, ctx.locale)
       .then(ok => initialise(ctx))
-      .then(context => set(context, deviceId, opcodes.SetPCControl, { enable: enable }))
+      .then(context => set(context, controller, opcodes.SetPCControl, { enable: enable }))
       .then(response => translate(response, ctx.locale))
   },
 
@@ -641,10 +641,46 @@ module.exports = {
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  setInterlock: function (ctx, deviceId, interlock) {
-    return validate({ deviceId: deviceId }, ctx.locale)
+  setInterlock: function (ctx, controller, interlock) {
+    return validate({ deviceId: controller }, ctx.locale)
       .then(ok => initialise(ctx))
-      .then(context => set(context, deviceId, opcodes.SetInterlock, { interlock: interlock }))
+      .then(context => set(context, controller, opcodes.SetInterlock, { interlock: interlock }))
+      .then(response => translate(response, ctx.locale))
+  },
+
+  /**
+   * Activates and deactivates a controller's reader access keypads. The controller does not
+   * provide the functionality to activate/deactivate keypads individually so any keypads not
+   * explicitly listed as activated will be deactivated.
+   *
+   * Remote access control mode is not volatile and persists across controller restarts.
+   *
+   * @param {object} ctx - Context with configuration, locale (optional) and logger (optional).
+   * @param {uint}   controller - Controller serial number
+   * @param {object} keypads - Object with activated/deactivated keypads:
+   *                           {
+   *                              1: true/false,
+   *                              2: true/false,
+   *                              3: true/false,
+   *                              4: true/false
+   *                           }
+   *
+   * @example
+   * uhppoted.activateKeypads(ctx, 405419896, {1:true, 2:true, 3:false, 4: true})
+   *  .then(response => { console.log(response) })
+   *  .catch(err => { console.log(`${err.message}`)
+   */
+  activateKeypads: function (ctx, controller, keypads) {
+    return validate({ deviceId: controller }, ctx.locale)
+      .then(ok => initialise(ctx))
+      .then(context => set(context, controller, opcodes.ActivateKeypads, {
+        keypads: {
+          1: !!keypads['1'],
+          2: !!keypads['2'],
+          3: !!keypads['3'],
+          4: !!keypads['4']
+        }
+      }))
       .then(response => translate(response, ctx.locale))
   },
 

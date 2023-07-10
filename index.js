@@ -37,6 +37,7 @@ module.exports = {
   openDoor: require('./src/uhppoted.js').openDoor,
   setPCControl: require('./src/uhppoted.js').setPCControl,
   setInterlock: require('./src/uhppoted.js').setInterlock,
+  activateKeypads: require('./src/uhppoted.js').activateKeypads,
 
   listen: require('./src/uhppoted.js').listen
 }

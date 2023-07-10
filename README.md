@@ -48,6 +48,7 @@ npm install uhppoted
 - [`openDoor`](#opendoor) remotely unlocks a door
 - [`setPCControl`](#setpccontrol) enables or disables remote access management
 - [`setInterlock`](#setinterlock) sets controller door interlock mode
+- [`activateKeypads`](#activatekeypads) activates and deactivates controller reader access keypadss
 - [`listen`](#listen) establishes a listening connection for controller events
 
 Each API call takes a `context` _object_ as the first argument, followed by the function specific parameters and returns a `Promise` that resolves to a response.
@@ -742,6 +743,29 @@ uhppoted.setInterlock (ctx, deviceId, 3)
 ```
 - `deviceId`:  serial number of controller
 - `interlock`: 0,1,2,3,4 or 8
+
+Returns an `ok` result object, e.g.:
+```
+{ deviceId: 405419896, ok: true }
+```
+
+
+#### `activateKeypads`
+
+Activates and deactivates controller reader access keypads. The controller does not provide the functionality
+to activate or deactivate keypads individually so any keypads not explicitly listed as _activated_ will be
+deactivated.
+
+```
+uhppoted.activateKeypads (ctx, deviceId, keypads)
+```
+- `deviceId`:  serial number of controller
+- `keypads`: {
+                1: true/false,
+                2: true/false,
+                3: true/false,
+                4: true/false
+             }
 
 Returns an `ok` result object, e.g.:
 ```

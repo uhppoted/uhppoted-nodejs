@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+### Added
+1. `activate-keypads` command to activate/deactivate controller reader access keypads.
+
 
 ## [0.8.5](https://github.com/uhppoted/uhppoted-nodejs/releases/tag/v0.8.5) - 2023-06-13
 

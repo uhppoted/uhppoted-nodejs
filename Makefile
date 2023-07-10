@@ -166,6 +166,9 @@ set-pc-control: build
 set-interlock: build
 	node examples/set-interlock.js $(ARGS)
 
+activate-keypads: build
+	node examples/activate-keypads.js $(ARGS)
+
 listen: build
 	node examples/listen.js $(ARGS)
 
@@ -198,6 +201,7 @@ run-all: build
 	@node examples/get-event-with-locale.js $(ARGS)
 	@node examples/get-event-with-unsupported-locale.js $(ARGS)
 	@node examples/set-interlock.js $(ARGS)
+	@node examples/activate-keypads.js $(ARGS)
 	@node examples/error-handling.js $(ARGS)
 	@node examples/error-handling-with-locale.js $(ARGS)
 
