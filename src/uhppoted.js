@@ -45,7 +45,7 @@ module.exports = {
    *  .catch(err => { console.log(`${err.message}`)
    */
   getDevice: function (ctx, deviceId) {
-    return validate({ deviceId: deviceId }, ctx.locale)
+    return validate({ deviceId }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => get(context, deviceId, opcodes.GetDevice, {}))
       .then(response => translate(response, ctx.locale))
@@ -66,9 +66,9 @@ module.exports = {
    *  .catch(err => { console.log(`${err.message}`)
    */
   setIP: function (ctx, deviceId, address, netmask, gateway) {
-    return validate({ deviceId: deviceId }, ctx.locale)
+    return validate({ deviceId }, ctx.locale)
       .then(ok => initialise(ctx))
-      .then(context => send(context, deviceId, opcodes.SetIP, { address: address, netmask: netmask, gateway: gateway }))
+      .then(context => send(context, deviceId, opcodes.SetIP, { address, netmask, gateway }))
       .then(response => translate(response, ctx.locale))
   },
 
@@ -84,7 +84,7 @@ module.exports = {
    *  .catch(err => { console.log(`${err.message}`)
    */
   getListener: function (ctx, deviceId) {
-    return validate({ deviceId: deviceId }, ctx.locale)
+    return validate({ deviceId }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => get(context, deviceId, opcodes.GetListener, {}))
       .then(response => translate(response, ctx.locale))
@@ -104,9 +104,9 @@ module.exports = {
    *  .catch(err => { console.log(`${err.message}`)
    */
   setListener: function (ctx, deviceId, address, port) {
-    return validate({ deviceId: deviceId }, ctx.locale)
+    return validate({ deviceId }, ctx.locale)
       .then(ok => initialise(ctx))
-      .then(context => set(context, deviceId, opcodes.SetListener, { address: address, port: port }))
+      .then(context => set(context, deviceId, opcodes.SetListener, { address, port }))
       .then(response => translate(response, ctx.locale))
   },
 
@@ -122,7 +122,7 @@ module.exports = {
    *  .catch(err => { console.log(`${err.message}`)
    */
   getTime: function (ctx, deviceId) {
-    return validate({ deviceId: deviceId }, ctx.locale)
+    return validate({ deviceId }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => get(context, deviceId, opcodes.GetTime, {}))
       .then(response => translate(response, ctx.locale))
@@ -141,7 +141,7 @@ module.exports = {
    *  .catch(err => { console.log(`${err.message}`)
    */
   setTime: function (ctx, deviceId, datetime) {
-    return validate({ deviceId: deviceId }, ctx.locale)
+    return validate({ deviceId }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => set(context, deviceId, opcodes.SetTime, { datetime }))
       .then(response => translate(response, ctx.locale))
@@ -160,9 +160,9 @@ module.exports = {
    *  .catch(err => { console.log(`${err.message}`)
    */
   getDoorControl: function (ctx, deviceId, door) {
-    return validate({ deviceId: deviceId, door: door }, ctx.locale)
+    return validate({ deviceId, door }, ctx.locale)
       .then(ok => initialise(ctx))
-      .then(context => get(context, deviceId, opcodes.GetDoorControl, { door: door }))
+      .then(context => get(context, deviceId, opcodes.GetDoorControl, { door }))
       .then(response => translate(response, ctx.locale))
       .then(response => translate(response, ctx.locale))
   },
@@ -201,9 +201,9 @@ module.exports = {
         throw errors.InvalidDoorControl(mode, ctx.locale)
     }
 
-    return validate({ deviceId: deviceId, door: door }, ctx.locale)
+    return validate({ deviceId, door }, ctx.locale)
       .then(ok => initialise(ctx))
-      .then(context => set(context, deviceId, opcodes.SetDoorControl, { door: door, delay: delay, control: control }))
+      .then(context => set(context, deviceId, opcodes.SetDoorControl, { door, delay, control }))
       .then(response => translate(response, ctx.locale))
   },
 
@@ -220,9 +220,9 @@ module.exports = {
    *  .catch(err => { console.log(`${err.message}`)
    */
   recordSpecialEvents: function (ctx, deviceId, enable) {
-    return validate({ deviceId: deviceId }, ctx.locale)
+    return validate({ deviceId }, ctx.locale)
       .then(ok => initialise(ctx))
-      .then(context => set(context, deviceId, opcodes.RecordSpecialEvents, { enable: enable }))
+      .then(context => set(context, deviceId, opcodes.RecordSpecialEvents, { enable }))
       .then(response => translate(response, ctx.locale))
   },
 
@@ -238,7 +238,7 @@ module.exports = {
    *  .catch(err => { console.log(`${err.message}`)
    */
   getStatus: function (ctx, deviceId) {
-    return validate({ deviceId: deviceId }, ctx.locale)
+    return validate({ deviceId }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => get(context, deviceId, opcodes.GetStatus, {}))
       .then(response => translate(response, ctx.locale))
@@ -256,7 +256,7 @@ module.exports = {
    *  .catch(err => { console.log(`${err.message}`)
    */
   getCards: function (ctx, deviceId) {
-    return validate({ deviceId: deviceId }, ctx.locale)
+    return validate({ deviceId }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => get(context, deviceId, opcodes.GetCards, {}))
       .then(response => translate(response, ctx.locale))
@@ -275,9 +275,9 @@ module.exports = {
    *  .catch(err => { console.log(`${err.message}`)
    */
   getCard: function (ctx, deviceId, card) {
-    return validate({ deviceId: deviceId, cardNumber: card }, ctx.locale)
+    return validate({ deviceId, cardNumber: card }, ctx.locale)
       .then(ok => initialise(ctx))
-      .then(context => get(context, deviceId, opcodes.GetCardByID, { card: card }))
+      .then(context => get(context, deviceId, opcodes.GetCardByID, { card }))
       .then(response => translate(response, ctx.locale))
   },
 
@@ -294,9 +294,9 @@ module.exports = {
    *  .catch(err => { console.log(`${err.message}`)
    */
   getCardByIndex: function (ctx, deviceId, index) {
-    return validate({ deviceId: deviceId, cardIndex: index }, ctx.locale)
+    return validate({ deviceId, cardIndex: index }, ctx.locale)
       .then(ok => initialise(ctx))
-      .then(context => get(context, deviceId, opcodes.GetCardByIndex, { index: index }))
+      .then(context => get(context, deviceId, opcodes.GetCardByIndex, { index }))
       .then(response => translate(response, ctx.locale))
   },
 
@@ -318,9 +318,9 @@ module.exports = {
    *  .catch(err => { console.log(`${err.message}`)
    */
   putCard: function (ctx, deviceId, card, validFrom, validUntil, doors, PIN) {
-    return validate({ deviceId: deviceId, cardNumber: card, doors: doors }, ctx.locale)
+    return validate({ deviceId, cardNumber: card, doors }, ctx.locale)
       .then(ok => initialise(ctx))
-      .then(context => set(context, deviceId, opcodes.PutCard, { card: card, from: validFrom, to: validUntil, doors: doors, PIN }))
+      .then(context => set(context, deviceId, opcodes.PutCard, { card, from: validFrom, to: validUntil, doors, PIN }))
       .then(response => translate(response, ctx.locale))
   },
 
@@ -337,9 +337,9 @@ module.exports = {
    *  .catch(err => { console.log(`${err.message}`)
    */
   deleteCard: function (ctx, deviceId, card) {
-    return validate({ deviceId: deviceId, cardNumber: card }, ctx.locale)
+    return validate({ deviceId, cardNumber: card }, ctx.locale)
       .then(ok => initialise(ctx))
-      .then(context => set(context, deviceId, opcodes.DeleteCard, { card: card }))
+      .then(context => set(context, deviceId, opcodes.DeleteCard, { card }))
       .then(response => translate(response, ctx.locale))
   },
 
@@ -355,7 +355,7 @@ module.exports = {
    *  .catch(err => { console.log(`${err.message}`)
    */
   deleteCards: function (ctx, deviceId) {
-    return validate({ deviceId: deviceId }, ctx.locale)
+    return validate({ deviceId }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => set(context, deviceId, opcodes.DeleteCards, {}))
       .then(response => translate(response, ctx.locale))
@@ -374,9 +374,9 @@ module.exports = {
    *  .catch(err => { console.log(`${err.message}`)
    */
   getTimeProfile: function (ctx, deviceId, profileId) {
-    return validate({ deviceId: deviceId, profileId: profileId }, ctx.locale)
+    return validate({ deviceId, profileId }, ctx.locale)
       .then(ok => initialise(ctx))
-      .then(context => get(context, deviceId, opcodes.GetTimeProfile, { profileId: profileId }))
+      .then(context => get(context, deviceId, opcodes.GetTimeProfile, { profileId }))
       .then(response => translate(response, ctx.locale))
   },
 
@@ -393,9 +393,9 @@ module.exports = {
    *  .catch(err => { console.log(`${err.message}`)
    */
   setTimeProfile: function (ctx, deviceId, profile) {
-    return validate({ deviceId: deviceId, profile: profile }, ctx.locale)
+    return validate({ deviceId, profile }, ctx.locale)
       .then(ok => initialise(ctx))
-      .then(context => get(context, deviceId, opcodes.SetTimeProfile, { profile: profile }))
+      .then(context => get(context, deviceId, opcodes.SetTimeProfile, { profile }))
       .then(response => translate(response, ctx.locale))
   },
 
@@ -411,7 +411,7 @@ module.exports = {
    *  .catch(err => { console.log(`${err.message}`)
    */
   clearTimeProfiles: function (ctx, deviceId) {
-    return validate({ deviceId: deviceId }, ctx.locale)
+    return validate({ deviceId }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => get(context, deviceId, opcodes.ClearTimeProfiles, {}))
       .then(response => translate(response, ctx.locale))
@@ -429,7 +429,7 @@ module.exports = {
    *  .catch(err => { console.log(`${err.message}`)
    */
   clearTaskList: function (ctx, deviceId) {
-    return validate({ deviceId: deviceId }, ctx.locale)
+    return validate({ deviceId }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => get(context, deviceId, opcodes.ClearTaskList, {}))
       .then(response => translate(response, ctx.locale))
@@ -449,9 +449,9 @@ module.exports = {
    *  .catch(err => { console.log(`${err.message}`)
    */
   addTask: function (ctx, deviceId, task) {
-    return validate({ deviceId: deviceId, task: task }, ctx.locale)
+    return validate({ deviceId, task }, ctx.locale)
       .then(ok => initialise(ctx))
-      .then(context => get(context, deviceId, opcodes.AddTask, { task: task }))
+      .then(context => get(context, deviceId, opcodes.AddTask, { task }))
       .then(response => translate(response, ctx.locale))
   },
 
@@ -467,7 +467,7 @@ module.exports = {
    *  .catch(err => { console.log(`${err.message}`)
    */
   refreshTaskList: function (ctx, deviceId) {
-    return validate({ deviceId: deviceId }, ctx.locale)
+    return validate({ deviceId }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => get(context, deviceId, opcodes.RefreshTaskList, {}))
       .then(response => translate(response, ctx.locale))
@@ -485,16 +485,16 @@ module.exports = {
    *  .catch(err => { console.log(`${err.message}`)
    */
   getEvents: function (ctx, deviceId) {
-    const first = validate({ deviceId: deviceId }, ctx.locale)
+    const first = validate({ deviceId }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => get(context, deviceId, opcodes.GetEvent, { index: 0 }))
 
-    const last = validate({ deviceId: deviceId }, ctx.locale)
+    const last = validate({ deviceId }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => get(context, deviceId, opcodes.GetEvent, { index: 0xffffffff }))
 
     const promise = Promise.all([first, last]).then(([p, q]) => {
-      const object = { deviceId: deviceId, first: 0, last: 0 }
+      const object = { deviceId, first: 0, last: 0 }
 
       if (p && p.event) {
         object.first = p.event.index
@@ -524,9 +524,9 @@ module.exports = {
    *  .catch(err => { console.log(`${err.message}`)
    */
   getEvent: function (ctx, deviceId, index) {
-    return validate({ deviceId: deviceId, eventIndex: index }, ctx.locale)
+    return validate({ deviceId, eventIndex: index }, ctx.locale)
       .then(ok => initialise(ctx))
-      .then(context => get(context, deviceId, opcodes.GetEvent, { index: index }))
+      .then(context => get(context, deviceId, opcodes.GetEvent, { index }))
       .then(response => {
         if (response && response.event && response.event.type && response.event.type.code && response.event.type.code === 255) {
           throw errors.EventOverwritten(deviceId, index, ctx.locale)
@@ -552,7 +552,7 @@ module.exports = {
    *  .catch(err => { console.log(`${err.message}`)
    */
   getEventIndex: function (ctx, deviceId) {
-    return validate({ deviceId: deviceId }, ctx.locale)
+    return validate({ deviceId }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => get(context, deviceId, opcodes.GetEventIndex, { }))
       .then(response => translate(response, ctx.locale))
@@ -571,9 +571,9 @@ module.exports = {
    *  .catch(err => { console.log(`${err.message}`)
    */
   setEventIndex: function (ctx, deviceId, index) {
-    return validate({ deviceId: deviceId, eventIndex: index }, ctx.locale)
+    return validate({ deviceId, eventIndex: index }, ctx.locale)
       .then(ok => initialise(ctx))
-      .then(context => set(context, deviceId, opcodes.SetEventIndex, { index: index }))
+      .then(context => set(context, deviceId, opcodes.SetEventIndex, { index }))
       .then(response => translate(response, ctx.locale))
   },
 
@@ -590,9 +590,9 @@ module.exports = {
    *  .catch(err => { console.log(`${err.message}`)
    */
   openDoor: function (ctx, deviceId, door) {
-    return validate({ deviceId: deviceId, door: door }, ctx.locale)
+    return validate({ deviceId, door }, ctx.locale)
       .then(ok => initialise(ctx))
-      .then(context => set(context, deviceId, opcodes.OpenDoor, { door: door }))
+      .then(context => set(context, deviceId, opcodes.OpenDoor, { door }))
       .then(response => translate(response, ctx.locale))
   },
 
@@ -619,7 +619,7 @@ module.exports = {
   setPCControl: function (ctx, controller, enable) {
     return validate({ deviceId: controller }, ctx.locale)
       .then(ok => initialise(ctx))
-      .then(context => set(context, controller, opcodes.SetPCControl, { enable: enable }))
+      .then(context => set(context, controller, opcodes.SetPCControl, { enable }))
       .then(response => translate(response, ctx.locale))
   },
 
@@ -644,7 +644,7 @@ module.exports = {
   setInterlock: function (ctx, controller, interlock) {
     return validate({ deviceId: controller }, ctx.locale)
       .then(ok => initialise(ctx))
-      .then(context => set(context, controller, opcodes.SetInterlock, { interlock: interlock }))
+      .then(context => set(context, controller, opcodes.SetInterlock, { interlock }))
       .then(response => translate(response, ctx.locale))
   },
 

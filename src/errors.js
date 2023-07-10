@@ -73,24 +73,24 @@ function EventOverwritten (deviceId, index, locale) {
 }
 
 module.exports = {
-  InvalidDeviceID: InvalidDeviceID,
-  InvalidDoor: InvalidDoor,
-  InvalidCardNumber: InvalidCardNumber,
-  InvalidCardIndex: InvalidCardIndex,
-  InvalidCardPIN: InvalidCardPIN,
-  InvalidProfileID: InvalidProfileID,
-  InvalidEventIndex: InvalidEventIndex,
+  InvalidDeviceID,
+  InvalidDoor,
+  InvalidCardNumber,
+  InvalidCardIndex,
+  InvalidCardPIN,
+  InvalidProfileID,
+  InvalidEventIndex,
 
-  InvalidFunctionCode: InvalidFunctionCode,
-  InvalidDoorControl: InvalidDoorControl,
-  InvalidPermission: InvalidPermission,
-  InvalidTaskType: InvalidTaskType,
+  InvalidFunctionCode,
+  InvalidDoorControl,
+  InvalidPermission,
+  InvalidTaskType,
 
-  NoReply: NoReply,
-  NoReplyFromDevice: NoReplyFromDevice,
-  NoReplyToBroadcast: NoReplyToBroadcast,
-  InvalidBroadcastReply: InvalidBroadcastReply,
-  Timeout: Timeout,
-  MissingEvent: MissingEvent,
-  EventOverwritten: EventOverwritten
+  NoReply,
+  NoReplyFromDevice,
+  NoReplyToBroadcast,
+  InvalidBroadcastReply,
+  Timeout,
+  MissingEvent,
+  EventOverwritten
 }

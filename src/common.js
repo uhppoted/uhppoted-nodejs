@@ -17,7 +17,7 @@ function initialise (ctx) {
 
     resolve({
       config: cfg,
-      locale: locale,
+      locale,
       logger: ctx.logger ? ctx.logger : (m) => { log(m) }
     })
   })
@@ -179,6 +179,6 @@ function inRange (value, min, max) {
 }
 
 module.exports = {
-  initialise: initialise,
-  validate: validate
+  initialise,
+  validate
 }

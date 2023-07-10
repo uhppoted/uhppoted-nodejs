@@ -296,14 +296,14 @@ function context (device, config, logger, locale) {
   }
 
   return {
-    deviceId: deviceId,
-    timeout: timeout,
-    bind: bind,
+    deviceId,
+    timeout,
+    bind,
     addr: stringToIP(dest),
     listen: stringToIP(listen),
-    forceBroadcast: forceBroadcast,
-    locale: locale,
-    debug: debug
+    forceBroadcast,
+    locale,
+    debug
   }
 }
 
@@ -375,8 +375,8 @@ function stringToIP (addr) {
   }
 
   return {
-    address: address,
-    port: port
+    address,
+    port
   }
 }
 

@@ -107,5 +107,5 @@ function translate (object, locale) {
 }
 
 module.exports = {
-  translate: translate
+  translate
 }

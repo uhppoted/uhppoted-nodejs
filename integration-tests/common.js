@@ -81,14 +81,14 @@ function stringToIP (addr) {
   }
 
   return {
-    address: address,
-    port: port
+    address,
+    port
   }
 }
 
 module.exports = {
   context: ctx,
-  setup: setup,
-  teardown: teardown,
-  stringToIP: stringToIP
+  setup,
+  teardown,
+  stringToIP
 }

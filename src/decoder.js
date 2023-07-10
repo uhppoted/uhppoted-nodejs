@@ -161,7 +161,7 @@ module.exports = {
           from: yyyymmdd(bytes, 12),
           to: yyyymmdd(bytes, 16)
         },
-        doors: doors,
+        doors,
         PIN: uint24(bytes, 24)
       }
     }
@@ -198,7 +198,7 @@ module.exports = {
           from: yyyymmdd(bytes, 12),
           to: yyyymmdd(bytes, 16)
         },
-        doors: doors,
+        doors,
         PIN: uint24(bytes, 24)
       }
     }
@@ -336,7 +336,7 @@ module.exports = {
         const end = HHmm(bytes, offset + 2)
 
         if (start !== '00:00' || end !== '00:00') {
-          segments.push({ start: start, end: end })
+          segments.push({ start, end })
         }
 
         offset = offset + 4
@@ -350,8 +350,8 @@ module.exports = {
           from: yyyymmdd(bytes, 9),
           to: yyyymmdd(bytes, 13)
         },
-        weekdays: weekdays,
-        segments: segments
+        weekdays,
+        segments
       }
 
       if (linked !== 0) {
@@ -361,7 +361,7 @@ module.exports = {
 
     return {
       deviceId: uint32(bytes, 4),
-      profile: profile
+      profile
     }
   },
 

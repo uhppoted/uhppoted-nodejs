@@ -74,6 +74,6 @@ function addDevice (config, deviceId, address, forceBroadcast) {
 }
 
 module.exports = {
-  Config: Config,
-  addDevice: addDevice
+  Config,
+  addDevice
 }
