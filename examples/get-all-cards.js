@@ -1,7 +1,7 @@
 const uhppoted = require('uhppoted')
 const ctx = require('./common.js')
 const deviceID = 405419896
-const MAX = 100
+const MAX = 20000
 
 ctx.config.debug = false
 
