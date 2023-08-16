@@ -385,9 +385,10 @@ Returns the card record for the card number, e.g.:
 {
   deviceId: 405419896,
   card: {
-    number: 8165538,
-    valid: { from: '2021-01-01', to: '2021-12-31' },
+    number: 10058400,
+    valid: { from: '2023-01-01', to: '2023-12-31' },
     doors: { '1': true, '2': false, '3': false, '4': true }
+    PIN: 0
   }
 }
 ```
@@ -407,12 +408,20 @@ Returns the card record at the index, e.g.:
 {
   deviceId: 405419896,
   card: {
-    number: 8165539,
-    valid: { from: '2021-01-01', to: '2021-12-31' },
-    doors: { '1': false, '2': false, '3': false, '4': false }
+    number: 10058400,
+    valid: { from: '2023-01-01', to: '2023-12-31' },
+    doors: { '1': false, '2': false, '3': false, '4': false },
+    PIN: 0
   }
 }
 ```
+
+_Notes:_
+1. A card number of 0 is returned if the card at the index does not exist.
+2. A card number of 0xffffffff (4294967295) is returned if the card at the index has been deleted.
+   (e.g. [see examples/get-card-by-index.js](https://github.com/uhppoted/uhppoted-nodejs/blob/main/examples/get-card-by-index.js))
+
+
 #### `putCard`
 
 Adds or updates a single card record on a controller.

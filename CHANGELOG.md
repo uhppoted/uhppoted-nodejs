@@ -5,6 +5,10 @@
 ### Added
 1. `activate-keypads` command to activate/deactivate controller reader access keypads.
 
+### Updated
+1. Added a note to the README for the card numbers returned by `get-card-by-index` for 
+   cards that do not exist or cards that were deleted.
+
 
 ## [0.8.5](https://github.com/uhppoted/uhppoted-nodejs/releases/tag/v0.8.5) - 2023-06-13
 
