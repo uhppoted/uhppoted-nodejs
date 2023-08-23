@@ -111,6 +111,9 @@ get-card-by-index: build
 get-all-cards: build
 	node examples/get-all-cards.js $(ARGS)
 
+get-all-cards-paged: build
+	node examples/get-all-cards-paged.js $(ARGS)
+
 put-card: build
 	node examples/put-card.js $(ARGS)
 

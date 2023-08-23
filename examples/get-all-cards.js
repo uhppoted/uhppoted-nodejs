@@ -12,12 +12,12 @@ function getCards () {
     })
 }
 
-const getCard = (index) => new Promise(resolve => {
-  uhppoted.getCardByIndex(ctx, deviceID, index)
+function getCard (index) {
+  return uhppoted.getCardByIndex(ctx, deviceID, index)
     .then((response) => {
-      resolve(response.card)
+      return response.card
     })
-})
+}
 
 function getAllCards () {
   (async function loop () {

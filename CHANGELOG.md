@@ -9,6 +9,7 @@
 1. Added a note to the README for the card numbers returned by `get-card-by-index` for 
    cards that do not exist or cards that were deleted.
 2. Added get-all-cards example.
+3. Added get-all-cards-paged example.
 
 
 ## [0.8.5](https://github.com/uhppoted/uhppoted-nodejs/releases/tag/v0.8.5) - 2023-06-13

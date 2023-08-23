@@ -1,13 +1,7 @@
 # TODO
 
 - [x] `activate-keypads` (cf. https://github.com/uhppoted/uhppoted/issues/35)
-      - [x] function
-      - [x] tests
-      - [x] integration test
-      - [x] example
-      - [x] CHANGELOG
-      - [x] README
-      - [x] jsdoc
+- [x] `get-all-cards` example (cf. https://github.com/uhppoted/uhppoted-nodejs/issues/11)
 
 ## TODO
 
