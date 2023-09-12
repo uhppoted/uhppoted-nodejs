@@ -685,6 +685,30 @@ module.exports = {
   },
 
   /**
+   * Sets the super passwords assigned to a controller door.
+   *
+   * @param {object} ctx - Context with configuration, locale (optional) and logger (optional).
+   * @param {uint}   controller - Controller serial number
+   * @param {uint}   door - Door [1..4] to which super passwords are assigned
+   * @param {array}  passwords - Array of up to 4 passwords in the range [0..999999], where 0
+   *                             corresponds to 'no password'
+   *
+   * @example
+   * uhppoted.setSuperPasswords(ctx, 405419896, 3, [12345,0,999999,54321]})
+   *  .then(response => { console.log(response) })
+   *  .catch(err => { console.log(`${err.message}`)
+   */
+  setSuperPasswords: function (ctx, controller, door, passwords) {
+    return validate({ deviceId: controller }, ctx.locale)
+      .then(ok => initialise(ctx))
+      .then(context => set(context, controller, opcodes.SetSuperPasswords, {
+        door,
+        passwords
+      }))
+      .then(response => translate(response, ctx.locale))
+  },
+
+  /**
    * Establishes a listening connection for controller events. Returns a listener object with
    * a close function that can be invoked when the listener should be shut down.
    *

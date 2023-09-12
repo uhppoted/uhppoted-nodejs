@@ -21,6 +21,7 @@ module.exports = {
   GetTimeProfile: 0x98,
   SetTimeProfile: 0x88,
   ClearTimeProfiles: 0x8a,
+  SetSuperPasswords: 0x8c,
 
   SetPCControl: 0xa0,
   SetInterlock: 0xa2,

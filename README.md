@@ -49,6 +49,7 @@ npm install uhppoted
 - [`setPCControl`](#setpccontrol) enables or disables remote access management
 - [`setInterlock`](#setinterlock) sets controller door interlock mode
 - [`activateKeypads`](#activatekeypads) activates and deactivates controller reader access keypadss
+- [`setSuperPasswords`](#setsuperpasswords) sets passcodes for supervisor door access
 - [`listen`](#listen) establishes a listening connection for controller events
 
 Each API call takes a `context` _object_ as the first argument, followed by the function specific parameters and returns a `Promise` that resolves to a response.
@@ -775,6 +776,23 @@ uhppoted.activateKeypads (ctx, deviceId, keypads)
                 3: true/false,
                 4: true/false
              }
+
+Returns an `ok` result object, e.g.:
+```
+{ deviceId: 405419896, ok: true }
+```
+
+
+#### `setSuperPasswords`
+
+Assigns up to four passcodes for supervisor access to a door.
+
+```
+uhppoted.setSuperPasswords (ctx, deviceId, door, passwords)
+```
+- `deviceId`:  serial number of controller
+- `door`: door ID [1..4]
+- `passwords`: array of up to 4 passwords in the range [0..999999] (0 corresponds to 'no password')
 
 Returns an `ok` result object, e.g.:
 ```

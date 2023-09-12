@@ -709,7 +709,7 @@ module.exports = {
   },
 
   /**
-    * Encode an activate-keypads request.
+    * Encodes an activate-keypads request.
     *
     * @param {number} controller Controller serial number
     * @param {object} keypads - Object with activated/deactivated keypads:
@@ -733,6 +733,39 @@ module.exports = {
     request.writeUInt8(keypads['2'] ? 1 : 0, 9)
     request.writeUInt8(keypads['3'] ? 1 : 0, 10)
     request.writeUInt8(keypads['4'] ? 1 : 0, 11)
+
+    return request
+  },
+
+  /**
+    * Encodes a set-super-passwords request.
+    *
+    * @param {number} controller Controller serial number
+    * @param {number} door Door ID [1..4]
+    * @param {object} passwords Array of up to 4 passcodes in the range [0..999999]
+    *                           (0 corresponds to 'no password')
+    *
+    * @return {buffer} 64 byte NodeJS buffer with encoded set-pc-control request.
+    */
+  SetSuperPasswords: function (controller, { door, passwords } = {}) {
+    const request = Buffer.alloc(64)
+    const passcodes = [0, 0, 0, 0]
+
+    for (let i = 0; i < 4; i++) {
+      if (passwords.length > i && passwords[i] > 0 && passwords[i] < 1000000) {
+        passcodes[i] = passwords[i]
+      }
+    }
+
+    request.writeUInt8(0x17, 0)
+    request.writeUInt8(0x8c, 1)
+    request.writeUInt32LE(controller, 4)
+
+    request.writeUInt8(door, 8)
+    request.writeUInt32LE(passcodes[0], 12)
+    request.writeUInt32LE(passcodes[1], 16)
+    request.writeUInt32LE(passcodes[2], 20)
+    request.writeUInt32LE(passcodes[3], 24)
 
     return request
   }

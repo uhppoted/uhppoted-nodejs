@@ -2,11 +2,13 @@
 
 ## Unreleased
 
+### Added
+1. `set-super-passwords` function to set the supervisor access passcodes for a door.
 
 ## [0.8.6](https://github.com/uhppoted/uhppoted-nodejs/releases/tag/v0.8.6) - 2023-08-30
 
 ### Added
-1. `activate-keypads` command to activate/deactivate controller reader access keypads.
+1. `activate-keypads` function to activate/deactivate controller reader access keypads.
 
 ### Updated
 1. Added a note to the README for the card numbers returned by `get-card-by-index` for 

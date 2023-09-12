@@ -48,7 +48,8 @@ const enc = new Map([
   [opcodes.OpenDoor, encoder.OpenDoor],
   [opcodes.SetPCControl, encoder.SetPCControl],
   [opcodes.SetInterlock, encoder.SetInterlock],
-  [opcodes.ActivateKeypads, encoder.ActivateKeypads]
+  [opcodes.ActivateKeypads, encoder.ActivateKeypads],
+  [opcodes.SetSuperPasswords, encoder.SetSuperPasswords]
 ])
 
 /**
@@ -69,6 +70,7 @@ const dec = new Map([
   [0x82, decoder.GetDoorControl],
   [0x88, decoder.SetTimeProfile],
   [0x8a, decoder.ClearTimeProfiles],
+  [0x8c, decoder.SetSuperPasswords],
   [0x8e, decoder.RecordSpecialEvents],
   [0x90, decoder.SetListener],
   [0x92, decoder.GetListener],
