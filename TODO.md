@@ -1,6 +1,6 @@
 # TODO
 
-- [ ] `set-super-passwords (cf. https://github.com/uhppoted/uhppoted/issues/40)
+- [x] `set-super-passwords (cf. https://github.com/uhppoted/uhppoted/issues/40)
       - [x] function
       - [x] unit tests
       - [x] integration test
