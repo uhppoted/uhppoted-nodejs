@@ -22,7 +22,7 @@ const enc = new Map([
   [opcodes.SetTime, encoder.SetTime],
   [opcodes.GetDoorControl, encoder.GetDoorControl],
   [opcodes.SetDoorControl, encoder.SetDoorControl],
-  [opcodes.RecordSpecialEvents, encoder.RecordSpecialEvents],
+  [opcodes.SetDoorPasscodes, encoder.SetDoorPasscodes],
 
   [opcodes.GetStatus, encoder.GetStatus],
 
@@ -44,12 +44,12 @@ const enc = new Map([
   [opcodes.GetEventIndex, encoder.GetEventIndex],
   [opcodes.SetEventIndex, encoder.SetEventIndex],
   [opcodes.GetEvent, encoder.GetEvent],
+  [opcodes.RecordSpecialEvents, encoder.RecordSpecialEvents],
 
   [opcodes.OpenDoor, encoder.OpenDoor],
   [opcodes.SetPCControl, encoder.SetPCControl],
   [opcodes.SetInterlock, encoder.SetInterlock],
-  [opcodes.ActivateKeypads, encoder.ActivateKeypads],
-  [opcodes.SetSuperPasswords, encoder.SetSuperPasswords]
+  [opcodes.ActivateKeypads, encoder.ActivateKeypads]
 ])
 
 /**
@@ -70,7 +70,7 @@ const dec = new Map([
   [0x82, decoder.GetDoorControl],
   [0x88, decoder.SetTimeProfile],
   [0x8a, decoder.ClearTimeProfiles],
-  [0x8c, decoder.SetSuperPasswords],
+  [0x8c, decoder.SetDoorPasscodes],
   [0x8e, decoder.RecordSpecialEvents],
   [0x90, decoder.SetListener],
   [0x92, decoder.GetListener],

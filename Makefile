@@ -93,6 +93,9 @@ get-door-control: build
 set-door-control: build
 	node examples/set-door-control.js $(ARGS)
 
+set-door-passcodes: build
+	node examples/set-door-passcodes.js $(ARGS)
+
 record-special-events: build
 	node examples/record-special-events.js $(ARGS)
 
@@ -174,9 +177,6 @@ set-interlock: build
 
 activate-keypads: build
 	node examples/activate-keypads.js $(ARGS)
-
-set-super-passwords: build
-	node examples/set-super-passwords.js $(ARGS)
 
 listen: build
 	node examples/listen.js $(ARGS)

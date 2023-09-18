@@ -685,25 +685,25 @@ module.exports = {
   },
 
   /**
-   * Sets the super passwords assigned to a controller door.
+   * Sets the supervisor passcodes assigned to a controller door.
    *
    * @param {object} ctx - Context with configuration, locale (optional) and logger (optional).
    * @param {uint}   controller - Controller serial number
    * @param {uint}   door - Door [1..4] to which super passwords are assigned
-   * @param {array}  passwords - Array of up to 4 passwords in the range [0..999999], where 0
-   *                             corresponds to 'no password'
+   * @param {array}  passcodes - Array of up to 4 passcodes in the range [1..999999]. Invalid
+   *                             passcodes will be configued as 0 ('no code')
    *
    * @example
-   * uhppoted.setSuperPasswords(ctx, 405419896, 3, [12345,0,999999,54321]})
+   * uhppoted.setDoorPasscodes(ctx, 405419896, 3, [12345,999999,54321]})
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  setSuperPasswords: function (ctx, controller, door, passwords) {
+  setDoorPasscodes: function (ctx, controller, door, passcodes) {
     return validate({ deviceId: controller }, ctx.locale)
       .then(ok => initialise(ctx))
-      .then(context => set(context, controller, opcodes.SetSuperPasswords, {
+      .then(context => set(context, controller, opcodes.SetDoorPasscodes, {
         door,
-        passwords
+        passcodes
       }))
       .then(response => translate(response, ctx.locale))
   },

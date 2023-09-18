@@ -3,7 +3,8 @@
 ## Unreleased
 
 ### Added
-1. `set-super-passwords` function to set the supervisor access passcodes for a door.
+1. `set-door-passcodes` function to set the supervisor access passcodes for a door.
+
 
 ## [0.8.6](https://github.com/uhppoted/uhppoted-nodejs/releases/tag/v0.8.6) - 2023-08-30
 

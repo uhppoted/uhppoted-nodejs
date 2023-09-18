@@ -738,22 +738,22 @@ module.exports = {
   },
 
   /**
-    * Encodes a set-super-passwords request.
+    * Encodes a set-door-passcodes request.
     *
     * @param {number} controller Controller serial number
     * @param {number} door Door ID [1..4]
-    * @param {object} passwords Array of up to 4 passcodes in the range [0..999999]
-    *                           (0 corresponds to 'no password')
+    * @param {object} passcodes Array of up to 4 passcodes in the range [0..999999]
+    *                           (0 corresponds to 'no code')
     *
     * @return {buffer} 64 byte NodeJS buffer with encoded set-pc-control request.
     */
-  SetSuperPasswords: function (controller, { door, passwords } = {}) {
+  SetDoorPasscodes: function (controller, { door, passcodes } = {}) {
     const request = Buffer.alloc(64)
-    const passcodes = [0, 0, 0, 0]
+    const codes = [0, 0, 0, 0]
 
     for (let i = 0; i < 4; i++) {
-      if (passwords.length > i && passwords[i] > 0 && passwords[i] < 1000000) {
-        passcodes[i] = passwords[i]
+      if (passcodes.length > i && passcodes[i] > 0 && passcodes[i] < 1000000) {
+        codes[i] = passcodes[i]
       }
     }
 
@@ -762,10 +762,10 @@ module.exports = {
     request.writeUInt32LE(controller, 4)
 
     request.writeUInt8(door, 8)
-    request.writeUInt32LE(passcodes[0], 12)
-    request.writeUInt32LE(passcodes[1], 16)
-    request.writeUInt32LE(passcodes[2], 20)
-    request.writeUInt32LE(passcodes[3], 24)
+    request.writeUInt32LE(codes[0], 12)
+    request.writeUInt32LE(codes[1], 16)
+    request.writeUInt32LE(codes[2], 20)
+    request.writeUInt32LE(codes[3], 24)
 
     return request
   }

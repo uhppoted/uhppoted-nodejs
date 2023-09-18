@@ -11,7 +11,7 @@ module.exports = {
   setTime: require('./src/uhppoted.js').setTime,
   getDoorControl: require('./src/uhppoted.js').getDoorControl,
   setDoorControl: require('./src/uhppoted.js').setDoorControl,
-  recordSpecialEvents: require('./src/uhppoted.js').recordSpecialEvents,
+  setDoorPasscodes: require('./src/uhppoted.js').setDoorPasscodes,
 
   getStatus: require('./src/uhppoted.js').getStatus,
   getCards: require('./src/uhppoted.js').getCards,
@@ -33,12 +33,12 @@ module.exports = {
   getEvent: require('./src/uhppoted.js').getEvent,
   getEventIndex: require('./src/uhppoted.js').getEventIndex,
   setEventIndex: require('./src/uhppoted.js').setEventIndex,
+  recordSpecialEvents: require('./src/uhppoted.js').recordSpecialEvents,
 
   openDoor: require('./src/uhppoted.js').openDoor,
   setPCControl: require('./src/uhppoted.js').setPCControl,
   setInterlock: require('./src/uhppoted.js').setInterlock,
   activateKeypads: require('./src/uhppoted.js').activateKeypads,
-  setSuperPasswords: require('./src/uhppoted.js').setSuperPasswords,
 
   listen: require('./src/uhppoted.js').listen
 }

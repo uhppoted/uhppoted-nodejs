@@ -569,13 +569,13 @@ module.exports = {
   },
 
   /**
-    * Decodes the response to a set-super-passwords request (function code 0x8x).
+    * Decodes the response to a set-door-passcodes request (function code 0x8x).
     *
     * @param {buffer}   buffer  64 byte NodeJS buffer
     *
     * @param {object}   Decoded set-super-passwords response object
     */
-  SetSuperPasswords: function (bytes) {
+  SetDoorPasscodes: function (bytes) {
     return {
       deviceId: uint32(bytes, 4),
       ok: bool(bytes, 8)
