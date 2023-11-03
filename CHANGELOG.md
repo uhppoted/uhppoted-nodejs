@@ -5,6 +5,9 @@
 ### Added
 1. `set-door-passcodes` function to set the supervisor access passcodes for a door.
 
+### Updated
+1. Reworked `get-status` to explicitly handle response without an event.
+
 
 ## [0.8.6](https://github.com/uhppoted/uhppoted-nodejs/releases/tag/v0.8.6) - 2023-08-30
 

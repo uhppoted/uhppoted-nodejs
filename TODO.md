@@ -1,13 +1,8 @@
 # TODO
 
 - [x] `set-door-passcodes (cf. https://github.com/uhppoted/uhppoted/issues/40)
-      - [x] function
-      - [x] unit tests
-      - [x] integration test
-      - [x] example
-      - [x] CHANGELOG
-      - [x] README
-      - [x] jsdoc
+- [ ] Rework `get-status` to return '' for zero timestamp (cf. https://github.com/uhppoted/uhppoted-dll/issues/7)
+- [x] Replace Event pointer in GetStatusResponse with zero value (cf. https://github.com/uhppoted/uhppote-core/issues/18)
 
 ## TODO
 

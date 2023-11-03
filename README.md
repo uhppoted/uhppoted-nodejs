@@ -356,6 +356,9 @@ Returns a `status` object, e.g.:
 }
 ```
 
+_Note: the event field will contain only the index field (0) if the response does not contain an event.
+
+
 #### `getCards`
 
 Retrieves the number of card records stored on a controller. The returned may include
