@@ -7,6 +7,8 @@
 
 ### Updated
 1. Reworked `get-status` to explicitly handle response without an event.
+2. Reworked `get-status` and `get-event` to return blank timestamp when response timestamp
+   is a _zero value_.
 
 
 ## [0.8.6](https://github.com/uhppoted/uhppoted-nodejs/releases/tag/v0.8.6) - 2023-08-30

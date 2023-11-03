@@ -356,7 +356,9 @@ Returns a `status` object, e.g.:
 }
 ```
 
-_Note: the event field will contain only the index field (0) if the response does not contain an event.
+_Notes:_
+1. The event field will contain only the index field (0) if the response does not contain an event.
+2. The event timestamp field will be blank if the event timestamp in the response is a _zero value_.
 
 
 #### `getCards`
@@ -662,6 +664,9 @@ Returns an event record, e.g.:
   }
 }
 ```
+_Notes_: 
+1. The event timestamp field will be blank if the event timestamp in the response is a _zero value_.
+
 
 #### `getEventIndex`
 

@@ -15,7 +15,7 @@ module.exports = {
       door: uint8(bytes, 14),
       direction: lookup.direction(bytes, 15),
       card: uint32(bytes, 16),
-      timestamp: yyyymmddHHmmss(bytes, 20),
+      timestamp: optionalTimestamp(bytes, 20),
       reason: lookup.reason(bytes, 27)
     }
 
@@ -480,7 +480,7 @@ module.exports = {
         door: uint8(bytes, 14),
         direction: lookup.direction(bytes, 15),
         card: uint32(bytes, 16),
-        timestamp: yyyymmddHHmmss(bytes, 20),
+        timestamp: optionalTimestamp(bytes, 20),
         reason: lookup.reason(bytes, 27)
       }
     }
@@ -694,6 +694,29 @@ function yyyymmddHHmmss (bytes, offset) {
   const time = datetime.substr(8, 2) + ':' + datetime.substr(10, 2) + ':' + datetime.substr(12, 2)
 
   return date + ' ' + time
+}
+
+/**
+  * Internal utility function to extract a BCD timestamp from a response message. Returns a
+  * blank string if the timestamp is '00000000000000'.
+  *
+  * @param {array}  buffer  64 byte DataView
+  * @param {number} offset  Index of timestamp in buffer
+  *
+  * @param {string}  Decoded 6 byte timestamp in yyy-mm-dd HH:mm:ss format.
+  * @private
+  */
+function optionalTimestamp (bytes, offset) {
+  const datetime = bcd(bytes, offset, 7)
+
+  if (datetime === '00000000000000') {
+    return ''
+  } else {
+    const date = datetime.substr(0, 4) + '-' + datetime.substr(4, 2) + '-' + datetime.substr(6, 2)
+    const time = datetime.substr(8, 2) + ':' + datetime.substr(10, 2) + ':' + datetime.substr(12, 2)
+
+    return date + ' ' + time
+  }
 }
 
 /**
