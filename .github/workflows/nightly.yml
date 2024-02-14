@@ -1,11 +1,7 @@
-name: build
+name: nightly
 
 on:
   workflow_dispatch:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 jobs:
   build:
@@ -18,11 +14,24 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
+
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
+    - run: npm pack
+
+    - name: Upload artifact
+      run: ls -la
+
+    # - name: Upload artifact
+    #     uses: actions/upload-artifact@v3
+    #     with:
+    #       path: dist/*.vcvplugin
+    #       name: sn-2.0.0-mac-11-${{ matrix.platform }}
+
 
