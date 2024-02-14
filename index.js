@@ -39,6 +39,7 @@ module.exports = {
   setPCControl: require('./src/uhppoted.js').setPCControl,
   setInterlock: require('./src/uhppoted.js').setInterlock,
   activateKeypads: require('./src/uhppoted.js').activateKeypads,
+  restoreDefaultParameters: require('./src/uhppoted.js').restoreDefaultParameters,
 
   listen: require('./src/uhppoted.js').listen
 }

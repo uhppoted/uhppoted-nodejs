@@ -330,12 +330,12 @@ module.exports = {
     *
     * @return {buffer} 64 byte NodeJS buffer with encoded delete-all-cards request.
     */
-  DeleteCards: function (deviceId) {
+  DeleteCards: function (controller) {
     const request = Buffer.alloc(64)
 
     request.writeUInt8(0x17, 0)
     request.writeUInt8(0x54, 1)
-    request.writeUInt32LE(deviceId, 4)
+    request.writeUInt32LE(controller, 4)
     request.writeUInt32LE(0x55aaaa55, 8)
 
     return request
@@ -766,6 +766,24 @@ module.exports = {
     request.writeUInt32LE(codes[1], 16)
     request.writeUInt32LE(codes[2], 20)
     request.writeUInt32LE(codes[3], 24)
+
+    return request
+  },
+
+  /**
+    * Restore default parameters request.
+    *
+    * @param {number} controller Controller serial number
+    *
+    * @return {buffer} 64 byte NodeJS buffer with encoded restore-default-parameters request.
+    */
+  RestoreDefaultParameters: function (controller) {
+    const request = Buffer.alloc(64)
+
+    request.writeUInt8(0x17, 0)
+    request.writeUInt8(0xc8, 1)
+    request.writeUInt32LE(controller, 4)
+    request.writeUInt32LE(0x55aaaa55, 8)
 
     return request
   }

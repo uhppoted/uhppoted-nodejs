@@ -34,6 +34,8 @@ module.exports = {
   SetEventIndex: 0xb2,
   GetEvent: 0xb0,
 
+  RestoreDefaultParameters: 0xc8,
+
   NormallyOpen: 0x01,
   NormallyClosed: 0x02,
   Controlled: 0x03

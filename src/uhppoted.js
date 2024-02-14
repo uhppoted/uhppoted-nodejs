@@ -347,17 +347,17 @@ module.exports = {
    * Erases all card records from a controller.
    *
    * @param {object} ctx - Context with configuration, locale (optional) and logger (optional).
-   * @param {uint}   deviceId - Controller serial number
+   * @param {uint}   controller - Controller serial number
    *
    * @example
    * uhppoted.deleteCards(ctx, 405419896)
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  deleteCards: function (ctx, deviceId) {
-    return validate({ deviceId }, ctx.locale)
+  deleteCards: function (ctx, controller) {
+    return validate({ deviceId: controller }, ctx.locale)
       .then(ok => initialise(ctx))
-      .then(context => set(context, deviceId, opcodes.DeleteCards, {}))
+      .then(context => set(context, controller, opcodes.DeleteCards, {}))
       .then(response => translate(response, ctx.locale))
   },
 
@@ -705,6 +705,24 @@ module.exports = {
         door,
         passcodes
       }))
+      .then(response => translate(response, ctx.locale))
+  },
+
+  /**
+   * Resets the controller configuration to the manufacturer default settings.
+   *
+   * @param {object} ctx - Context with configuration, locale (optional) and logger (optional).
+   * @param {uint}   controler - Controller serial number
+   *
+   * @example
+   * uhppoted.restoreDefaultParameters(ctx, 405419896)
+   *  .then(response => { console.log(response) })
+   *  .catch(err => { console.log(`${err.message}`)
+   */
+  restoreDefaultParameters: function (ctx, controller) {
+    return validate({ deviceId: controller }, ctx.locale)
+      .then(ok => initialise(ctx))
+      .then(context => set(context, controller, opcodes.RestoreDefaultParameters, {}))
       .then(response => translate(response, ctx.locale))
   },
 

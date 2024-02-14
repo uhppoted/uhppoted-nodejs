@@ -178,6 +178,9 @@ set-interlock: build
 activate-keypads: build
 	node examples/activate-keypads.js $(ARGS)
 
+restore-default-parameters: build
+	node examples/restore-default-parameters.js $(ARGS)
+
 listen: build
 	node examples/listen.js $(ARGS)
 
@@ -211,6 +214,7 @@ run-all: build
 	@node examples/get-event-with-unsupported-locale.js $(ARGS)
 	@node examples/set-interlock.js $(ARGS)
 	@node examples/activate-keypads.js $(ARGS)
+	@node examples/restore-default-parameters.js $(ARGS)
 	@node examples/set-super-passwords.js $(ARGS)
 	@node examples/error-handling.js $(ARGS)
 	@node examples/error-handling-with-locale.js $(ARGS)
