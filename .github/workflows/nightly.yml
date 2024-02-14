@@ -26,12 +26,9 @@ jobs:
     - run: npm pack
 
     - name: Upload artifact
-      run: ls -la
-
-    # - name: Upload artifact
-    #     uses: actions/upload-artifact@v4
-    #     with:
-    #       path: dist/*.vcvplugin
-    #       name: sn-2.0.0-mac-11-${{ matrix.platform }}
+        uses: actions/upload-artifact@v4
+        with:
+          path: uhppoted-0.8.8.tgz
+          name: uhppoted--{{ matrix.platform }}-0.8.8-alpha.tgz
 
 
