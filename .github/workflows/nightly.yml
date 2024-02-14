@@ -29,4 +29,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         path: uhppoted-0.8.8.tgz
-        name: uhppoted-${{ matrix.node-version }}-0.8.8-alpha.tgz
+        name: uhppoted-0.8.8-alpha-${{ matrix.node-version }}.tgz
