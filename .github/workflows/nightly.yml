@@ -13,10 +13,10 @@ jobs:
         node-version: [14.18.3, 16.13.2, 18.19.1, 20.11.1 ]
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@4
 
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
 
@@ -29,7 +29,7 @@ jobs:
       run: ls -la
 
     # - name: Upload artifact
-    #     uses: actions/upload-artifact@v3
+    #     uses: actions/upload-artifact@v4
     #     with:
     #       path: dist/*.vcvplugin
     #       name: sn-2.0.0-mac-11-${{ matrix.platform }}
