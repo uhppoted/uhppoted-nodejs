@@ -48,6 +48,10 @@ publish: release
 	gh release create "$(VERSION)" *.tgz --draft --prerelease --title "$(VERSION)-beta" --notes-file release-notes.md
 	npm --dry-run publish
 
+publish-npm: release
+	echo "Releasing version $(VERSION)"
+	npm publish
+
 debug: 
 	# node examples/debug.js $(ARGS)
 	# npx eslint --fix integration-tests/**/*.js  
