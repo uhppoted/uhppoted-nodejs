@@ -6,6 +6,8 @@
 1. `restore-default-parameters` function to reset the controller configuration to the manufacturer
    defaults.
 
+### Updated
+2. Removed support for 14.18.3.
 
 ## [0.8.7](https://github.com/uhppoted/uhppoted-nodejs/releases/tag/v0.8.7) - 2023-12-01
 
