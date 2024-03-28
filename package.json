@@ -1,6 +1,6 @@
 {
   "name": "uhppoted",
-  "version": "0.8.8",
+  "version": "0.8.9",
   "description": "NodeJS module wrapper for the interface to UHPPOTE TCP/IP Wiegand Access Controllers",
   "author": "uhppoted",
   "license": "MIT",
