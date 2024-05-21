@@ -27,7 +27,7 @@ function validate (args, locale) {
   return new Promise((resolve, reject) => {
     Object.entries(args).forEach(([k, v]) => {
       switch (`${k}`) {
-        case 'deviceId':
+        case 'controller':
           if (!isValidDeviceId(v)) {
             reject(errors.InvalidDeviceID(v, locale))
           }

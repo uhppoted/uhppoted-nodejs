@@ -22,10 +22,13 @@ module.exports = {
     * @param {number}   deviceId The serial number for the target access controller
     * @param {byte}     op       Operation code from 'opcode' module
     * @param {object}   request  Operation parameters for use by codec.encode
+    * @param {string}   dest     Optional controller IPv4 address. Defaults to UDP broadcast.
+    * @param {string}   protocol Optional connection protocol ('udp' or 'tcp'). Defaults to
+    *                            'udp' unless 'tcp'
     *
     * @param {object}   Decoded reply containing the received information
     */
-  get: async function (ctx, deviceId, op, request) {
+  get: async function (ctx, deviceId, op, request, dest = null, protocol = 'udp') {
     const c = context(deviceId, ctx.config, ctx.logger, ctx.locale)
     const receiver = receiveAny(c.timeout, ctx.locale)
 
@@ -41,7 +44,7 @@ module.exports = {
       throw errors.NoReplyFromDevice(deviceId, ctx.locale)
     }
 
-    return exec(c, op, request, receiver).then(decode)
+    return udp(c, op, request, receiver).then(decode)
   },
 
   /**
@@ -53,10 +56,13 @@ module.exports = {
     * @param {number}   deviceId The serial number for the target access controller
     * @param {byte}     op       Operation code from 'opcode' module
     * @param {object}   request  Operation parameters for use by codec.encode
+    * @param {string}   dest     Optional controller IPv4 address. Defaults to UDP broadcast.
+    * @param {string}   protocol Optional connection protocol ('udp' or 'tcp'). Defaults to
+    *                            'udp' unless 'tcp'
     *
     * @param {object}  Decoded result of the operation
     */
-  set: async function (ctx, deviceId, op, request) {
+  set: async function (ctx, deviceId, op, request, dest = null, protocol = 'udp') {
     const c = context(deviceId, ctx.config, ctx.logger)
     const receiver = receiveAny(c.timeout, ctx.locale)
 
@@ -71,7 +77,7 @@ module.exports = {
       throw errors.NoReplyFromDevice(deviceId, ctx.locale)
     }
 
-    return exec(c, op, request, receiver).then(decode)
+    return udp(c, op, request, receiver).then(decode)
   },
 
   /**
@@ -98,7 +104,7 @@ module.exports = {
     receiver.received = (message) => {}
     receiver.cancel = () => { }
 
-    return exec(c, op, request, receiver).then(decode)
+    return udp(c, op, request, receiver).then(decode)
   },
 
   /**
@@ -147,7 +153,7 @@ module.exports = {
 
     receiver.cancel = () => { }
 
-    return exec(c, op, request, receiver).then(decode)
+    return udp(c, op, request, receiver).then(decode)
   },
 
   /**
@@ -201,7 +207,7 @@ module.exports = {
   *
   * @return {object}  Decoded reply from access controller
   */
-async function exec (ctx, op, request, receive) {
+async function udp (ctx, op, request, receive) {
   const sock = dgram.createSocket(opts)
   const rq = codec.encode(op, ctx.deviceId, request)
 

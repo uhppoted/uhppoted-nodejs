@@ -1,12 +1,16 @@
 # TODO
 
-- [x] [`restore-default-parameters`](https://github.com/uhppoted/uhppoted/issues/48)
-      - [x] function
-      - [x] example
-      - [x] unit tests
-      - [x] jsdoc
-      - [x] CHANGELOG
-      - [x] README
+- [ ] TCP/IP protocol (cf. https://github.com/uhppoted/uhppote-core/issues/17)
+      - [ ] Optional dest and protocol arguments
+            - [x] functions
+            - [x] function doc
+            - [ ] function doc examples
+      - [ ] TCP send/receive
+      - [ ] Unit tests
+      - [ ] TCP examples
+      - [ ] Integration tests
+      - [ ] CHANGELOG
+      - [ ] README
 
 ## TODO
 
