@@ -1,7 +1,7 @@
 const translate = require('./internationalisation.js').translate
 
 function InvalidDeviceID (deviceId, locale) {
-  return new Error(translate(`{{invalid device ID}} '${deviceId}'`, locale))
+  return new Error(translate(`{{invalid controller ID}} '${deviceId}'`, locale))
 }
 
 function InvalidCardNumber (card, locale) {

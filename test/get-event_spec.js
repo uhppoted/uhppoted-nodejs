@@ -6,13 +6,13 @@ const uhppoted = require('../index.js')
 
 describe('get-event', function () {
   describe('#get-event with invalid parameters', function () {
-    it('should fail with invalid device ID', function () {
+    it('should fail with invalid controller ID', function () {
       return uhppoted.getEvent({}, 0, 29)
         .then(() => {
           assert.fail()
         })
         .catch((err) => {
-          expect(err.message).to.equal("invalid device ID '0'")
+          expect(err.message).to.equal("invalid controller ID '0'")
         })
     })
 

@@ -6,7 +6,7 @@ const uhppoted = require('../index.js')
 
 describe('set-time-profile', function () {
   describe('#set-time-profile with invalid parameters', function () {
-    it('should fail with invalid device ID', function () {
+    it('should fail with invalid controller ID', function () {
       const profile = {
         id: 29,
         valid: { from: '2021-01-01', to: '2021-12-31' },
@@ -23,7 +23,7 @@ describe('set-time-profile', function () {
           assert.fail()
         })
         .catch((err) => {
-          expect(err.message).to.equal("invalid device ID '0'")
+          expect(err.message).to.equal("invalid controller ID '0'")
         })
     })
 

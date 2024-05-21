@@ -80,19 +80,19 @@ describe('initialise', function () {
 })
 
 describe('validate', function () {
-  describe('#validate({deviceID...})', function () {
-    it('should fail with invalid device ID (0)', function () {
-      return validate({ deviceId: 0 })
+  describe('#validate({controlelrID...})', function () {
+    it('should fail with invalid controller ID (0)', function () {
+      return validate({ controller: 0 })
         .then(() => {
           assert.fail()
         })
         .catch((err) => {
-          expect(err.message).to.equal("invalid device ID '0'")
+          expect(err.message).to.equal("invalid controller ID '0'")
         })
     })
 
-    it('should succeed with valid device ID (1)', function () {
-      return validate({ deviceId: 1 })
+    it('should succeed with valid controller ID (1)', function () {
+      return validate({ controller: 1 })
         .then(() => {
         })
         .catch((err) => {
@@ -100,8 +100,8 @@ describe('validate', function () {
         })
     })
 
-    it('should succeed with valid device ID (4294967295)', function () {
-      return validate({ deviceId: 4294967295 })
+    it('should succeed with valid controller ID (4294967295)', function () {
+      return validate({ controllerId: 4294967295 })
         .then(() => {
         })
         .catch((err) => {
@@ -109,20 +109,20 @@ describe('validate', function () {
         })
     })
 
-    it('should fail with invalid device ID (4294967296)', function () {
-      return validate({ deviceId: 4294967296 })
+    it('should fail with invalid controller ID (4294967296)', function () {
+      return validate({ controller: 4294967296 })
         .then(() => {
           assert.fail()
         })
         .catch((err) => {
-          expect(err.message).to.equal("invalid device ID '4294967296'")
+          expect(err.message).to.equal("invalid controller ID '4294967296'")
         })
     })
   })
 
   describe('#validate({cardNumber...})', function () {
     it('should fail with invalid card number (0)', function () {
-      return validate({ deviceId: 405419896, cardNumber: 0 })
+      return validate({ controller: 405419896, cardNumber: 0 })
         .then(() => {
           assert.fail()
         })

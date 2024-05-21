@@ -6,13 +6,13 @@ const uhppoted = require('../index.js')
 
 describe('set-pc-control', function () {
   describe('#set-pc-control with invalid parameters', function () {
-    it('should fail with invalid device ID', function () {
+    it('should fail with invalid controller ID', function () {
       return uhppoted.setPCControl({}, 0, true)
         .then(() => {
           assert.fail()
         })
         .catch((err) => {
-          expect(err.message).to.equal("invalid device ID '0'")
+          expect(err.message).to.equal("invalid controller ID '0'")
         })
     })
   })

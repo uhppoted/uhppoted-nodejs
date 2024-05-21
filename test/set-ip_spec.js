@@ -6,13 +6,13 @@ const uhppoted = require('../index.js')
 
 describe('set-ip', function () {
   describe('#set-ip with invalid parameters', function () {
-    it('should fail with invalid device ID', function () {
+    it('should fail with invalid controller ID', function () {
       return uhppoted.setIP({}, 0, '192.168.1.100', '255.255.255.0', '192.168.1.1')
         .then(() => {
           assert.fail()
         })
         .catch((err) => {
-          expect(err.message).to.equal("invalid device ID '0'")
+          expect(err.message).to.equal("invalid controller ID '0'")
         })
     })
   })

@@ -6,13 +6,13 @@ const uhppoted = require('../index.js')
 
 describe('put-card', function () {
   describe('#put-card with invalid parameters', function () {
-    it('should fail with invalid device ID', function () {
+    it('should fail with invalid controller ID', function () {
       return uhppoted.putCard({}, 0, 8165538, '2021-01-01', '2021-12-31', { 1: true, 2: false, 3: true, 4: true })
         .then(() => {
           assert.fail()
         })
         .catch((err) => {
-          expect(err.message).to.equal("invalid device ID '0'")
+          expect(err.message).to.equal("invalid controller ID '0'")
         })
     })
 

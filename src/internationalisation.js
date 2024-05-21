@@ -65,7 +65,7 @@ const map = new Map([
   ['controlled', 'controlled'],
 
   // errors
-  ['invalid device ID', 'invalidDeviceID'],
+  ['invalid controller ID', 'invalidDeviceID'],
   ['invalid card number', 'invalidCardNumber'],
   ['invalid card index', 'invalidCardIndex'],
   ['invalid door', 'invalidDoor'],

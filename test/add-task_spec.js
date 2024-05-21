@@ -6,7 +6,7 @@ const uhppoted = require('../index.js')
 
 describe('add-task', function () {
   describe('#add-task with invalid parameters', function () {
-    it('should fail with invalid device ID', function () {
+    it('should fail with invalid controller ID', function () {
       const task = {
         task: 5,
         door: 3,
@@ -21,7 +21,7 @@ describe('add-task', function () {
           assert.fail()
         })
         .catch((err) => {
-          expect(err.message).to.equal("invalid device ID '0'")
+          expect(err.message).to.equal("invalid controller ID '0'")
         })
     })
 

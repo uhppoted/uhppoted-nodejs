@@ -563,7 +563,7 @@ module.exports = {
       .then(context => get(context, controller, opcodes.GetEvent, { index: 0xffffffff }))
 
     const promise = Promise.all([first, last]).then(([p, q]) => {
-      const object = { controller, first: 0, last: 0 }
+      const object = { deviceId: controller, first: 0, last: 0 }
 
       if (p && p.event) {
         object.first = p.event.index
