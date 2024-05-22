@@ -38,19 +38,21 @@ module.exports = {
    *
    * @param {object} ctx         Context with configuration, locale (optional) and logger (optional).
    * @param {uint}   controller  Controller serial number
-   * @param {string} dest        Optional controller IPv4 address. Defaults to UDP broadcast.
-   * @param {string} protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
-   *                             'udp' unless 'tcp'
+   * @param {object} options     Optional destination address and protocol request options.
    *
    * @example
-   * uhppoted.getDevice(ctx, 405419896)
+   * uhppoted.getDevice(ctx, 405419896, { dest='192.168.1.100', protocol='tcp'})
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  getDevice: function (ctx, controller, dest = null, protocol = 'udp') {
+  getDevice: function (ctx, controller, options) {
+    const { dest, protocol } = resolve(options)
+
     return validate({ controller }, ctx.locale)
       .then(ok => initialise(ctx))
-      .then(context => get(context, controller, opcodes.GetDevice, {}))
+      .then(context => {
+        get(context, controller, opcodes.GetDevice, {}, dest, protocol)
+      })
       .then(response => translate(response, ctx.locale))
   },
 
@@ -865,5 +867,25 @@ module.exports = {
         }
       }
     }
+  }
+}
+
+/**
+ * Internal utility function to resolve an 'options' object into a destination IP address and protocol.
+ *
+ * @param {object} options Optional parameters to get/set call.
+ *
+ */
+function resolve (options) {
+  if (options != null) {
+    return {
+      dest: options.dest ? options.dest : null,
+      protocol: options.protocol && options.protocol === 'tcp' ? 'tcp' : 'udp'
+    }
+  }
+
+  return {
+    dest: null,
+    protocol: 'udp'
   }
 }

@@ -8,6 +8,7 @@
 const codec = require('./codec.js')
 const errors = require('./errors.js')
 const dgram = require('dgram')
+const net = require('net')
 const os = require('os')
 const ip = require('ip')
 const opts = { type: 'udp4', reuseAddr: true }
@@ -44,7 +45,12 @@ module.exports = {
       throw errors.NoReplyFromDevice(deviceId, ctx.locale)
     }
 
-    return udp(c, op, request, receiver).then(decode)
+    if (dest != null && dest !== '' && protocol === 'tcp') {
+      const addr = { address: dest, port: 60000 }
+      return tcp(c, addr, op, request, receiver).then(decode)
+    } else {
+      return udp(c, op, request, receiver).then(decode)
+    }
   },
 
   /**
@@ -196,10 +202,6 @@ module.exports = {
   * Sends a UDP command to a UHPPOTE access controller and returns the decoded
   * reply, for use by 'get' and 'set'.
   *
-  * configuration to receive events from UHPPOTE access controllers configured
-  * to send events to this host:port. Received events are forwarded to the
-  * supplied handler for dispatch to the application.
-  *
   * @param {object}   context  Addresses, logger, debug, etc.
   * @param {byte}     op       Operation code from 'opcode' module
   * @param {object}   request  Operation parameters for use by codec.encode
@@ -253,6 +255,62 @@ async function udp (ctx, op, request, receive) {
     }
   } finally {
     sock.close()
+    receive.cancel()
+  }
+
+  throw errors.NoReply(ctx.locale)
+}
+
+/**
+  * Opens a TCP connection to the destination addres, sends the command and returns the decoded
+  * reply, for use by 'get' and 'set'.
+  *
+  * @param {object}   context  Addresses, logger, debug, etc.
+  * @param {byte}     op       Operation code from 'opcode' module
+  * @param {object}   request  Operation parameters for use by codec.encode
+  * @param {function} receive  Handler for received messages
+  *
+  * @return {object}  Decoded reply from access controller
+  */
+async function tcp (ctx, dest, op, request, receive) {
+  const sock = new net.Socket()
+  const rq = codec.encode(op, ctx.deviceId, request)
+
+  const onerror = new Promise((resolve, reject) => {
+    sock.on('error', (err) => {
+      reject(err)
+    })
+  })
+
+  const send = new Promise((resolve, reject) => {
+    sock.on('connect', () => {
+      sock.write(new Uint8Array(rq), (err) => {
+        if (err) {
+          reject(err)
+        } else {
+          log(ctx.debug, 'TCP::sent', rq, dest)
+          resolve()
+        }
+      })
+    })
+
+    sock.connect(dest)
+
+    sock.on('data', (message) => {
+      log(ctx.debug, 'TCP::received', message)
+
+      receive.received(new Uint8Array(message))
+    })
+  })
+
+  try {
+    const result = await Promise.race([onerror, Promise.all([receive, send])])
+
+    if (result && result.length === 2) {
+      return result[0]
+    }
+  } finally {
+    sock.end()
     receive.cancel()
   }
 

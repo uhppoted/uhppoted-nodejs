@@ -52,13 +52,14 @@ publish-npm: release
 	echo "Releasing version $(VERSION)"
 	npm publish
 
-debug: 
+debug: build
 	# node examples/debug.js $(ARGS)
 	# npx eslint --fix integration-tests/**/*.js  
 	# npx mocha 'integration-tests/**/get-event_spec.js' --broadcast='192.168.1.255:59999' --listen='192.168.1.100:60001'
-	@node examples/error-handling.js $(ARGS)
-	@node examples/error-handling-with-locale.js $(ARGS)
-	@node examples/get-overwritten-event.js $(ARGS)
+	# @node examples/error-handling.js $(ARGS)
+	# @node examples/error-handling-with-locale.js $(ARGS)
+	# @node examples/get-overwritten-event.js $(ARGS)
+	node examples/get-device-tcp.js $(ARGS)
 
 error-handling: build
 	node examples/error-handling.js $(ARGS)
