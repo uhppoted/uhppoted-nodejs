@@ -23,3 +23,11 @@ async function run () {
 }
 
 run()
+
+uhppoted.getDevice(ctx, deviceID, { dest: addr, protocol: 'tcp' })
+  .then(response => {
+    console.log('\nget-device:\n', response)
+  })
+  .catch(err => {
+    console.log(`\n   *** ERROR ${err.message}\n`)
+  })

@@ -103,7 +103,6 @@ function translate (object, locale) {
   const blob = JSON.stringify(object)
 
   if (blob == null) {
-    console.log('>>>>>>>>>>>>> ', object) // FIXME
     return '????' // FIXME
   } else {
     const translated = blob.replace(/{{(.*?)}}/g, lookup)

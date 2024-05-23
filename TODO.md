@@ -37,7 +37,7 @@
             - [ ] activate-keypads
             - [ ] set-door-passcodes
             - [ ] restore-default-parameters
-      - [ ] FIXME in internationalisation
+      - [x] ~~FIXME in internationalisation~~
       - [ ] Unit tests
       - [ ] Integration tests
             - [x] get-device
