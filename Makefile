@@ -225,3 +225,6 @@ run-all: build
 	@node examples/error-handling-with-locale.js $(ARGS)
 
 
+run-all-tcp: build
+	node examples/tcp.js $(ARGS)
+

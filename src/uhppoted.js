@@ -96,6 +96,11 @@ module.exports = {
    * uhppoted.getListener(ctx, 405419896)
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
+   *
+   * @example
+   * uhppoted.getListener(ctx, 405419896, { dest:'192.168.1.100', protocol:'tcp'})
+   *  .then(response => { console.log(response) })
+   *  .catch(err => { console.log(`${err.message}`)
    */
   getListener: function (ctx, controller, { dest, protocol } = { dest: null, protocol: 'udp' }) {
     return validate({ controller }, ctx.locale)
