@@ -46,8 +46,7 @@ module.exports = {
     }
 
     if (dest != null && dest !== '' && protocol === 'tcp') {
-      const addr = { address: dest, port: 60000 }
-      return tcp(c, addr, op, request, receiver).then(decode)
+      return tcp(c, { address: dest, port: 60000 }, op, request, receiver).then(decode)
     } else {
       return udp(c, op, request, receiver).then(decode)
     }
@@ -83,7 +82,11 @@ module.exports = {
       throw errors.NoReplyFromDevice(deviceId, ctx.locale)
     }
 
-    return udp(c, op, request, receiver).then(decode)
+    if (dest != null && dest !== '' && protocol === 'tcp') {
+      return tcp(c, { address: dest, port: 60000 }, op, request, receiver).then(decode)
+    } else {
+      return udp(c, op, request, receiver).then(decode)
+    }
   },
 
   /**

@@ -8,12 +8,12 @@
             - [x] get-device
             - [ ] set-ip
             - [x] get-listener
-            - [ ] set-listener
-            - [ ] get-time
-            - [ ] set-time
-            - [ ] get-door-control
-            - [ ] set-door-control
-            - [ ] record-special-events
+            - [x] set-listener
+            - [x] get-time
+            - [x] set-time
+            - [x] get-door-control
+            - [x] set-door-control
+            - [x] record-special-events
             - [ ] get-status
             - [ ] get-cards
             - [ ] get-card

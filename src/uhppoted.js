@@ -124,11 +124,16 @@ module.exports = {
    * uhppoted.setListener(ctx, 405419896, '192.168.1.100', 600001)
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
+   *
+   * @example
+   * uhppoted.setListener(ctx, 405419896, '192.168.1.100', 600001, { dest:'192.168.1.100', protocol:'tcp'})
+   *  .then(response => { console.log(response) })
+   *  .catch(err => { console.log(`${err.message}`)
    */
   setListener: function (ctx, controller, address, port, { dest, protocol } = { dest: null, protocol: 'udp' }) {
     return validate({ controller }, ctx.locale)
       .then(ok => initialise(ctx))
-      .then(context => set(context, controller, opcodes.SetListener, { address, port }))
+      .then(context => set(context, controller, opcodes.SetListener, { address, port }, dest, protocol))
       .then(response => translate(response, ctx.locale))
   },
 
@@ -145,11 +150,16 @@ module.exports = {
    * uhppoted.getTime(ctx, 405419896)
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
+   *
+   * @example
+   * uhppoted.getTime(ctx, 405419896, { dest:'192.168.1.100', protocol:'tcp'})
+   *  .then(response => { console.log(response) })
+   *  .catch(err => { console.log(`${err.message}`)
    */
   getTime: function (ctx, controller, { dest, protocol } = { dest: null, protocol: 'udp' }) {
     return validate({ controller }, ctx.locale)
       .then(ok => initialise(ctx))
-      .then(context => get(context, controller, opcodes.GetTime, {}))
+      .then(context => get(context, controller, opcodes.GetTime, {}, dest, protocol))
       .then(response => translate(response, ctx.locale))
   },
 
@@ -167,11 +177,16 @@ module.exports = {
    * uhppoted.setTime(ctx, 405419896, '2021-06-04 15:25:43')
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
+   *
+   * @example
+   * uhppoted.setTime(ctx, 405419896, '2021-06-04 15:25:43', { dest:'192.168.1.100', protocol:'tcp'})
+   *  .then(response => { console.log(response) })
+   *  .catch(err => { console.log(`${err.message}`)
    */
   setTime: function (ctx, controller, datetime, { dest, protocol } = { dest: null, protocol: 'udp' }) {
     return validate({ controller }, ctx.locale)
       .then(ok => initialise(ctx))
-      .then(context => set(context, controller, opcodes.SetTime, { datetime }))
+      .then(context => set(context, controller, opcodes.SetTime, { datetime }, dest, protocol))
       .then(response => translate(response, ctx.locale))
   },
 
@@ -189,11 +204,16 @@ module.exports = {
    * uhppoted.getDoorControl(ctx, 405419896, 3)
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
+   *
+   * @example
+   * uhppoted.getDoorControl(ctx, 405419896, 3, { dest:'192.168.1.100', protocol:'tcp'})
+   *  .then(response => { console.log(response) })
+   *  .catch(err => { console.log(`${err.message}`)
    */
   getDoorControl: function (ctx, controller, door, { dest, protocol } = { dest: null, protocol: 'udp' }) {
     return validate({ controller, door }, ctx.locale)
       .then(ok => initialise(ctx))
-      .then(context => get(context, controller, opcodes.GetDoorControl, { door }))
+      .then(context => get(context, controller, opcodes.GetDoorControl, { door }, dest, protocol))
       .then(response => translate(response, ctx.locale))
       .then(response => translate(response, ctx.locale))
   },
@@ -212,6 +232,11 @@ module.exports = {
    *
    * @example
    * uhppoted.setDoorControl(ctx, 405419896, 3, 5, 'controlled')
+   *  .then(response => { console.log(response) })
+   *  .catch(err => { console.log(`${err.message}`)
+   *
+   * @example
+   * uhppoted.setDoorControl(ctx, 405419896, 3, 5, 'controlled', { dest:'192.168.1.100', protocol:'tcp'})
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
@@ -237,7 +262,7 @@ module.exports = {
 
     return validate({ controller, door }, ctx.locale)
       .then(ok => initialise(ctx))
-      .then(context => set(context, controller, opcodes.SetDoorControl, { door, delay, control }))
+      .then(context => set(context, controller, opcodes.SetDoorControl, { door, delay, control }, dest, protocol))
       .then(response => translate(response, ctx.locale))
   },
 
@@ -255,11 +280,16 @@ module.exports = {
    * uhppoted.recordSpecialEvents(ctx, 405419896, true)
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
+   *
+   * @example
+   * uhppoted.recordSpecialEvents(ctx, 405419896, true, { dest:'192.168.1.100', protocol:'tcp'})
+   *  .then(response => { console.log(response) })
+   *  .catch(err => { console.log(`${err.message}`)
    */
   recordSpecialEvents: function (ctx, controller, enable, { dest, protocol } = { dest: null, protocol: 'udp' }) {
     return validate({ controller }, ctx.locale)
       .then(ok => initialise(ctx))
-      .then(context => set(context, controller, opcodes.RecordSpecialEvents, { enable }))
+      .then(context => set(context, controller, opcodes.RecordSpecialEvents, { enable }, dest, protocol))
       .then(response => translate(response, ctx.locale))
   },
 
