@@ -38,21 +38,24 @@ module.exports = {
    *
    * @param {object} ctx         Context with configuration, locale (optional) and logger (optional).
    * @param {uint}   controller  Controller serial number
-   * @param {object} options     Optional destination address and protocol request options.
+   * @param {string} dest        Optional controller IPv4 address. Defaults to UDP broadcast.
+   * @param {string} protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
+   *                             'udp' unless 'tcp'
    *
    * @example
-   * uhppoted.getDevice(ctx, 405419896, { dest='192.168.1.100', protocol='tcp'})
+   * uhppoted.getDevice(ctx, 405419896)
+   *  .then(response => { console.log(response) })
+   *  .catch(err => { console.log(`${err.message}`)
+   *
+   * @example
+   * uhppoted.getDevice(ctx, 405419896, { dest:'192.168.1.100', protocol:'tcp'})
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  getDevice: function (ctx, controller, options) {
-    const { dest, protocol } = resolve(options)
-
+  getDevice: function (ctx, controller, { dest, protocol } = { dest: null, protocol: 'udp' }) {
     return validate({ controller }, ctx.locale)
       .then(ok => initialise(ctx))
-      .then(context => {
-        get(context, controller, opcodes.GetDevice, {}, dest, protocol)
-      })
+      .then(context => get(context, controller, opcodes.GetDevice, {}, dest, protocol))
       .then(response => translate(response, ctx.locale))
   },
 
@@ -73,7 +76,7 @@ module.exports = {
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  setIP: function (ctx, controller, address, netmask, gateway, dest = null, protocol = 'udp') {
+  setIP: function (ctx, controller, address, netmask, gateway, { dest, protocol } = { dest: null, protocol: 'udp' }) {
     return validate({ controller }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => send(context, controller, opcodes.SetIP, { address, netmask, gateway }))
@@ -94,10 +97,10 @@ module.exports = {
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  getListener: function (ctx, controller, dest = null, protocol = 'udp') {
+  getListener: function (ctx, controller, { dest, protocol } = { dest: null, protocol: 'udp' }) {
     return validate({ controller }, ctx.locale)
       .then(ok => initialise(ctx))
-      .then(context => get(context, controller, opcodes.GetListener, {}))
+      .then(context => get(context, controller, opcodes.GetListener, {}, dest, protocol))
       .then(response => translate(response, ctx.locale))
   },
 
@@ -117,7 +120,7 @@ module.exports = {
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  setListener: function (ctx, controller, address, port, dest = null, protocol = 'udp') {
+  setListener: function (ctx, controller, address, port, { dest, protocol } = { dest: null, protocol: 'udp' }) {
     return validate({ controller }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => set(context, controller, opcodes.SetListener, { address, port }))
@@ -138,7 +141,7 @@ module.exports = {
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  getTime: function (ctx, controller, dest = null, protocol = 'udp') {
+  getTime: function (ctx, controller, { dest, protocol } = { dest: null, protocol: 'udp' }) {
     return validate({ controller }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => get(context, controller, opcodes.GetTime, {}))
@@ -160,7 +163,7 @@ module.exports = {
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  setTime: function (ctx, controller, datetime, dest = null, protocol = 'udp') {
+  setTime: function (ctx, controller, datetime, { dest, protocol } = { dest: null, protocol: 'udp' }) {
     return validate({ controller }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => set(context, controller, opcodes.SetTime, { datetime }))
@@ -182,7 +185,7 @@ module.exports = {
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  getDoorControl: function (ctx, controller, door, dest = null, protocol = 'udp') {
+  getDoorControl: function (ctx, controller, door, { dest, protocol } = { dest: null, protocol: 'udp' }) {
     return validate({ controller, door }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => get(context, controller, opcodes.GetDoorControl, { door }))
@@ -207,7 +210,7 @@ module.exports = {
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  setDoorControl: function (ctx, controller, door, delay, mode, dest = null, protocol = 'udp') {
+  setDoorControl: function (ctx, controller, door, delay, mode, { dest, protocol } = { dest: null, protocol: 'udp' }) {
     let control = 0x00
 
     switch (mode) {
@@ -248,7 +251,7 @@ module.exports = {
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  recordSpecialEvents: function (ctx, controller, enable, dest = null, protocol = 'udp') {
+  recordSpecialEvents: function (ctx, controller, enable, { dest, protocol } = { dest: null, protocol: 'udp' }) {
     return validate({ controller }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => set(context, controller, opcodes.RecordSpecialEvents, { enable }))
@@ -269,7 +272,7 @@ module.exports = {
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  getStatus: function (ctx, controller, dest = null, protocol = 'udp') {
+  getStatus: function (ctx, controller, { dest, protocol } = { dest: null, protocol: 'udp' }) {
     return validate({ controller }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => get(context, controller, opcodes.GetStatus, {}))
@@ -290,7 +293,7 @@ module.exports = {
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  getCards: function (ctx, controller, dest = null, protocol = 'udp') {
+  getCards: function (ctx, controller, { dest, protocol } = { dest: null, protocol: 'udp' }) {
     return validate({ controller }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => get(context, controller, opcodes.GetCards, {}))
@@ -312,7 +315,7 @@ module.exports = {
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  getCard: function (ctx, controller, card, dest = null, protocol = 'udp') {
+  getCard: function (ctx, controller, card, { dest, protocol } = { dest: null, protocol: 'udp' }) {
     return validate({ controller, cardNumber: card }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => get(context, controller, opcodes.GetCardByID, { card }))
@@ -334,7 +337,7 @@ module.exports = {
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  getCardByIndex: function (ctx, controller, index, dest = null, protocol = 'udp') {
+  getCardByIndex: function (ctx, controller, index, { dest, protocol } = { dest: null, protocol: 'udp' }) {
     return validate({ controller, cardIndex: index }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => get(context, controller, opcodes.GetCardByIndex, { index }))
@@ -361,7 +364,7 @@ module.exports = {
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  putCard: function (ctx, controller, card, validFrom, validUntil, doors, PIN, dest = null, protocol = 'udp') {
+  putCard: function (ctx, controller, card, validFrom, validUntil, doors, PIN, { dest, protocol } = { dest: null, protocol: 'udp' }) {
     return validate({ controller, cardNumber: card, doors }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => set(context, controller, opcodes.PutCard, { card, from: validFrom, to: validUntil, doors, PIN }))
@@ -383,7 +386,7 @@ module.exports = {
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  deleteCard: function (ctx, controller, card, dest = null, protocol = 'udp') {
+  deleteCard: function (ctx, controller, card, { dest, protocol } = { dest: null, protocol: 'udp' }) {
     return validate({ controller, cardNumber: card }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => set(context, controller, opcodes.DeleteCard, { card }))
@@ -404,7 +407,7 @@ module.exports = {
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  deleteCards: function (ctx, controller, dest = null, protocol = 'udp') {
+  deleteCards: function (ctx, controller, { dest, protocol } = { dest: null, protocol: 'udp' }) {
     return validate({ controller }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => set(context, controller, opcodes.DeleteCards, {}))
@@ -426,7 +429,7 @@ module.exports = {
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  getTimeProfile: function (ctx, controller, profileId, dest = null, protocol = 'udp') {
+  getTimeProfile: function (ctx, controller, profileId, { dest, protocol } = { dest: null, protocol: 'udp' }) {
     return validate({ controller, profileId }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => get(context, controller, opcodes.GetTimeProfile, { profileId }))
@@ -448,7 +451,7 @@ module.exports = {
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  setTimeProfile: function (ctx, controller, profile, dest = null, protocol = 'udp') {
+  setTimeProfile: function (ctx, controller, profile, { dest, protocol } = { dest: null, protocol: 'udp' }) {
     return validate({ controller, profile }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => get(context, controller, opcodes.SetTimeProfile, { profile }))
@@ -469,7 +472,7 @@ module.exports = {
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  clearTimeProfiles: function (ctx, controller, dest = null, protocol = 'udp') {
+  clearTimeProfiles: function (ctx, controller, { dest, protocol } = { dest: null, protocol: 'udp' }) {
     return validate({ controller }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => get(context, controller, opcodes.ClearTimeProfiles, {}))
@@ -490,7 +493,7 @@ module.exports = {
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  clearTaskList: function (ctx, controller, dest = null, protocol = 'udp') {
+  clearTaskList: function (ctx, controller, { dest, protocol } = { dest: null, protocol: 'udp' }) {
     return validate({ controller }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => get(context, controller, opcodes.ClearTaskList, {}))
@@ -513,7 +516,7 @@ module.exports = {
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  addTask: function (ctx, controller, task, dest = null, protocol = 'udp') {
+  addTask: function (ctx, controller, task, { dest, protocol } = { dest: null, protocol: 'udp' }) {
     return validate({ controller, task }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => get(context, controller, opcodes.AddTask, { task }))
@@ -534,7 +537,7 @@ module.exports = {
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  refreshTaskList: function (ctx, controller, dest = null, protocol = 'udp') {
+  refreshTaskList: function (ctx, controller, { dest, protocol } = { dest: null, protocol: 'udp' }) {
     return validate({ controller }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => get(context, controller, opcodes.RefreshTaskList, {}))
@@ -555,7 +558,7 @@ module.exports = {
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  getEvents: function (ctx, controller, dest = null, protocol = 'udp') {
+  getEvents: function (ctx, controller, { dest, protocol } = { dest: null, protocol: 'udp' }) {
     const first = validate({ controller }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => get(context, controller, opcodes.GetEvent, { index: 0 }))
@@ -597,7 +600,7 @@ module.exports = {
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  getEvent: function (ctx, controller, index, dest = null, protocol = 'udp') {
+  getEvent: function (ctx, controller, index, { dest, protocol } = { dest: null, protocol: 'udp' }) {
     return validate({ controller, eventIndex: index }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => get(context, controller, opcodes.GetEvent, { index }))
@@ -628,7 +631,7 @@ module.exports = {
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  getEventIndex: function (ctx, controller, dest = null, protocol = 'udp') {
+  getEventIndex: function (ctx, controller, { dest, protocol } = { dest: null, protocol: 'udp' }) {
     return validate({ controller }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => get(context, controller, opcodes.GetEventIndex, { }))
@@ -650,7 +653,7 @@ module.exports = {
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  setEventIndex: function (ctx, controller, index, dest = null, protocol = 'udp') {
+  setEventIndex: function (ctx, controller, index, { dest, protocol } = { dest: null, protocol: 'udp' }) {
     return validate({ controller, eventIndex: index }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => set(context, controller, opcodes.SetEventIndex, { index }))
@@ -672,7 +675,7 @@ module.exports = {
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  openDoor: function (ctx, controller, door, dest = null, protocol = 'udp') {
+  openDoor: function (ctx, controller, door, { dest, protocol } = { dest: null, protocol: 'udp' }) {
     return validate({ controller, door }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => set(context, controller, opcodes.OpenDoor, { door }))
@@ -702,7 +705,7 @@ module.exports = {
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  setPCControl: function (ctx, controller, enable, dest = null, protocol = 'udp') {
+  setPCControl: function (ctx, controller, enable, { dest, protocol } = { dest: null, protocol: 'udp' }) {
     return validate({ controller }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => set(context, controller, opcodes.SetPCControl, { enable }))
@@ -730,7 +733,7 @@ module.exports = {
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  setInterlock: function (ctx, controller, interlock, dest = null, protocol = 'udp') {
+  setInterlock: function (ctx, controller, interlock, { dest, protocol } = { dest: null, protocol: 'udp' }) {
     return validate({ controller }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => set(context, controller, opcodes.SetInterlock, { interlock }))
@@ -762,7 +765,7 @@ module.exports = {
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  activateKeypads: function (ctx, controller, keypads, dest = null, protocol = 'udp') {
+  activateKeypads: function (ctx, controller, keypads, { dest, protocol } = { dest: null, protocol: 'udp' }) {
     return validate({ controller }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => set(context, controller, opcodes.ActivateKeypads, {
@@ -793,7 +796,7 @@ module.exports = {
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  setDoorPasscodes: function (ctx, controller, door, passcodes, dest = null, protocol = 'udp') {
+  setDoorPasscodes: function (ctx, controller, door, passcodes, { dest, protocol } = { dest: null, protocol: 'udp' }) {
     return validate({ controller }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => set(context, controller, opcodes.SetDoorPasscodes, {
@@ -817,7 +820,7 @@ module.exports = {
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  restoreDefaultParameters: function (ctx, controller, dest = null, protocol = 'udp') {
+  restoreDefaultParameters: function (ctx, controller, { dest, protocol } = { dest: null, protocol: 'udp' }) {
     return validate({ controller }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => set(context, controller, opcodes.RestoreDefaultParameters, {}))
@@ -867,25 +870,5 @@ module.exports = {
         }
       }
     }
-  }
-}
-
-/**
- * Internal utility function to resolve an 'options' object into a destination IP address and protocol.
- *
- * @param {object} options Optional parameters to get/set call.
- *
- */
-function resolve (options) {
-  if (options != null) {
-    return {
-      dest: options.dest ? options.dest : null,
-      protocol: options.protocol && options.protocol === 'tcp' ? 'tcp' : 'udp'
-    }
-  }
-
-  return {
-    dest: null,
-    protocol: 'udp'
   }
 }

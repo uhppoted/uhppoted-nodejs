@@ -59,7 +59,7 @@ debug: build
 	# @node examples/error-handling.js $(ARGS)
 	# @node examples/error-handling-with-locale.js $(ARGS)
 	# @node examples/get-overwritten-event.js $(ARGS)
-	node examples/get-device-tcp.js $(ARGS)
+	node examples/tcp.js $(ARGS)
 
 error-handling: build
 	node examples/error-handling.js $(ARGS)

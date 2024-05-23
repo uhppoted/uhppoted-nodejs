@@ -1,17 +1,78 @@
 # TODO
 
 - [ ] TCP/IP protocol (cf. https://github.com/uhppoted/uhppote-core/issues/17)
-      - [ ] Optional dest and protocol arguments
-            - [x] functions
-            - [x] function doc
-            - [ ] function doc examples
-            - [ ] recode as {}
       - [x] TCP send/receive
-      - [ ] TCP timeout
+      - [x] TCP timeout
+
+      - [ ] Optional dest and protocol arguments
+            - [x] get-device
+            - [ ] set-ip
+            - [x] get-listener
+            - [ ] set-listener
+            - [ ] get-time
+            - [ ] set-time
+            - [ ] get-door-control
+            - [ ] set-door-control
+            - [ ] record-special-events
+            - [ ] get-status
+            - [ ] get-cards
+            - [ ] get-card
+            - [ ] get-card-by-index
+            - [ ] put-card
+            - [ ] delete-card
+            - [ ] delete-cards
+            - [ ] get-time-profile
+            - [ ] set-time-profile
+            - [ ] clear-timeprofiles
+            - [ ] clear-tasklist
+            - [ ] add-task
+            - [ ] refresh-tasklist
+            - [ ] get-events
+            - [ ] get-event
+            - [ ] get-event-index
+            - [ ] set-event-index
+            - [ ] open-door
+            - [ ] set-pc-control
+            - [ ] set-interlock
+            - [ ] activate-keypads
+            - [ ] set-door-passcodes
+            - [ ] restore-default-parameters
       - [ ] FIXME in internationalisation
       - [ ] Unit tests
-      - [ ] TCP examples
       - [ ] Integration tests
+            - [x] get-device
+            - [ ] set-ip
+            - [ ] get-listener
+            - [ ] set-listener
+            - [ ] get-time
+            - [ ] set-time
+            - [ ] get-door-control
+            - [ ] set-door-control
+            - [ ] record-special-events
+            - [ ] get-status
+            - [ ] get-cards
+            - [ ] get-card
+            - [ ] get-card-by-index
+            - [ ] put-card
+            - [ ] delete-card
+            - [ ] delete-cards
+            - [ ] get-time-profile
+            - [ ] set-time-profile
+            - [ ] clear-timeprofiles
+            - [ ] clear-tasklist
+            - [ ] add-task
+            - [ ] refresh-tasklist
+            - [ ] get-events
+            - [ ] get-event
+            - [ ] get-event-index
+            - [ ] set-event-index
+            - [ ] open-door
+            - [ ] set-pc-control
+            - [ ] set-interlock
+            - [ ] activate-keypads
+            - [ ] set-door-passcodes
+            - [ ] restore-default-parameters
+      - [ ] TCP examples
       - [ ] CHANGELOG
       - [ ] README
 
