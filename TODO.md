@@ -14,7 +14,7 @@
             - [x] get-door-control
             - [x] set-door-control
             - [x] record-special-events
-            - [ ] get-status
+            - [x] get-status
             - [ ] get-cards
             - [ ] get-card
             - [ ] get-card-by-index

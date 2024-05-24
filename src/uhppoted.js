@@ -296,22 +296,40 @@ module.exports = {
   /**
    * Retrieves the controller status, including the most recent event (if any).
    *
-   * @param {object} ctx         Context with configuration, locale (optional) and logger (optional).
-   * @param {uint}   controller  Controller serial number
-   * @param {string} dest        Optional controller IPv4 address. Defaults to UDP broadcast.
-   * @param {string} protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
-   *                             'udp' unless 'tcp'
+   * @param {object}      ctx         Context with configuration, locale (optional) and logger (optional).
+   * @param {uint|object} controller  Either a controller serial number (legacy implementation) or an
+   *                                  object of the form { controller, dest, protocol }:
+   * @param {uint}        controller.controller  Controller serial number
+   * @param {string}      controller.address     Optional controller IPv4 address. Defaults to UDP broadcast.
+   * @param {string}      controller.protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
+   *                                             'udp' unless 'tcp'
    *
    * @example
    * uhppoted.getStatus(ctx, 405419896)
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
+   *
+   * @example
+   * uhppoted.getStatus(ctx, { controller:405419896, address:'192.168.1.100', protocol:'tcp')
+   *  .then(response => { console.log(response) })
+   *  .catch(err => { console.log(`${err.message}`)
    */
-  getStatus: function (ctx, controller, { dest, protocol } = { dest: null, protocol: 'udp' }) {
-    return validate({ controller }, ctx.locale)
-      .then(ok => initialise(ctx))
-      .then(context => get(context, controller, opcodes.GetStatus, {}))
-      .then(response => translate(response, ctx.locale))
+  getStatus: function (ctx, controller) {
+    if (typeof (controller) === 'number') {
+      return validate({ controller }, ctx.locale)
+        .then(ok => initialise(ctx))
+        .then(context => get(context, controller, opcodes.GetStatus, {}))
+        .then(response => translate(response, ctx.locale))
+    }
+
+    if (typeof (controller) === 'object') {
+      const { controller: id, address = null, protocol = 'udp' } = controller
+
+      return validate({ id }, ctx.locale)
+        .then(ok => initialise(ctx))
+        .then(context => get(context, id, opcodes.GetStatus, {}, address, protocol))
+        .then(response => translate(response, ctx.locale))
+    }
   },
 
   /**

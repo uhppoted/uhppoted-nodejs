@@ -79,6 +79,14 @@ async function run () {
     .catch(err => {
       console.log(`\n   *** ERROR ${err.message}\n`)
     })
+
+  uhppoted.getStatus(ctx, { controller: deviceID, address: addr, protocol: 'tcp' })
+    .then(response => {
+      console.log('\nget-status:\n', response)
+    })
+    .catch(err => {
+      console.log(`\n   *** ERROR ${err.message}\n`)
+    })
 }
 
 run()
