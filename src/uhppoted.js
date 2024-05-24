@@ -37,10 +37,12 @@ module.exports = {
    * Retrieves device information for a single UHPPOTE access controller.
    *
    * @param {object} ctx         Context with configuration, locale (optional) and logger (optional).
-   * @param {uint}   controller  Controller serial number
-   * @param {string} dest        Optional controller IPv4 address. Defaults to UDP broadcast.
-   * @param {string} protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
-   *                             'udp' unless 'tcp'
+   * @param {uint|object} controller        Either a controller serial number (legacy implementation) or an
+   *                                        object of the form { controller, dest, protocol }:
+   * @param {uint}   controller.controller  Controller serial number
+   * @param {string} controller.address     Optional controller IPv4 address. Defaults to UDP broadcast.
+   * @param {string} controller.protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
+   *                                        'udp' unless 'tcp'
    *
    * @example
    * uhppoted.getDevice(ctx, 405419896)
@@ -48,35 +50,53 @@ module.exports = {
    *  .catch(err => { console.log(`${err.message}`)
    *
    * @example
-   * uhppoted.getDevice(ctx, 405419896, { dest:'192.168.1.100', protocol:'tcp'})
+   * uhppoted.getDevice(ctx, {controller:405419896, address:'192.168.1.100', protocol:'tcp'})
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  getDevice: function (ctx, controller, { dest, protocol } = { dest: null, protocol: 'udp' }) {
-    return validate({ controller }, ctx.locale)
-      .then(ok => initialise(ctx))
-      .then(context => get(context, controller, opcodes.GetDevice, {}, dest, protocol))
-      .then(response => translate(response, ctx.locale))
+  getDevice: function (ctx, controller) {
+    if (typeof (controller) === 'number') {
+      return validate({ controller }, ctx.locale)
+        .then(ok => initialise(ctx))
+        .then(context => get(context, controller, opcodes.GetDevice, {}))
+        .then(response => translate(response, ctx.locale))
+    }
+
+    if (typeof (controller) === 'object') {
+      const { controller: id, address = null, protocol = 'udp' } = controller
+
+      return validate({ id }, ctx.locale)
+        .then(ok => initialise(ctx))
+        .then(context => get(context, id, opcodes.GetDevice, {}, address, protocol))
+        .then(response => translate(response, ctx.locale))
+    }
   },
 
   /**
    * Sets the IP address, subnet mask and gateway address for a UHPPOTE access controller.
    *
    * @param {object} ctx         Context with configuration, locale (optional) and logger (optional).
-   * @param {uint}   controller  Controller serial number
+   * @param {uint|object} controller        Either a controller serial number (legacy implementation) or an
+   *                                        object of the form { controller, dest, protocol }:
+   * @param {uint}   controller.controller  Controller serial number
+   * @param {string} controller.address     Optional controller IPv4 address. Defaults to UDP broadcast.
+   * @param {string} controller.protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
+   *                                        'udp' unless 'tcp'
    * @param {string} address     IPv4 address assigned to controller
    * @param {string} netmask     IPv4 subnet mask assigned to controller
    * @param {string} gateway     IPv4 LAN gateway address for controller
-   * @param {string} dest        Optional controller IPv4 address. Defaults to UDP broadcast.
-   * @param {string} protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
-   *                             'udp' unless 'tcp'
    *
    * @example
    * uhppoted.setIP(ctx, 405419896, '192.168.1.100', '255.255.255.0', '192.168.1.1')
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
+   *
+   * @example
+   * uhppoted.setIP(ctx, {controller:405419896, address:'192.168.1.100', protocol:'tcp'}, 192.168.1.100', '255.255.255.0', '192.168.1.1')
+   *  .then(response => { console.log(response) })
+   *  .catch(err => { console.log(`${err.message}`)
    */
-  setIP: function (ctx, controller, address, netmask, gateway, { dest, protocol } = { dest: null, protocol: 'udp' }) {
+  setIP: function (ctx, controller, address, netmask, gateway) {
     return validate({ controller }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => send(context, controller, opcodes.SetIP, { address, netmask, gateway }))
@@ -87,10 +107,12 @@ module.exports = {
    * Retrieves the IP address and port to which the controller is configured to send events.
    *
    * @param {object} ctx         Context with configuration, locale (optional) and logger (optional).
-   * @param {uint}   controller  Controller serial number
-   * @param {string} dest        Optional controller IPv4 address. Defaults to UDP broadcast.
-   * @param {string} protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
-   *                             'udp' unless 'tcp'
+   * @param {uint|object} controller        Either a controller serial number (legacy implementation) or an
+   *                                        object of the form { controller, dest, protocol }:
+   * @param {uint}   controller.controller  Controller serial number
+   * @param {string} controller.address     Optional controller IPv4 address. Defaults to UDP broadcast.
+   * @param {string} controller.protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
+   *                                        'udp' unless 'tcp'
    *
    * @example
    * uhppoted.getListener(ctx, 405419896)
@@ -98,27 +120,40 @@ module.exports = {
    *  .catch(err => { console.log(`${err.message}`)
    *
    * @example
-   * uhppoted.getListener(ctx, 405419896, { dest:'192.168.1.100', protocol:'tcp'})
+   * uhppoted.getListener(ctx, { controller:405419896, address:'192.168.1.100', protocol:'tcp'})
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  getListener: function (ctx, controller, { dest, protocol } = { dest: null, protocol: 'udp' }) {
-    return validate({ controller }, ctx.locale)
-      .then(ok => initialise(ctx))
-      .then(context => get(context, controller, opcodes.GetListener, {}, dest, protocol))
-      .then(response => translate(response, ctx.locale))
+  getListener: function (ctx, controller) {
+    if (typeof (controller) === 'number') {
+      return validate({ controller }, ctx.locale)
+        .then(ok => initialise(ctx))
+        .then(context => get(context, controller, opcodes.GetListener, {}))
+        .then(response => translate(response, ctx.locale))
+    }
+
+    if (typeof (controller) === 'object') {
+      const { controller: id, address = null, protocol = 'udp' } = controller
+
+      return validate({ id }, ctx.locale)
+        .then(ok => initialise(ctx))
+        .then(context => get(context, id, opcodes.GetListener, {}, address, protocol))
+        .then(response => translate(response, ctx.locale))
+    }
   },
 
   /**
    * Sets the IP address and port to which the controller should send events.
    *
    * @param {object} ctx         Context with configuration, locale (optional) and logger (optional).
-   * @param {uint}   controller  Controller serial number
+   * @param {uint|object} controller        Either a controller serial number (legacy implementation) or an
+   *                                        object of the form { controller, dest, protocol }:
+   * @param {uint}   controller.controller  Controller serial number
+   * @param {string} controller.address     Optional controller IPv4 address. Defaults to UDP broadcast.
+   * @param {string} controller.protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
+   *                                        'udp' unless 'tcp'
    * @param {string} address     IPv4 address of event listener
    * @param {int}    port        IPv4 UDP port of event listener
-   * @param {string} dest        Optional controller IPv4 address. Defaults to UDP broadcast.
-   * @param {string} protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
-   *                             'udp' unless 'tcp'
    *
    * @example
    * uhppoted.setListener(ctx, 405419896, '192.168.1.100', 600001)
@@ -126,25 +161,38 @@ module.exports = {
    *  .catch(err => { console.log(`${err.message}`)
    *
    * @example
-   * uhppoted.setListener(ctx, 405419896, '192.168.1.100', 600001, { dest:'192.168.1.100', protocol:'tcp'})
+   * uhppoted.setListener(ctx, {controller:405419896, address:'192.168.1.100', protocol:'tcp'}, '192.168.1.100', 600001)
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  setListener: function (ctx, controller, address, port, { dest, protocol } = { dest: null, protocol: 'udp' }) {
-    return validate({ controller }, ctx.locale)
-      .then(ok => initialise(ctx))
-      .then(context => set(context, controller, opcodes.SetListener, { address, port }, dest, protocol))
-      .then(response => translate(response, ctx.locale))
+  setListener: function (ctx, controller, address, port) {
+    if (typeof (controller) === 'number') {
+      return validate({ controller }, ctx.locale)
+        .then(ok => initialise(ctx))
+        .then(context => set(context, controller, opcodes.SetListener, { address, port }))
+        .then(response => translate(response, ctx.locale))
+    }
+
+    if (typeof (controller) === 'object') {
+      const { controller: id, address = null, protocol = 'udp' } = controller
+
+      return validate({ id }, ctx.locale)
+        .then(ok => initialise(ctx))
+        .then(context => set(context, id, opcodes.SetListener, { address, port }, address, protocol))
+        .then(response => translate(response, ctx.locale))
+    }
   },
 
   /**
    * Retrieves the controller current date and time.
    *
    * @param {object} ctx         Context with configuration, locale (optional) and logger (optional).
-   * @param {uint}   controller  Controller serial number
-   * @param {string} dest        Optional controller IPv4 address. Defaults to UDP broadcast.
-   * @param {string} protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
-   *                             'udp' unless 'tcp'
+   * @param {uint|object} controller        Either a controller serial number (legacy implementation) or an
+   *                                        object of the form { controller, dest, protocol }:
+   * @param {uint}   controller.controller  Controller serial number
+   * @param {string} controller.address     Optional controller IPv4 address. Defaults to UDP broadcast.
+   * @param {string} controller.protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
+   *                                        'udp' unless 'tcp'
    *
    * @example
    * uhppoted.getTime(ctx, 405419896)
@@ -152,26 +200,39 @@ module.exports = {
    *  .catch(err => { console.log(`${err.message}`)
    *
    * @example
-   * uhppoted.getTime(ctx, 405419896, { dest:'192.168.1.100', protocol:'tcp'})
+   * uhppoted.getTime(ctx, { controller:405419896, address:'192.168.1.100', protocol:'tcp'})
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  getTime: function (ctx, controller, { dest, protocol } = { dest: null, protocol: 'udp' }) {
-    return validate({ controller }, ctx.locale)
-      .then(ok => initialise(ctx))
-      .then(context => get(context, controller, opcodes.GetTime, {}, dest, protocol))
-      .then(response => translate(response, ctx.locale))
+  getTime: function (ctx, controller) {
+    if (typeof (controller) === 'number') {
+      return validate({ controller }, ctx.locale)
+        .then(ok => initialise(ctx))
+        .then(context => get(context, controller, opcodes.GetTime, {}))
+        .then(response => translate(response, ctx.locale))
+    }
+
+    if (typeof (controller) === 'object') {
+      const { controller: id, address = null, protocol = 'udp' } = controller
+
+      return validate({ id }, ctx.locale)
+        .then(ok => initialise(ctx))
+        .then(context => get(context, id, opcodes.GetTime, {}, address, protocol))
+        .then(response => translate(response, ctx.locale))
+    }
   },
 
   /**
    * Sets the controller date and time.
    *
    * @param {object} ctx         Context with configuration, locale (optional) and logger (optional).
-   * @param {uint}   controller  Controller serial number
+   * @param {uint|object} controller        Either a controller serial number (legacy implementation) or an
+   *                                        object of the form { controller, dest, protocol }:
+   * @param {uint}   controller.controller  Controller serial number
+   * @param {string} controller.address     Optional controller IPv4 address. Defaults to UDP broadcast.
+   * @param {string} controller.protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
+   *                                        'udp' unless 'tcp'
    * @param {string} datetime    Date and time (YYYY-mm-dd HH:mm:ss)
-   * @param {string} dest        Optional controller IPv4 address. Defaults to UDP broadcast.
-   * @param {string} protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
-   *                             'udp' unless 'tcp'
    *
    * @example
    * uhppoted.setTime(ctx, 405419896, '2021-06-04 15:25:43')
@@ -179,26 +240,39 @@ module.exports = {
    *  .catch(err => { console.log(`${err.message}`)
    *
    * @example
-   * uhppoted.setTime(ctx, 405419896, '2021-06-04 15:25:43', { dest:'192.168.1.100', protocol:'tcp'})
+   * uhppoted.setTime(ctx, {controller:405419896, address:'192.168.1.100', protocol:'tcp'}, '2021-06-04 15:25:43')
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  setTime: function (ctx, controller, datetime, { dest, protocol } = { dest: null, protocol: 'udp' }) {
-    return validate({ controller }, ctx.locale)
-      .then(ok => initialise(ctx))
-      .then(context => set(context, controller, opcodes.SetTime, { datetime }, dest, protocol))
-      .then(response => translate(response, ctx.locale))
+  setTime: function (ctx, controller, datetime) {
+    if (typeof (controller) === 'number') {
+      return validate({ controller }, ctx.locale)
+        .then(ok => initialise(ctx))
+        .then(context => set(context, controller, opcodes.SetTime, { datetime }))
+        .then(response => translate(response, ctx.locale))
+    }
+
+    if (typeof (controller) === 'object') {
+      const { controller: id, address = null, protocol = 'udp' } = controller
+
+      return validate({ id }, ctx.locale)
+        .then(ok => initialise(ctx))
+        .then(context => set(context, id, opcodes.SetTime, { datetime }, address, protocol))
+        .then(response => translate(response, ctx.locale))
+    }
   },
 
   /**
    * Retrieves the door unlock duration and control mode settings from a controller.
    *
-   * @param {object} ctx         Context with configuration, locale (optional) and logger (optional).
-   * @param {uint}   controller  Controller serial number
-   * @param {uint}   door        Door ID in the range [1..4]
-   * @param {string} dest        Optional controller IPv4 address. Defaults to UDP broadcast.
-   * @param {string} protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
-   *                             'udp' unless 'tcp'
+   * @param {object} ctx  Context with configuration, locale (optional) and logger (optional).
+   * @param {uint|object} controller        Either a controller serial number (legacy implementation) or an
+   *                                        object of the form { controller, dest, protocol }:
+   * @param {uint}   controller.controller  Controller serial number
+   * @param {string} controller.address     Optional controller IPv4 address. Defaults to UDP broadcast.
+   * @param {string} controller.protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
+   *                                        'udp' unless 'tcp'
+   * @param {uint} door  Door ID in the range [1..4]
    *
    * @example
    * uhppoted.getDoorControl(ctx, 405419896, 3)
@@ -206,29 +280,43 @@ module.exports = {
    *  .catch(err => { console.log(`${err.message}`)
    *
    * @example
-   * uhppoted.getDoorControl(ctx, 405419896, 3, { dest:'192.168.1.100', protocol:'tcp'})
+   * uhppoted.getDoorControl(ctx, { controller:405419896, address:'192.168.1.100', protocol:'tcp'}, 3)
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  getDoorControl: function (ctx, controller, door, { dest, protocol } = { dest: null, protocol: 'udp' }) {
-    return validate({ controller, door }, ctx.locale)
-      .then(ok => initialise(ctx))
-      .then(context => get(context, controller, opcodes.GetDoorControl, { door }, dest, protocol))
-      .then(response => translate(response, ctx.locale))
-      .then(response => translate(response, ctx.locale))
+  getDoorControl: function (ctx, controller, door) {
+    if (typeof (controller) === 'number') {
+      return validate({ controller, door }, ctx.locale)
+        .then(ok => initialise(ctx))
+        .then(context => get(context, controller, opcodes.GetDoorControl, { door }))
+        .then(response => translate(response, ctx.locale))
+        .then(response => translate(response, ctx.locale))
+    }
+
+    if (typeof (controller) === 'object') {
+      const { controller: id, address = null, protocol = 'udp' } = controller
+
+      return validate({ id, door }, ctx.locale)
+        .then(ok => initialise(ctx))
+        .then(context => get(context, id, opcodes.GetDoorControl, { door }, address, protocol))
+        .then(response => translate(response, ctx.locale))
+        .then(response => translate(response, ctx.locale))
+    }
   },
 
   /**
    * Sets the door unlock duration and control mode from a controller.
    *
-   * @param {object} ctx         Context with configuration, locale (optional) and logger (optional).
-   * @param {uint}   controller  Controller serial number
-   * @param {uint}   door        Door ID in the range [1..4]
-   * @param {uint}   delay       Door unlock duration (seconds)
-   * @param {string} mode        Door control mode ('normally open', 'normally closed' or 'controlled')
-   * @param {string} dest        Optional controller IPv4 address. Defaults to UDP broadcast.
-   * @param {string} protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
-   *                             'udp' unless 'tcp'
+   * @param {object}      ctx               Context with configuration, locale (optional) and logger (optional).
+   * @param {uint|object} controller        Either a controller serial number (legacy implementation) or an
+   *                                        object of the form { controller, dest, protocol }:
+   * @param {uint}   controller.controller  Controller serial number
+   * @param {string} controller.address     Optional controller IPv4 address. Defaults to UDP broadcast.
+   * @param {string} controller.protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
+   *                                       'udp' unless 'tcp'
+   * @param {uint}   door   Door ID in the range [1..4]
+   * @param {uint}   delay  Door unlock duration (seconds)
+   * @param {string} mode   Door control mode ('normally open', 'normally closed' or 'controlled')
    *
    * @example
    * uhppoted.setDoorControl(ctx, 405419896, 3, 5, 'controlled')
@@ -236,11 +324,11 @@ module.exports = {
    *  .catch(err => { console.log(`${err.message}`)
    *
    * @example
-   * uhppoted.setDoorControl(ctx, 405419896, 3, 5, 'controlled', { dest:'192.168.1.100', protocol:'tcp'})
+   * uhppoted.setDoorControl(ctx, {controller:405419896, address:'192.168.1.100', protocol:'tcp'}, 3, 5, 'controlled')
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  setDoorControl: function (ctx, controller, door, delay, mode, { dest, protocol } = { dest: null, protocol: 'udp' }) {
+  setDoorControl: function (ctx, controller, door, delay, mode) {
     let control = 0x00
 
     switch (mode) {
@@ -260,21 +348,34 @@ module.exports = {
         throw errors.InvalidDoorControl(mode, ctx.locale)
     }
 
-    return validate({ controller, door }, ctx.locale)
-      .then(ok => initialise(ctx))
-      .then(context => set(context, controller, opcodes.SetDoorControl, { door, delay, control }, dest, protocol))
-      .then(response => translate(response, ctx.locale))
+    if (typeof (controller) === 'number') {
+      return validate({ controller, door }, ctx.locale)
+        .then(ok => initialise(ctx))
+        .then(context => set(context, controller, opcodes.SetDoorControl, { door, delay, control }))
+        .then(response => translate(response, ctx.locale))
+    }
+
+    if (typeof (controller) === 'object') {
+      const { controller: id, address = null, protocol = 'udp' } = controller
+
+      return validate({ id }, ctx.locale)
+        .then(ok => initialise(ctx))
+        .then(context => set(context, id, opcodes.SetDoorControl, { door, delay, control }, address, protocol))
+        .then(response => translate(response, ctx.locale))
+    }
   },
 
   /**
    * Enables or disables door open and closed input events.
    *
    * @param {object} ctx         Context with configuration, locale (optional) and logger (optional).
-   * @param {uint}   controller  Controller serial number
+   * @param {uint|object} controller  Either a controller serial number (legacy implementation) or an
+   *                                  object of the form { controller, dest, protocol }:
+   * @param {uint}        controller.controller  Controller serial number
+   * @param {string}      controller.address     Optional controller IPv4 address. Defaults to UDP broadcast.
+   * @param {string}      controller.protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
+   *                                             'udp' unless 'tcp'
    * @param {bool}   enable      Enable/disable door open/close events
-   * @param {string} dest        Optional controller IPv4 address. Defaults to UDP broadcast.
-   * @param {string} protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
-   *                             'udp' unless 'tcp'
    *
    * @example
    * uhppoted.recordSpecialEvents(ctx, 405419896, true)
@@ -282,15 +383,26 @@ module.exports = {
    *  .catch(err => { console.log(`${err.message}`)
    *
    * @example
-   * uhppoted.recordSpecialEvents(ctx, 405419896, true, { dest:'192.168.1.100', protocol:'tcp'})
+   * uhppoted.recordSpecialEvents(ctx, , { controller:405419896, address:'192.168.1.100', protocol:'tcp'}, true)
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  recordSpecialEvents: function (ctx, controller, enable, { dest, protocol } = { dest: null, protocol: 'udp' }) {
-    return validate({ controller }, ctx.locale)
-      .then(ok => initialise(ctx))
-      .then(context => set(context, controller, opcodes.RecordSpecialEvents, { enable }, dest, protocol))
-      .then(response => translate(response, ctx.locale))
+  recordSpecialEvents: function (ctx, controller, enable) {
+    if (typeof (controller) === 'number') {
+      return validate({ controller }, ctx.locale)
+        .then(ok => initialise(ctx))
+        .then(context => set(context, controller, opcodes.RecordSpecialEvents, { enable }))
+        .then(response => translate(response, ctx.locale))
+    }
+
+    if (typeof (controller) === 'object') {
+      const { controller: id, address = null, protocol = 'udp' } = controller
+
+      return validate({ id }, ctx.locale)
+        .then(ok => initialise(ctx))
+        .then(context => set(context, id, opcodes.RecordSpecialEvents, { enable }, address, protocol))
+        .then(response => translate(response, ctx.locale))
+    }
   },
 
   /**
