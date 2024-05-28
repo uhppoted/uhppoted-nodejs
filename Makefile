@@ -53,13 +53,7 @@ publish-npm: release
 	npm publish
 
 debug: build
-	# node examples/debug.js $(ARGS)
-	# npx eslint --fix integration-tests/**/*.js  
-	# npx mocha 'integration-tests/**/get-event_spec.js' --broadcast='192.168.1.255:59999' --listen='192.168.1.100:60001'
-	# @node examples/error-handling.js $(ARGS)
-	# @node examples/error-handling-with-locale.js $(ARGS)
-	# @node examples/get-overwritten-event.js $(ARGS)
-	node examples/tcp.js $(ARGS)
+	node examples/debug.js $(ARGS)
 
 error-handling: build
 	node examples/error-handling.js $(ARGS)
@@ -140,13 +134,13 @@ set-time-profile: build
 clear-time-profiles: build
 	node examples/clear-time-profiles.js $(ARGS)
 
-clear-task-list: build
+clear-tasklist: build
 	node examples/clear-task-list.js $(ARGS)
 
 add-task: build
 	node examples/add-task.js $(ARGS)
 
-refresh-task-list: build
+refresh-tasklist: build
 	node examples/refresh-task-list.js $(ARGS)
 
 trigger-once: build
@@ -189,6 +183,9 @@ restore-default-parameters: build
 listen: build
 	node examples/listen.js $(ARGS)
 
+set-pc-contro-listenl: build
+	node examples/set-pc-control-listen.js $(ARGS)
+
 run-all: build
 	@node examples/get-devices.js $(ARGS)
 	@node examples/get-device.js $(ARGS)
@@ -217,14 +214,15 @@ run-all: build
 	@node examples/get-overwritten-event.js $(ARGS)
 	@node examples/get-event-with-locale.js $(ARGS)
 	@node examples/get-event-with-unsupported-locale.js $(ARGS)
+	@node examples/clear-time-profiles.js $(ARGS)
+	@node examples/set-time-profile.js $(ARGS)
+	@node examples/get-time-profile.js $(ARGS)
+	@node examples/set-pc-control.js $(ARGS)
 	@node examples/set-interlock.js $(ARGS)
 	@node examples/activate-keypads.js $(ARGS)
-	@node examples/restore-default-parameters.js $(ARGS)
 	@node examples/set-super-passwords.js $(ARGS)
+	@node examples/restore-default-parameters.js $(ARGS)
 	@node examples/error-handling.js $(ARGS)
 	@node examples/error-handling-with-locale.js $(ARGS)
 
-
-run-all-tcp: build
-	node examples/tcp.js $(ARGS)
 

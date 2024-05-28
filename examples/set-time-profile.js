@@ -2,6 +2,7 @@ const uhppoted = require('uhppoted')
 const ctx = require('./common.js')
 
 const deviceID = 405419896
+const addr = '192.168.1.100'
 const profile = {
   id: 29,
   valid: { from: '2021-01-01', to: '2021-12-31' },
@@ -13,10 +14,22 @@ const profile = {
   linkedTo: 3
 }
 
-uhppoted.setTimeProfile(ctx, deviceID, profile)
-  .then(response => {
-    console.log('\nset-time-profile:\n', response)
-  })
-  .catch(err => {
-    console.log(`\n   *** ERROR ${err.message}\n`)
-  })
+async function run () {
+  await uhppoted.setTimeProfile(ctx, deviceID, profile)
+    .then(response => {
+      console.log('\nset-time-profile:\n', response)
+    })
+    .catch(err => {
+      console.log(`\n   *** ERROR ${err.message}\n`)
+    })
+
+  await uhppoted.setTimeProfile(ctx, { controller: deviceID, address: addr, protocol: 'tcp' }, profile)
+    .then(response => {
+      console.log('\nset-time-profile:\n', response)
+    })
+    .catch(err => {
+      console.log(`\n   *** ERROR ${err.message}\n`)
+    })
+}
+
+run()

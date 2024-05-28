@@ -2,6 +2,7 @@ const uhppoted = require('uhppoted')
 const ctx = require('./common.js')
 
 const deviceID = 405419896
+const addr = '192.168.1.100'
 const task = {
   task: 'enable time profile',
   door: 3,
@@ -10,10 +11,22 @@ const task = {
   start: '08:30'
 }
 
-uhppoted.addTask(ctx, deviceID, task)
-  .then(response => {
-    console.log('\nadd-task:\n', response)
-  })
-  .catch(err => {
-    console.log(`\n   *** ERROR ${err.message}\n`)
-  })
+async function run () {
+  await uhppoted.addTask(ctx, deviceID, task)
+    .then(response => {
+      console.log('\nadd-task:\n', response)
+    })
+    .catch(err => {
+      console.log(`\n   *** ERROR ${err.message}\n`)
+    })
+
+  await uhppoted.addTask(ctx, { controller: deviceID, address: addr, protocol: 'tcp' }, task)
+    .then(response => {
+      console.log('\nadd-task:\n', response)
+    })
+    .catch(err => {
+      console.log(`\n   *** ERROR ${err.message}\n`)
+    })
+}
+
+run()
