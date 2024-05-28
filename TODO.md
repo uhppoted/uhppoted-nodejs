@@ -38,7 +38,7 @@
             - [x] activate-keypads
             - [x] set-door-passcodes
             - [x] restore-default-parameters
-      - [ ] Unit tests
+      - [ ] Update unit tests
       - [ ] Integration tests
             - [x] get-device
             - [ ] set-ip

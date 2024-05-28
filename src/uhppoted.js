@@ -57,7 +57,7 @@ module.exports = {
   getDevice: function (ctx, controller) {
     const { controller: id, address: addr, protocol } = resolve(controller)
 
-    return validate({ id }, ctx.locale)
+    return validate({ controller: id }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => get(context, id, opcodes.GetDevice, {}, addr, protocol))
       .then(response => translate(response, ctx.locale))
@@ -118,7 +118,7 @@ module.exports = {
   getListener: function (ctx, controller) {
     const { controller: id, address: addr, protocol } = resolve(controller)
 
-    return validate({ id }, ctx.locale)
+    return validate({ controller: id }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => get(context, id, opcodes.GetListener, {}, addr, protocol))
       .then(response => translate(response, ctx.locale))
@@ -150,7 +150,7 @@ module.exports = {
   setListener: function (ctx, controller, address, port) {
     const { controller: id, address: addr, protocol } = resolve(controller)
 
-    return validate({ id }, ctx.locale)
+    return validate({ controller: id }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => set(context, id, opcodes.SetListener, { address, port }, addr, protocol))
       .then(response => translate(response, ctx.locale))
@@ -180,7 +180,7 @@ module.exports = {
   getTime: function (ctx, controller) {
     const { controller: id, address: addr, protocol } = resolve(controller)
 
-    return validate({ id }, ctx.locale)
+    return validate({ controller: id }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => get(context, id, opcodes.GetTime, {}, addr, protocol))
       .then(response => translate(response, ctx.locale))
@@ -211,7 +211,7 @@ module.exports = {
   setTime: function (ctx, controller, datetime) {
     const { controller: id, address: addr, protocol } = resolve(controller)
 
-    return validate({ id }, ctx.locale)
+    return validate({ controller: id }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => set(context, id, opcodes.SetTime, { datetime }, addr, protocol))
       .then(response => translate(response, ctx.locale))
@@ -242,7 +242,7 @@ module.exports = {
   getDoorControl: function (ctx, controller, door) {
     const { controller: id, address: addr, protocol } = resolve(controller)
 
-    return validate({ id, door }, ctx.locale)
+    return validate({ controller: id, door }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => get(context, id, opcodes.GetDoorControl, { door }, addr, protocol))
       .then(response => translate(response, ctx.locale))
@@ -295,7 +295,7 @@ module.exports = {
 
     const { controller: id, address: addr, protocol } = resolve(controller)
 
-    return validate({ id }, ctx.locale)
+    return validate({ controller: id, door }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => set(context, id, opcodes.SetDoorControl, { door, delay, control }, addr, protocol))
       .then(response => translate(response, ctx.locale))
@@ -326,7 +326,7 @@ module.exports = {
   recordSpecialEvents: function (ctx, controller, enable) {
     const { controller: id, address: addr, protocol } = resolve(controller)
 
-    return validate({ id }, ctx.locale)
+    return validate({ controller: id }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => set(context, id, opcodes.RecordSpecialEvents, { enable }, addr, protocol))
       .then(response => translate(response, ctx.locale))
@@ -356,7 +356,7 @@ module.exports = {
   getStatus: function (ctx, controller) {
     const { controller: id, address: addr, protocol } = resolve(controller)
 
-    return validate({ id }, ctx.locale)
+    return validate({ controller: id }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => get(context, id, opcodes.GetStatus, {}, addr, protocol))
       .then(response => translate(response, ctx.locale))
@@ -387,7 +387,7 @@ module.exports = {
   getCards: function (ctx, controller) {
     const { controller: id, address: addr, protocol } = resolve(controller)
 
-    return validate({ id }, ctx.locale)
+    return validate({ controller: id }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => get(context, id, opcodes.GetCards, {}, addr, protocol))
       .then(response => translate(response, ctx.locale))
@@ -418,7 +418,7 @@ module.exports = {
   getCard: function (ctx, controller, card) {
     const { controller: id, address: addr, protocol } = resolve(controller)
 
-    return validate({ id, cardNumber: card }, ctx.locale)
+    return validate({ controller: id, cardNumber: card }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => get(context, id, opcodes.GetCardByID, { card }, addr, protocol))
       .then(response => translate(response, ctx.locale))
@@ -449,7 +449,7 @@ module.exports = {
   getCardByIndex: function (ctx, controller, index) {
     const { controller: id, address: addr, protocol } = resolve(controller)
 
-    return validate({ id, cardIndex: index }, ctx.locale)
+    return validate({ controller: id, cardIndex: index }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => get(context, id, opcodes.GetCardByIndex, { index }, addr, protocol))
       .then(response => translate(response, ctx.locale))
@@ -485,7 +485,7 @@ module.exports = {
   putCard: function (ctx, controller, card, validFrom, validUntil, doors, PIN) {
     const { controller: id, address: addr, protocol } = resolve(controller)
 
-    return validate({ id, cardNumber: card, doors }, ctx.locale)
+    return validate({ controller: id, cardNumber: card, doors }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => set(context, id, opcodes.PutCard, { card, from: validFrom, to: validUntil, doors, PIN }, addr, protocol))
       .then(response => translate(response, ctx.locale))
@@ -516,7 +516,7 @@ module.exports = {
   deleteCard: function (ctx, controller, card) {
     const { controller: id, address: addr, protocol } = resolve(controller)
 
-    return validate({ id, cardNumber: card }, ctx.locale)
+    return validate({ controller: id, cardNumber: card }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => set(context, id, opcodes.DeleteCard, { card }, addr, protocol))
       .then(response => translate(response, ctx.locale))
@@ -546,7 +546,7 @@ module.exports = {
   deleteCards: function (ctx, controller) {
     const { controller: id, address: addr, protocol } = resolve(controller)
 
-    return validate({ id }, ctx.locale)
+    return validate({ controller: id }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => set(context, id, opcodes.DeleteCards, {}, addr, protocol))
       .then(response => translate(response, ctx.locale))
@@ -577,7 +577,7 @@ module.exports = {
   getTimeProfile: function (ctx, controller, profile) {
     const { controller: id, address: addr, protocol } = resolve(controller)
 
-    return validate({ id, profileId: profile }, ctx.locale)
+    return validate({ controller: id, profileId: profile }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => get(context, id, opcodes.GetTimeProfile, { profileId: profile }, addr, protocol))
       .then(response => translate(response, ctx.locale))
@@ -608,7 +608,7 @@ module.exports = {
   setTimeProfile: function (ctx, controller, profile) {
     const { controller: id, address: addr, protocol } = resolve(controller)
 
-    return validate({ id, profile }, ctx.locale)
+    return validate({ controller: id, profile }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => get(context, id, opcodes.SetTimeProfile, { profile }, addr, protocol))
       .then(response => translate(response, ctx.locale))
@@ -638,7 +638,7 @@ module.exports = {
   clearTimeProfiles: function (ctx, controller) {
     const { controller: id, address: addr, protocol } = resolve(controller)
 
-    return validate({ id }, ctx.locale)
+    return validate({ controller: id }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => get(context, id, opcodes.ClearTimeProfiles, {}, addr, protocol))
       .then(response => translate(response, ctx.locale))
@@ -668,7 +668,7 @@ module.exports = {
   clearTaskList: function (ctx, controller) {
     const { controller: id, address: addr, protocol } = resolve(controller)
 
-    return validate({ id }, ctx.locale)
+    return validate({ controller: id }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => get(context, id, opcodes.ClearTaskList, {}, addr, protocol))
       .then(response => translate(response, ctx.locale))
@@ -700,7 +700,7 @@ module.exports = {
   addTask: function (ctx, controller, task) {
     const { controller: id, address: addr, protocol } = resolve(controller)
 
-    return validate({ id, task }, ctx.locale)
+    return validate({ controller: id, task }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => get(context, id, opcodes.AddTask, { task }, addr, protocol))
       .then(response => translate(response, ctx.locale))
@@ -730,7 +730,7 @@ module.exports = {
   refreshTaskList: function (ctx, controller) {
     const { controller: id, address: addr, protocol } = resolve(controller)
 
-    return validate({ id }, ctx.locale)
+    return validate({ controller: id }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => get(context, id, opcodes.RefreshTaskList, {}, addr, protocol))
       .then(response => translate(response, ctx.locale))
@@ -760,11 +760,11 @@ module.exports = {
   getEvents: function (ctx, controller) {
     const { controller: id, address: addr, protocol } = resolve(controller)
 
-    const first = validate({ id }, ctx.locale)
+    const first = validate({ controller: id }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => get(context, id, opcodes.GetEvent, { index: 0 }, addr, protocol))
 
-    const last = validate({ id }, ctx.locale)
+    const last = validate({ controller: id }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => get(context, id, opcodes.GetEvent, { index: 0xffffffff }, addr, protocol))
 
@@ -811,7 +811,7 @@ module.exports = {
   getEvent: function (ctx, controller, index) {
     const { controller: id, address: addr, protocol } = resolve(controller)
 
-    return validate({ id, eventIndex: index }, ctx.locale)
+    return validate({ controller: id, eventIndex: index }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => get(context, id, opcodes.GetEvent, { index }, addr, protocol))
       .then(response => {
@@ -851,7 +851,7 @@ module.exports = {
   getEventIndex: function (ctx, controller) {
     const { controller: id, address: addr, protocol } = resolve(controller)
 
-    return validate({ id }, ctx.locale)
+    return validate({ controller: id }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => get(context, id, opcodes.GetEventIndex, { }, addr, protocol))
       .then(response => translate(response, ctx.locale))
@@ -882,7 +882,7 @@ module.exports = {
   setEventIndex: function (ctx, controller, index) {
     const { controller: id, address: addr, protocol } = resolve(controller)
 
-    return validate({ id, eventIndex: index }, ctx.locale)
+    return validate({ controller: id, eventIndex: index }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => set(context, id, opcodes.SetEventIndex, { index }, addr, protocol))
       .then(response => translate(response, ctx.locale))
@@ -913,7 +913,7 @@ module.exports = {
   openDoor: function (ctx, controller, door) {
     const { controller: id, address: addr, protocol } = resolve(controller)
 
-    return validate({ id, door }, ctx.locale)
+    return validate({ controller: id, door }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => set(context, id, opcodes.OpenDoor, { door }, addr, protocol))
       .then(response => translate(response, ctx.locale))
@@ -952,7 +952,7 @@ module.exports = {
   setPCControl: function (ctx, controller, enable) {
     const { controller: id, address: addr, protocol } = resolve(controller)
 
-    return validate({ id }, ctx.locale)
+    return validate({ controller: id }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => set(context, id, opcodes.SetPCControl, { enable }, addr, protocol))
       .then(response => translate(response, ctx.locale))
@@ -989,7 +989,7 @@ module.exports = {
   setInterlock: function (ctx, controller, interlock) {
     const { controller: id, address: addr, protocol } = resolve(controller)
 
-    return validate({ id }, ctx.locale)
+    return validate({ controller: id }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => set(context, id, opcodes.SetInterlock, { interlock }, addr, protocol))
       .then(response => translate(response, ctx.locale))
@@ -1030,7 +1030,7 @@ module.exports = {
   activateKeypads: function (ctx, controller, keypads) {
     const { controller: id, address: addr, protocol } = resolve(controller)
 
-    return validate({ id }, ctx.locale)
+    return validate({ controller: id }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => set(context, id, opcodes.ActivateKeypads, {
         keypads: {
@@ -1070,7 +1070,7 @@ module.exports = {
   setDoorPasscodes: function (ctx, controller, door, passcodes) {
     const { controller: id, address: addr, protocol } = resolve(controller)
 
-    return validate({ id }, ctx.locale)
+    return validate({ controller: id }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => set(context, id, opcodes.SetDoorPasscodes, {
         door,
@@ -1103,7 +1103,7 @@ module.exports = {
   restoreDefaultParameters: function (ctx, controller) {
     const { controller: id, address: addr, protocol } = resolve(controller)
 
-    return validate({ id }, ctx.locale)
+    return validate({ controller: id }, ctx.locale)
       .then(ok => initialise(ctx))
       .then(context => set(context, id, opcodes.RestoreDefaultParameters, {}, addr, protocol))
       .then(response => translate(response, ctx.locale))
