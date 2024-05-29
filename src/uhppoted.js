@@ -88,9 +88,11 @@ module.exports = {
    *  .catch(err => { console.log(`${err.message}`)
    */
   setIP: function (ctx, controller, address, netmask, gateway) {
-    return validate({ controller }, ctx.locale)
+    const { controller: id, address: addr, protocol } = resolve(controller)
+
+    return validate({ controller: id }, ctx.locale)
       .then(ok => initialise(ctx))
-      .then(context => send(context, controller, opcodes.SetIP, { address, netmask, gateway }))
+      .then(context => send(context, id, opcodes.SetIP, { address, netmask, gateway }, addr, protocol))
       .then(response => translate(response, ctx.locale))
   },
 

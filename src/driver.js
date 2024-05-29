@@ -98,8 +98,11 @@ module.exports = {
     * @param {number}   deviceId The serial number for the target access controller
     * @param {byte}     op       Operation code from 'opcode' module
     * @param {object}   request  Operation parameters for use by codec.encode
+    * @param {string}   dest     Optional controller IPv4 address. Defaults to UDP broadcast.
+    * @param {string}   protocol Optional connection protocol ('udp' or 'tcp'). Defaults to
+    *                            'udp' unless 'tcp'
     */
-  send: async function (ctx, deviceId, op, request) {
+  send: async function (ctx, deviceId, op, request, dest = null, protocol = 'udp') {
     const c = context(deviceId, ctx.config, ctx.logger)
 
     const receiver = new Promise((resolve, reject) => {
@@ -111,9 +114,13 @@ module.exports = {
     }
 
     receiver.received = (message) => {}
-    receiver.cancel = () => { }
+    receiver.cancel = () => {}
 
-    return udp(c, op, request, receiver).then(decode)
+    if (dest != null && dest !== '' && protocol === 'tcp') {
+      return tcp(c, { address: dest, port: 60000 }, op, request, receiver).then(decode)
+    } else {
+      return udp(c, op, request, receiver).then(decode)
+    }
   },
 
   /**

@@ -4,10 +4,9 @@
       - [x] ~~FIXME in internationalisation~~
       - [x] TCP send/receive
       - [x] TCP timeout
-
-      - [ ] Optional dest and protocol arguments
+      - [x] Optional dest and protocol arguments
             - [x] get-device
-            - [ ] set-ip
+            - [x] set-ip
             - [x] get-listener
             - [x] set-listener
             - [x] get-time
@@ -38,9 +37,10 @@
             - [x] activate-keypads
             - [x] set-door-passcodes
             - [x] restore-default-parameters
+      - [x] Examples
       - [ ] Update unit tests
       - [ ] Integration tests
-            - [x] get-device
+            - [ ] get-device
             - [ ] set-ip
             - [ ] get-listener
             - [ ] set-listener
@@ -72,8 +72,8 @@
             - [ ] activate-keypads
             - [ ] set-door-passcodes
             - [ ] restore-default-parameters
-      - [ ] TCP examples
-      - [ ] CHANGELOG
+      - [ ] documentation
+      - [x] CHANGELOG
       - [ ] README
 
 ## TODO
