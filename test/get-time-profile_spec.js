@@ -16,6 +16,16 @@ describe('get-time-profile', function () {
         })
     })
 
+    it('should fail with invalid controller ID', function () {
+      return uhppoted.getTimeProfile({}, { controller: 0, address: '192.168.1.125', protocol: 'tcp' }, 29)
+        .then(() => {
+          assert.fail()
+        })
+        .catch((err) => {
+          expect(err.message).to.equal("invalid controller ID '0'")
+        })
+    })
+
     it('should fail with invalid time profile ID', function () {
       return uhppoted.getTimeProfile({}, 405419896, 0)
         .then(() => {

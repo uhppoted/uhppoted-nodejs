@@ -4,10 +4,10 @@ const assert = require('chai').assert
 const expect = require('chai').expect
 const uhppoted = require('../index.js')
 
-describe('get-event-index', function () {
-  describe('#get-event-index with invalid parameters', function () {
+describe('get-cards', function () {
+  describe('#get-cards with invalid parameters', function () {
     it('should fail with invalid controller ID', function () {
-      return uhppoted.getEventIndex({}, 0)
+      return uhppoted.getCards({}, 0, 8165538)
         .then(() => {
           assert.fail()
         })
@@ -17,7 +17,7 @@ describe('get-event-index', function () {
     })
 
     it('should fail with invalid controller ID', function () {
-      return uhppoted.getEventIndex({}, { controller: 0, address: '192.168.1.125', protocol: 'tcp' })
+      return uhppoted.getCards({}, { controller: 0, address: '192.168.1.125', protocol: 'tcp' }, 8165538)
         .then(() => {
           assert.fail()
         })

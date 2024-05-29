@@ -15,5 +15,15 @@ describe('set-door-passcodes', function () {
           expect(err.message).to.equal("invalid controller ID '0'")
         })
     })
+
+    it('should fail with invalid controller ID', function () {
+      return uhppoted.setDoorPasscodes({}, { controller: 0, address: '192.168.1.125', protocol: 'tcp' }, 3, [12345, 0, 999999, 54321])
+        .then(() => {
+          assert.fail()
+        })
+        .catch((err) => {
+          expect(err.message).to.equal("invalid controller ID '0'")
+        })
+    })
   })
 })

@@ -15,5 +15,15 @@ describe('activate-keypads', function () {
           expect(err.message).to.equal("invalid controller ID '0'")
         })
     })
+
+    it('should fail with invalid controller ID', function () {
+      return uhppoted.activateKeypads({}, { controller: 0, address: '192.168.1.125', protocol: 'tcp' }, 4)
+        .then(() => {
+          assert.fail()
+        })
+        .catch((err) => {
+          expect(err.message).to.equal("invalid controller ID '0'")
+        })
+    })
   })
 })

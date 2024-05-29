@@ -16,6 +16,16 @@ describe('put-card', function () {
         })
     })
 
+    it('should fail with invalid controller ID', function () {
+      return uhppoted.putCard({}, { controller: 0, address: '192.168.1.125', protocol: 'tcp' }, 8165538, '2021-01-01', '2021-12-31', { 1: true, 2: false, 3: true, 4: true })
+        .then(() => {
+          assert.fail()
+        })
+        .catch((err) => {
+          expect(err.message).to.equal("invalid controller ID '0'")
+        })
+    })
+
     it('should fail with invalid card number', function () {
       return uhppoted.putCard({}, 405419896, 0, '2021-01-01', '2021-12-31', { 1: true, 2: false, 3: true, 4: true })
         .then(() => {

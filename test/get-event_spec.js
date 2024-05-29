@@ -16,6 +16,16 @@ describe('get-event', function () {
         })
     })
 
+    it('should fail with invalid controller ID', function () {
+      return uhppoted.getEvent({}, { controller: 0, address: '192.168.1.125', protocol: 'tcp' }, 29)
+        .then(() => {
+          assert.fail()
+        })
+        .catch((err) => {
+          expect(err.message).to.equal("invalid controller ID '0'")
+        })
+    })
+
     it('should fail with invalid event index', function () {
       return uhppoted.getEvent({}, 405419896, 0)
         .then(() => {

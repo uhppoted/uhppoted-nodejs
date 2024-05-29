@@ -16,6 +16,16 @@ describe('get-door-control', function () {
         })
     })
 
+    it('should fail with invalid controller ID', function () {
+      return uhppoted.getDoorControl({}, { controller: 0, address: '192.168.1.125', protocol: 'tcp' }, 3)
+        .then(() => {
+          assert.fail()
+        })
+        .catch((err) => {
+          expect(err.message).to.equal("invalid controller ID '0'")
+        })
+    })
+
     it('should fail with invalid door', function () {
       return uhppoted.getDoorControl({}, 405419896, 0)
         .then(() => {

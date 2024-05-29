@@ -15,5 +15,15 @@ describe('set-ip', function () {
           expect(err.message).to.equal("invalid controller ID '0'")
         })
     })
+
+    it('should fail with invalid controller ID', function () {
+      return uhppoted.setIP({}, { controller: 0, address: '192.168.1.125', protocol: 'tcp' }, '192.168.1.100', '255.255.255.0', '192.168.1.1')
+        .then(() => {
+          assert.fail()
+        })
+        .catch((err) => {
+          expect(err.message).to.equal("invalid controller ID '0'")
+        })
+    })
   })
 })

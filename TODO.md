@@ -5,6 +5,8 @@
       - [x] TCP send/receive
       - [x] TCP timeout
       - [x] Optional dest and protocol arguments
+      - [x] Examples
+      - [x] Update unit tests
             - [x] get-device
             - [x] set-ip
             - [x] get-listener
@@ -23,7 +25,7 @@
             - [x] delete-cards
             - [x] get-time-profile
             - [x] set-time-profile
-            - [x] clear-timeprofiles
+            - [x] clear-time-profiles
             - [x] clear-tasklist
             - [x] add-task
             - [x] refresh-tasklist
@@ -37,8 +39,6 @@
             - [x] activate-keypads
             - [x] set-door-passcodes
             - [x] restore-default-parameters
-      - [x] Examples
-      - [ ] Update unit tests
       - [ ] Integration tests
             - [ ] get-device
             - [ ] set-ip
