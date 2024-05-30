@@ -1165,6 +1165,19 @@ function resolve (controller) {
   if (typeof (controller) === 'object') {
     const { controller: id, address = null, protocol = 'udp' } = controller
 
+    if ((address != null) && (typeof (address) === 'string')) {
+      const match = `${address}`.match(/^(.+?):([0-9]+)$/)
+
+      if (match) {
+        const addr = match[1]
+        const port = parseInt(match[2], 10)
+
+        return { controller: id, address: { address: addr, port }, protocol }
+      } else {
+        return { controller: id, address: { address, port: 60000 }, protocol }
+      }
+    }
+
     return { controller: id, address, protocol }
   }
 }

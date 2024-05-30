@@ -7,38 +7,14 @@
       - [x] Optional dest and protocol arguments
       - [x] Examples
       - [x] Update unit tests
-            - [x] get-device
-            - [x] set-ip
-            - [x] get-listener
-            - [x] set-listener
-            - [x] get-time
-            - [x] set-time
-            - [x] get-door-control
-            - [x] set-door-control
-            - [x] record-special-events
-            - [x] get-status
-            - [x] get-cards
-            - [x] get-card
-            - [x] get-card-by-index
-            - [x] put-card
-            - [x] delete-card
-            - [x] delete-cards
-            - [x] get-time-profile
-            - [x] set-time-profile
-            - [x] clear-time-profiles
-            - [x] clear-tasklist
-            - [x] add-task
-            - [x] refresh-tasklist
-            - [x] get-events
-            - [x] get-event
-            - [x] get-event-index
-            - [x] set-event-index
-            - [x] open-door
-            - [x] set-pc-control
-            - [x] set-interlock
-            - [x] activate-keypads
-            - [x] set-door-passcodes
-            - [x] restore-default-parameters
+      - [ ] Unit tests for `resolve` address
+            - [ ] `null`
+            - [ ] ``
+            - [ ] `    `
+            - [ ] string (address)
+            - [ ] string (address:port)
+            - [ ] object {address}
+            - [ ] object {address,port}
       - [ ] Integration tests
             - [ ] get-device
             - [ ] set-ip

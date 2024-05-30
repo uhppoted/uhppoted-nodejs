@@ -1,5 +1,6 @@
 const expect = require('chai').expect
 const dgram = require('dgram')
+const net = require('net')
 const uhppoted = require('../index.js')
 const ip = require('ip')
 const os = require('os')
@@ -14,7 +15,6 @@ let listen = '0.0.0.0:60001'
 
 for (const name of Object.keys(interfaces)) {
   for (const network of interfaces[name]) {
-    console.log(network)
     if (network.family === 'IPv4' && !network.internal) {
       broadcast = ip.subnet(network.address, network.netmask).broadcastAddress
     }
@@ -46,19 +46,38 @@ const ctx = {
   config: new uhppoted.Config('integration-tests', bind, broadcast, listen, 500, [], false)
 }
 
-function setup (request, replies) {
-  const sock = dgram.createSocket({ type: 'udp4', reuseAddr: true })
-
-  sock.on('message', (message, rinfo) => {
-    expect(message).to.deep.equal(request)
-    replies.forEach(reply => {
-      sock.send(new Uint8Array(reply), 0, 64, rinfo.port, rinfo.address)
+function setup (request, replies, protocol = 'udp') {
+  if (protocol === 'tcp') {
+    const sock = net.createServer((c) => {
+      c.on('data', (message) => {
+        expect(message).to.deep.equal(request)
+        replies.forEach(reply => {
+          c.write(new Uint8Array(reply))
+        })
+      })
     })
-  })
 
-  sock.bind({ address: '0.0.0.0', port: 59999 })
+    sock.listen(59998)
 
-  return sock
+    return sock
+  }
+
+  if (protocol === 'udp') {
+    const sock = dgram.createSocket({ type: 'udp4', reuseAddr: true })
+
+    sock.on('message', (message, rinfo) => {
+      expect(message).to.deep.equal(request)
+      replies.forEach(reply => {
+        sock.send(new Uint8Array(reply), 0, 64, rinfo.port, rinfo.address)
+      })
+    })
+
+    sock.bind({ address: '0.0.0.0', port: 59999 })
+
+    return sock
+  }
+
+  return null
 }
 
 function teardown (sock) {

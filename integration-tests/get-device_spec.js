@@ -27,7 +27,7 @@ describe('#getDevice(...)', function () {
   let sock = null
 
   before(function () {
-    sock = setup(request, [reply])
+    sock = setup(request, [reply], 'udp')
   })
 
   after(function () {
@@ -49,6 +49,62 @@ describe('#getDevice(...)', function () {
     }
 
     uhppoted.getDevice(ctx, 405419896)
+      .then(response => {
+        expect(response).to.deep.equal(expected)
+        done()
+      })
+      .catch(err => done(err))
+  })
+})
+
+describe.only('#getDevice(...) (TCP)', function () {
+  let sock = null
+
+  before(function () {
+    sock = setup(request, [reply], 'tcp')
+  })
+
+  after(function () {
+    teardown(sock)
+  })
+
+  it('should execute get-device using TCP with address:port object', function (done) {
+    const expected = {
+      deviceId: 405419896,
+      device: {
+        serialNumber: 405419896,
+        address: '192.168.1.100',
+        netmask: '255.255.255.0',
+        gateway: '192.168.1.1',
+        MAC: '00:12:23:34:45:56',
+        version: '0892',
+        date: '2018-11-05'
+      }
+    }
+
+    uhppoted.getDevice(ctx, { controller: 405419896, address: { address: '127.0.0.1', port: 59998 }, protocol: 'tcp' })
+      .then(response => {
+        expect(response).to.deep.equal(expected)
+        done()
+      })
+      .catch(err => done(err))
+  })
+
+  it('should execute get-device using TCP with address:port string', function (done) {
+    const expected = {
+      deviceId: 405419896,
+      device: {
+        serialNumber: 405419896,
+        address: '192.168.1.100',
+        netmask: '255.255.255.0',
+        gateway: '192.168.1.1',
+        MAC: '00:12:23:34:45:56',
+        version: '0892',
+        date: '2018-11-05'
+      }
+    }
+
+    uhppoted.getDevice(ctx, { controller: 405419896, address: '127.0.0.1:59998', protocol: 'tcp' })
       .then(response => {
         expect(response).to.deep.equal(expected)
         done()

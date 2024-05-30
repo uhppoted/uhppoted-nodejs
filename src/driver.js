@@ -45,8 +45,8 @@ module.exports = {
       throw errors.NoReplyFromDevice(deviceId, ctx.locale)
     }
 
-    if (dest != null && dest !== '' && protocol === 'tcp') {
-      return tcp(c, { address: dest, port: 60000 }, op, request, receiver).then(decode)
+    if (dest != null && `${dest}` !== '' && protocol === 'tcp') {
+      return tcp(c, dest, op, request, receiver).then(decode)
     } else {
       return udp(c, op, request, receiver).then(decode)
     }
@@ -82,8 +82,8 @@ module.exports = {
       throw errors.NoReplyFromDevice(deviceId, ctx.locale)
     }
 
-    if (dest != null && dest !== '' && protocol === 'tcp') {
-      return tcp(c, { address: dest, port: 60000 }, op, request, receiver).then(decode)
+    if (dest != null && `${dest}` !== '' && protocol === 'tcp') {
+      return tcp(c, dest, op, request, receiver).then(decode)
     } else {
       return udp(c, op, request, receiver).then(decode)
     }
@@ -116,8 +116,8 @@ module.exports = {
     receiver.received = (message) => {}
     receiver.cancel = () => {}
 
-    if (dest != null && dest !== '' && protocol === 'tcp') {
-      return tcp(c, { address: dest, port: 60000 }, op, request, receiver).then(decode)
+    if (dest != null && `${dest}` !== '' && protocol === 'tcp') {
+      return tcp(c, dest, op, request, receiver).then(decode)
     } else {
       return udp(c, op, request, receiver).then(decode)
     }

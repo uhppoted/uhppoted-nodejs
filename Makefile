@@ -26,6 +26,7 @@ build:
 	npx eslint --fix *.js  
 	npx eslint --fix src/**/*.js  
 	npx eslint --fix examples/**/*.js  
+	npx eslint --fix integration-tests/**/*.js  
 
 test: build
 	npx eslint --fix test/**/*.js  
@@ -53,7 +54,7 @@ publish-npm: release
 	npm publish
 
 debug: build
-	node examples/debug.js $(ARGS)
+	npx mocha 'integration-tests/**/get-device_spec.js' --broadcast='192.168.1.255:59999' --listen='192.168.1.100:60001'
 
 error-handling: build
 	node examples/error-handling.js $(ARGS)
