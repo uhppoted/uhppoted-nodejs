@@ -48,3 +48,43 @@ describe('#getTime(...)', function () {
       .catch(err => done(err))
   })
 })
+
+describe('#getTime(...) (TCP)', function () {
+  let sock = null
+
+  before(function () {
+    sock = setup(request, [reply], 'tcp')
+  })
+
+  after(function () {
+    teardown(sock)
+  })
+
+  it('should execute get-time using TCP with address:port object', function (done) {
+    const expected = {
+      deviceId: 405419896,
+      datetime: '2021-05-28 13:51:30'
+    }
+
+    uhppoted.getTime(ctx, { controller: 405419896, address: { address: '127.0.0.1', port: 59998 }, protocol: 'tcp' })
+      .then(response => {
+        expect(response).to.deep.equal(expected)
+        done()
+      })
+      .catch(err => done(err))
+  })
+
+  it('should execute get-time using TCP with address:port string', function (done) {
+    const expected = {
+      deviceId: 405419896,
+      datetime: '2021-05-28 13:51:30'
+    }
+
+    uhppoted.getTime(ctx, { controller: 405419896, address: '127.0.0.1:59998', protocol: 'tcp' })
+      .then(response => {
+        expect(response).to.deep.equal(expected)
+        done()
+      })
+      .catch(err => done(err))
+  })
+})

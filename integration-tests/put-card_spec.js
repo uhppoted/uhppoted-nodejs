@@ -88,3 +88,43 @@ describe('#putCard(...) with PIN', function () {
       .catch(err => done(err))
   })
 })
+
+describe('#putCard(...) (TCP)', function () {
+  let sock = null
+
+  before(function () {
+    sock = setup(request1, [reply1], 'tcp')
+  })
+
+  after(function () {
+    teardown(sock)
+  })
+
+  it('should execute put-card using TCP with address:port object', function (done) {
+    const expected = {
+      deviceId: 405419896,
+      stored: true
+    }
+
+    uhppoted.putCard(ctx, { controller: 405419896, address: { address: '127.0.0.1', port: 59998 }, protocol: 'tcp' }, 123456789, '2023-01-01', '2025-12-31', { 1: true, 2: false, 3: 29, 4: true })
+      .then(response => {
+        expect(response).to.deep.equal(expected)
+        done()
+      })
+      .catch(err => done(err))
+  })
+
+  it('should execute put-card using TCP with address:port string', function (done) {
+    const expected = {
+      deviceId: 405419896,
+      stored: true
+    }
+
+    uhppoted.putCard(ctx, { controller: 405419896, address: '127.0.0.1:59998', protocol: 'tcp' }, 123456789, '2023-01-01', '2025-12-31', { 1: true, 2: false, 3: 29, 4: true })
+      .then(response => {
+        expect(response).to.deep.equal(expected)
+        done()
+      })
+      .catch(err => done(err))
+  })
+})

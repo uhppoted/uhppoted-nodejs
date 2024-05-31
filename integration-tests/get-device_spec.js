@@ -57,7 +57,7 @@ describe('#getDevice(...)', function () {
   })
 })
 
-describe.only('#getDevice(...) (TCP)', function () {
+describe('#getDevice(...) (TCP)', function () {
   let sock = null
 
   before(function () {

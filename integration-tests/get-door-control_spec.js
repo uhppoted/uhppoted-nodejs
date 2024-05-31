@@ -55,3 +55,57 @@ describe('#getDoorControl(...)', function () {
       .catch(err => done(err))
   })
 })
+
+describe('#getDoorControl(...) (TCP)', function () {
+  let sock = null
+
+  before(function () {
+    sock = setup(request, [reply], 'tcp')
+  })
+
+  after(function () {
+    teardown(sock)
+  })
+
+  it('should execute get-door-control using TCP with address:port object', function (done) {
+    const expected = {
+      deviceId: 405419896,
+      doorControlState: {
+        door: 3,
+        delay: 7,
+        control: {
+          value: 3,
+          state: 'controlled'
+        }
+      }
+    }
+
+    uhppoted.getDoorControl(ctx, { controller: 405419896, address: { address: '127.0.0.1', port: 59998 }, protocol: 'tcp' }, 3)
+      .then(response => {
+        expect(response).to.deep.equal(expected)
+        done()
+      })
+      .catch(err => done(err))
+  })
+
+  it('should execute get-door-control using TCP with address:port string', function (done) {
+    const expected = {
+      deviceId: 405419896,
+      doorControlState: {
+        door: 3,
+        delay: 7,
+        control: {
+          value: 3,
+          state: 'controlled'
+        }
+      }
+    }
+
+    uhppoted.getDoorControl(ctx, { controller: 405419896, address: '127.0.0.1:59998', protocol: 'tcp' }, 3)
+      .then(response => {
+        expect(response).to.deep.equal(expected)
+        done()
+      })
+      .catch(err => done(err))
+  })
+})

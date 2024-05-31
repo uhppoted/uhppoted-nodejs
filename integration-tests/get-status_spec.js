@@ -83,3 +83,113 @@ describe('#getStatus(...)', function () {
       .catch(err => done(err))
   })
 })
+
+describe('#getStatus(...) (TCP)', function () {
+  let sock = null
+
+  before(function () {
+    sock = setup(request, [reply], 'tcp')
+  })
+
+  after(function () {
+    teardown(sock)
+  })
+
+  it('should execute get-status using TCP with address:port object', function (done) {
+    const expected = {
+      deviceId: 405419896,
+      state: {
+        serialNumber: 405419896,
+        event: {
+          index: 69,
+          type: {
+            code: 2,
+            event: 'door'
+          },
+          granted: true,
+          door: 1,
+          direction: {
+            code: 1,
+            direction: 'in'
+          },
+          card: 0,
+          timestamp: '2019-08-10 10:28:32',
+          reason: {
+            code: 44,
+            reason: 'remote open door'
+          }
+        },
+        doors: { 1: false, 2: false, 3: false, 4: false },
+        buttons: { 1: false, 2: false, 3: false, 4: false },
+        system: { status: 0, date: '2021-05-28', time: '15:14:46' },
+        specialInfo: 0,
+        relays: {
+          state: 0,
+          relays: {
+            1: false,
+            2: false,
+            3: false,
+            4: false
+          }
+        },
+        inputs: { state: 0, forceLock: false, fireAlarm: false }
+      }
+    }
+
+    uhppoted.getStatus(ctx, { controller: 405419896, address: { address: '127.0.0.1', port: 59998 }, protocol: 'tcp' })
+      .then(response => {
+        expect(response).to.deep.equal(expected)
+        done()
+      })
+      .catch(err => done(err))
+  })
+
+  it('should execute get-status using TCP with address:port string', function (done) {
+    const expected = {
+      deviceId: 405419896,
+      state: {
+        serialNumber: 405419896,
+        event: {
+          index: 69,
+          type: {
+            code: 2,
+            event: 'door'
+          },
+          granted: true,
+          door: 1,
+          direction: {
+            code: 1,
+            direction: 'in'
+          },
+          card: 0,
+          timestamp: '2019-08-10 10:28:32',
+          reason: {
+            code: 44,
+            reason: 'remote open door'
+          }
+        },
+        doors: { 1: false, 2: false, 3: false, 4: false },
+        buttons: { 1: false, 2: false, 3: false, 4: false },
+        system: { status: 0, date: '2021-05-28', time: '15:14:46' },
+        specialInfo: 0,
+        relays: {
+          state: 0,
+          relays: {
+            1: false,
+            2: false,
+            3: false,
+            4: false
+          }
+        },
+        inputs: { state: 0, forceLock: false, fireAlarm: false }
+      }
+    }
+
+    uhppoted.getStatus(ctx, { controller: 405419896, address: '127.0.0.1:59998', protocol: 'tcp' })
+      .then(response => {
+        expect(response).to.deep.equal(expected)
+        done()
+      })
+      .catch(err => done(err))
+  })
+})

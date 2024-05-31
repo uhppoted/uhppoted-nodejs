@@ -38,3 +38,37 @@ describe('#setIP(...)', function () {
       .catch(err => done(err))
   })
 })
+
+describe('#setIP(...) (TCP)', function () {
+  let sock = null
+
+  before(function () {
+    sock = setup(request, [], 'tcp')
+  })
+
+  after(function () {
+    teardown(sock)
+  })
+
+  it('should execute set-IP using TCP with address:port object', function (done) {
+    const expected = {}
+
+    uhppoted.setIP(ctx, { controller: 405419896, address: { address: '127.0.0.1', port: 59998 }, protocol: 'tcp' }, '192.168.1.100', '255.255.255.0', '192.168.1.1')
+      .then(response => {
+        expect(response).to.deep.equal(expected)
+        done()
+      })
+      .catch(err => done(err))
+  })
+
+  it('should execute set-IP using TCP with address:port string', function (done) {
+    const expected = {}
+
+    uhppoted.setIP(ctx, { controller: 405419896, address: '127.0.0.1:59998', protocol: 'tcp' }, '192.168.1.100', '255.255.255.0', '192.168.1.1')
+      .then(response => {
+        expect(response).to.deep.equal(expected)
+        done()
+      })
+      .catch(err => done(err))
+  })
+})

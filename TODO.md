@@ -16,22 +16,22 @@
             - [ ] object {address}
             - [ ] object {address,port}
       - [ ] Integration tests
-            - [ ] get-device
-            - [ ] set-ip
-            - [ ] get-listener
-            - [ ] set-listener
-            - [ ] get-time
-            - [ ] set-time
-            - [ ] get-door-control
-            - [ ] set-door-control
-            - [ ] record-special-events
-            - [ ] get-status
-            - [ ] get-cards
-            - [ ] get-card
-            - [ ] get-card-by-index
-            - [ ] put-card
-            - [ ] delete-card
-            - [ ] delete-cards
+            - [x] get-device
+            - [x] set-ip
+            - [x] get-listener
+            - [x] set-listener
+            - [x] get-time
+            - [x] set-time
+            - [x] get-door-control
+            - [x] set-door-control
+            - [x] record-special-events
+            - [x] get-status
+            - [x] get-cards
+            - [x] get-card
+            - [x] get-card-by-index
+            - [x] put-card
+            - [x] delete-card
+            - [x] delete-cards
             - [ ] get-time-profile
             - [ ] set-time-profile
             - [ ] clear-timeprofiles
@@ -60,3 +60,45 @@
 
 1. `workflow_dispatch` is broken in _github_ workflows when the workflows are in multiple
     branches (https://github.community/t/workflow-dispatch-workflow-not-showing-in-actions-tab/130088/27)
+
+
+
+
+```
+
+describe('#getXXX(...) (TCP)', function () {
+  let sock = null
+
+  before(function () {
+    sock = setup(request, [reply], 'tcp')
+  })
+
+  after(function () {
+    teardown(sock)
+  })
+
+  it('should execute get-XXX using TCP with address:port object', function (done) {
+    const expected = {
+    }
+
+    uhppoted.getXXX(ctx, { controller: 405419896, address: { address: '127.0.0.1', port: 59998 }, protocol: 'tcp' })
+      .then(response => {
+        expect(response).to.deep.equal(expected)
+        done()
+      })
+      .catch(err => done(err))
+  })
+
+  it('should execute get-XXX using TCP with address:port string', function (done) {
+    const expected = {
+    }
+
+    uhppoted.getXXX(ctx, { controller: 405419896, address: '127.0.0.1:59998', protocol: 'tcp' })
+      .then(response => {
+        expect(response).to.deep.equal(expected)
+        done()
+      })
+      .catch(err => done(err))
+  })
+})
+```
