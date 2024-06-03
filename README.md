@@ -53,7 +53,13 @@ npm install uhppoted
 - [`restoreDefaultParameters`](#restoreDefaultParameters) resets the controller configuration to the manufacturer default settings
 - [`listen`](#listen) establishes a listening connection for controller events
 
-Each API call takes a `context` _object_ as the first argument, followed by the function specific parameters and returns a `Promise` that resolves to a response.
+Each API call:
+- takes a [`context`](#context) _object_ as the first argument
+- takes a [`controller`](#controller) argument as the second argument
+- takes the function specific parameters 
+- returns a `Promise` that resolves to a response.
+
+_NOTE_: `getDevices` is the sole function that does not take a `controller` argument.
 
 #### Example
 ```
@@ -69,9 +75,9 @@ const ctx = {
   config: new uhppoted.Config('example', bind, broadcast, listen, timeout, [], debug)
 }
 
-uhppoted.getDevices(ctx)
+uhppoted.getDevice(ctx, 405419896)
   .then(response => {
-    console.log('\nget-devices:\n', response)
+    console.log('\nget-device:\n', response)
   })
   .catch(err => {
     console.log(`\n   *** ERROR ${err.message}\n`)
@@ -142,6 +148,31 @@ and defines the translation of string literals in the responses and error messag
 
 The `logger` function takes a single `message` parameter and logs it as appropriate to the application. The default implementation prepends the date and time to the message and writes it to the console.
 
+#### `controller`
+
+The `controller` parameter may be either:
+- a _uint32_ value corresponding to the controller serial number (e.g. 405419896)
+- a `{ controller, address, protocol }` object, where:
+    - `controller` is a _uint32_ value corresponding to the controller serial number
+    - `address` is an `address:port` string corresponding to the controller IPv4 address and port or an `{address,port}` object. 
+       The `port` is optional and defaults to port 60000 if not specified.
+    - `protocol` may be either 'udp' or 'tcp'. The `protocol` is optional and defaults to 'udp' if not specified.
+
+Some examples:
+```
+getDevice(ctx,405419896)
+getDevice(ctx,{ controller:405419896 })
+getDevice(ctx,{ controller:405419896, address:'192.168.1.100' })
+getDevice(ctx,{ controller:405419896, address:'192.168.1.100:60000' })
+getDevice(ctx,{ controller:405419896, address:'192.168.1.100:60000', protocol:'tcp' })
+getDevice(ctx,{ controller:405419896, address:{ address:'192.168.1.100' }})
+getDevice(ctx,{ controller:405419896, address:{ address:'192.168.1.100', port:60000 }})
+getDevice(ctx,{ controller:405419896, address:{ address:'192.168.1.100', port:60000 }, protocol:'tcp'})
+```
+
+`{controller, address, protocol }` is required for TCP connections to controllers. The legacy controller ID form only supports 
+UDP connections.
+
 #### `getDevices`
 
 Fetches a list of access controllers on the local LAN.
@@ -171,9 +202,9 @@ Returns a list of `device` objects, e.g.:
 
 Retrieves the information for a single access controller.
 ```
-uhppoted.getDevice(ctx, deviceId)
+uhppoted.getDevice(ctx, controller)
 ```
-- `deviceId`: serial number of controller
+- `controller`: serial number of controller or [`{controller,address,protocol}`](#controller) object
 
 Returns a `device` object, e.g.:
 ```
@@ -195,9 +226,9 @@ Returns a `device` object, e.g.:
 
 Sets the controller IP address, net mask and gateway address.
 ```
-uhppoted.setIP (ctx, deviceId, address, netmask, gateway)
+uhppoted.setIP (ctx, controller, address, netmask, gateway)
 ```
-- `deviceId`: serial number of controller
+- `controller`: serial number of controller or [`{controller,address,protocol}`](#controller) object
 - `address`: IPv4 address of controller
 - `netmask`: IPv4 subnet mask of controller
 - `gateway`: IPv4 address of the LAN gateway
@@ -211,9 +242,9 @@ Returns an _empty_ object, e.g.:
 
 Retrieves the current controller date and time.
 ```
-uhppoted.getTime (ctx, deviceId)
+uhppoted.getTime (ctx, controller)
 ```
-- `deviceId`: serial number of controller
+- `controller`: serial number of controller or [`{controller,address,protocol}`](#controller) object
 
 Returns a `datetime` object, e.g.:
 ```
@@ -224,9 +255,9 @@ Returns a `datetime` object, e.g.:
 
 Sets the controller date and time.
 ```
-uhppoted.setTime (ctx, deviceId, datetime)
+uhppoted.setTime (ctx, controller, datetime)
 ```
-- `deviceId`: serial number of controller
+- `controller`: serial number of controller or [`{controller,address,protocol}`](#controller) object
 - `datetime`: YYYY-mm-dd HH:mm:ss
 
 Returns a `datetime` object, e.g.:
@@ -238,9 +269,9 @@ Returns a `datetime` object, e.g.:
 
 Retrieves the controller door delay and control mode for a door.
 ```
-uhppoted.getDoorControl (ctx, deviceId, door)
+uhppoted.getDoorControl (ctx, controller, door)
 ```
-- `deviceId`: serial number of controller
+- `controller`: serial number of controller or [`{controller,address,protocol}`](#controller) object
 - `door`: 1-4
 
 Returns a `door-control` object, e.g.:
@@ -259,9 +290,9 @@ Returns a `door-control` object, e.g.:
 
 Sets the delay and control mode for a door.
 ```
-uhppoted.setDoorControl (ctx, deviceId, door, delay, mode)
+uhppoted.setDoorControl (ctx, controller, door, delay, mode)
 ```
-- `deviceId`: serial number of controller
+- `controller`: serial number of controller or [`{controller,address,protocol}`](#controller) object
 - `door`: 1-4
 - `delay`: seconds
 - `mode`: _normally open_, _normally closed_ or _controlled_
@@ -283,9 +314,9 @@ Returns a door control object, e.g.:
 Retrieves the host:port IP address to which controller events are sent.
 
 ```
-uhppoted.getListener (ctx, deviceId) 
+uhppoted.getListener (ctx, controller) 
 ```
-- `deviceId`: serial number of controller
+- `controller`: serial number of controller or [`{controller,address,protocol}`](#controller) object
 
 Returns a `listener` object, e.g.:
 ```
@@ -296,9 +327,9 @@ Returns a `listener` object, e.g.:
 
 Sets the host:port IP address to which controller events are sent.
 ```
-uhppoted.setListener (ctx, deviceId, address, port) 
+uhppoted.setListener (ctx, controller, address, port) 
 ```
-- `deviceId`: serial number of controller
+- `controller`: serial number of controller or [`{controller,address,protocol}`](#controller) object
 - `address`: IPv4 address of event listener
 - `port`: UDP port on which event listener is expecting events
 
@@ -312,9 +343,9 @@ Returns an `updated` result object, e.g.:
 Enables or disables door open and close input events.
 
 ```
-uhppoted.recordSpecialEvents (ctx, deviceId, enable)
+uhppoted.recordSpecialEvents (ctx, controller, enable)
 ```
-- `deviceId`: serial number of controller
+- `controller`: serial number of controller or [`{controller,address,protocol}`](#controller) object
 - `enable`: enables door open and closed events if _true_
 
 Returns an `updated` result object, e.g.:
@@ -327,9 +358,9 @@ Returns an `updated` result object, e.g.:
 Retrieves a controller status.
 
 ```
-uhppoted.getStatus (ctx, deviceId)
+uhppoted.getStatus (ctx, controller)
 ```
-- `deviceId`: serial number of controller
+- `controller`: serial number of controller or [`{controller,address,protocol}`](#controller) object
 
 Returns a `status` object, e.g.:
 ```
@@ -368,9 +399,9 @@ Retrieves the number of card records stored on a controller. The returned may in
 deleted records.
 
 ```
-uhppoted.getCards (ctx, deviceId)
+uhppoted.getCards (ctx, controller)
 ```
-- `deviceId`: serial number of controller
+- `controller`: serial number of controller or [`{controller,address,protocol}`](#controller) object
 
 Returns the a `cards` object, e.g.:
 ```
@@ -382,9 +413,9 @@ Returns the a `cards` object, e.g.:
 Retrieves a single card record from a controller.
 
 ```
-uhppoted.getCard (ctx, deviceId, cardNumber) 
+uhppoted.getCard (ctx, controller, cardNumber) 
 ```
-- `deviceId`: serial number of controller
+- `controller`: serial number of controller or [`{controller,address,protocol}`](#controller) object
 - `cardNumber`: card number
 
 Returns the card record for the card number, e.g.:
@@ -405,9 +436,9 @@ Returns the card record for the card number, e.g.:
 Retrieves a single card record from a controller by record number.
 
 ```
-uhppoted.getCardByIndex (ctx, deviceId, index)
+uhppoted.getCardByIndex (ctx, controller, index)
 ```
-- `deviceId`: serial number of controller
+- `controller`: serial number of controller or [`{controller,address,protocol}`](#controller) object
 - `index`: record index of card
 
 Returns the card record at the index, e.g.:
@@ -434,9 +465,9 @@ _Notes:_
 Adds or updates a single card record on a controller.
 
 ```
-uhppoted.putCard (ctx, deviceId, cardNumber, validFrom, validUntil, doors)
+uhppoted.putCard (ctx, controller, cardNumber, validFrom, validUntil, doors)
 ```
-- `deviceId`: serial number of controller
+- `controller`: serial number of controller or [`{controller,address,protocol}`](#controller) object
 - `cardNumber`: card number
 - `validFrom`: date from which card is valid (YYYY-mm-dd)
 - `validUntil`: date after which which card is no longer valid (YYYY-mm-dd)
@@ -453,9 +484,9 @@ Returns a `stored` result object, e.g.:
 Deletes a single card record from a controller.
 
 ```
-uhppoted.deleteCard (ctx, deviceId, cardNumber)
+uhppoted.deleteCard (ctx, controller, cardNumber)
 ```
-- `deviceId`: serial number of controller
+- `controller`: serial number of controller or [`{controller,address,protocol}`](#controller) object
 - `cardNumber`: card number
 
 Returns a `deleted` result object, e.g.:
@@ -468,9 +499,9 @@ Returns a `deleted` result object, e.g.:
 Deletes all card records stored on a controller.
 
 ```
-uhppoted.deleteCards (ctx, deviceId) 
+uhppoted.deleteCards (ctx, controller) 
 ```
-- `deviceId`: serial number of controller
+- `controller`: serial number of controller or [`{controller,address,protocol}`](#controller) object
 
 Returns a `deleted` result object, e.g.:
 ```
@@ -482,9 +513,9 @@ Returns a `deleted` result object, e.g.:
 Retrieves a time profile from a controller.
 
 ```
-uhppoted.getTimeProfile (ctx, deviceId, profileId) 
+uhppoted.getTimeProfile (ctx, controller, profileId) 
 ```
-- `deviceId`: serial number of controller
+- `controller`: serial number of controller or [`{controller,address,protocol}`](#controller) object
 - `profileId`: time profile ID (in the range [2..254])
 
 Returns the time profile defined (if any) for the profile ID, e.g.:
@@ -509,9 +540,9 @@ Creates or updates a time profile on a controller. The time profile may have up 
 and may optionally be _linked_ to another profile to extend the definition.
 
 ```
-uhppoted.setTimeProfile (ctx, deviceId, profile) 
+uhppoted.setTimeProfile (ctx, controller, profile) 
 ```
-- `deviceId`: serial number of controller
+- `controller`: serial number of controller or [`{controller,address,protocol}`](#controller) object
 - `profile`: time profile e.g.
 ```
 {
@@ -538,9 +569,9 @@ Returns an `updated` result object, e.g.:
 Deletes all time profiles from a controller.
 
 ```
-uhppoted.clearTimeProfiles (ctx, deviceId) 
+uhppoted.clearTimeProfiles (ctx, controller) 
 ```
-- `deviceId`: serial number of controller
+- `controller`: serial number of controller or [`{controller,address,protocol}`](#controller) object
 
 Returns a `cleared` result object, e.g.:
 ```
@@ -552,9 +583,9 @@ Returns a `cleared` result object, e.g.:
 Clears the task list on controller.
 
 ```
-uhppoted.clearTaskList (ctx, deviceId) 
+uhppoted.clearTaskList (ctx, controller) 
 ```
-- `deviceId`: serial number of controller
+- `controller`: serial number of controller or [`{controller,address,protocol}`](#controller) object
 
 Returns a `cleared` result object, e.g.:
 ```
@@ -593,9 +624,9 @@ Valid task type IDs and the corresponding task types are:
 (the `addTask` function accepts both numeric and string task types)
 
 ```
-uhppoted.addTask (ctx, deviceId, task) 
+uhppoted.addTask (ctx, controller, task) 
 ```
-- `deviceId`: serial number of controller
+- `controller`: serial number of controller or [`{controller,address,protocol}`](#controller) object
 - `task`: task definition e.g.
 ```
 {
@@ -615,9 +646,9 @@ uhppoted.addTask (ctx, deviceId, task)
 Refreshes the task list on controller, activating any tasks added with `addTask`.
 
 ```
-uhppoted.refreshTaskList (ctx, deviceId) 
+uhppoted.refreshTaskList (ctx, controller) 
 ```
-- `deviceId`: serial number of controller
+- `controller`: serial number of controller or [`{controller,address,protocol}`](#controller) object
 
 Returns a `refreshed` result object, e.g.:
 ```
@@ -629,9 +660,9 @@ Returns a `refreshed` result object, e.g.:
 Retrieves the indices of the first and last event records stored on a controller.
 
 ```
-uhppoted.getEvents (ctx, deviceId)
+uhppoted.getEvents (ctx, controller)
 ```
-- `deviceId`: serial number of controller
+- `controller`: serial number of controller or [`{controller,address,protocol}`](#controller) object
 - `index`: index of event (1-100000)
 
 Returns an `events` record, e.g.:
@@ -644,9 +675,9 @@ Returns an `events` record, e.g.:
 Retrieves a single event from a controller.
 
 ```
-uhppoted.getEvent (ctx, deviceId, index)
+uhppoted.getEvent (ctx, controller, index)
 ```
-- `deviceId`: serial number of controller
+- `controller`: serial number of controller or [`{controller,address,protocol}`](#controller) object
 - `index`: index of event (1-100000)
 
 Returns an event record, e.g.:
@@ -674,9 +705,9 @@ _Notes_:
 Retrieves the current event index user value from a controller.
 
 ```
-uhppoted.getEventIndex (ctx, deviceId)
+uhppoted.getEventIndex (ctx, controller)
 ```
-- `deviceId`: serial number of controller
+- `controller`: serial number of controller or [`{controller,address,protocol}`](#controller) object
 
 Returns an `event-index` object, e.g.:
 ```
@@ -688,9 +719,9 @@ Returns an `event-index` object, e.g.:
 Sets the current event index user value on a controller.
 
 ```
-uhppoted.setEventIndex (ctx, deviceId, index)
+uhppoted.setEventIndex (ctx, controller, index)
 ```
-- `deviceId`: serial number of controller
+- `controller`: serial number of controller or [`{controller,address,protocol}`](#controller) object
 - `index`: 1-100000
 
 Returns an `updated` result object, e.g.:
@@ -703,9 +734,9 @@ Returns an `updated` result object, e.g.:
 Remotely unlocks a door.
 
 ```
-uhppoted.openDoor (ctx, deviceId, door)
+uhppoted.openDoor (ctx, controller, door)
 ```
-- `deviceId`: serial number of controller
+- `controller`: serial number of controller or [`{controller,address,protocol}`](#controller) object
 - `door`: 1-4
 
 Returns an `opened` result object, e.g.
@@ -729,9 +760,9 @@ the host.
 Remote access control mode is not volatile and persists across controller restarts.
 
 ```
-uhppoted.setPCControl (ctx, deviceId, enable)
+uhppoted.setPCControl (ctx, controller, enable)
 ```
-- `deviceId`: serial number of controller
+- `controller`: serial number of controller or [`{controller,address,protocol}`](#controller) object
 - `enable`: enables remote host access control if _true_
 
 Returns an `ok` result object, e.g.:
@@ -758,7 +789,7 @@ controllers support the following modes:
 
 
 ```
-uhppoted.setInterlock (ctx, deviceId, 3)
+uhppoted.setInterlock (ctx, controller, 3)
 ```
 - `deviceId`:  serial number of controller
 - `interlock`: 0,1,2,3,4 or 8
@@ -776,7 +807,7 @@ to activate or deactivate keypads individually so any keypads not explicitly lis
 deactivated.
 
 ```
-uhppoted.activateKeypads (ctx, deviceId, keypads)
+uhppoted.activateKeypads (ctx, controller, keypads)
 ```
 - `deviceId`:  serial number of controller
 - `keypads`: {
@@ -797,7 +828,7 @@ Returns an `ok` result object, e.g.:
 Assigns up to four passcodes for supervisor access to a door.
 
 ```
-uhppoted.setDoorPasscodes (ctx, deviceId, door, passcodes)
+uhppoted.setDoorPasscodes (ctx, controller, door, passcodes)
 ```
 - `deviceId`:  serial number of controller
 - `door`: door ID [1..4]
@@ -814,7 +845,7 @@ Returns an `ok` result object, e.g.:
 Resets the controller configuration to the manufacturer default settings.
 
 ```
-uhppoted.restoreDefaultParameters (ctx, deviceId)
+uhppoted.restoreDefaultParameters (ctx, controller)
 ```
 - `deviceId`:  serial number of controller
 

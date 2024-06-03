@@ -39,7 +39,7 @@ module.exports = {
    *
    * @param {object} ctx         Context with configuration, locale (optional) and logger (optional).
    * @param {uint|object} controller        Either a controller serial number (legacy implementation) or an
-   *                                        object of the form { controller, dest, protocol }:
+   *                                        object of the form { controller, address, protocol }:
    * @param {uint}   controller.controller  Controller serial number
    * @param {string} controller.address     Optional controller IPv4 address. Defaults to UDP broadcast.
    * @param {string} controller.protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
@@ -69,7 +69,7 @@ module.exports = {
    *
    * @param {object} ctx         Context with configuration, locale (optional) and logger (optional).
    * @param {uint|object} controller        Either a controller serial number (legacy implementation) or an
-   *                                        object of the form { controller, dest, protocol }:
+   *                                        object of the form { controller, address, protocol }:
    * @param {uint}   controller.controller  Controller serial number
    * @param {string} controller.address     Optional controller IPv4 address. Defaults to UDP broadcast.
    * @param {string} controller.protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
@@ -102,7 +102,7 @@ module.exports = {
    *
    * @param {object}      ctx               Context with configuration, locale (optional) and logger (optional).
    * @param {uint|object} controller        Either a controller serial number (legacy implementation) or an
-   *                                        object of the form { controller, dest, protocol }:
+   *                                        object of the form { controller, address, protocol }:
    * @param {uint}   controller.controller  Controller serial number
    * @param {string} controller.address     Optional controller IPv4 address. Defaults to UDP broadcast.
    * @param {string} controller.protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
@@ -132,7 +132,7 @@ module.exports = {
    *
    * @param {object}      ctx               Context with configuration, locale (optional) and logger (optional).
    * @param {uint|object} controller        Either a controller serial number (legacy implementation) or an
-   *                                        object of the form { controller, dest, protocol }:
+   *                                        object of the form { controller, address, protocol }:
    * @param {uint}   controller.controller  Controller serial number
    * @param {string} controller.address     Optional controller IPv4 address. Defaults to UDP broadcast.
    * @param {string} controller.protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
@@ -164,7 +164,7 @@ module.exports = {
    *
    * @param {object} ctx         Context with configuration, locale (optional) and logger (optional).
    * @param {uint|object} controller        Either a controller serial number (legacy implementation) or an
-   *                                        object of the form { controller, dest, protocol }:
+   *                                        object of the form { controller, address, protocol }:
    * @param {uint}   controller.controller  Controller serial number
    * @param {string} controller.address     Optional controller IPv4 address. Defaults to UDP broadcast.
    * @param {string} controller.protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
@@ -194,7 +194,7 @@ module.exports = {
    *
    * @param {object} ctx         Context with configuration, locale (optional) and logger (optional).
    * @param {uint|object} controller        Either a controller serial number (legacy implementation) or an
-   *                                        object of the form { controller, dest, protocol }:
+   *                                        object of the form { controller, address, protocol }:
    * @param {uint}   controller.controller  Controller serial number
    * @param {string} controller.address     Optional controller IPv4 address. Defaults to UDP broadcast.
    * @param {string} controller.protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
@@ -225,7 +225,7 @@ module.exports = {
    *
    * @param {object} ctx  Context with configuration, locale (optional) and logger (optional).
    * @param {uint|object} controller        Either a controller serial number (legacy implementation) or an
-   *                                        object of the form { controller, dest, protocol }:
+   *                                        object of the form { controller, address, protocol }:
    * @param {uint}   controller.controller  Controller serial number
    * @param {string} controller.address     Optional controller IPv4 address. Defaults to UDP broadcast.
    * @param {string} controller.protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
@@ -257,7 +257,7 @@ module.exports = {
    *
    * @param {object}      ctx               Context with configuration, locale (optional) and logger (optional).
    * @param {uint|object} controller        Either a controller serial number (legacy implementation) or an
-   *                                        object of the form { controller, dest, protocol }:
+   *                                        object of the form { controller, address, protocol }:
    * @param {uint}   controller.controller  Controller serial number
    * @param {string} controller.address     Optional controller IPv4 address. Defaults to UDP broadcast.
    * @param {string} controller.protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
@@ -309,7 +309,7 @@ module.exports = {
    *
    * @param {object} ctx         Context with configuration, locale (optional) and logger (optional).
    * @param {uint|object} controller  Either a controller serial number (legacy implementation) or an
-   *                                  object of the form { controller, dest, protocol }:
+   *                                  object of the form { controller, address, protocol }:
    * @param {uint}        controller.controller  Controller serial number
    * @param {string}      controller.address     Optional controller IPv4 address. Defaults to UDP broadcast.
    * @param {string}      controller.protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
@@ -340,7 +340,7 @@ module.exports = {
    *
    * @param {object}      ctx         Context with configuration, locale (optional) and logger (optional).
    * @param {uint|object} controller  Either a controller serial number (legacy implementation) or an
-   *                                  object of the form { controller, dest, protocol }:
+   *                                  object of the form { controller, address, protocol }:
    * @param {uint}        controller.controller  Controller serial number
    * @param {string}      controller.address     Optional controller IPv4 address. Defaults to UDP broadcast.
    * @param {string}      controller.protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
@@ -370,7 +370,7 @@ module.exports = {
    *
    * @param {object}      ctx         Context with configuration, locale (optional) and logger (optional).
    * @param {uint|object} controller  Either a controller serial number (legacy implementation) or an
-   *                                  object of the form { controller, dest, protocol }:
+   *                                  object of the form { controller, address, protocol }:
    * @param {uint}        controller.controller  Controller serial number
    * @param {string}      controller.address     Optional controller IPv4 address. Defaults to UDP broadcast.
    * @param {string}      controller.protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
@@ -401,7 +401,7 @@ module.exports = {
    *
    * @param {object}      ctx         Context with configuration, locale (optional) and logger (optional).
    * @param {uint|object} controller  Either a controller serial number (legacy implementation) or an
-   *                                  object of the form { controller, dest, protocol }:
+   *                                  object of the form { controller, address, protocol }:
    * @param {uint}        controller.controller  Controller serial number
    * @param {string}      controller.address     Optional controller IPv4 address. Defaults to UDP broadcast.
    * @param {string}      controller.protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
@@ -432,7 +432,7 @@ module.exports = {
    *
    * @param {object}      ctx         Context with configuration, locale (optional) and logger (optional).
    * @param {uint|object} controller  Either a controller serial number (legacy implementation) or an
-   *                                  object of the form { controller, dest, protocol }:
+   *                                  object of the form { controller, address, protocol }:
    * @param {uint}        controller.controller  Controller serial number
    * @param {string}      controller.address     Optional controller IPv4 address. Defaults to UDP broadcast.
    * @param {string}      controller.protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
@@ -463,7 +463,7 @@ module.exports = {
    *
    * @param {object}      ctx         Context with configuration, locale (optional) and logger (optional).
    * @param {uint|object} controller  Either a controller serial number (legacy implementation) or an
-   *                                  object of the form { controller, dest, protocol }:
+   *                                  object of the form { controller, address, protocol }:
    * @param {uint}        controller.controller  Controller serial number
    * @param {string}      controller.address     Optional controller IPv4 address. Defaults to UDP broadcast.
    * @param {string}      controller.protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
@@ -499,7 +499,7 @@ module.exports = {
    *
    * @param {object}      ctx         Context with configuration, locale (optional) and logger (optional).
    * @param {uint|object} controller  Either a controller serial number (legacy implementation) or an
-   *                                  object of the form { controller, dest, protocol }:
+   *                                  object of the form { controller, address, protocol }:
    * @param {uint}        controller.controller  Controller serial number
    * @param {string}      controller.address     Optional controller IPv4 address. Defaults to UDP broadcast.
    * @param {string}      controller.protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
@@ -530,7 +530,7 @@ module.exports = {
    *
    * @param {object}      ctx         Context with configuration, locale (optional) and logger (optional).
    * @param {uint|object} controller  Either a controller serial number (legacy implementation) or an
-   *                                  object of the form { controller, dest, protocol }:
+   *                                  object of the form { controller, address, protocol }:
    * @param {uint}        controller.controller  Controller serial number
    * @param {string}      controller.address     Optional controller IPv4 address. Defaults to UDP broadcast.
    * @param {string}      controller.protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
@@ -560,7 +560,7 @@ module.exports = {
    *
    * @param {object}      ctx         Context with configuration, locale (optional) and logger (optional).
    * @param {uint|object} controller  Either a controller serial number (legacy implementation) or an
-   *                                  object of the form { controller, dest, protocol }:
+   *                                  object of the form { controller, address, protocol }:
    * @param {uint}        controller.controller  Controller serial number
    * @param {string}      controller.address     Optional controller IPv4 address. Defaults to UDP broadcast.
    * @param {string}      controller.protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
@@ -591,7 +591,7 @@ module.exports = {
    *
    * @param {object}      ctx         Context with configuration, locale (optional) and logger (optional).
    * @param {uint|object} controller  Either a controller serial number (legacy implementation) or an
-   *                                  object of the form { controller, dest, protocol }:
+   *                                  object of the form { controller, address, protocol }:
    * @param {uint}        controller.controller  Controller serial number
    * @param {string}      controller.address     Optional controller IPv4 address. Defaults to UDP broadcast.
    * @param {string}      controller.protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
@@ -622,7 +622,7 @@ module.exports = {
    *
    * @param {object}      ctx         Context with configuration, locale (optional) and logger (optional).
    * @param {uint|object} controller  Either a controller serial number (legacy implementation) or an
-   *                                  object of the form { controller, dest, protocol }:
+   *                                  object of the form { controller, address, protocol }:
    * @param {uint}        controller.controller  Controller serial number
    * @param {string}      controller.address     Optional controller IPv4 address. Defaults to UDP broadcast.
    * @param {string}      controller.protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
@@ -652,7 +652,7 @@ module.exports = {
    *
    * @param {object}      ctx         Context with configuration, locale (optional) and logger (optional).
    * @param {uint|object} controller  Either a controller serial number (legacy implementation) or an
-   *                                  object of the form { controller, dest, protocol }:
+   *                                  object of the form { controller, address, protocol }:
    * @param {uint}        controller.controller  Controller serial number
    * @param {string}      controller.address     Optional controller IPv4 address. Defaults to UDP broadcast.
    * @param {string}      controller.protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
@@ -683,7 +683,7 @@ module.exports = {
    *
    * @param {object}      ctx         Context with configuration, locale (optional) and logger (optional).
    * @param {uint|object} controller  Either a controller serial number (legacy implementation) or an
-   *                                  object of the form { controller, dest, protocol }:
+   *                                  object of the form { controller, address, protocol }:
    * @param {uint}        controller.controller  Controller serial number
    * @param {string}      controller.address     Optional controller IPv4 address. Defaults to UDP broadcast.
    * @param {string}      controller.protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
@@ -714,7 +714,7 @@ module.exports = {
    *
    * @param {object}      ctx         Context with configuration, locale (optional) and logger (optional).
    * @param {uint|object} controller  Either a controller serial number (legacy implementation) or an
-   *                                  object of the form { controller, dest, protocol }:
+   *                                  object of the form { controller, address, protocol }:
    * @param {uint}        controller.controller  Controller serial number
    * @param {string}      controller.address     Optional controller IPv4 address. Defaults to UDP broadcast.
    * @param {string}      controller.protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
@@ -744,7 +744,7 @@ module.exports = {
    *
    * @param {object}      ctx         Context with configuration, locale (optional) and logger (optional).
    * @param {uint|object} controller  Either a controller serial number (legacy implementation) or an
-   *                                  object of the form { controller, dest, protocol }:
+   *                                  object of the form { controller, address, protocol }:
    * @param {uint}        controller.controller  Controller serial number
    * @param {string}      controller.address     Optional controller IPv4 address. Defaults to UDP broadcast.
    * @param {string}      controller.protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
@@ -794,7 +794,7 @@ module.exports = {
    *
    * @param {object}      ctx         Context with configuration, locale (optional) and logger (optional).
    * @param {uint|object} controller  Either a controller serial number (legacy implementation) or an
-   *                                  object of the form { controller, dest, protocol }:
+   *                                  object of the form { controller, address, protocol }:
    * @param {uint}        controller.controller  Controller serial number
    * @param {string}      controller.address     Optional controller IPv4 address. Defaults to UDP broadcast.
    * @param {string}      controller.protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
@@ -835,7 +835,7 @@ module.exports = {
    *
    * @param {object}      ctx         Context with configuration, locale (optional) and logger (optional).
    * @param {uint|object} controller  Either a controller serial number (legacy implementation) or an
-   *                                  object of the form { controller, dest, protocol }:
+   *                                  object of the form { controller, address, protocol }:
    * @param {uint}        controller.controller  Controller serial number
    * @param {string}      controller.address     Optional controller IPv4 address. Defaults to UDP broadcast.
    * @param {string}      controller.protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
@@ -865,7 +865,7 @@ module.exports = {
    *
    * @param {object}      ctx         Context with configuration, locale (optional) and logger (optional).
    * @param {uint|object} controller  Either a controller serial number (legacy implementation) or an
-   *                                  object of the form { controller, dest, protocol }:
+   *                                  object of the form { controller, address, protocol }:
    * @param {uint}        controller.controller  Controller serial number
    * @param {string}      controller.address     Optional controller IPv4 address. Defaults to UDP broadcast.
    * @param {string}      controller.protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
@@ -896,7 +896,7 @@ module.exports = {
    *
    * @param {object}      ctx         Context with configuration, locale (optional) and logger (optional).
    * @param {uint|object} controller  Either a controller serial number (legacy implementation) or an
-   *                                  object of the form { controller, dest, protocol }:
+   *                                  object of the form { controller, address, protocol }:
    * @param {uint}        controller.controller  Controller serial number
    * @param {string}      controller.address     Optional controller IPv4 address. Defaults to UDP broadcast.
    * @param {string}      controller.protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
@@ -935,7 +935,7 @@ module.exports = {
    *
    * @param {object}      ctx         Context with configuration, locale (optional) and logger (optional).
    * @param {uint|object} controller  Either a controller serial number (legacy implementation) or an
-   *                                  object of the form { controller, dest, protocol }:
+   *                                  object of the form { controller, address, protocol }:
    * @param {uint}        controller.controller  Controller serial number
    * @param {string}      controller.address     Optional controller IPv4 address. Defaults to UDP broadcast.
    * @param {string}      controller.protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
@@ -972,7 +972,7 @@ module.exports = {
    *
    * @param {object}      ctx         Context with configuration, locale (optional) and logger (optional).
    * @param {uint|object} controller  Either a controller serial number (legacy implementation) or an
-   *                                  object of the form { controller, dest, protocol }:
+   *                                  object of the form { controller, address, protocol }:
    * @param {uint}        controller.controller  Controller serial number
    * @param {string}      controller.address     Optional controller IPv4 address. Defaults to UDP broadcast.
    * @param {string}      controller.protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
@@ -1007,7 +1007,7 @@ module.exports = {
    *
    * @param {object}      ctx         Context with configuration, locale (optional) and logger (optional).
    * @param {uint|object} controller  Either a controller serial number (legacy implementation) or an
-   *                                  object of the form { controller, dest, protocol }:
+   *                                  object of the form { controller, address, protocol }:
    * @param {uint}        controller.controller  Controller serial number
    * @param {string}      controller.address     Optional controller IPv4 address. Defaults to UDP broadcast.
    * @param {string}      controller.protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
@@ -1051,7 +1051,7 @@ module.exports = {
    *
    * @param {object}      ctx         Context with configuration, locale (optional) and logger (optional).
    * @param {uint|object} controller  Either a controller serial number (legacy implementation) or an
-   *                                  object of the form { controller, dest, protocol }:
+   *                                  object of the form { controller, address, protocol }:
    * @param {uint}        controller.controller  Controller serial number
    * @param {string}      controller.address     Optional controller IPv4 address. Defaults to UDP broadcast.
    * @param {string}      controller.protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
@@ -1087,7 +1087,7 @@ module.exports = {
    *
    * @param {object}      ctx         Context with configuration, locale (optional) and logger (optional).
    * @param {uint|object} controller  Either a controller serial number (legacy implementation) or an
-   *                                  object of the form { controller, dest, protocol }:
+   *                                  object of the form { controller, address, protocol }:
    * @param {uint}        controller.controller  Controller serial number
    * @param {string}      controller.address     Optional controller IPv4 address. Defaults to UDP broadcast.
    * @param {string}      controller.protocol    Optional connection protocol ('udp' or 'tcp'). Defaults to
