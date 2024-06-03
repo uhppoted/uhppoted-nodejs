@@ -19,7 +19,7 @@
   ],
   "main": "index.js",
   "scripts": {
-    "build": "eslint ./**/*.js",
+    "build": "eslint ./src/**/*.js ./test/**/*.js ./integration-tests/**/*.js",
     "test": "mocha 'test/**/*_spec.js'"
   },
   "engines": {
