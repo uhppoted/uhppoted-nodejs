@@ -48,3 +48,43 @@ describe('#activateKeypads(...)', function () {
       .catch(err => done(err))
   })
 })
+
+describe('#activateKeypads(...) (TCP)', function () {
+  let sock = null
+
+  before(function () {
+    sock = setup(request, [reply], 'tcp')
+  })
+
+  after(function () {
+    teardown(sock)
+  })
+
+  it('should execute activate-keypads with address:port object', function (done) {
+    const expected = {
+      deviceId: 405419896,
+      ok: true
+    }
+
+    uhppoted.activateKeypads(ctx, { controller: 405419896, address: { address: '127.0.0.1', port: 59998 }, protocol: 'tcp' }, { 1: true, 2: true, 3: false, 4: true })
+      .then(response => {
+        expect(response).to.deep.equal(expected)
+        done()
+      })
+      .catch(err => done(err))
+  })
+
+  it('should execute activate-keypads with address:port string', function (done) {
+    const expected = {
+      deviceId: 405419896,
+      ok: true
+    }
+
+    uhppoted.activateKeypads(ctx, { controller: 405419896, address: '127.0.0.1:59998', protocol: 'tcp' }, { 1: true, 2: true, 3: false, 4: true })
+      .then(response => {
+        expect(response).to.deep.equal(expected)
+        done()
+      })
+      .catch(err => done(err))
+  })
+})

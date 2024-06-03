@@ -57,3 +57,61 @@ describe('#addTask(...)', function () {
       .catch(err => done(err))
   })
 })
+
+describe('#addTask(...) (TCP)', function () {
+  let sock = null
+
+  before(function () {
+    sock = setup(request, [reply], 'tcp')
+  })
+
+  after(function () {
+    teardown(sock)
+  })
+
+  it('should execute add-task with address:port object', function (done) {
+    const expected = {
+      deviceId: 405419896,
+      added: true
+    }
+
+    const task = {
+      task: 'enable time profile',
+      door: 3,
+      valid: { from: '2021-01-01', to: '2021-12-31' },
+      weekdays: ['Monday', 'Wednesday', 'Friday'],
+      start: '08:30',
+      cards: 17
+    }
+
+    uhppoted.addTask(ctx, { controller: 405419896, address: { address: '127.0.0.1', port: 59998 }, protocol: 'tcp' }, task)
+      .then(response => {
+        expect(response).to.deep.equal(expected)
+        done()
+      })
+      .catch(err => done(err))
+  })
+
+  it('should execute add-task with address:port string', function (done) {
+    const expected = {
+      deviceId: 405419896,
+      added: true
+    }
+
+    const task = {
+      task: 'enable time profile',
+      door: 3,
+      valid: { from: '2021-01-01', to: '2021-12-31' },
+      weekdays: ['Monday', 'Wednesday', 'Friday'],
+      start: '08:30',
+      cards: 17
+    }
+
+    uhppoted.addTask(ctx, { controller: 405419896, address: '127.0.0.1:59998', protocol: 'tcp' }, task)
+      .then(response => {
+        expect(response).to.deep.equal(expected)
+        done()
+      })
+      .catch(err => done(err))
+  })
+})

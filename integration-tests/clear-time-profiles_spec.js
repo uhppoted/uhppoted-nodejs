@@ -48,3 +48,43 @@ describe('#clearTimeProfiles(...)', function () {
       .catch(err => done(err))
   })
 })
+
+describe('#clearTimeProfiles(...) (TCP)', function () {
+  let sock = null
+
+  before(function () {
+    sock = setup(request, [reply], 'tcp')
+  })
+
+  after(function () {
+    teardown(sock)
+  })
+
+  it('should execute clear-time-profiles with address:port object', function (done) {
+    const expected = {
+      deviceId: 405419896,
+      cleared: true
+    }
+
+    uhppoted.clearTimeProfiles(ctx, { controller: 405419896, address: { address: '127.0.0.1', port: 59998 }, protocol: 'tcp' })
+      .then(response => {
+        expect(response).to.deep.equal(expected)
+        done()
+      })
+      .catch(err => done(err))
+  })
+
+  it('should execute clear-time-profiles with address:port string', function (done) {
+    const expected = {
+      deviceId: 405419896,
+      cleared: true
+    }
+
+    uhppoted.clearTimeProfiles(ctx, { controller: 405419896, address: '127.0.0.1:59998', protocol: 'tcp' })
+      .then(response => {
+        expect(response).to.deep.equal(expected)
+        done()
+      })
+      .catch(err => done(err))
+  })
+})

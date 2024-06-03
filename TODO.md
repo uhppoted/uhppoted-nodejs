@@ -1,5 +1,7 @@
 # TODO
 
+- [ ] Replace **ip** module
+
 - [ ] TCP/IP protocol (cf. https://github.com/uhppoted/uhppote-core/issues/17)
       - [x] ~~FIXME in internationalisation~~
       - [x] TCP send/receive
@@ -10,12 +12,11 @@
       - [x] Unit tests for `resolve` address
             - [x] `null`
             - [x] ``
-            - [x] `    `
             - [x] string (address)
             - [x] string (address:port)
             - [x] object {address}
             - [x] object {address,port}
-      - [ ] Integration tests
+      - [x] Integration tests
             - [x] get-device
             - [x] set-ip
             - [x] get-listener
@@ -32,22 +33,22 @@
             - [x] put-card
             - [x] delete-card
             - [x] delete-cards
-            - [ ] get-time-profile
-            - [ ] set-time-profile
-            - [ ] clear-timeprofiles
-            - [ ] clear-tasklist
-            - [ ] add-task
-            - [ ] refresh-tasklist
-            - [ ] get-events
-            - [ ] get-event
-            - [ ] get-event-index
-            - [ ] set-event-index
-            - [ ] open-door
-            - [ ] set-pc-control
-            - [ ] set-interlock
-            - [ ] activate-keypads
-            - [ ] set-door-passcodes
-            - [ ] restore-default-parameters
+            - [x] get-time-profile
+            - [x] set-time-profile
+            - [x] clear-timeprofiles
+            - [x] clear-tasklist
+            - [x] add-task
+            - [x] refresh-tasklist
+            - [x] get-events
+            - [x] get-event
+            - [x] get-event-index
+            - [x] set-event-index
+            - [x] open-door
+            - [x] set-pc-control
+            - [x] set-interlock
+            - [x] activate-keypads
+            - [x] set-door-passcodes
+            - [x] restore-default-parameters
       - [ ] documentation
       - [x] CHANGELOG
       - [ ] README

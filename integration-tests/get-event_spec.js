@@ -182,3 +182,56 @@ describe('#getEvent(...) with overwritten event', function (done) {
       })
   })
 })
+
+describe('#getEvent(...) (TCP)', function () {
+  const expected = {
+    deviceId: 405419896,
+    event: {
+      index: 29,
+      type: {
+        code: 2,
+        event: 'door'
+      },
+      granted: true,
+      door: 1,
+      direction: {
+        code: 1,
+        direction: 'in'
+      },
+      card: 0,
+      timestamp: '2019-08-03 10:34:29',
+      reason: {
+        code: 0,
+        reason: '(reserved)'
+      }
+    }
+  }
+
+  let sock = null
+
+  before(function () {
+    sock = setup(requests[0], [replies[0]], 'tcp')
+  })
+
+  after(function () {
+    teardown(sock)
+  })
+
+  it('should execute get-event with address:port object', function (done) {
+    uhppoted.getEvent(ctx, { controller: 405419896, address: { address: '127.0.0.1', port: 59998 }, protocol: 'tcp' }, 29)
+      .then(response => {
+        expect(response).to.deep.equal(expected)
+        done()
+      })
+      .catch(err => done(err))
+  })
+
+  it('should execute get-event with address:port string', function (done) {
+    uhppoted.getEvent(ctx, { controller: 405419896, address: '127.0.0.1:59998', protocol: 'tcp' }, 29)
+      .then(response => {
+        expect(response).to.deep.equal(expected)
+        done()
+      })
+      .catch(err => done(err))
+  })
+})

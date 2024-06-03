@@ -7,6 +7,7 @@ const expect = require('chai').expect
 const uhppoted = require('../index.js')
 const ctx = require('./common.js').context
 const dgram = require('dgram')
+const net = require('net')
 
 const requests = [
   Buffer.from([
@@ -68,6 +69,58 @@ describe('#getEvents(...)', function () {
     }
 
     uhppoted.getEvents(ctx, 405419896)
+      .then(response => {
+        expect(response).to.deep.equal(expected)
+        done()
+      })
+      .catch(err => done(err))
+  })
+})
+
+describe('#getEvents(...) (TCP)', function () {
+  let sock = null
+
+  before(function () {
+    sock = net.createServer((c) => {
+      c.on('data', (message) => {
+        for (let i = 0; i < 2; i++) {
+          if (message.equals(requests[i])) {
+            c.write(new Uint8Array(replies[i]))
+          }
+        }
+      })
+    })
+
+    sock.listen(59998)
+  })
+
+  after(function () {
+    sock.close()
+  })
+
+  it('should execute get-events with address:port object', function (done) {
+    const expected = {
+      deviceId: 405419896,
+      first: 1,
+      last: 70
+    }
+
+    uhppoted.getEvents(ctx, { controller: 405419896, address: { address: '127.0.0.1', port: 59998 }, protocol: 'tcp' })
+      .then(response => {
+        expect(response).to.deep.equal(expected)
+        done()
+      })
+      .catch(err => done(err))
+  })
+
+  it('should execute get-events with address:port string', function (done) {
+    const expected = {
+      deviceId: 405419896,
+      first: 1,
+      last: 70
+    }
+
+    uhppoted.getEvents(ctx, { controller: 405419896, address: '127.0.0.1:59998', protocol: 'tcp' })
       .then(response => {
         expect(response).to.deep.equal(expected)
         done()

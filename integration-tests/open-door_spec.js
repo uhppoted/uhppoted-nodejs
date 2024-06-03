@@ -48,3 +48,43 @@ describe('#openDoor(...)', function () {
       .catch(err => done(err))
   })
 })
+
+describe('#openDoor(...) (TCP)', function () {
+  let sock = null
+
+  before(function () {
+    sock = setup(request, [reply], 'tcp')
+  })
+
+  after(function () {
+    teardown(sock)
+  })
+
+  it('should execute open-door with address:port object', function (done) {
+    const expected = {
+      deviceId: 405419896,
+      opened: true
+    }
+
+    uhppoted.openDoor(ctx, { controller: 405419896, address: { address: '127.0.0.1', port: 59998 }, protocol: 'tcp' }, 3)
+      .then(response => {
+        expect(response).to.deep.equal(expected)
+        done()
+      })
+      .catch(err => done(err))
+  })
+
+  it('should execute open-door with address:port string', function (done) {
+    const expected = {
+      deviceId: 405419896,
+      opened: true
+    }
+
+    uhppoted.openDoor(ctx, { controller: 405419896, address: '127.0.0.1:59998', protocol: 'tcp' }, 3)
+      .then(response => {
+        expect(response).to.deep.equal(expected)
+        done()
+      })
+      .catch(err => done(err))
+  })
+})

@@ -48,3 +48,43 @@ describe('#setEventIndex(...)', function () {
       .catch(err => done(err))
   })
 })
+
+describe('#setEventIndex(...) (TCP)', function () {
+  let sock = null
+
+  before(function () {
+    sock = setup(request, [reply], 'tcp')
+  })
+
+  after(function () {
+    teardown(sock)
+  })
+
+  it('should execute set-event-index with address:port object', function (done) {
+    const expected = {
+      deviceId: 405419896,
+      updated: true
+    }
+
+    uhppoted.setEventIndex(ctx, { controller: 405419896, address: { address: '127.0.0.1', port: 59998 }, protocol: 'tcp' }, 29)
+      .then(response => {
+        expect(response).to.deep.equal(expected)
+        done()
+      })
+      .catch(err => done(err))
+  })
+
+  it('should execute set-event-index with address:port string', function (done) {
+    const expected = {
+      deviceId: 405419896,
+      updated: true
+    }
+
+    uhppoted.setEventIndex(ctx, { controller: 405419896, address: '127.0.0.1:59998', protocol: 'tcp' }, 29)
+      .then(response => {
+        expect(response).to.deep.equal(expected)
+        done()
+      })
+      .catch(err => done(err))
+  })
+})

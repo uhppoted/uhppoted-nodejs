@@ -48,3 +48,43 @@ describe('#setInterlock(...)', function () {
       .catch(err => done(err))
   })
 })
+
+describe('#setInterlock(...) (TCP)', function () {
+  let sock = null
+
+  before(function () {
+    sock = setup(request, [reply], 'tcp')
+  })
+
+  after(function () {
+    teardown(sock)
+  })
+
+  it('should execute set-interlock with address:port object', function (done) {
+    const expected = {
+      deviceId: 405419896,
+      ok: true
+    }
+
+    uhppoted.setInterlock(ctx, { controller: 405419896, address: { address: '127.0.0.1', port: 59998 }, protocol: 'tcp' }, 8)
+      .then(response => {
+        expect(response).to.deep.equal(expected)
+        done()
+      })
+      .catch(err => done(err))
+  })
+
+  it('should execute set-interlock with address:port string', function (done) {
+    const expected = {
+      deviceId: 405419896,
+      ok: true
+    }
+
+    uhppoted.setInterlock(ctx, { controller: 405419896, address: '127.0.0.1:59998', protocol: 'tcp' }, 8)
+      .then(response => {
+        expect(response).to.deep.equal(expected)
+        done()
+      })
+      .catch(err => done(err))
+  })
+})
