@@ -7,14 +7,14 @@
       - [x] Optional dest and protocol arguments
       - [x] Examples
       - [x] Update unit tests
-      - [ ] Unit tests for `resolve` address
-            - [ ] `null`
-            - [ ] ``
-            - [ ] `    `
-            - [ ] string (address)
-            - [ ] string (address:port)
-            - [ ] object {address}
-            - [ ] object {address,port}
+      - [x] Unit tests for `resolve` address
+            - [x] `null`
+            - [x] ``
+            - [x] `    `
+            - [x] string (address)
+            - [x] string (address:port)
+            - [x] object {address}
+            - [x] object {address,port}
       - [ ] Integration tests
             - [x] get-device
             - [x] set-ip
