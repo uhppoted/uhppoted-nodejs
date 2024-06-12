@@ -66,7 +66,7 @@ describe('#setDoorPasscodes(...) (TCP)', function () {
       ok: true
     }
 
-    uhppoted.setDoorPasscodes(ctx, { controller: 405419896, address: { address: '127.0.0.1', port: 59998 }, protocol: 'tcp' }, 3, [12345, 0, 999999, 54321])
+    uhppoted.setDoorPasscodes(ctx, { id: 405419896, address: { address: '127.0.0.1', port: 59998 }, protocol: 'tcp' }, 3, [12345, 0, 999999, 54321])
       .then(response => {
         expect(response).to.deep.equal(expected)
         done()
@@ -80,7 +80,7 @@ describe('#setDoorPasscodes(...) (TCP)', function () {
       ok: true
     }
 
-    uhppoted.setDoorPasscodes(ctx, { controller: 405419896, address: '127.0.0.1:59998', protocol: 'tcp' }, 3, [12345, 0, 999999, 54321])
+    uhppoted.setDoorPasscodes(ctx, { id: 405419896, address: '127.0.0.1:59998', protocol: 'tcp' }, 3, [12345, 0, 999999, 54321])
       .then(response => {
         expect(response).to.deep.equal(expected)
         done()

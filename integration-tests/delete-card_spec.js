@@ -66,7 +66,7 @@ describe('#deleteCard(...) (TCP)', function () {
       deleted: true
     }
 
-    uhppoted.deleteCard(ctx, { controller: 405419896, address: { address: '127.0.0.1', port: 59998 }, protocol: 'tcp' }, 8165538)
+    uhppoted.deleteCard(ctx, { id: 405419896, address: { address: '127.0.0.1', port: 59998 }, protocol: 'tcp' }, 8165538)
       .then(response => {
         expect(response).to.deep.equal(expected)
         done()
@@ -80,7 +80,7 @@ describe('#deleteCard(...) (TCP)', function () {
       deleted: true
     }
 
-    uhppoted.deleteCard(ctx, { controller: 405419896, address: '127.0.0.1:59998', protocol: 'tcp' }, 8165538)
+    uhppoted.deleteCard(ctx, { id: 405419896, address: '127.0.0.1:59998', protocol: 'tcp' }, 8165538)
       .then(response => {
         expect(response).to.deep.equal(expected)
         done()

@@ -84,7 +84,7 @@ describe('#addTask(...) (TCP)', function () {
       cards: 17
     }
 
-    uhppoted.addTask(ctx, { controller: 405419896, address: { address: '127.0.0.1', port: 59998 }, protocol: 'tcp' }, task)
+    uhppoted.addTask(ctx, { id: 405419896, address: { address: '127.0.0.1', port: 59998 }, protocol: 'tcp' }, task)
       .then(response => {
         expect(response).to.deep.equal(expected)
         done()
@@ -107,7 +107,7 @@ describe('#addTask(...) (TCP)', function () {
       cards: 17
     }
 
-    uhppoted.addTask(ctx, { controller: 405419896, address: '127.0.0.1:59998', protocol: 'tcp' }, task)
+    uhppoted.addTask(ctx, { id: 405419896, address: '127.0.0.1:59998', protocol: 'tcp' }, task)
       .then(response => {
         expect(response).to.deep.equal(expected)
         done()

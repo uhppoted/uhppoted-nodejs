@@ -14,7 +14,7 @@ async function run () {
       console.log(`\n   *** ERROR ${err.message}\n`)
     })
 
-  await uhppoted.getEvent(ctx, { controller: deviceID, address: addr, protocol: 'tcp' }, index)
+  await uhppoted.getEvent(ctx, { id: deviceID, address: addr, protocol: 'tcp' }, index)
     .then(response => {
       console.log('\nget-event:\n', response)
     })

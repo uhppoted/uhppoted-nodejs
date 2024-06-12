@@ -20,7 +20,7 @@ async function run () {
       console.log(`\n   *** ERROR ${err.message}\n`)
     })
 
-  await uhppoted.addTask(ctx, { controller: deviceID, address: addr, protocol: 'tcp' }, task)
+  await uhppoted.addTask(ctx, { id: deviceID, address: addr, protocol: 'tcp' }, task)
     .then(response => {
       console.log('\nadd-task:\n', response)
     })

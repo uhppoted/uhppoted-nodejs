@@ -15,7 +15,7 @@ async function run () {
       console.log(`\n   *** ERROR ${err.message}\n`)
     })
 
-  await uhppoted.setDoorPasscodes(ctx, { controller: deviceID, address: addr, protocol: 'tcp' }, door, passcodes)
+  await uhppoted.setDoorPasscodes(ctx, { id: deviceID, address: addr, protocol: 'tcp' }, door, passcodes)
     .then(response => {
       console.log('\nset-door-passcodes:\n', response)
     })

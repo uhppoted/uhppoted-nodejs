@@ -66,7 +66,7 @@ describe('#openDoor(...) (TCP)', function () {
       opened: true
     }
 
-    uhppoted.openDoor(ctx, { controller: 405419896, address: { address: '127.0.0.1', port: 59998 }, protocol: 'tcp' }, 3)
+    uhppoted.openDoor(ctx, { id: 405419896, address: { address: '127.0.0.1', port: 59998 }, protocol: 'tcp' }, 3)
       .then(response => {
         expect(response).to.deep.equal(expected)
         done()
@@ -80,7 +80,7 @@ describe('#openDoor(...) (TCP)', function () {
       opened: true
     }
 
-    uhppoted.openDoor(ctx, { controller: 405419896, address: '127.0.0.1:59998', protocol: 'tcp' }, 3)
+    uhppoted.openDoor(ctx, { id: 405419896, address: '127.0.0.1:59998', protocol: 'tcp' }, 3)
       .then(response => {
         expect(response).to.deep.equal(expected)
         done()

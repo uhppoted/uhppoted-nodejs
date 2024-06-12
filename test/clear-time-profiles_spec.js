@@ -17,7 +17,7 @@ describe('clear-time-profiles', function () {
     })
 
     it('should fail with invalid controller ID', function () {
-      return uhppoted.clearTimeProfiles({}, { controller: 0, address: '192.168.1.125', protocol: 'tcp' })
+      return uhppoted.clearTimeProfiles({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' })
         .then(() => {
           assert.fail()
         })

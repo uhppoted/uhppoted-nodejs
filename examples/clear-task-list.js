@@ -13,7 +13,7 @@ async function run () {
       console.log(`\n   *** ERROR ${err.message}\n`)
     })
 
-  await uhppoted.clearTaskList(ctx, { controller: deviceID, address: addr, protocol: 'tcp' })
+  await uhppoted.clearTaskList(ctx, { id: deviceID, address: addr, protocol: 'tcp' })
     .then(response => {
       console.log('\nclear-task-list:\n', response)
     })

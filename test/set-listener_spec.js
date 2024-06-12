@@ -17,7 +17,7 @@ describe('set-listener', function () {
     })
 
     it('should fail with invalid controller ID', function () {
-      return uhppoted.setListener({}, { controller: 0, address: '192.168.1.125', protocol: 'tcp' }, '192.168.1.100', 60001)
+      return uhppoted.setListener({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' }, '192.168.1.100', 60001)
         .then(() => {
           assert.fail()
         })

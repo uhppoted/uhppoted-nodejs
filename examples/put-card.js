@@ -18,7 +18,7 @@ async function run () {
       console.log(`\n   *** ERROR ${err.message}\n`)
     })
 
-  await uhppoted.putCard(ctx, { controller: deviceID, address: addr, protocol: 'tcp' }, cardNumber, validFrom, validUntil, doors, PIN)
+  await uhppoted.putCard(ctx, { id: deviceID, address: addr, protocol: 'tcp' }, cardNumber, validFrom, validUntil, doors, PIN)
     .then(response => {
       console.log('\nput-card:\n', response)
     })

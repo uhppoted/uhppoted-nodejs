@@ -54,7 +54,7 @@ publish-npm: release
 	npm publish
 
 debug: build
-	npx mocha 'integration-tests/**/get-device_spec.js' --broadcast='192.168.1.255:59999' --listen='192.168.1.100:60001'
+	npx mocha 'test/**/common_spec.js'
 
 error-handling: build
 	node examples/error-handling.js $(ARGS)
@@ -221,7 +221,7 @@ run-all: build
 	@node examples/set-pc-control.js $(ARGS)
 	@node examples/set-interlock.js $(ARGS)
 	@node examples/activate-keypads.js $(ARGS)
-	@node examples/set-super-passwords.js $(ARGS)
+	@node examples/set-door-passcodes.js $(ARGS)
 	@node examples/restore-default-parameters.js $(ARGS)
 	@node examples/error-handling.js $(ARGS)
 	@node examples/error-handling-with-locale.js $(ARGS)

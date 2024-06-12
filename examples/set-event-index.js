@@ -14,7 +14,7 @@ async function run () {
       console.log(`\n   *** ERROR ${err.message}\n`)
     })
 
-  await uhppoted.setEventIndex(ctx, { controller: deviceID, address: addr, protocol: 'tcp' }, index)
+  await uhppoted.setEventIndex(ctx, { id: deviceID, address: addr, protocol: 'tcp' }, index)
     .then(response => {
       console.log('\nset-event-index:\n', response)
     })

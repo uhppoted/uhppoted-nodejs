@@ -14,7 +14,7 @@ async function run () {
       console.log(`\n   *** ERROR ${err.message}\n`)
     })
 
-  await uhppoted.setInterlock(ctx, { controller: deviceID, address: addr, protocol: 'tcp' }, interlock)
+  await uhppoted.setInterlock(ctx, { id: deviceID, address: addr, protocol: 'tcp' }, interlock)
     .then(response => {
       console.log('\nset-interlock:\n', response)
     })

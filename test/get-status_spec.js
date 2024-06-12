@@ -17,7 +17,7 @@ describe('get-status', function () {
     })
 
     it('should fail with invalid controller ID', function () {
-      return uhppoted.getStatus({}, { controller: 0, address: '192.168.1.125', protocol: 'tcp' })
+      return uhppoted.getStatus({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' })
         .then(() => {
           assert.fail()
         })

@@ -88,7 +88,7 @@ describe('#setTimeProfile(...) (TCP)', function () {
       linkedTo: 3
     }
 
-    uhppoted.setTimeProfile(ctx, { controller: 405419896, address: { address: '127.0.0.1', port: 59998 }, protocol: 'tcp' }, profile)
+    uhppoted.setTimeProfile(ctx, { id: 405419896, address: { address: '127.0.0.1', port: 59998 }, protocol: 'tcp' }, profile)
       .then(response => {
         expect(response).to.deep.equal(expected)
         done()
@@ -113,7 +113,7 @@ describe('#setTimeProfile(...) (TCP)', function () {
       linkedTo: 3
     }
 
-    uhppoted.setTimeProfile(ctx, { controller: 405419896, address: '127.0.0.1:59998', protocol: 'tcp' }, profile)
+    uhppoted.setTimeProfile(ctx, { id: 405419896, address: '127.0.0.1:59998', protocol: 'tcp' }, profile)
       .then(response => {
         expect(response).to.deep.equal(expected)
         done()

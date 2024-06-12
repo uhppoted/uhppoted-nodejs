@@ -13,7 +13,7 @@ async function run () {
       console.log(`\n   *** ERROR ${err.message}\n`)
     })
 
-  await uhppoted.recordSpecialEvents(ctx, { controller: deviceID, address: addr, protocol: 'tcp' }, true)
+  await uhppoted.recordSpecialEvents(ctx, { id: deviceID, address: addr, protocol: 'tcp' }, true)
     .then(response => {
       console.log('\nrecord-special-events:\n', response)
     })

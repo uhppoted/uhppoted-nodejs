@@ -35,7 +35,7 @@ describe('add-task', function () {
         cards: 3
       }
 
-      return uhppoted.addTask({}, { controller: 0, address: '192.168.1.125', protocol: 'tcp' }, task)
+      return uhppoted.addTask({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' }, task)
         .then(() => {
           assert.fail()
         })

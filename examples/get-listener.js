@@ -13,7 +13,7 @@ async function run () {
       console.log(`\n   *** ERROR ${err.message}\n`)
     })
 
-  await uhppoted.getListener(ctx, { controller: deviceID, address: addr, protocol: 'tcp' })
+  await uhppoted.getListener(ctx, { id: deviceID, address: addr, protocol: 'tcp' })
     .then(response => {
       console.log('\nget-listener:\n', response)
     })

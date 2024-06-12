@@ -17,7 +17,7 @@ describe('get-card', function () {
     })
 
     it('should fail with invalid controller ID', function () {
-      return uhppoted.getCard({}, { controller: 0, address: '192.168.1.125', protocol: 'tcp' }, 8165538)
+      return uhppoted.getCard({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' }, 8165538)
         .then(() => {
           assert.fail()
         })

@@ -66,7 +66,7 @@ describe('#setTime(...) (TCP)', function () {
       datetime: '2021-05-28 14:56:14'
     }
 
-    uhppoted.setTime(ctx, { controller: 405419896, address: { address: '127.0.0.1', port: 59998 }, protocol: 'tcp' }, '2021-05-28 14:56:14')
+    uhppoted.setTime(ctx, { id: 405419896, address: { address: '127.0.0.1', port: 59998 }, protocol: 'tcp' }, '2021-05-28 14:56:14')
       .then(response => {
         expect(response).to.deep.equal(expected)
         done()
@@ -80,7 +80,7 @@ describe('#setTime(...) (TCP)', function () {
       datetime: '2021-05-28 14:56:14'
     }
 
-    uhppoted.setTime(ctx, { controller: 405419896, address: '127.0.0.1:59998', protocol: 'tcp' }, '2021-05-28 14:56:14')
+    uhppoted.setTime(ctx, { id: 405419896, address: '127.0.0.1:59998', protocol: 'tcp' }, '2021-05-28 14:56:14')
       .then(response => {
         expect(response).to.deep.equal(expected)
         done()

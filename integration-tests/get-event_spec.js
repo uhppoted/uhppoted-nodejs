@@ -218,7 +218,7 @@ describe('#getEvent(...) (TCP)', function () {
   })
 
   it('should execute get-event with address:port object', function (done) {
-    uhppoted.getEvent(ctx, { controller: 405419896, address: { address: '127.0.0.1', port: 59998 }, protocol: 'tcp' }, 29)
+    uhppoted.getEvent(ctx, { id: 405419896, address: { address: '127.0.0.1', port: 59998 }, protocol: 'tcp' }, 29)
       .then(response => {
         expect(response).to.deep.equal(expected)
         done()
@@ -227,7 +227,7 @@ describe('#getEvent(...) (TCP)', function () {
   })
 
   it('should execute get-event with address:port string', function (done) {
-    uhppoted.getEvent(ctx, { controller: 405419896, address: '127.0.0.1:59998', protocol: 'tcp' }, 29)
+    uhppoted.getEvent(ctx, { id: 405419896, address: '127.0.0.1:59998', protocol: 'tcp' }, 29)
       .then(response => {
         expect(response).to.deep.equal(expected)
         done()

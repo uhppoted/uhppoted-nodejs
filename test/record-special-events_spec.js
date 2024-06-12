@@ -17,7 +17,7 @@ describe('record-special-events', function () {
     })
 
     it('should fail with invalid controller ID', function () {
-      return uhppoted.recordSpecialEvents({}, { controller: 0, address: '192.168.1.125', protocol: 'tcp' }, true)
+      return uhppoted.recordSpecialEvents({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' }, true)
         .then(() => {
           assert.fail()
         })

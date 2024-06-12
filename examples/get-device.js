@@ -14,7 +14,7 @@ async function run () {
       console.log(`\n   *** ERROR ${err.message}\n`)
     })
 
-  await uhppoted.getDevice(ctx, { controller: deviceID, address: host, protocol: 'tcp' })
+  await uhppoted.getDevice(ctx, { id: deviceID, address: host, protocol: 'tcp' })
     .then(response => {
       console.log('\nget-device:\n', response)
     })
@@ -22,7 +22,7 @@ async function run () {
       console.log(`\n   *** ERROR ${err.message}\n`)
     })
 
-  await uhppoted.getDevice(ctx, { controller: deviceID, address: addr, protocol: 'tcp' })
+  await uhppoted.getDevice(ctx, { id: deviceID, address: addr, protocol: 'tcp' })
     .then(response => {
       console.log('\nget-device:\n', response)
     })

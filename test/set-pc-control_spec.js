@@ -17,7 +17,7 @@ describe('set-pc-control', function () {
     })
 
     it('should fail with invalid controller ID', function () {
-      return uhppoted.setPCControl({}, { controller: 0, address: '192.168.1.125', protocol: 'tcp' }, true)
+      return uhppoted.setPCControl({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' }, true)
         .then(() => {
           assert.fail()
         })

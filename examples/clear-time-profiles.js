@@ -13,7 +13,7 @@ async function run () {
       console.log(`\n   *** ERROR ${err.message}\n`)
     })
 
-  await uhppoted.clearTimeProfiles(ctx, { controller: deviceID, address: addr, protocol: 'tcp' })
+  await uhppoted.clearTimeProfiles(ctx, { id: deviceID, address: addr, protocol: 'tcp' })
     .then(response => {
       console.log('\nclear-time-profiles:\n', response)
     })

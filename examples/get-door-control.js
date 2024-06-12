@@ -13,7 +13,7 @@ async function run () {
       console.log(`\n   *** ERROR ${err.message}\n`)
     })
 
-  await uhppoted.getDoorControl(ctx, { controller: deviceID, address: addr, protocol: 'tcp' }, 3)
+  await uhppoted.getDoorControl(ctx, { id: deviceID, address: addr, protocol: 'tcp' }, 3)
     .then(response => {
       console.log('\nget-door-control:\n', response)
     })

@@ -13,7 +13,7 @@ async function run () {
       console.log(`\n   *** ERROR ${err.message}\n`)
     })
 
-  await uhppoted.getEventIndex(ctx, { controller: deviceID, address: addr, protocol: 'tcp' })
+  await uhppoted.getEventIndex(ctx, { id: deviceID, address: addr, protocol: 'tcp' })
     .then(response => {
       console.log('\nget-event-index:\n', response)
     })

@@ -13,7 +13,7 @@ async function run () {
       console.log(`\n   *** ERROR ${err.message}\n`)
     })
 
-  await uhppoted.restoreDefaultParameters(ctx, { controller: deviceID, address: addr, protocol: 'tcp' })
+  await uhppoted.restoreDefaultParameters(ctx, { id: deviceID, address: addr, protocol: 'tcp' })
     .then(response => {
       console.log('\nrestore-default-parameters:\n', response)
     })

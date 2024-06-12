@@ -17,7 +17,7 @@ describe('get-device', function () {
     })
 
     it('should fail with invalid controller ID', function () {
-      return uhppoted.getDevice({}, { controller: 0, address: '192.168.1.125', protocol: 'tcp' })
+      return uhppoted.getDevice({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' })
         .then(() => {
           assert.fail()
         })

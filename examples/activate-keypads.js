@@ -19,7 +19,7 @@ async function run () {
       console.log(`\n   *** ERROR ${err.message}\n`)
     })
 
-  await uhppoted.activateKeypads(ctx, { controller: deviceID, address: addr, protocol: 'tcp' }, keypads)
+  await uhppoted.activateKeypads(ctx, { id: deviceID, address: addr, protocol: 'tcp' }, keypads)
     .then(response => {
       console.log('\nactivate-keypads:\n', response)
     })

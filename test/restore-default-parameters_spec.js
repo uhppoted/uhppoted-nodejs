@@ -17,7 +17,7 @@ describe('restore-default-parameters', function () {
     })
 
     it('should fail with invalid controller ID', function () {
-      return uhppoted.restoreDefaultParameters({}, { controller: 0, address: '192.168.100', protocol: 'tcp' }, 4)
+      return uhppoted.restoreDefaultParameters({}, { id: 0, address: '192.168.100', protocol: 'tcp' }, 4)
         .then(() => {
           assert.fail()
         })

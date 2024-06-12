@@ -53,7 +53,7 @@ describe('#setIP(...) (TCP)', function () {
   it('should execute set-IP using TCP with address:port object', function (done) {
     const expected = {}
 
-    uhppoted.setIP(ctx, { controller: 405419896, address: { address: '127.0.0.1', port: 59998 }, protocol: 'tcp' }, '192.168.1.100', '255.255.255.0', '192.168.1.1')
+    uhppoted.setIP(ctx, { id: 405419896, address: { address: '127.0.0.1', port: 59998 }, protocol: 'tcp' }, '192.168.1.100', '255.255.255.0', '192.168.1.1')
       .then(response => {
         expect(response).to.deep.equal(expected)
         done()
@@ -64,7 +64,7 @@ describe('#setIP(...) (TCP)', function () {
   it('should execute set-IP using TCP with address:port string', function (done) {
     const expected = {}
 
-    uhppoted.setIP(ctx, { controller: 405419896, address: '127.0.0.1:59998', protocol: 'tcp' }, '192.168.1.100', '255.255.255.0', '192.168.1.1')
+    uhppoted.setIP(ctx, { id: 405419896, address: '127.0.0.1:59998', protocol: 'tcp' }, '192.168.1.100', '255.255.255.0', '192.168.1.1')
       .then(response => {
         expect(response).to.deep.equal(expected)
         done()

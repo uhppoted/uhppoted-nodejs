@@ -17,7 +17,7 @@ describe('open-door', function () {
     })
 
     it('should fail with invalid controller ID', function () {
-      return uhppoted.openDoor({}, { controller: 0, address: '192.168.1.125', protocol: 'tcp' }, 3)
+      return uhppoted.openDoor({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' }, 3)
         .then(() => {
           assert.fail()
         })

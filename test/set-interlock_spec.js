@@ -17,7 +17,7 @@ describe('set-interlock', function () {
     })
 
     it('should fail with invalid controller ID', function () {
-      return uhppoted.setInterlock({}, { controller: 0, address: '192.168.1.125', protocol: 'tcp' }, 4)
+      return uhppoted.setInterlock({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' }, 4)
         .then(() => {
           assert.fail()
         })

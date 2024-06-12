@@ -17,7 +17,7 @@ describe('get-event', function () {
     })
 
     it('should fail with invalid controller ID', function () {
-      return uhppoted.getEvent({}, { controller: 0, address: '192.168.1.125', protocol: 'tcp' }, 29)
+      return uhppoted.getEvent({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' }, 29)
         .then(() => {
           assert.fail()
         })

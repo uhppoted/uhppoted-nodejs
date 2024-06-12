@@ -25,11 +25,11 @@ function initialise (ctx) {
 
 function resolve (controller) {
   if (typeof (controller) === 'number') {
-    return { controller, address: null, protocol: 'udp' }
+    return { id: controller, address: null, protocol: 'udp' }
   }
 
   if (typeof (controller) === 'object') {
-    const { controller: id, address = null, protocol = 'udp' } = controller
+    const { id, address = null, protocol = 'udp' } = controller
     const proto = `${protocol}`.toLowerCase() === 'tcp' ? 'tcp' : 'udp'
 
     if ((address != null) && (typeof (address) === 'string')) {
@@ -39,9 +39,9 @@ function resolve (controller) {
         const addr = match[1]
         const port = parseInt(match[2], 10)
 
-        return { controller: id, address: { address: addr, port }, protocol: proto }
+        return { id, address: { address: addr, port }, protocol: proto }
       } else {
-        return { controller: id, address: { address, port: 60000 }, protocol: proto }
+        return { id, address: { address, port: 60000 }, protocol: proto }
       }
     }
 
@@ -50,13 +50,13 @@ function resolve (controller) {
       const p = parseInt(`${port}`)
 
       if (!Number.isNaN(p) && p > 0 && p < 65536) {
-        return { controller: id, address: { address: addr, port: p }, protocol: proto }
+        return { id, address: { address: addr, port: p }, protocol: proto }
       } else {
-        return { controller: id, address: { address: addr, port: 60000 }, protocol: proto }
+        return { id, address: { address: addr, port: 60000 }, protocol: proto }
       }
     }
 
-    return { controller: id, address, protocol: 'udp' }
+    return { id, address, protocol: 'udp' }
   }
 }
 

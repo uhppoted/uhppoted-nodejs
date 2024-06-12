@@ -17,7 +17,7 @@ describe('set-ip', function () {
     })
 
     it('should fail with invalid controller ID', function () {
-      return uhppoted.setIP({}, { controller: 0, address: '192.168.1.125', protocol: 'tcp' }, '192.168.1.100', '255.255.255.0', '192.168.1.1')
+      return uhppoted.setIP({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' }, '192.168.1.100', '255.255.255.0', '192.168.1.1')
         .then(() => {
           assert.fail()
         })

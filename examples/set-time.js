@@ -23,7 +23,7 @@ async function run () {
       console.log(`\n   *** ERROR ${err.message}\n`)
     })
 
-  await uhppoted.setTime(ctx, { controller: deviceID, address: addr, protocol: 'tcp' }, datetime)
+  await uhppoted.setTime(ctx, { id: deviceID, address: addr, protocol: 'tcp' }, datetime)
     .then(response => {
       console.log('\nset-time:\n', response)
     })

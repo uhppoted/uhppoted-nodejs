@@ -13,7 +13,7 @@ async function run () {
       console.log(`\n   *** ERROR ${err.message}\n`)
     })
 
-  await uhppoted.setPCControl(ctx, { controller: deviceID, address: addr, protocol: 'tcp' }, true)
+  await uhppoted.setPCControl(ctx, { id: deviceID, address: addr, protocol: 'tcp' }, true)
     .then(response => {
       console.log('set-pc-control  ', response.deviceId, response.ok ? 'ok' : 'error')
     })

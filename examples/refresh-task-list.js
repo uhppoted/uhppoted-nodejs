@@ -13,7 +13,7 @@ async function run () {
       console.log(`\n   *** ERROR ${err.message}\n`)
     })
 
-  await uhppoted.refreshTaskList(ctx, { controller: deviceID, address: addr, protocol: 'tcp' })
+  await uhppoted.refreshTaskList(ctx, { id: deviceID, address: addr, protocol: 'tcp' })
     .then(response => {
       console.log('\nrefresh-task-list:\n', response)
     })

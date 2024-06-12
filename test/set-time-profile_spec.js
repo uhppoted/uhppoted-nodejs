@@ -39,7 +39,7 @@ describe('set-time-profile', function () {
         linkedTo: 3
       }
 
-      return uhppoted.setTimeProfile({}, { controller: 0, address: '192.168.1.125', protocol: 'tcp' }, profile)
+      return uhppoted.setTimeProfile({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' }, profile)
         .then(() => {
           assert.fail()
         })

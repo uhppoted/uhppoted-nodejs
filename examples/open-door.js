@@ -14,7 +14,7 @@ async function run () {
       console.log(`\n   *** ERROR ${err.message}\n`)
     })
 
-  await uhppoted.openDoor(ctx, { controller: deviceID, address: addr, protocol: 'tcp' }, door)
+  await uhppoted.openDoor(ctx, { id: deviceID, address: addr, protocol: 'tcp' }, door)
     .then(response => {
       console.log('\nopen-door:\n', response)
     })

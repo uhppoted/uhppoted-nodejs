@@ -13,7 +13,7 @@ async function run () {
       console.log(`\n   *** ERROR ${err.message}\n`)
     })
 
-  await uhppoted.getStatus(ctx, { controller: deviceID, address: addr, protocol: 'tcp' })
+  await uhppoted.getStatus(ctx, { id: deviceID, address: addr, protocol: 'tcp' })
     .then(response => {
       console.log('\nget-status:\n', response)
     })

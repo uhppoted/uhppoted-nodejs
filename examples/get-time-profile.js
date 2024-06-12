@@ -14,7 +14,7 @@ async function run () {
       console.log(`\n   *** ERROR ${err.message}\n`)
     })
 
-  await uhppoted.getTimeProfile(ctx, { controller: deviceID, address: addr, protocol: 'tcp' }, profile)
+  await uhppoted.getTimeProfile(ctx, { id: deviceID, address: addr, protocol: 'tcp' }, profile)
     .then(response => {
       console.log('\nget-time-profile:\n', response)
     })

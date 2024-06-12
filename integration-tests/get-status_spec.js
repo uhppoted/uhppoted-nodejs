@@ -136,7 +136,7 @@ describe('#getStatus(...) (TCP)', function () {
       }
     }
 
-    uhppoted.getStatus(ctx, { controller: 405419896, address: { address: '127.0.0.1', port: 59998 }, protocol: 'tcp' })
+    uhppoted.getStatus(ctx, { id: 405419896, address: { address: '127.0.0.1', port: 59998 }, protocol: 'tcp' })
       .then(response => {
         expect(response).to.deep.equal(expected)
         done()
@@ -185,7 +185,7 @@ describe('#getStatus(...) (TCP)', function () {
       }
     }
 
-    uhppoted.getStatus(ctx, { controller: 405419896, address: '127.0.0.1:59998', protocol: 'tcp' })
+    uhppoted.getStatus(ctx, { id: 405419896, address: '127.0.0.1:59998', protocol: 'tcp' })
       .then(response => {
         expect(response).to.deep.equal(expected)
         done()

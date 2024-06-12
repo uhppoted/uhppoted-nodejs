@@ -276,6 +276,7 @@ async function udp (ctx, op, request, receive) {
   * reply, for use by 'get' and 'set'.
   *
   * @param {object}   context  Addresses, logger, debug, etc.
+  * @param {object}   dest     Destination { address,port }
   * @param {byte}     op       Operation code from 'opcode' module
   * @param {object}   request  Operation parameters for use by codec.encode
   * @param {function} receive  Handler for received messages

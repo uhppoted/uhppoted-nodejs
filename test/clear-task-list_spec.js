@@ -17,7 +17,7 @@ describe('clear-task-list', function () {
     })
 
     it('should fail with invalid controller ID', function () {
-      return uhppoted.clearTaskList({}, { controller: 0, address: '192.168.1.125', protocol: 'tcp' })
+      return uhppoted.clearTaskList({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' })
         .then(() => {
           assert.fail()
         })

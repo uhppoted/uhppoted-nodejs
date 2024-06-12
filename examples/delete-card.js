@@ -14,7 +14,7 @@ async function run () {
       console.log(`\n   *** ERROR ${err.message}\n`)
     })
 
-  await uhppoted.deleteCard(ctx, { controller: deviceID, address: addr, protocol: 'tcp' }, card)
+  await uhppoted.deleteCard(ctx, { id: deviceID, address: addr, protocol: 'tcp' }, card)
     .then(response => {
       console.log('\ndelete-card:\n', response)
     })

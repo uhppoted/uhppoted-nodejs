@@ -1,6 +1,9 @@
 # TODO
 
 - [ ] Replace **ip** module
+      - [ ] encoder
+      - [ ] decoder
+      - [ ] driver
 
 - [x] TCP/IP protocol (cf. https://github.com/uhppoted/uhppote-core/issues/17)
       - [x] ~~FIXME in internationalisation~~

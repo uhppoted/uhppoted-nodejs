@@ -25,7 +25,7 @@ async function run () {
       console.log(`\n   *** ERROR ${err.message}\n`)
     })
 
-  await uhppoted.getCard(ctx, { controller: deviceID, address: addr, protocol: 'tcp' }, card)
+  await uhppoted.getCard(ctx, { id: deviceID, address: addr, protocol: 'tcp' }, card)
     .then(response => {
       switch (response.card.number) {
         case 0:

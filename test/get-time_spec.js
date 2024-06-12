@@ -17,7 +17,7 @@ describe('get-time', function () {
     })
 
     it('should fail with invalid controller ID', function () {
-      return uhppoted.getTime({}, { controller: 0, address: '192.168.1.125', protocol: 'tcp' })
+      return uhppoted.getTime({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' })
         .then(() => {
           assert.fail()
         })
