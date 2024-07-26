@@ -10,7 +10,7 @@ const errors = require('./errors.js')
 const dgram = require('dgram')
 const net = require('net')
 const os = require('os')
-const ip = require('ip')
+const ipx = require('./ipx.js')
 const opts = { type: 'udp4', reuseAddr: true }
 
 module.exports = {
@@ -470,9 +470,9 @@ function isBroadcast (addr) {
   for (const v of Object.entries(interfaces)) {
     for (const ifs of v[1]) {
       if (ifs.family && ifs.family === 'IPv4') {
-        const subnet = ip.subnet(ifs.address, ifs.netmask)
+        const broadcastAddr = ipx.broadcastAddr(ifs.address, ifs.netmask)
 
-        if (subnet.broadcastAddress === addr) {
+        if (broadcastAddr === addr) {
           return true
         }
       }

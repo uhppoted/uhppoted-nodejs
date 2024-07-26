@@ -806,9 +806,9 @@ function HHmmss (bytes, offset) {
   * @private
   */
 function address (bytes, offset) {
-  const ip = require('ip')
+  const ipx = require('./ipx.js')
 
-  return ip.fromLong(bytes.getUint32(offset, false))
+  return ipx.fromLong(bytes.getUint32(offset, false))
 }
 
 /**

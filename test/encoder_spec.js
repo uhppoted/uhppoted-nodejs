@@ -1,0 +1,34 @@
+const describe = require('mocha').describe
+const it = require('mocha').it
+// const expect = require('chai').expect
+// const encoder = require('../src/encoder.js')
+
+describe('encoder', function () {
+  it('should encode set-ip request', function () {
+    // const expected = Buffer.from([
+    //   0x17, 0x94, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0xc0, 0xa8, 0x01, 0x64, 0xff, 0xff, 0xff, 0x00,
+    //   0xc0, 0xa8, 0x01, 0x01, 0x00, 0x12, 0x23, 0x34, 0x45, 0x56, 0x08, 0x92, 0x20, 0x18, 0x11, 0x05,
+    //   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    //   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+    // ])
+
+    // const expected = {
+    //   deviceId: 405419896,
+    //   device: {
+    //     serialNumber: 405419896,
+    //     address: '192.168.1.100',
+    //     netmask: '255.255.255.0',
+    //     gateway: '192.168.1.1',
+    //     MAC: '00:12:23:34:45:56',
+    //     date: '2018-11-05',
+    //     version: '0892'
+    //   }
+    // }
+
+    // const bytes = new Uint8Array(packet)
+    // const msg = new DataView(bytes.buffer)
+    // const object = decoder.GetDevice(msg, null)
+
+    // expect(object).to.deep.equal(expected)
+  })
+})

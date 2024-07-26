@@ -1,22 +1,13 @@
 # TODO
 
-- [ ] Replace **ip** module
+- [ ] Replace **ip** module (cf. https://github.com/uhppoted/uhppoted-nodejs/issues/14)
       - [ ] encoder
-      - [ ] decoder
+      - [x] decoder
       - [ ] driver
+      - [ ] CHANGELOG
+      - [ ] README
 
 - [x] TCP/IP protocol (cf. https://github.com/uhppoted/uhppote-core/issues/17)
-      - [x] ~~FIXME in internationalisation~~
-      - [x] TCP send/receive
-      - [x] TCP timeout
-      - [x] Optional dest and protocol arguments
-      - [x] Examples
-      - [x] Update unit tests
-      - [x] Unit tests for `resolve` address
-      - [x] Integration tests
-      - [x] documentation
-      - [x] CHANGELOG
-      - [x] README
 
 ## TODO
 
