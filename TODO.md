@@ -2,8 +2,14 @@
 
 - [ ] Replace **ip** module (cf. https://github.com/uhppoted/uhppoted-nodejs/issues/14)
       - [ ] encoder
+            - set-ip
+            - set-listener
       - [x] decoder
+            - get-controller
       - [ ] driver
+            - isBroadcast
+      - [ ] integration tests
+      - [ ] jsdoc
       - [ ] CHANGELOG
       - [ ] README
 
@@ -17,10 +23,6 @@
 
 1. `workflow_dispatch` is broken in _github_ workflows when the workflows are in multiple
     branches (https://github.community/t/workflow-dispatch-workflow-not-showing-in-actions-tab/130088/27)
-
-
-
-
 ```
 
 describe('#getXXX(...) (TCP)', function () {

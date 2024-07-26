@@ -31,15 +31,15 @@ module.exports = {
     * @return {buffer} 64 byte NodeJS buffer with encoded set-address request
     */
   SetIP: function (deviceId, { address, netmask, gateway } = {}) {
-    const ip = require('ip')
+    const ipx = require('./ipx.js')
     const request = Buffer.alloc(64)
 
     request.writeUInt8(0x17, 0)
     request.writeUInt8(0x96, 1)
     request.writeUInt32LE(deviceId, 4)
-    ip.toBuffer(address, request, 8)
-    ip.toBuffer(netmask, request, 12)
-    ip.toBuffer(gateway, request, 16)
+    ipx.toBuffer(address, request, 8)
+    ipx.toBuffer(netmask, request, 12)
+    ipx.toBuffer(gateway, request, 16)
     request.writeUInt32LE(0x55aaaa55, 20)
 
     return request
@@ -55,13 +55,13 @@ module.exports = {
     * @return {buffer} 64 byte NodeJS buffer with encoded set-address request
     */
   SetListener: function (deviceId, { address, port } = {}) {
-    const ip = require('ip')
+    const ipx = require('./ipx.js')
     const request = Buffer.alloc(64)
 
     request.writeUInt8(0x17, 0)
     request.writeUInt8(0x90, 1)
     request.writeUInt32LE(deviceId, 4)
-    ip.toBuffer(address, request, 8)
+    ipx.toBuffer(address, request, 8)
     request.writeUInt16LE(port, 12)
 
     return request

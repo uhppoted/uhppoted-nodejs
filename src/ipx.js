@@ -34,5 +34,17 @@ module.exports = {
     */
   broadcastAddr: function (addr, mask) {
     return ip.subnet(addr, mask).broadcastAddress
+  },
+
+  /**
+    * Packs an IPv4 address into a byte buffer
+    *
+    * @param {string}   addr    IPv4 address as a dotted string
+    * @param {Buffer}   buffer  byte buffer
+    * @param {int}      offset  start offset into byte buffer
+    *
+    */
+  toBuffer: function (addr, buffer, offset) {
+    return ip.toBuffer(addr, buffer, offset)
   }
 }
