@@ -1,13 +1,12 @@
 # TODO
 
 - [ ] Replace **ip** module (cf. https://github.com/uhppoted/uhppoted-nodejs/issues/14)
-      - [ ] encoder
-            - set-ip
-            - set-listener
+      - [x] encoder
+            - [x] set-ip
+            - [x] set-listener
       - [x] decoder
-            - get-controller
       - [ ] driver
-            - isBroadcast
+            - [x] isBroadcast
       - [ ] integration tests
       - [ ] jsdoc
       - [ ] CHANGELOG

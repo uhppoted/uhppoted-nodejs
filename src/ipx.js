@@ -45,6 +45,8 @@ module.exports = {
     *
     */
   toBuffer: function (addr, buffer, offset) {
-    return ip.toBuffer(addr, buffer, offset)
+    addr.split(/\./g).forEach((byte) => {
+      buffer[offset++] = parseInt(byte, 10) & 0xff
+    })
   }
 }
