@@ -54,7 +54,7 @@ publish-npm: release
 	npm publish
 
 debug: build
-	npx mocha 'test/**/common_spec.js'
+	npx mocha 'test/**/ipx_spec.js'
 
 error-handling: build
 	node examples/error-handling.js $(ARGS)

@@ -7,8 +7,9 @@
       - [x] encoder
             - [x] set-ip
             - [x] set-listener
-      - [ ] driver
+      - [x] driver
             - [x] isBroadcast
+      - [ ] remove ip.js from dependencies
       - [ ] integration tests
       - [ ] jsdoc
       - [ ] CHANGELOG
