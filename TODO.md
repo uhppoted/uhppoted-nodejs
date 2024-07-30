@@ -9,8 +9,8 @@
         - [x] set-listener
     - [x] driver
         - [x] isBroadcast
+    - [x] integration tests
     - [ ] remove ip.js from dependencies
-    - [ ] integration tests
     - [ ] jsdoc
     - [ ] CHANGELOG
     - [ ] README

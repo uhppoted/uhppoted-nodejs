@@ -2,21 +2,18 @@ const expect = require('chai').expect
 const dgram = require('dgram')
 const net = require('net')
 const uhppoted = require('../index.js')
-const ip = require('ip')
+const ipx = require('../src/ipx.js')
 const os = require('os')
-
 const interfaces = os.networkInterfaces()
-const addr = ip.address()
-const subnet = ip.subnet(addr, '255.255.255.0')
 
 let bind = '0.0.0.0'
-let broadcast = `${subnet.broadcastAddress}:59999`
+let broadcast = '255.255.255.255:59999'
 let listen = '0.0.0.0:60001'
 
 for (const name of Object.keys(interfaces)) {
   for (const network of interfaces[name]) {
     if (network.family === 'IPv4' && !network.internal) {
-      broadcast = ip.subnet(network.address, network.netmask).broadcastAddress
+      broadcast = ipx.broadcastAddr(network.address, network.netmask)
     }
   }
 }
