@@ -5,6 +5,8 @@
 ### Added
 1. Added support for TCP connections to controllers.
 
+### Updated
+1. Removed dependency on _ip.js_.
 
 ## [0.8.8](https://github.com/uhppoted/uhppoted-nodejs/releases/tag/v0.8.8) - 2024-03-26
 
