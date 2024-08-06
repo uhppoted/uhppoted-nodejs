@@ -7,10 +7,11 @@
 
 const codec = require('./codec.js')
 const errors = require('./errors.js')
+const ipx = require('./ipx.js')
+
 const dgram = require('dgram')
 const net = require('net')
 const os = require('os')
-const ipx = require('./ipx.js')
 const opts = { type: 'udp4', reuseAddr: true }
 
 module.exports = {

@@ -1,20 +1,6 @@
 # TODO
 
 - [x] Replace **ip** module (cf. https://github.com/uhppoted/uhppoted-nodejs/issues/14)
-    - [x] decoder
-        - [x] get-controller
-        - [x] get-listener
-     - [x] encoder
-        - [x] set-ip
-        - [x] set-listener
-    - [x] driver
-        - [x] isBroadcast
-    - [x] integration tests
-    - [x] remove ip.js from dependencies
-    - [x] jsdoc
-    - [x] CHANGELOG
-    - [x] README
-
 - [x] TCP/IP protocol (cf. https://github.com/uhppoted/uhppote-core/issues/17)
 
 ## TODO
