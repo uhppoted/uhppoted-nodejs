@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Unreleased
+## [0.8.9](https://github.com/uhppoted/uhppoted-nodejs/releases/tag/v0.8.9) - 2024-09-06
 
 ### Added
 1. Added support for TCP connections to controllers.

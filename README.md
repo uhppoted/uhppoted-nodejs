@@ -15,6 +15,16 @@ For the latest updates see the [CHANGELOG.md](https://github.com/uhppoted/uhppot
 npm install uhppoted
 ```
 
+### Release Notes
+
+#### Current Release
+
+**[v0.8.9](https://github.com/uhppoted/uhppoted-nodejs/releases/tag/v0.8.9) - 2024-09-06**
+
+1. Added support for TCP connections to controllers.
+2. Removed dependency on _ip.js_.
+
+
 ### API
 
 - [`getDevices`](#getdevices) fetches a list of access controllers on the local LAN
