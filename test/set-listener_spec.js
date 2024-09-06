@@ -7,7 +7,7 @@ const uhppoted = require('../index.js')
 describe('set-listener', function () {
   describe('#set-listener with invalid parameters', function () {
     it('should fail with invalid controller ID', function () {
-      return uhppoted.setListener({}, 0, '192.168.1.100', 60001)
+      return uhppoted.setListener({}, 0, '192.168.1.100', 60001, 15)
         .then(() => {
           assert.fail()
         })
@@ -17,7 +17,7 @@ describe('set-listener', function () {
     })
 
     it('should fail with invalid controller ID', function () {
-      return uhppoted.setListener({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' }, '192.168.1.100', 60001)
+      return uhppoted.setListener({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' }, '192.168.1.100', 60001, 15)
         .then(() => {
           assert.fail()
         })

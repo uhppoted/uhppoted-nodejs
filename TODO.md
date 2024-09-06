@@ -1,7 +1,11 @@
 # TODO
 
-- [x] Replace **ip** module (cf. https://github.com/uhppoted/uhppoted-nodejs/issues/14)
-- [x] TCP/IP protocol (cf. https://github.com/uhppoted/uhppote-core/issues/17)
+- [x] event listener: add listen auto-send interval (cf. https://github.com/uhppoted/uhppote-core/issues/21)
+      - [x] set-event-listener
+      - [x] get-event-listener
+      - [x] jsdoc
+      - [x] CHANGELOG
+      - [x]  README
 
 ## TODO
 

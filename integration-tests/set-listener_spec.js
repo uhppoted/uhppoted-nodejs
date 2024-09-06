@@ -10,7 +10,7 @@ const setup = require('./common.js').setup
 const teardown = require('./common.js').teardown
 
 const request = Buffer.from([
-  0x17, 0x90, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0xc0, 0xa8, 0x01, 0x64, 0x61, 0xea, 0x00, 0x00,
+  0x17, 0x90, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0xc0, 0xa8, 0x01, 0x64, 0x61, 0xea, 0x0f, 0x00,
   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
@@ -40,7 +40,7 @@ describe('#setListener(...)', function () {
       updated: true
     }
 
-    uhppoted.setListener(ctx, 405419896, '192.168.1.100', 60001)
+    uhppoted.setListener(ctx, 405419896, '192.168.1.100', 60001, 15)
       .then(response => {
         expect(response).to.deep.equal(expected)
         done()
@@ -66,7 +66,7 @@ describe('#setListener(...) (TCP)', function () {
       updated: true
     }
 
-    uhppoted.setListener(ctx, { id: 405419896, address: { address: '127.0.0.1', port: 59998 }, protocol: 'tcp' }, '192.168.1.100', 60001)
+    uhppoted.setListener(ctx, { id: 405419896, address: { address: '127.0.0.1', port: 59998 }, protocol: 'tcp' }, '192.168.1.100', 60001, 15)
       .then(response => {
         expect(response).to.deep.equal(expected)
         done()
@@ -80,7 +80,7 @@ describe('#setListener(...) (TCP)', function () {
       updated: true
     }
 
-    uhppoted.setListener(ctx, { id: 405419896, address: '127.0.0.1:59998', protocol: 'tcp' }, '192.168.1.100', 60001)
+    uhppoted.setListener(ctx, { id: 405419896, address: '127.0.0.1:59998', protocol: 'tcp' }, '192.168.1.100', 60001, 15)
       .then(response => {
         expect(response).to.deep.equal(expected)
         done()

@@ -14,6 +14,7 @@ const translate = require('./internationalisation.js').translate
 const log = require('./logger.js')
 const validate = require('./common.js').validate
 const resolve = require('./common.js').resolve
+const clamp = require('./common.js').clamp
 const initialise = require('./common.js').initialise
 
 module.exports = {
@@ -98,7 +99,8 @@ module.exports = {
   },
 
   /**
-   * Retrieves the IP address and port to which the controller is configured to send events.
+   * Retrieves the IPv4 address and port to which the controller is configured to send events, as well as
+   * the auto-send interval.
    *
    * @param {object}      ctx         Context with configuration, locale (optional) and logger (optional).
    * @param {uint|object} controller  Either a controller serial number (legacy implementation) or an
@@ -128,34 +130,38 @@ module.exports = {
   },
 
   /**
-   * Sets the IP address and port to which the controller should send events.
+   * Sets the IPv4 address and port to which the controller should send events, as well as the auto-send
+   * interval for the current status and most recent event.
    *
-   * @param {object}      ctx         Context with configuration, locale (optional) and logger (optional).
+   * @param {object}      ctx  Context with configuration, locale (optional) and logger (optional).
    * @param {uint|object} controller  Either a controller serial number (legacy implementation) or an
    *                                  object of the form { controller, address, protocol }:
-   * @param {uint}        controller.id        Controller serial number
-   * @param {string}      controller.address   Optional controller IPv4 address. Defaults to UDP broadcast.
-   * @param {string}      controller.protocol  Optional connection protocol ('udp' or 'tcp'). Defaults to
-   *                                           'udp' unless 'tcp'
-   * @param {string} address  IPv4 address of event listener
-   * @param {int}    port     IPv4 UDP port of event listener
+   * @param {uint}   controller.id       Controller serial number
+   * @param {string} controller.address  Optional controller IPv4 address. Defaults to UDP broadcast.
+   * @param {string} controller.protocol Optional connection protocol ('udp' or 'tcp'). Defaults to
+   *                                     'udp' unless 'tcp'
+   * @param {string} address   IPv4 address of event listener
+   * @param {int}    port      IPv4 UDP port of event listener
+   * @param {uint8}  interval  Auto-send interval (seconds, in the range [0..255]). A zero value
+   *                           (default) disables auto-send.
    *
    * @example
-   * uhppoted.setListener(ctx, 405419896, '192.168.1.100', 600001)
+   * uhppoted.setListener(ctx, 405419896, '192.168.1.100', 600001, 15)
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    *
    * @example
-   * uhppoted.setListener(ctx, { id:405419896, address:'192.168.1.100', protocol:'tcp' }, '192.168.1.100', 600001)
+   * uhppoted.setListener(ctx, { id:405419896, address:'192.168.1.100', protocol:'tcp' }, '192.168.1.100', 600001,15)
    *  .then(response => { console.log(response) })
    *  .catch(err => { console.log(`${err.message}`)
    */
-  setListener: function (ctx, controller, address, port) {
+  setListener: function (ctx, controller, address, port, interval) {
     const { id, address: addr, protocol } = resolve(controller)
+    const autosend = Number.isNaN(interval) ? 0 : clamp(interval, 0, 255)
 
     return validate({ controller: id }, ctx.locale)
       .then(ok => initialise(ctx))
-      .then(context => set(context, id, opcodes.SetListener, { address, port }, addr, protocol))
+      .then(context => set(context, id, opcodes.SetListener, { address, port, interval: autosend }, addr, protocol))
       .then(response => translate(response, ctx.locale))
   },
 

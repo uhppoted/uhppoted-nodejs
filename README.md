@@ -329,7 +329,7 @@ uhppoted.getListener (ctx, controller)
 
 Returns a `listener` object, e.g.:
 ```
-{ deviceId: 405419896, address: '192.168.1.100', port: 60001 }
+{ deviceId: 405419896, address: '192.168.1.100', port: 60001, interval: 15 }
 ```
 
 #### `setListener`
@@ -341,6 +341,8 @@ uhppoted.setListener (ctx, controller, address, port)
 - `controller`: serial number of controller or [`{controller,address,protocol}`](#controller) object
 - `address`: IPv4 address of event listener
 - `port`: UDP port on which event listener is expecting events
+- `interval`: Auto-send interval. Sets the interval ([0..255] seconds) at which the controller sends the
+              current status and most recent event. A zero interval disables auto-send.
 
 Returns an `updated` result object, e.g.:
 ```

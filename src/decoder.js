@@ -271,7 +271,8 @@ module.exports = {
     return {
       deviceId: uint32(bytes, 4),
       address: address(bytes, 8),
-      port: uint16(bytes, 12)
+      port: uint16(bytes, 12),
+      interval: uint8(bytes, 14)
     }
   },
 

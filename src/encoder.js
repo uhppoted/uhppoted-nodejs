@@ -51,10 +51,11 @@ module.exports = {
     * @param {number} deviceId  Controller serial number
     * @param {string} address   IPv4 listener address for controller events
     * @param {number} port      IPv4 listener port for controller events
+    * @param {number} interval  Auto-send interval ([0..255] seconds), 0 disables auto-send.
     *
     * @return {buffer} 64 byte NodeJS buffer with encoded set-address request
     */
-  SetListener: function (deviceId, { address, port } = {}) {
+  SetListener: function (deviceId, { address, port, interval } = {}) {
     const ipx = require('./ipx.js')
     const request = Buffer.alloc(64)
 
@@ -63,6 +64,7 @@ module.exports = {
     request.writeUInt32LE(deviceId, 4)
     ipx.toBuffer(address, request, 8)
     request.writeUInt16LE(port, 12)
+    request.writeUInt8(interval, 14)
 
     return request
   },

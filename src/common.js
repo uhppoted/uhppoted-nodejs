@@ -215,8 +215,13 @@ function inRange (value, min, max) {
   return true
 }
 
+function clamp (v, min, max) {
+  return Math.min(Math.max(v, min), max)
+}
+
 module.exports = {
   initialise,
   validate,
-  resolve
+  resolve,
+  clamp
 }
