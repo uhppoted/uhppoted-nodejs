@@ -7,7 +7,8 @@ const uhppoted = require('../index.js')
 describe('clear-task-list', function () {
   describe('#clear-time-profiles with invalid parameters', function () {
     it('should fail with invalid controller ID', function () {
-      return uhppoted.clearTaskList({}, 0)
+      return uhppoted
+        .clearTaskList({}, 0)
         .then(() => {
           assert.fail()
         })
@@ -17,7 +18,8 @@ describe('clear-task-list', function () {
     })
 
     it('should fail with invalid controller ID', function () {
-      return uhppoted.clearTaskList({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' })
+      return uhppoted
+        .clearTaskList({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' })
         .then(() => {
           assert.fail()
         })

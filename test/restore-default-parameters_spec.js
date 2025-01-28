@@ -7,7 +7,8 @@ const uhppoted = require('../index.js')
 describe('restore-default-parameters', function () {
   describe('#restore-default-parameters with invalid parameters', function () {
     it('should fail with invalid controller ID', function () {
-      return uhppoted.restoreDefaultParameters({}, 0, 4)
+      return uhppoted
+        .restoreDefaultParameters({}, 0, 4)
         .then(() => {
           assert.fail()
         })
@@ -17,7 +18,12 @@ describe('restore-default-parameters', function () {
     })
 
     it('should fail with invalid controller ID', function () {
-      return uhppoted.restoreDefaultParameters({}, { id: 0, address: '192.168.100', protocol: 'tcp' }, 4)
+      return uhppoted
+        .restoreDefaultParameters(
+          {},
+          { id: 0, address: '192.168.100', protocol: 'tcp' },
+          4,
+        )
         .then(() => {
           assert.fail()
         })

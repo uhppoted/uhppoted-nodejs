@@ -7,7 +7,8 @@ const uhppoted = require('../index.js')
 describe('get-time', function () {
   describe('#get-time with invalid parameters', function () {
     it('should fail with invalid controller ID', function () {
-      return uhppoted.getTime({}, 0)
+      return uhppoted
+        .getTime({}, 0)
         .then(() => {
           assert.fail()
         })
@@ -17,7 +18,8 @@ describe('get-time', function () {
     })
 
     it('should fail with invalid controller ID', function () {
-      return uhppoted.getTime({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' })
+      return uhppoted
+        .getTime({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' })
         .then(() => {
           assert.fail()
         })

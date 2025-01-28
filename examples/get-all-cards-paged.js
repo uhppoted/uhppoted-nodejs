@@ -5,21 +5,19 @@ const MAX = 20000
 
 ctx.config.debug = false
 
-function getCards () {
-  return uhppoted.getCards(ctx, deviceID)
-    .then((response) => {
-      return response.cards
-    })
+function getCards() {
+  return uhppoted.getCards(ctx, deviceID).then((response) => {
+    return response.cards
+  })
 }
 
-function getCard (index) {
-  return uhppoted.getCardByIndex(ctx, deviceID, index)
-    .then((response) => {
-      return response.card
-    })
+function getCard(index) {
+  return uhppoted.getCardByIndex(ctx, deviceID, index).then((response) => {
+    return response.card
+  })
 }
 
-async function * generator () {
+async function* generator() {
   const N = await getCards()
   let count = 0
   let index = 0
@@ -37,7 +35,7 @@ async function * generator () {
   }
 }
 
-async function * pager (pagesize) {
+async function* pager(pagesize) {
   const g = generator()
   let cards = []
 
@@ -55,7 +53,7 @@ async function * pager (pagesize) {
   }
 }
 
-async function getAllCards () {
+async function getAllCards() {
   const g = pager(4)
   let page = 0
   let N = 0

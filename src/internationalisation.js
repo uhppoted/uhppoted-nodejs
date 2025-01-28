@@ -1,14 +1,14 @@
 const dictionaries = new Map([
   ['en-US', require('./locales/en-US/en-US.js')],
-  ['klingon', require('./locales/klingon/klingon.js')]
+  ['klingon', require('./locales/klingon/klingon.js')],
 ])
 
 const enUS = require('./locales/en-US/en-US.js')
 
 /**
-  * Lookup table to associate message text to the equivalent internationalisation key.
-  * @private
-  */
+ * Lookup table to associate message text to the equivalent internationalisation key.
+ * @private
+ */
 const map = new Map([
   ['unknown', 'unknown'],
 
@@ -80,10 +80,10 @@ const map = new Map([
   ['invalid reply to broadcasted request', 'invalidBroadcastReply'],
   ['timeout', 'timeout'],
   ['event does not exist', 'eventMissing'],
-  ['event overwritten', 'eventOverwritten']
+  ['event overwritten', 'eventOverwritten'],
 ])
 
-function translate (object, locale) {
+function translate(object, locale) {
   let dict = enUS
   if (locale && dictionaries.has(locale)) {
     dict = dictionaries.get(locale)
@@ -112,5 +112,5 @@ function translate (object, locale) {
 }
 
 module.exports = {
-  translate
+  translate,
 }

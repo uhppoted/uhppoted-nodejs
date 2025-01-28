@@ -6,10 +6,11 @@ const index = 29
 
 ctx.locale = 'qwerty'
 
-uhppoted.getEvent(ctx, deviceID, index)
-  .then(response => {
+uhppoted
+  .getEvent(ctx, deviceID, index)
+  .then((response) => {
     console.log('\nget-event:\n', response)
   })
-  .catch(err => {
+  .catch((err) => {
     console.log(`\n   *** ERROR ${err.message}\n`)
   })

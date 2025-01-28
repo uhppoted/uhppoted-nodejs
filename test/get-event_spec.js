@@ -7,7 +7,8 @@ const uhppoted = require('../index.js')
 describe('get-event', function () {
   describe('#get-event with invalid parameters', function () {
     it('should fail with invalid controller ID', function () {
-      return uhppoted.getEvent({}, 0, 29)
+      return uhppoted
+        .getEvent({}, 0, 29)
         .then(() => {
           assert.fail()
         })
@@ -17,7 +18,8 @@ describe('get-event', function () {
     })
 
     it('should fail with invalid controller ID', function () {
-      return uhppoted.getEvent({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' }, 29)
+      return uhppoted
+        .getEvent({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' }, 29)
         .then(() => {
           assert.fail()
         })
@@ -27,7 +29,8 @@ describe('get-event', function () {
     })
 
     it('should fail with invalid event index', function () {
-      return uhppoted.getEvent({}, 405419896, 0)
+      return uhppoted
+        .getEvent({}, 405419896, 0)
         .then(() => {
           assert.fail()
         })

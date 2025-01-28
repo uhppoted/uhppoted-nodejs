@@ -7,7 +7,8 @@ const uhppoted = require('../index.js')
 describe('delete-card', function () {
   describe('#delete-card with invalid parameters', function () {
     it('should fail with invalid controller ID', function () {
-      return uhppoted.deleteCard({}, 0, 8165538)
+      return uhppoted
+        .deleteCard({}, 0, 8165538)
         .then(() => {
           assert.fail()
         })
@@ -17,7 +18,12 @@ describe('delete-card', function () {
     })
 
     it('should fail with invalid controller ID', function () {
-      return uhppoted.deleteCard({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' }, 8165538)
+      return uhppoted
+        .deleteCard(
+          {},
+          { id: 0, address: '192.168.1.125', protocol: 'tcp' },
+          8165538,
+        )
         .then(() => {
           assert.fail()
         })
@@ -27,7 +33,8 @@ describe('delete-card', function () {
     })
 
     it('should fail with invalid card number', function () {
-      return uhppoted.deleteCard({}, 405419896, 0)
+      return uhppoted
+        .deleteCard({}, 405419896, 0)
         .then(() => {
           assert.fail()
         })

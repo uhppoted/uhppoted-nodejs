@@ -5,22 +5,20 @@ const MAX = 20000
 
 ctx.config.debug = false
 
-function getCards () {
-  return uhppoted.getCards(ctx, deviceID)
-    .then(response => {
-      return response.cards
-    })
+function getCards() {
+  return uhppoted.getCards(ctx, deviceID).then((response) => {
+    return response.cards
+  })
 }
 
-function getCard (index) {
-  return uhppoted.getCardByIndex(ctx, deviceID, index)
-    .then((response) => {
-      return response.card
-    })
+function getCard(index) {
+  return uhppoted.getCardByIndex(ctx, deviceID, index).then((response) => {
+    return response.card
+  })
 }
 
-function getAllCards () {
-  (async function loop () {
+function getAllCards() {
+  ;(async function loop() {
     const N = await getCards()
     const cards = []
     let index = 1

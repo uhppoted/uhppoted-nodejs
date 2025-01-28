@@ -5,8 +5,9 @@ const controllers = [
   {
     deviceId: 201020304,
     address: '192.168.1.100:59999',
-    forceBroadcast: true
-  }]
+    forceBroadcast: true,
+  },
+]
 
 let bind = '0.0.0.0'
 let broadcast = '255.255.255.255:60000'
@@ -17,7 +18,7 @@ let debug = false
 // Override default configuration with command line values
 const args = process.argv.slice(2)
 
-args.forEach(arg => {
+args.forEach((arg) => {
   const re = /(bind|broadcast|listen|timeout|debug)=(.*)/gm
   const matches = re.exec(arg)
 
@@ -47,5 +48,13 @@ args.forEach(arg => {
 })
 
 exports = module.exports = {
-  config: new uhppoted.Config('examples', bind, broadcast, listen, timeout, controllers, debug)
+  config: new uhppoted.Config(
+    'examples',
+    bind,
+    broadcast,
+    listen,
+    timeout,
+    controllers,
+    debug,
+  ),
 }

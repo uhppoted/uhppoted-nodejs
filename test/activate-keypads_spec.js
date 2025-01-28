@@ -7,7 +7,8 @@ const uhppoted = require('../index.js')
 describe('activate-keypads', function () {
   describe('#activate-keypads with invalid parameters', function () {
     it('should fail with invalid controller ID', function () {
-      return uhppoted.activateKeypads({}, 0, 4)
+      return uhppoted
+        .activateKeypads({}, 0, 4)
         .then(() => {
           assert.fail()
         })
@@ -17,7 +18,12 @@ describe('activate-keypads', function () {
     })
 
     it('should fail with invalid controller ID', function () {
-      return uhppoted.activateKeypads({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' }, 4)
+      return uhppoted
+        .activateKeypads(
+          {},
+          { id: 0, address: '192.168.1.125', protocol: 'tcp' },
+          4,
+        )
         .then(() => {
           assert.fail()
         })

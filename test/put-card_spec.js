@@ -7,7 +7,13 @@ const uhppoted = require('../index.js')
 describe('put-card', function () {
   describe('#put-card with invalid parameters', function () {
     it('should fail with invalid controller ID', function () {
-      return uhppoted.putCard({}, 0, 8165538, '2021-01-01', '2021-12-31', { 1: true, 2: false, 3: true, 4: true })
+      return uhppoted
+        .putCard({}, 0, 8165538, '2021-01-01', '2021-12-31', {
+          1: true,
+          2: false,
+          3: true,
+          4: true,
+        })
         .then(() => {
           assert.fail()
         })
@@ -17,7 +23,15 @@ describe('put-card', function () {
     })
 
     it('should fail with invalid controller ID', function () {
-      return uhppoted.putCard({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' }, 8165538, '2021-01-01', '2021-12-31', { 1: true, 2: false, 3: true, 4: true })
+      return uhppoted
+        .putCard(
+          {},
+          { id: 0, address: '192.168.1.125', protocol: 'tcp' },
+          8165538,
+          '2021-01-01',
+          '2021-12-31',
+          { 1: true, 2: false, 3: true, 4: true },
+        )
         .then(() => {
           assert.fail()
         })
@@ -27,7 +41,13 @@ describe('put-card', function () {
     })
 
     it('should fail with invalid card number', function () {
-      return uhppoted.putCard({}, 405419896, 0, '2021-01-01', '2021-12-31', { 1: true, 2: false, 3: true, 4: true })
+      return uhppoted
+        .putCard({}, 405419896, 0, '2021-01-01', '2021-12-31', {
+          1: true,
+          2: false,
+          3: true,
+          4: true,
+        })
         .then(() => {
           assert.fail()
         })
@@ -37,7 +57,13 @@ describe('put-card', function () {
     })
 
     it('should fail with invalid time profile', function () {
-      return uhppoted.putCard({}, 405419896, 8112345, '2021-01-01', '2021-12-31', { 1: true, 2: false, 3: 0, 4: true })
+      return uhppoted
+        .putCard({}, 405419896, 8112345, '2021-01-01', '2021-12-31', {
+          1: true,
+          2: false,
+          3: 0,
+          4: true,
+        })
         .then(() => {
           assert.fail()
         })
@@ -47,7 +73,13 @@ describe('put-card', function () {
     })
 
     it('should fail with invalid time profile', function () {
-      return uhppoted.putCard({}, 405419896, 8112345, '2021-01-01', '2021-12-31', { 1: true, 2: false, 3: 1, 4: true })
+      return uhppoted
+        .putCard({}, 405419896, 8112345, '2021-01-01', '2021-12-31', {
+          1: true,
+          2: false,
+          3: 1,
+          4: true,
+        })
         .then(() => {
           assert.fail()
         })
@@ -57,7 +89,13 @@ describe('put-card', function () {
     })
 
     it('should fail with invalid time profile', function () {
-      return uhppoted.putCard({}, 405419896, 8112345, '2021-01-01', '2021-12-31', { 1: true, 2: false, 3: 255, 4: true })
+      return uhppoted
+        .putCard({}, 405419896, 8112345, '2021-01-01', '2021-12-31', {
+          1: true,
+          2: false,
+          3: 255,
+          4: true,
+        })
         .then(() => {
           assert.fail()
         })
@@ -67,7 +105,16 @@ describe('put-card', function () {
     })
 
     it('should fail with invalid PIN', function () {
-      return uhppoted.putCard({}, 405419896, 8112345, '2021-01-01', '2021-12-31', { 1: true, 2: false, 3: true, 4: true }, 1000000)
+      return uhppoted
+        .putCard(
+          {},
+          405419896,
+          8112345,
+          '2021-01-01',
+          '2021-12-31',
+          { 1: true, 2: false, 3: true, 4: true },
+          1000000,
+        )
         .then(() => {
           assert.fail()
         })
@@ -77,7 +124,16 @@ describe('put-card', function () {
     })
 
     it('should fail with invalid PIN', function () {
-      return uhppoted.putCard({}, 405419896, 8112345, '2021-01-01', '2021-12-31', { 1: true, 2: false, 3: true, 4: true }, -1)
+      return uhppoted
+        .putCard(
+          {},
+          405419896,
+          8112345,
+          '2021-01-01',
+          '2021-12-31',
+          { 1: true, 2: false, 3: true, 4: true },
+          -1,
+        )
         .then(() => {
           assert.fail()
         })
@@ -87,7 +143,16 @@ describe('put-card', function () {
     })
 
     it('should fail with invalid PIN', function () {
-      return uhppoted.putCard({}, 405419896, 8112345, '2021-01-01', '2021-12-31', { 1: true, 2: false, 3: true, 4: true }, 'qwerty')
+      return uhppoted
+        .putCard(
+          {},
+          405419896,
+          8112345,
+          '2021-01-01',
+          '2021-12-31',
+          { 1: true, 2: false, 3: true, 4: true },
+          'qwerty',
+        )
         .then(() => {
           assert.fail()
         })

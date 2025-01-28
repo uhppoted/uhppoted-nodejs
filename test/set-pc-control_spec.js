@@ -7,7 +7,8 @@ const uhppoted = require('../index.js')
 describe('set-pc-control', function () {
   describe('#set-pc-control with invalid parameters', function () {
     it('should fail with invalid controller ID', function () {
-      return uhppoted.setPCControl({}, 0, true)
+      return uhppoted
+        .setPCControl({}, 0, true)
         .then(() => {
           assert.fail()
         })
@@ -17,7 +18,12 @@ describe('set-pc-control', function () {
     })
 
     it('should fail with invalid controller ID', function () {
-      return uhppoted.setPCControl({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' }, true)
+      return uhppoted
+        .setPCControl(
+          {},
+          { id: 0, address: '192.168.1.125', protocol: 'tcp' },
+          true,
+        )
         .then(() => {
           assert.fail()
         })

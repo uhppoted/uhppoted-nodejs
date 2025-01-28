@@ -7,7 +7,8 @@ const uhppoted = require('../index.js')
 describe('get-device', function () {
   describe('#get-device with invalid parameters', function () {
     it('should fail with invalid controller ID', function () {
-      return uhppoted.getDevice({}, 0)
+      return uhppoted
+        .getDevice({}, 0)
         .then(() => {
           assert.fail()
         })
@@ -17,7 +18,8 @@ describe('get-device', function () {
     })
 
     it('should fail with invalid controller ID', function () {
-      return uhppoted.getDevice({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' })
+      return uhppoted
+        .getDevice({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' })
         .then(() => {
           assert.fail()
         })

@@ -7,7 +7,8 @@ const uhppoted = require('../index.js')
 describe('open-door', function () {
   describe('#open-door with invalid parameters', function () {
     it('should fail with invalid controller ID', function () {
-      return uhppoted.openDoor({}, 0, 3)
+      return uhppoted
+        .openDoor({}, 0, 3)
         .then(() => {
           assert.fail()
         })
@@ -17,7 +18,8 @@ describe('open-door', function () {
     })
 
     it('should fail with invalid controller ID', function () {
-      return uhppoted.openDoor({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' }, 3)
+      return uhppoted
+        .openDoor({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' }, 3)
         .then(() => {
           assert.fail()
         })
@@ -27,7 +29,8 @@ describe('open-door', function () {
     })
 
     it('should fail with invalid door', function () {
-      return uhppoted.openDoor({}, 405419896, 0)
+      return uhppoted
+        .openDoor({}, 405419896, 0)
         .then(() => {
           assert.fail()
         })

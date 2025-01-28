@@ -8,23 +8,25 @@ const task = {
   door: 3,
   valid: { from: '2021-01-01', to: '2021-12-31' },
   weekdays: ['Monday', 'Wednesday', 'Friday'],
-  start: '08:30'
+  start: '08:30',
 }
 
-async function run () {
-  await uhppoted.addTask(ctx, deviceID, task)
-    .then(response => {
+async function run() {
+  await uhppoted
+    .addTask(ctx, deviceID, task)
+    .then((response) => {
       console.log('\nadd-task:\n', response)
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(`\n   *** ERROR ${err.message}\n`)
     })
 
-  await uhppoted.addTask(ctx, { id: deviceID, address: addr, protocol: 'tcp' }, task)
-    .then(response => {
+  await uhppoted
+    .addTask(ctx, { id: deviceID, address: addr, protocol: 'tcp' }, task)
+    .then((response) => {
       console.log('\nadd-task:\n', response)
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(`\n   *** ERROR ${err.message}\n`)
     })
 }

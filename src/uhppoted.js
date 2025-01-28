@@ -29,10 +29,10 @@ module.exports = {
    *  .catch(err => { console.log(`${err.message}`)
    */
   getDevices: function (ctx) {
-    return validate({ }, ctx.locale)
+    return validate({}, ctx.locale)
       .then(() => initialise(ctx))
-      .then(context => broadcast(context, opcodes.GetDevice, {}))
-      .then(response => translate(response, ctx.locale))
+      .then((context) => broadcast(context, opcodes.GetDevice, {}))
+      .then((response) => translate(response, ctx.locale))
   },
 
   /**
@@ -61,8 +61,10 @@ module.exports = {
 
     return validate({ controller: id }, ctx.locale)
       .then(() => initialise(ctx))
-      .then(context => get(context, id, opcodes.GetDevice, {}, addr, protocol))
-      .then(response => translate(response, ctx.locale))
+      .then((context) =>
+        get(context, id, opcodes.GetDevice, {}, addr, protocol),
+      )
+      .then((response) => translate(response, ctx.locale))
   },
 
   /**
@@ -94,8 +96,17 @@ module.exports = {
 
     return validate({ controller: id }, ctx.locale)
       .then(() => initialise(ctx))
-      .then(context => send(context, id, opcodes.SetIP, { address, netmask, gateway }, addr, protocol))
-      .then(response => translate(response, ctx.locale))
+      .then((context) =>
+        send(
+          context,
+          id,
+          opcodes.SetIP,
+          { address, netmask, gateway },
+          addr,
+          protocol,
+        ),
+      )
+      .then((response) => translate(response, ctx.locale))
   },
 
   /**
@@ -125,8 +136,10 @@ module.exports = {
 
     return validate({ controller: id }, ctx.locale)
       .then(() => initialise(ctx))
-      .then(context => get(context, id, opcodes.GetListener, {}, addr, protocol))
-      .then(response => translate(response, ctx.locale))
+      .then((context) =>
+        get(context, id, opcodes.GetListener, {}, addr, protocol),
+      )
+      .then((response) => translate(response, ctx.locale))
   },
 
   /**
@@ -161,8 +174,17 @@ module.exports = {
 
     return validate({ controller: id }, ctx.locale)
       .then(() => initialise(ctx))
-      .then(context => set(context, id, opcodes.SetListener, { address, port, interval: autosend }, addr, protocol))
-      .then(response => translate(response, ctx.locale))
+      .then((context) =>
+        set(
+          context,
+          id,
+          opcodes.SetListener,
+          { address, port, interval: autosend },
+          addr,
+          protocol,
+        ),
+      )
+      .then((response) => translate(response, ctx.locale))
   },
 
   /**
@@ -191,8 +213,8 @@ module.exports = {
 
     return validate({ controller: id }, ctx.locale)
       .then(() => initialise(ctx))
-      .then(context => get(context, id, opcodes.GetTime, {}, addr, protocol))
-      .then(response => translate(response, ctx.locale))
+      .then((context) => get(context, id, opcodes.GetTime, {}, addr, protocol))
+      .then((response) => translate(response, ctx.locale))
   },
 
   /**
@@ -222,8 +244,10 @@ module.exports = {
 
     return validate({ controller: id }, ctx.locale)
       .then(() => initialise(ctx))
-      .then(context => set(context, id, opcodes.SetTime, { datetime }, addr, protocol))
-      .then(response => translate(response, ctx.locale))
+      .then((context) =>
+        set(context, id, opcodes.SetTime, { datetime }, addr, protocol),
+      )
+      .then((response) => translate(response, ctx.locale))
   },
 
   /**
@@ -253,9 +277,11 @@ module.exports = {
 
     return validate({ controller: id, door }, ctx.locale)
       .then(() => initialise(ctx))
-      .then(context => get(context, id, opcodes.GetDoorControl, { door }, addr, protocol))
-      .then(response => translate(response, ctx.locale))
-      .then(response => translate(response, ctx.locale))
+      .then((context) =>
+        get(context, id, opcodes.GetDoorControl, { door }, addr, protocol),
+      )
+      .then((response) => translate(response, ctx.locale))
+      .then((response) => translate(response, ctx.locale))
   },
 
   /**
@@ -306,8 +332,17 @@ module.exports = {
 
     return validate({ controller: id, door }, ctx.locale)
       .then(() => initialise(ctx))
-      .then(context => set(context, id, opcodes.SetDoorControl, { door, delay, control }, addr, protocol))
-      .then(response => translate(response, ctx.locale))
+      .then((context) =>
+        set(
+          context,
+          id,
+          opcodes.SetDoorControl,
+          { door, delay, control },
+          addr,
+          protocol,
+        ),
+      )
+      .then((response) => translate(response, ctx.locale))
   },
 
   /**
@@ -336,8 +371,17 @@ module.exports = {
 
     return validate({ controller: id }, ctx.locale)
       .then(() => initialise(ctx))
-      .then(context => set(context, id, opcodes.RecordSpecialEvents, { enable }, addr, protocol))
-      .then(response => translate(response, ctx.locale))
+      .then((context) =>
+        set(
+          context,
+          id,
+          opcodes.RecordSpecialEvents,
+          { enable },
+          addr,
+          protocol,
+        ),
+      )
+      .then((response) => translate(response, ctx.locale))
   },
 
   /**
@@ -366,8 +410,10 @@ module.exports = {
 
     return validate({ controller: id }, ctx.locale)
       .then(() => initialise(ctx))
-      .then(context => get(context, id, opcodes.GetStatus, {}, addr, protocol))
-      .then(response => translate(response, ctx.locale))
+      .then((context) =>
+        get(context, id, opcodes.GetStatus, {}, addr, protocol),
+      )
+      .then((response) => translate(response, ctx.locale))
   },
 
   /**
@@ -396,8 +442,8 @@ module.exports = {
 
     return validate({ controller: id }, ctx.locale)
       .then(() => initialise(ctx))
-      .then(context => get(context, id, opcodes.GetCards, {}, addr, protocol))
-      .then(response => translate(response, ctx.locale))
+      .then((context) => get(context, id, opcodes.GetCards, {}, addr, protocol))
+      .then((response) => translate(response, ctx.locale))
   },
 
   /**
@@ -427,8 +473,10 @@ module.exports = {
 
     return validate({ controller: id, cardNumber: card }, ctx.locale)
       .then(() => initialise(ctx))
-      .then(context => get(context, id, opcodes.GetCardByID, { card }, addr, protocol))
-      .then(response => translate(response, ctx.locale))
+      .then((context) =>
+        get(context, id, opcodes.GetCardByID, { card }, addr, protocol),
+      )
+      .then((response) => translate(response, ctx.locale))
   },
 
   /**
@@ -458,8 +506,10 @@ module.exports = {
 
     return validate({ controller: id, cardIndex: index }, ctx.locale)
       .then(() => initialise(ctx))
-      .then(context => get(context, id, opcodes.GetCardByIndex, { index }, addr, protocol))
-      .then(response => translate(response, ctx.locale))
+      .then((context) =>
+        get(context, id, opcodes.GetCardByIndex, { index }, addr, protocol),
+      )
+      .then((response) => translate(response, ctx.locale))
   },
 
   /**
@@ -494,8 +544,17 @@ module.exports = {
 
     return validate({ controller: id, cardNumber: card, doors }, ctx.locale)
       .then(() => initialise(ctx))
-      .then(context => set(context, id, opcodes.PutCard, { card, from: validFrom, to: validUntil, doors, PIN }, addr, protocol))
-      .then(response => translate(response, ctx.locale))
+      .then((context) =>
+        set(
+          context,
+          id,
+          opcodes.PutCard,
+          { card, from: validFrom, to: validUntil, doors, PIN },
+          addr,
+          protocol,
+        ),
+      )
+      .then((response) => translate(response, ctx.locale))
   },
 
   /**
@@ -525,8 +584,10 @@ module.exports = {
 
     return validate({ controller: id, cardNumber: card }, ctx.locale)
       .then(() => initialise(ctx))
-      .then(context => set(context, id, opcodes.DeleteCard, { card }, addr, protocol))
-      .then(response => translate(response, ctx.locale))
+      .then((context) =>
+        set(context, id, opcodes.DeleteCard, { card }, addr, protocol),
+      )
+      .then((response) => translate(response, ctx.locale))
   },
 
   /**
@@ -555,8 +616,10 @@ module.exports = {
 
     return validate({ controller: id }, ctx.locale)
       .then(() => initialise(ctx))
-      .then(context => set(context, id, opcodes.DeleteCards, {}, addr, protocol))
-      .then(response => translate(response, ctx.locale))
+      .then((context) =>
+        set(context, id, opcodes.DeleteCards, {}, addr, protocol),
+      )
+      .then((response) => translate(response, ctx.locale))
   },
 
   /**
@@ -586,8 +649,17 @@ module.exports = {
 
     return validate({ controller: id, profileId: profile }, ctx.locale)
       .then(() => initialise(ctx))
-      .then(context => get(context, id, opcodes.GetTimeProfile, { profileId: profile }, addr, protocol))
-      .then(response => translate(response, ctx.locale))
+      .then((context) =>
+        get(
+          context,
+          id,
+          opcodes.GetTimeProfile,
+          { profileId: profile },
+          addr,
+          protocol,
+        ),
+      )
+      .then((response) => translate(response, ctx.locale))
   },
 
   /**
@@ -617,8 +689,10 @@ module.exports = {
 
     return validate({ controller: id, profile }, ctx.locale)
       .then(() => initialise(ctx))
-      .then(context => get(context, id, opcodes.SetTimeProfile, { profile }, addr, protocol))
-      .then(response => translate(response, ctx.locale))
+      .then((context) =>
+        get(context, id, opcodes.SetTimeProfile, { profile }, addr, protocol),
+      )
+      .then((response) => translate(response, ctx.locale))
   },
 
   /**
@@ -647,8 +721,10 @@ module.exports = {
 
     return validate({ controller: id }, ctx.locale)
       .then(() => initialise(ctx))
-      .then(context => get(context, id, opcodes.ClearTimeProfiles, {}, addr, protocol))
-      .then(response => translate(response, ctx.locale))
+      .then((context) =>
+        get(context, id, opcodes.ClearTimeProfiles, {}, addr, protocol),
+      )
+      .then((response) => translate(response, ctx.locale))
   },
 
   /**
@@ -677,8 +753,10 @@ module.exports = {
 
     return validate({ controller: id }, ctx.locale)
       .then(() => initialise(ctx))
-      .then(context => get(context, id, opcodes.ClearTaskList, {}, addr, protocol))
-      .then(response => translate(response, ctx.locale))
+      .then((context) =>
+        get(context, id, opcodes.ClearTaskList, {}, addr, protocol),
+      )
+      .then((response) => translate(response, ctx.locale))
   },
 
   /**
@@ -709,8 +787,10 @@ module.exports = {
 
     return validate({ controller: id, task }, ctx.locale)
       .then(() => initialise(ctx))
-      .then(context => get(context, id, opcodes.AddTask, { task }, addr, protocol))
-      .then(response => translate(response, ctx.locale))
+      .then((context) =>
+        get(context, id, opcodes.AddTask, { task }, addr, protocol),
+      )
+      .then((response) => translate(response, ctx.locale))
   },
 
   /**
@@ -739,8 +819,10 @@ module.exports = {
 
     return validate({ controller: id }, ctx.locale)
       .then(() => initialise(ctx))
-      .then(context => get(context, id, opcodes.RefreshTaskList, {}, addr, protocol))
-      .then(response => translate(response, ctx.locale))
+      .then((context) =>
+        get(context, id, opcodes.RefreshTaskList, {}, addr, protocol),
+      )
+      .then((response) => translate(response, ctx.locale))
   },
 
   /**
@@ -769,11 +851,22 @@ module.exports = {
 
     const first = validate({ controller: id }, ctx.locale)
       .then(() => initialise(ctx))
-      .then(context => get(context, id, opcodes.GetEvent, { index: 0 }, addr, protocol))
+      .then((context) =>
+        get(context, id, opcodes.GetEvent, { index: 0 }, addr, protocol),
+      )
 
     const last = validate({ controller: id }, ctx.locale)
       .then(() => initialise(ctx))
-      .then(context => get(context, id, opcodes.GetEvent, { index: 0xffffffff }, addr, protocol))
+      .then((context) =>
+        get(
+          context,
+          id,
+          opcodes.GetEvent,
+          { index: 0xffffffff },
+          addr,
+          protocol,
+        ),
+      )
 
     const promise = Promise.all([first, last]).then(([p, q]) => {
       const object = { deviceId: id, first: 0, last: 0 }
@@ -789,8 +882,7 @@ module.exports = {
       return object
     })
 
-    return promise
-      .then(response => translate(response, ctx.locale))
+    return promise.then((response) => translate(response, ctx.locale))
   },
 
   /**
@@ -820,9 +912,17 @@ module.exports = {
 
     return validate({ controller: id, eventIndex: index }, ctx.locale)
       .then(() => initialise(ctx))
-      .then(context => get(context, id, opcodes.GetEvent, { index }, addr, protocol))
-      .then(response => {
-        if (response && response.event && response.event.type && response.event.type.code && response.event.type.code === 255) {
+      .then((context) =>
+        get(context, id, opcodes.GetEvent, { index }, addr, protocol),
+      )
+      .then((response) => {
+        if (
+          response &&
+          response.event &&
+          response.event.type &&
+          response.event.type.code &&
+          response.event.type.code === 255
+        ) {
           throw errors.EventOverwritten(controller, index, ctx.locale)
         }
 
@@ -860,8 +960,10 @@ module.exports = {
 
     return validate({ controller: id }, ctx.locale)
       .then(() => initialise(ctx))
-      .then(context => get(context, id, opcodes.GetEventIndex, { }, addr, protocol))
-      .then(response => translate(response, ctx.locale))
+      .then((context) =>
+        get(context, id, opcodes.GetEventIndex, {}, addr, protocol),
+      )
+      .then((response) => translate(response, ctx.locale))
   },
 
   /**
@@ -891,8 +993,10 @@ module.exports = {
 
     return validate({ controller: id, eventIndex: index }, ctx.locale)
       .then(() => initialise(ctx))
-      .then(context => set(context, id, opcodes.SetEventIndex, { index }, addr, protocol))
-      .then(response => translate(response, ctx.locale))
+      .then((context) =>
+        set(context, id, opcodes.SetEventIndex, { index }, addr, protocol),
+      )
+      .then((response) => translate(response, ctx.locale))
   },
 
   /**
@@ -922,8 +1026,10 @@ module.exports = {
 
     return validate({ controller: id, door }, ctx.locale)
       .then(() => initialise(ctx))
-      .then(context => set(context, id, opcodes.OpenDoor, { door }, addr, protocol))
-      .then(response => translate(response, ctx.locale))
+      .then((context) =>
+        set(context, id, opcodes.OpenDoor, { door }, addr, protocol),
+      )
+      .then((response) => translate(response, ctx.locale))
   },
 
   /**
@@ -961,8 +1067,10 @@ module.exports = {
 
     return validate({ controller: id }, ctx.locale)
       .then(() => initialise(ctx))
-      .then(context => set(context, id, opcodes.SetPCControl, { enable }, addr, protocol))
-      .then(response => translate(response, ctx.locale))
+      .then((context) =>
+        set(context, id, opcodes.SetPCControl, { enable }, addr, protocol),
+      )
+      .then((response) => translate(response, ctx.locale))
   },
 
   /**
@@ -998,8 +1106,10 @@ module.exports = {
 
     return validate({ controller: id }, ctx.locale)
       .then(() => initialise(ctx))
-      .then(context => set(context, id, opcodes.SetInterlock, { interlock }, addr, protocol))
-      .then(response => translate(response, ctx.locale))
+      .then((context) =>
+        set(context, id, opcodes.SetInterlock, { interlock }, addr, protocol),
+      )
+      .then((response) => translate(response, ctx.locale))
   },
 
   /**
@@ -1039,15 +1149,24 @@ module.exports = {
 
     return validate({ controller: id }, ctx.locale)
       .then(() => initialise(ctx))
-      .then(context => set(context, id, opcodes.ActivateKeypads, {
-        keypads: {
-          1: !!keypads['1'],
-          2: !!keypads['2'],
-          3: !!keypads['3'],
-          4: !!keypads['4']
-        }
-      }, addr, protocol))
-      .then(response => translate(response, ctx.locale))
+      .then((context) =>
+        set(
+          context,
+          id,
+          opcodes.ActivateKeypads,
+          {
+            keypads: {
+              1: !!keypads['1'],
+              2: !!keypads['2'],
+              3: !!keypads['3'],
+              4: !!keypads['4'],
+            },
+          },
+          addr,
+          protocol,
+        ),
+      )
+      .then((response) => translate(response, ctx.locale))
   },
 
   /**
@@ -1079,11 +1198,20 @@ module.exports = {
 
     return validate({ controller: id }, ctx.locale)
       .then(() => initialise(ctx))
-      .then(context => set(context, id, opcodes.SetDoorPasscodes, {
-        door,
-        passcodes
-      }, addr, protocol))
-      .then(response => translate(response, ctx.locale))
+      .then((context) =>
+        set(
+          context,
+          id,
+          opcodes.SetDoorPasscodes,
+          {
+            door,
+            passcodes,
+          },
+          addr,
+          protocol,
+        ),
+      )
+      .then((response) => translate(response, ctx.locale))
   },
 
   /**
@@ -1112,8 +1240,10 @@ module.exports = {
 
     return validate({ controller: id }, ctx.locale)
       .then(() => initialise(ctx))
-      .then(context => set(context, id, opcodes.RestoreDefaultParameters, {}, addr, protocol))
-      .then(response => translate(response, ctx.locale))
+      .then((context) =>
+        set(context, id, opcodes.RestoreDefaultParameters, {}, addr, protocol),
+      )
+      .then((response) => translate(response, ctx.locale))
   },
 
   /**
@@ -1133,7 +1263,11 @@ module.exports = {
     const context = {
       config: ctx.config,
       locale: ctx.locale,
-      logger: ctx.logger ? ctx.logger : (m) => { log(m) }
+      logger: ctx.logger
+        ? ctx.logger
+        : (m) => {
+            log(m)
+          },
     }
 
     const handler = {
@@ -1147,7 +1281,7 @@ module.exports = {
         if (onError) {
           onError(err)
         }
-      }
+      },
     }
 
     const socket = listen(context, handler)
@@ -1157,7 +1291,7 @@ module.exports = {
         if (socket) {
           socket.close()
         }
-      }
+      },
     }
-  }
+  },
 }

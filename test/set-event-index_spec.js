@@ -7,7 +7,8 @@ const uhppoted = require('../index.js')
 describe('set-event-index', function () {
   describe('#set-event-index with invalid parameters', function () {
     it('should fail with invalid controller ID', function () {
-      return uhppoted.setEventIndex({}, 0, 29)
+      return uhppoted
+        .setEventIndex({}, 0, 29)
         .then(() => {
           assert.fail()
         })
@@ -17,7 +18,12 @@ describe('set-event-index', function () {
     })
 
     it('should fail with invalid controller ID', function () {
-      return uhppoted.setEventIndex({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' }, 29)
+      return uhppoted
+        .setEventIndex(
+          {},
+          { id: 0, address: '192.168.1.125', protocol: 'tcp' },
+          29,
+        )
         .then(() => {
           assert.fail()
         })
@@ -27,7 +33,8 @@ describe('set-event-index', function () {
     })
 
     it('should fail with invalid event index', function () {
-      return uhppoted.setEventIndex({}, 405419896, 0)
+      return uhppoted
+        .setEventIndex({}, 405419896, 0)
         .then(() => {
           assert.fail()
         })

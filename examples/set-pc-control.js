@@ -4,20 +4,30 @@ const ctx = require('./common.js')
 const deviceID = 405419896
 const addr = '192.168.1.100'
 
-async function run () {
-  await uhppoted.setPCControl(ctx, deviceID, true)
-    .then(response => {
-      console.log('set-pc-control  ', response.deviceId, response.ok ? 'ok' : 'error')
+async function run() {
+  await uhppoted
+    .setPCControl(ctx, deviceID, true)
+    .then((response) => {
+      console.log(
+        'set-pc-control  ',
+        response.deviceId,
+        response.ok ? 'ok' : 'error',
+      )
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(`\n   *** ERROR ${err.message}\n`)
     })
 
-  await uhppoted.setPCControl(ctx, { id: deviceID, address: addr, protocol: 'tcp' }, true)
-    .then(response => {
-      console.log('set-pc-control  ', response.deviceId, response.ok ? 'ok' : 'error')
+  await uhppoted
+    .setPCControl(ctx, { id: deviceID, address: addr, protocol: 'tcp' }, true)
+    .then((response) => {
+      console.log(
+        'set-pc-control  ',
+        response.deviceId,
+        response.ok ? 'ok' : 'error',
+      )
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(`\n   *** ERROR ${err.message}\n`)
     })
 }

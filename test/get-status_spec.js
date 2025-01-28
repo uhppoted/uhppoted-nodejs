@@ -7,7 +7,8 @@ const uhppoted = require('../index.js')
 describe('get-status', function () {
   describe('#get-status with invalid parameters', function () {
     it('should fail with invalid controller ID', function () {
-      return uhppoted.getStatus({}, 0)
+      return uhppoted
+        .getStatus({}, 0)
         .then(() => {
           assert.fail()
         })
@@ -17,7 +18,8 @@ describe('get-status', function () {
     })
 
     it('should fail with invalid controller ID', function () {
-      return uhppoted.getStatus({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' })
+      return uhppoted
+        .getStatus({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' })
         .then(() => {
           assert.fail()
         })

@@ -7,7 +7,8 @@ const uhppoted = require('../index.js')
 describe('get-card-by-index', function () {
   describe('#get-card-by-index with invalid parameters', function () {
     it('should fail with invalid controller ID', function () {
-      return uhppoted.getCardByIndex({}, 0, 3)
+      return uhppoted
+        .getCardByIndex({}, 0, 3)
         .then(() => {
           assert.fail()
         })
@@ -17,7 +18,12 @@ describe('get-card-by-index', function () {
     })
 
     it('should fail with invalid controller ID', function () {
-      return uhppoted.getCardByIndex({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' }, 3)
+      return uhppoted
+        .getCardByIndex(
+          {},
+          { id: 0, address: '192.168.1.125', protocol: 'tcp' },
+          3,
+        )
         .then(() => {
           assert.fail()
         })
@@ -27,7 +33,8 @@ describe('get-card-by-index', function () {
     })
 
     it('should fail with invalid card index', function () {
-      return uhppoted.getCardByIndex({}, 405419896, 0)
+      return uhppoted
+        .getCardByIndex({}, 405419896, 0)
         .then(() => {
           assert.fail()
         })

@@ -7,7 +7,8 @@ const uhppoted = require('../index.js')
 describe('set-door-passcodes', function () {
   describe('#set-door-passcodes with invalid parameters', function () {
     it('should fail with invalid controller ID', function () {
-      return uhppoted.setDoorPasscodes({}, 0, 3, [12345, 0, 999999, 54321])
+      return uhppoted
+        .setDoorPasscodes({}, 0, 3, [12345, 0, 999999, 54321])
         .then(() => {
           assert.fail()
         })
@@ -17,7 +18,13 @@ describe('set-door-passcodes', function () {
     })
 
     it('should fail with invalid controller ID', function () {
-      return uhppoted.setDoorPasscodes({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' }, 3, [12345, 0, 999999, 54321])
+      return uhppoted
+        .setDoorPasscodes(
+          {},
+          { id: 0, address: '192.168.1.125', protocol: 'tcp' },
+          3,
+          [12345, 0, 999999, 54321],
+        )
         .then(() => {
           assert.fail()
         })

@@ -12,22 +12,25 @@ const day = format(now.getDate(), 2)
 const hours = format(now.getHours(), 2)
 const minutes = format(now.getMinutes(), 2)
 const seconds = format(now.getSeconds(), 2)
-const datetime = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds
+const datetime =
+  year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds
 
-async function run () {
-  await uhppoted.setTime(ctx, deviceID, datetime)
-    .then(response => {
+async function run() {
+  await uhppoted
+    .setTime(ctx, deviceID, datetime)
+    .then((response) => {
       console.log('\nset-time:\n', response)
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(`\n   *** ERROR ${err.message}\n`)
     })
 
-  await uhppoted.setTime(ctx, { id: deviceID, address: addr, protocol: 'tcp' }, datetime)
-    .then(response => {
+  await uhppoted
+    .setTime(ctx, { id: deviceID, address: addr, protocol: 'tcp' }, datetime)
+    .then((response) => {
       console.log('\nset-time:\n', response)
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(`\n   *** ERROR ${err.message}\n`)
     })
 }

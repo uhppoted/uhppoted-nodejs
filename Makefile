@@ -22,7 +22,13 @@ update-release:
 	npm update	
 	npm audit fix
 
-build:
+format:
+	npx prettier --write src/*.js
+	npx prettier --write test/*.js
+	npx prettier --write integration-tests/*.js
+	npx prettier --write examples/*.js
+
+build: format
 	npx eslint --fix *.js  
 	npx eslint --fix src/**/*.js  
 	npx eslint --fix examples/**/*.js  

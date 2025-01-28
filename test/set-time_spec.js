@@ -7,7 +7,8 @@ const uhppoted = require('../index.js')
 describe('set-time', function () {
   describe('#set-time with invalid parameters', function () {
     it('should fail with invalid controller ID', function () {
-      return uhppoted.setTime({}, 0, '2021-06-01 16:52:35')
+      return uhppoted
+        .setTime({}, 0, '2021-06-01 16:52:35')
         .then(() => {
           assert.fail()
         })
@@ -17,7 +18,12 @@ describe('set-time', function () {
     })
 
     it('should fail with invalid controller ID', function () {
-      return uhppoted.setTime({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' }, '2021-06-01 16:52:35')
+      return uhppoted
+        .setTime(
+          {},
+          { id: 0, address: '192.168.1.125', protocol: 'tcp' },
+          '2021-06-01 16:52:35',
+        )
         .then(() => {
           assert.fail()
         })

@@ -7,7 +7,8 @@ const uhppoted = require('../index.js')
 describe('set-door-control', function () {
   describe('#set-door-control with invalid parameters', function () {
     it('should fail with invalid controller ID', function () {
-      return uhppoted.setDoorControl({}, 0, 3, 4, 'normally closed')
+      return uhppoted
+        .setDoorControl({}, 0, 3, 4, 'normally closed')
         .then(() => {
           assert.fail()
         })
@@ -17,7 +18,14 @@ describe('set-door-control', function () {
     })
 
     it('should fail with invalid controller ID', function () {
-      return uhppoted.setDoorControl({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' }, 3, 4, 'normally closed')
+      return uhppoted
+        .setDoorControl(
+          {},
+          { id: 0, address: '192.168.1.125', protocol: 'tcp' },
+          3,
+          4,
+          'normally closed',
+        )
         .then(() => {
           assert.fail()
         })
@@ -27,7 +35,8 @@ describe('set-door-control', function () {
     })
 
     it('should fail with invalid door', function () {
-      return uhppoted.setDoorControl({}, 405419896, 0, 4, 'normally closed')
+      return uhppoted
+        .setDoorControl({}, 405419896, 0, 4, 'normally closed')
         .then(() => {
           assert.fail()
         })

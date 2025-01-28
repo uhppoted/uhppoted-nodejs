@@ -9,20 +9,30 @@ const validUntil = '2023-12-31'
 const doors = { 1: true, 2: false, 3: 29, 4: true }
 const PIN = 7531
 
-async function run () {
-  await uhppoted.putCard(ctx, deviceID, cardNumber, validFrom, validUntil, doors, PIN)
-    .then(response => {
+async function run() {
+  await uhppoted
+    .putCard(ctx, deviceID, cardNumber, validFrom, validUntil, doors, PIN)
+    .then((response) => {
       console.log('\nput-card:\n', response)
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(`\n   *** ERROR ${err.message}\n`)
     })
 
-  await uhppoted.putCard(ctx, { id: deviceID, address: addr, protocol: 'tcp' }, cardNumber, validFrom, validUntil, doors, PIN)
-    .then(response => {
+  await uhppoted
+    .putCard(
+      ctx,
+      { id: deviceID, address: addr, protocol: 'tcp' },
+      cardNumber,
+      validFrom,
+      validUntil,
+      doors,
+      PIN,
+    )
+    .then((response) => {
       console.log('\nput-card:\n', response)
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(`\n   *** ERROR ${err.message}\n`)
     })
 }

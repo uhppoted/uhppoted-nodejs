@@ -19,7 +19,7 @@ for (const name of Object.keys(interfaces)) {
   }
 }
 
-process.argv.slice(3).forEach(arg => {
+process.argv.slice(3).forEach((arg) => {
   const re = /(--broadcast|--listen)=(.*)/gm
   const matches = re.exec(arg)
 
@@ -41,15 +41,23 @@ process.argv.slice(3).forEach(arg => {
 })
 
 const ctx = {
-  config: new uhppoted.Config('integration-tests', bind, broadcast, listen, 500, [], false)
+  config: new uhppoted.Config(
+    'integration-tests',
+    bind,
+    broadcast,
+    listen,
+    500,
+    [],
+    false,
+  ),
 }
 
-function setup (request, replies, protocol = 'udp') {
+function setup(request, replies, protocol = 'udp') {
   if (protocol === 'tcp') {
     const sock = net.createServer((c) => {
       c.on('data', (message) => {
         expect(message).to.deep.equal(request)
-        replies.forEach(reply => {
+        replies.forEach((reply) => {
           c.write(new Uint8Array(reply))
         })
       })
@@ -65,7 +73,7 @@ function setup (request, replies, protocol = 'udp') {
 
     sock.on('message', (message, rinfo) => {
       expect(message).to.deep.equal(request)
-      replies.forEach(reply => {
+      replies.forEach((reply) => {
         sock.send(new Uint8Array(reply), 0, 64, rinfo.port, rinfo.address)
       })
     })
@@ -78,28 +86,28 @@ function setup (request, replies, protocol = 'udp') {
   return null
 }
 
-function teardown (sock) {
+function teardown(sock) {
   sock.close()
 }
 
-function stringToIP (addr) {
+function stringToIP(addr) {
   let address = addr
   let port = 60000
 
   const re = /^(.*?)(?::([0-9]+))?$/
   const match = addr.match(re)
 
-  if ((match.length > 1) && match[1]) {
+  if (match.length > 1 && match[1]) {
     address = match[1]
   }
 
-  if ((match.length > 2) && match[2]) {
+  if (match.length > 2 && match[2]) {
     port = parseInt(match[2], 10)
   }
 
   return {
     address,
-    port
+    port,
   }
 }
 
@@ -107,5 +115,5 @@ module.exports = {
   context: ctx,
   setup,
   teardown,
-  stringToIP
+  stringToIP,
 }

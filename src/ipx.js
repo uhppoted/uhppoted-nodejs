@@ -7,12 +7,12 @@
 
 module.exports = {
   /**
-    * Converts a uint32 IPv4 address to a string.
-    *
-    * @param {uint32}   v  IPv4 address
-    *
-    * @param {string}   IPv4 address as a dotted string.
-    */
+   * Converts a uint32 IPv4 address to a string.
+   *
+   * @param {uint32}   v  IPv4 address
+   *
+   * @param {string}   IPv4 address as a dotted string.
+   */
   fromLong: function (v) {
     const b0 = (v >>> 24) & 0x00ff
     const b1 = (v >>> 16) & 0x00ff
@@ -23,12 +23,12 @@ module.exports = {
   },
 
   /**
-    * Converts an IPv4 address string to a uint32 value
-    *
-    * @param {string} address  IPv4 address as a dotted string.
-    *
-    * @param {uint32} IPv4 address as a uint32
-    */
+   * Converts an IPv4 address string to a uint32 value
+   *
+   * @param {string} address  IPv4 address as a dotted string.
+   *
+   * @param {uint32} IPv4 address as a uint32
+   */
   toLong: function (address) {
     let v = 0
 
@@ -41,13 +41,13 @@ module.exports = {
   },
 
   /**
-    * Packs an IPv4 address into a byte buffer
-    *
-    * @param {string}   addr    IPv4 address as a dotted string
-    * @param {Buffer}   buffer  byte buffer
-    * @param {int}      offset  start offset into byte buffer
-    *
-    */
+   * Packs an IPv4 address into a byte buffer
+   *
+   * @param {string}   addr    IPv4 address as a dotted string
+   * @param {Buffer}   buffer  byte buffer
+   * @param {int}      offset  start offset into byte buffer
+   *
+   */
   toBuffer: function (addr, buffer, offset) {
     addr.split(/\./g).forEach((octet) => {
       buffer[offset++] = parseInt(octet, 10) & 0xff
@@ -55,13 +55,13 @@ module.exports = {
   },
 
   /**
-    * Convolves an IPv4 address and a netmask to get the broadcast address.
-    *
-    * @param {uint32}   address IPv4 address
-    * @param {uint32}   netmask valid IPv4 subnet mask
-    *
-    * @param {uint32} netmasked IPv4 address
-    */
+   * Convolves an IPv4 address and a netmask to get the broadcast address.
+   *
+   * @param {uint32}   address IPv4 address
+   * @param {uint32}   netmask valid IPv4 subnet mask
+   *
+   * @param {uint32} netmasked IPv4 address
+   */
   broadcastAddr: function (address, mask) {
     const addr = this.toLong(address)
     const subnet = this.toLong(mask)
@@ -80,5 +80,5 @@ module.exports = {
     const broadcast = this.fromLong((addr & subnet) + naddr - 1)
 
     return broadcast
-  }
+  },
 }

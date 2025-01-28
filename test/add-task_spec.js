@@ -13,10 +13,11 @@ describe('add-task', function () {
         valid: { from: '2021-01-01', to: '2021-12-31' },
         weekdays: ['Monday', 'Wednesday', 'Friday'],
         start: '08:30',
-        cards: 3
+        cards: 3,
       }
 
-      return uhppoted.addTask({}, 0, task)
+      return uhppoted
+        .addTask({}, 0, task)
         .then(() => {
           assert.fail()
         })
@@ -32,10 +33,11 @@ describe('add-task', function () {
         valid: { from: '2021-01-01', to: '2021-12-31' },
         weekdays: ['Monday', 'Wednesday', 'Friday'],
         start: '08:30',
-        cards: 3
+        cards: 3,
       }
 
-      return uhppoted.addTask({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' }, task)
+      return uhppoted
+        .addTask({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' }, task)
         .then(() => {
           assert.fail()
         })
@@ -51,10 +53,11 @@ describe('add-task', function () {
         valid: { from: '2021-01-01', to: '2021-12-31' },
         weekdays: ['Monday', 'Wednesday', 'Friday'],
         start: '08:30',
-        cards: 3
+        cards: 3,
       }
 
-      return uhppoted.addTask({}, 405419896, task)
+      return uhppoted
+        .addTask({}, 405419896, task)
         .then(() => {
           assert.fail()
         })
@@ -70,10 +73,11 @@ describe('add-task', function () {
         valid: { from: '2021-01-01', to: '2021-12-31' },
         weekdays: ['Monday', 'Wednesday', 'Friday'],
         start: '08:30',
-        cards: 3
+        cards: 3,
       }
 
-      return uhppoted.addTask({}, 405419896, task)
+      return uhppoted
+        .addTask({}, 405419896, task)
         .then(() => {
           assert.fail()
         })
@@ -89,10 +93,11 @@ describe('add-task', function () {
         valid: { from: '2021-01-01', to: '2021-12-31' },
         weekdays: ['Monday', 'Wednesday', 'Friday'],
         start: '08:30',
-        cards: 3
+        cards: 3,
       }
 
-      return uhppoted.addTask({}, 405419896, task)
+      return uhppoted
+        .addTask({}, 405419896, task)
         .then(() => {
           assert.fail()
         })
@@ -108,10 +113,11 @@ describe('add-task', function () {
         valid: { from: '2021-01-01', to: '2021-12-31' },
         weekdays: ['Monday', 'Wednesday', 'Friday'],
         start: '08:30',
-        cards: 3
+        cards: 3,
       }
 
-      return uhppoted.addTask({}, 405419896, task)
+      return uhppoted
+        .addTask({}, 405419896, task)
         .then(() => {
           assert.fail()
         })
@@ -127,10 +133,11 @@ describe('add-task', function () {
         valid: { from: '2021-01-01', to: '2021-12-31' },
         weekdays: ['Monday', 'Wednesday', 'Friday'],
         start: '08:30',
-        cards: 3
+        cards: 3,
       }
 
-      return uhppoted.addTask({}, 405419896, task)
+      return uhppoted
+        .addTask({}, 405419896, task)
         .then(() => {
           assert.fail()
         })

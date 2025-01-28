@@ -5,9 +5,10 @@ const deviceID = 405419896
 const addr = '192.168.1.100'
 const index = 3
 
-async function run () {
-  await uhppoted.getCardByIndex(ctx, deviceID, index)
-    .then(response => {
+async function run() {
+  await uhppoted
+    .getCardByIndex(ctx, deviceID, index)
+    .then((response) => {
       switch (response.card.number) {
         case 0:
           console.log(`get-card-by-index: card @${index} not found`)
@@ -21,12 +22,17 @@ async function run () {
           console.log('\nget-card-by-index:\n', response)
       }
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(`\n   *** ERROR ${err.message}\n`)
     })
 
-  await uhppoted.getCardByIndex(ctx, { id: deviceID, address: addr, protocol: 'tcp' }, index)
-    .then(response => {
+  await uhppoted
+    .getCardByIndex(
+      ctx,
+      { id: deviceID, address: addr, protocol: 'tcp' },
+      index,
+    )
+    .then((response) => {
       switch (response.card.number) {
         case 0:
           console.log(`get-card-by-index: card @${index} not found`)
@@ -40,7 +46,7 @@ async function run () {
           console.log('\nget-card-by-index:\n', response)
       }
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(`\n   *** ERROR ${err.message}\n`)
     })
 }

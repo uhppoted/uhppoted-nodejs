@@ -7,7 +7,8 @@ const uhppoted = require('../index.js')
 describe('clear-time-profiles', function () {
   describe('#clear-time-profiles with invalid parameters', function () {
     it('should fail with invalid controller ID', function () {
-      return uhppoted.clearTimeProfiles({}, 0)
+      return uhppoted
+        .clearTimeProfiles({}, 0)
         .then(() => {
           assert.fail()
         })
@@ -17,7 +18,11 @@ describe('clear-time-profiles', function () {
     })
 
     it('should fail with invalid controller ID', function () {
-      return uhppoted.clearTimeProfiles({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' })
+      return uhppoted
+        .clearTimeProfiles(
+          {},
+          { id: 0, address: '192.168.1.125', protocol: 'tcp' },
+        )
         .then(() => {
           assert.fail()
         })

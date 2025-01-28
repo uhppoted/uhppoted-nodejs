@@ -1,4 +1,12 @@
-function Config (name, bindAddr, broadcastAddr, listenAddr, timeout, controllers, debug) {
+function Config(
+  name,
+  bindAddr,
+  broadcastAddr,
+  listenAddr,
+  timeout,
+  controllers,
+  debug,
+) {
   this.name = 'uhppoted'
   this.bind = '0.0.0.0'
   this.broadcast = '255.255.255.255:60000'
@@ -24,7 +32,7 @@ function Config (name, bindAddr, broadcastAddr, listenAddr, timeout, controllers
   }
 
   if (controllers && Array.isArray(controllers)) {
-    controllers.forEach(c => {
+    controllers.forEach((c) => {
       if (c.deviceId && !Number.isNaN(c.deviceId) && c.deviceId > 0) {
         const object = {}
 
@@ -50,14 +58,14 @@ function Config (name, bindAddr, broadcastAddr, listenAddr, timeout, controllers
   }
 }
 
-function addDevice (config, deviceId, address, forceBroadcast) {
+function addDevice(config, deviceId, address, forceBroadcast) {
   if (config && deviceId) {
     const id = parseInt(deviceId.toString(), 10)
 
     if (id && !Number.isNaN(id) && id > 0) {
       const controller = {
         address: '',
-        forceBroadcast: false
+        forceBroadcast: false,
       }
 
       if (address) {
@@ -75,5 +83,5 @@ function addDevice (config, deviceId, address, forceBroadcast) {
 
 module.exports = {
   Config,
-  addDevice
+  addDevice,
 }

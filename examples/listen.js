@@ -9,7 +9,8 @@ const onEvent = function (event) {
     event.state.event.type.event,
     event.state.event.card,
     event.state.event.door,
-    event.state.event.reason.reason)
+    event.state.event.reason.reason,
+  )
 }
 
 const onError = function (err) {
@@ -21,12 +22,10 @@ const listener = uhppoted.listen(ctx, onEvent, onError)
 if (listener) {
   console.log('\n  *** CTRL-C to exit ...\n')
 
-  process
-    .openStdin()
-    .addListener('listener', function (d) {
-      if (d.toString().trim() === 'exit') {
-        listener.close()
-        process.exit(0)
-      }
-    })
+  process.openStdin().addListener('listener', function (d) {
+    if (d.toString().trim() === 'exit') {
+      listener.close()
+      process.exit(0)
+    }
+  })
 }

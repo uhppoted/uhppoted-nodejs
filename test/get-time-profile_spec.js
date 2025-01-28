@@ -7,7 +7,8 @@ const uhppoted = require('../index.js')
 describe('get-time-profile', function () {
   describe('#get-time-profile with invalid parameters', function () {
     it('should fail with invalid controller ID', function () {
-      return uhppoted.getTimeProfile({}, 0, 29)
+      return uhppoted
+        .getTimeProfile({}, 0, 29)
         .then(() => {
           assert.fail()
         })
@@ -17,7 +18,12 @@ describe('get-time-profile', function () {
     })
 
     it('should fail with invalid controller ID', function () {
-      return uhppoted.getTimeProfile({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' }, 29)
+      return uhppoted
+        .getTimeProfile(
+          {},
+          { id: 0, address: '192.168.1.125', protocol: 'tcp' },
+          29,
+        )
         .then(() => {
           assert.fail()
         })
@@ -27,7 +33,8 @@ describe('get-time-profile', function () {
     })
 
     it('should fail with invalid time profile ID', function () {
-      return uhppoted.getTimeProfile({}, 405419896, 0)
+      return uhppoted
+        .getTimeProfile({}, 405419896, 0)
         .then(() => {
           assert.fail()
         })
@@ -37,7 +44,8 @@ describe('get-time-profile', function () {
     })
 
     it('should fail with invalid time profile ID', function () {
-      return uhppoted.getTimeProfile({}, 405419896, 1)
+      return uhppoted
+        .getTimeProfile({}, 405419896, 1)
         .then(() => {
           assert.fail()
         })
@@ -47,7 +55,8 @@ describe('get-time-profile', function () {
     })
 
     it('should fail with invalid time profile ID', function () {
-      return uhppoted.getTimeProfile({}, 405419896, 255)
+      return uhppoted
+        .getTimeProfile({}, 405419896, 255)
         .then(() => {
           assert.fail()
         })

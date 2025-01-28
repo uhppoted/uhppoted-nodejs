@@ -15,13 +15,15 @@ const onEvent = function (event) {
   const card = event.state.event.card
   const door = event.state.event.door
 
-  console.log('event           ',
+  console.log(
+    'event           ',
     event.deviceId,
     event.state.event.timestamp,
     event.state.event.type.event,
     event.state.event.card,
     event.state.event.door,
-    event.state.event.reason.reason)
+    event.state.event.reason.reason,
+  )
 
   // card swipe and remote access control?
   if (eventType === 1 && !granted && reason === 5) {
@@ -32,11 +34,17 @@ const onEvent = function (event) {
     }
 
     if (cards.includes(card)) {
-      uhppoted.openDoor(ctx, controller, door)
-        .then(response => {
-          console.log('open-door       ', response.deviceId, door, response.opened ? 'opened' : 'error')
+      uhppoted
+        .openDoor(ctx, controller, door)
+        .then((response) => {
+          console.log(
+            'open-door       ',
+            response.deviceId,
+            door,
+            response.opened ? 'opened' : 'error',
+          )
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(`\n   *** ERROR ${err.message}\n`)
         })
     }
@@ -44,11 +52,12 @@ const onEvent = function (event) {
 }
 
 const onRefresh = function () {
-  uhppoted.getTime(ctx, deviceID)
-    .then(response => {
+  uhppoted
+    .getTime(ctx, deviceID)
+    .then((response) => {
       console.log('get-time        ', response.deviceId, response.datetime)
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(`\n   *** ERROR ${err.message}\n`)
     })
 }
@@ -60,11 +69,16 @@ const onError = function (err) {
 const listener = uhppoted.listen(ctx, onEvent, onError)
 
 if (listener) {
-  uhppoted.setPCControl(ctx, deviceID, true)
-    .then(response => {
-      console.log('set-pc-control  ', response.deviceId, response.ok ? 'ok' : 'error')
+  uhppoted
+    .setPCControl(ctx, deviceID, true)
+    .then((response) => {
+      console.log(
+        'set-pc-control  ',
+        response.deviceId,
+        response.ok ? 'ok' : 'error',
+      )
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(`\n   *** ERROR ${err.message}\n`)
     })
 
@@ -72,12 +86,10 @@ if (listener) {
 
   console.log('\n  *** CTRL-C to exit ...\n')
 
-  process
-    .openStdin()
-    .addListener('listener', function (d) {
-      if (d.toString().trim() === 'exit') {
-        listener.close()
-        process.exit(0)
-      }
-    })
+  process.openStdin().addListener('listener', function (d) {
+    if (d.toString().trim() === 'exit') {
+      listener.close()
+      process.exit(0)
+    }
+  })
 }

@@ -5,9 +5,10 @@ const deviceID = 405419896
 const addr = '192.168.1.100'
 const card = 8165538
 
-async function run () {
-  await uhppoted.getCard(ctx, deviceID, card)
-    .then(response => {
+async function run() {
+  await uhppoted
+    .getCard(ctx, deviceID, card)
+    .then((response) => {
       switch (response.card.number) {
         case 0:
           console.log(`get-card: card ${card} not found`)
@@ -21,12 +22,13 @@ async function run () {
           console.log('\nget-card:\n', response)
       }
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(`\n   *** ERROR ${err.message}\n`)
     })
 
-  await uhppoted.getCard(ctx, { id: deviceID, address: addr, protocol: 'tcp' }, card)
-    .then(response => {
+  await uhppoted
+    .getCard(ctx, { id: deviceID, address: addr, protocol: 'tcp' }, card)
+    .then((response) => {
       switch (response.card.number) {
         case 0:
           console.log(`get-card: card ${card} not found`)
@@ -40,7 +42,7 @@ async function run () {
           console.log('\nget-card:\n', response)
       }
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(`\n   *** ERROR ${err.message}\n`)
     })
 }

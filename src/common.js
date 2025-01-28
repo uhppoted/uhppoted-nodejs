@@ -2,7 +2,7 @@ const config = require('./config.js')
 const errors = require('./errors.js')
 const log = require('./logger.js')
 
-function initialise (ctx) {
+function initialise(ctx) {
   return new Promise((resolve) => {
     let cfg = new config.Config()
     let locale = 'en-US'
@@ -15,6 +15,7 @@ function initialise (ctx) {
       locale = ctx.locale
     }
 
+    // prettier-ignore
     resolve({
       config: cfg,
       locale,
@@ -23,16 +24,16 @@ function initialise (ctx) {
   })
 }
 
-function resolve (controller) {
-  if (typeof (controller) === 'number') {
+function resolve(controller) {
+  if (typeof controller === 'number') {
     return { id: controller, address: null, protocol: 'udp' }
   }
 
-  if (typeof (controller) === 'object') {
+  if (typeof controller === 'object') {
     const { id, address = null, protocol = 'udp' } = controller
     const proto = `${protocol}`.toLowerCase() === 'tcp' ? 'tcp' : 'udp'
 
-    if ((address != null) && (typeof (address) === 'string')) {
+    if (address != null && typeof address === 'string') {
       const match = `${address}`.match(/^(.+?):([0-9]+)$/)
 
       if (match) {
@@ -45,7 +46,7 @@ function resolve (controller) {
       }
     }
 
-    if ((address != null) && (typeof (address) === 'object')) {
+    if (address != null && typeof address === 'object') {
       const { address: addr, port } = address
       const p = parseInt(`${port}`)
 
@@ -60,7 +61,7 @@ function resolve (controller) {
   }
 }
 
-function validate (args, locale) {
+function validate(args, locale) {
   return new Promise((resolve, reject) => {
     Object.entries(args).forEach(([k, v]) => {
       switch (`${k}`) {
@@ -118,7 +119,7 @@ function validate (args, locale) {
           break
 
         case 'doors':
-          ['1', '2', '3', '4'].forEach(door => {
+          ;['1', '2', '3', '4'].forEach((door) => {
             if (Object.prototype.hasOwnProperty.call(v, door)) {
               const permission = v[door]
               if (!isValidPermission(door, permission)) {
@@ -140,48 +141,53 @@ function validate (args, locale) {
   })
 }
 
-function isValidDeviceId (deviceId) {
+function isValidDeviceId(deviceId) {
   return inRange(deviceId, 1, 4294967295)
 }
 
-function isValidCardNumber (card) {
+function isValidCardNumber(card) {
   return inRange(card, 1, 4294967295)
 }
 
-function isValidCardIndex (index) {
+function isValidCardIndex(index) {
   return inRange(index, 1, 4294967295)
 }
 
-function isValidProfileId (profileId) {
+function isValidProfileId(profileId) {
   return inRange(profileId, 2, 254)
 }
 
-function isValidDoor (door) {
+function isValidDoor(door) {
   return inRange(door, 1, 4)
 }
 
-function isValidPIN (pin) {
+function isValidPIN(pin) {
   return inRange(pin, 0, 999999)
 }
 
-function isValidEventIndex (index) {
+function isValidEventIndex(index) {
   return inRange(index, 1, 4294967295)
 }
 
-function isValidPermission (door, permission) {
+function isValidPermission(door, permission) {
   if (typeof permission === 'boolean') {
     return true
   }
 
   const profileID = Number(permission)
-  if (Number.isNaN(profileID) || !Number.isInteger(profileID) || profileID < 2 || profileID > 254) {
+  if (
+    Number.isNaN(profileID) ||
+    !Number.isInteger(profileID) ||
+    profileID < 2 ||
+    profileID > 254
+  ) {
     return false
   }
 
   return true
 }
 
-function isValidTaskType (task) {
+function isValidTaskType(task) {
   const tasks = new Map([
     ['doorcontrolled', 0],
     ['doornormallyopen', 1],
@@ -195,17 +201,17 @@ function isValidTaskType (task) {
     ['disablemorecards', 9],
     ['triggeronce', 10],
     ['disablepushbutton', 11],
-    ['enablepushbutton', 12]
+    ['enablepushbutton', 12],
   ])
 
   if (isNaN(task)) {
-    return tasks.has(task.replace(/[^a-z]+/ig, ''))
+    return tasks.has(task.replace(/[^a-z]+/gi, ''))
   }
 
   return inRange(task, 1, 13)
 }
 
-function inRange (value, min, max) {
+function inRange(value, min, max) {
   const v = Number.parseInt(`${value}`)
 
   if (Number.isNaN(v) || v < min || v > max) {
@@ -215,7 +221,7 @@ function inRange (value, min, max) {
   return true
 }
 
-function clamp (v, min, max) {
+function clamp(v, min, max) {
   return Math.min(Math.max(v, min), max)
 }
 
@@ -223,5 +229,5 @@ module.exports = {
   initialise,
   validate,
   resolve,
-  clamp
+  clamp,
 }

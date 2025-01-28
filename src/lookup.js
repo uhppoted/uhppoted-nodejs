@@ -7,19 +7,19 @@
 
 module.exports = {
   /**
-    * Expands an event type byte into an object with event code and internationalised
-    * event message.
-    *
-    * @param {array}    bytes      64 byte message as a Uint8Array
-    * @param {number}   offset     Index of event type byte in message
-    *
-    * @param {object}   { code:byte, event:string }
-    */
+   * Expands an event type byte into an object with event code and internationalised
+   * event message.
+   *
+   * @param {array}    bytes      64 byte message as a Uint8Array
+   * @param {number}   offset     Index of event type byte in message
+   *
+   * @param {object}   { code:byte, event:string }
+   */
   eventType: function (bytes, offset) {
     const byte = bytes.getUint8(offset, true)
 
     const event = {
-      code: byte
+      code: byte,
     }
 
     switch (byte) {
@@ -52,19 +52,19 @@ module.exports = {
   },
 
   /**
-    * Expands an event direction byte into an object with event direction and internationalised
-    * direction description.
-    *
-    * @param {array}    bytes      64 byte message as a Uint8Array
-    * @param {number}   offset     Index of event direction byte in message
-    *
-    * @param {object}   { code: byte, direction: string }
-    */
+   * Expands an event direction byte into an object with event direction and internationalised
+   * direction description.
+   *
+   * @param {array}    bytes      64 byte message as a Uint8Array
+   * @param {number}   offset     Index of event direction byte in message
+   *
+   * @param {object}   { code: byte, direction: string }
+   */
   direction: function (bytes, offset) {
     const byte = bytes.getUint8(offset, true)
 
     const direction = {
-      code: byte
+      code: byte,
     }
 
     switch (byte) {
@@ -85,19 +85,19 @@ module.exports = {
   },
 
   /**
-    * Expands an event reason byte into an object with event reason and internationalised
-    * reason description.
-    *
-    * @param {array}    bytes      64 byte message as a Uint8Array
-    * @param {number}   offset     Index of event reason byte in message
-    *
-    * @param {object}   { code: byte, reason: string }
-    */
+   * Expands an event reason byte into an object with event reason and internationalised
+   * reason description.
+   *
+   * @param {array}    bytes      64 byte message as a Uint8Array
+   * @param {number}   offset     Index of event reason byte in message
+   *
+   * @param {object}   { code: byte, reason: string }
+   */
   reason: function (bytes, offset) {
     const byte = bytes.getUint8(offset, true)
 
     const reason = {
-      code: byte
+      code: byte,
     }
 
     switch (byte) {
@@ -242,13 +242,13 @@ module.exports = {
   },
 
   /**
-    * Expands a status relay state byte into an object with the relays as keys.
-    *
-    * @param {array}    bytes      64 byte message as a Uint8Array
-    * @param {number}   offset     Index of relay state  byte in message
-    *
-    * @param {object}   { state: byte, 1: open/closed, 2: open/closed, 3: open/closed, 4: open/closed }
-    */
+   * Expands a status relay state byte into an object with the relays as keys.
+   *
+   * @param {array}    bytes      64 byte message as a Uint8Array
+   * @param {number}   offset     Index of relay state  byte in message
+   *
+   * @param {object}   { state: byte, 1: open/closed, 2: open/closed, 3: open/closed, 4: open/closed }
+   */
   relays: function (bytes, offset) {
     const byte = bytes.getUint8(offset, true)
 
@@ -258,47 +258,47 @@ module.exports = {
         1: (byte & 0x01) === 1,
         2: (byte & 0x02) === 1,
         3: (byte & 0x03) === 1,
-        4: (byte & 0x08) === 1
-      }
+        4: (byte & 0x08) === 1,
+      },
     }
 
     return relays
   },
 
   /**
-    * Expands a status input state byte into an object with the inputs as keys.
-    *
-    * @param {array}    bytes      64 byte message as a Uint8Array
-    * @param {number}   offset     Index of relay state  byte in message
-    *
-    * @param {object}   { state: byte, forceLock: open/closed, fireAlarm: open/closed }
-    */
+   * Expands a status input state byte into an object with the inputs as keys.
+   *
+   * @param {array}    bytes      64 byte message as a Uint8Array
+   * @param {number}   offset     Index of relay state  byte in message
+   *
+   * @param {object}   { state: byte, forceLock: open/closed, fireAlarm: open/closed }
+   */
   inputs: function (bytes, offset) {
     const byte = bytes.getUint8(offset, true)
 
     const inputs = {
       state: byte,
       forceLock: (byte & 0x01) === 0x01,
-      fireAlarm: (byte & 0x02) === 0x02
+      fireAlarm: (byte & 0x02) === 0x02,
     }
 
     return inputs
   },
 
   /**
-    * Expands a door control byte into a composite object with both the original status byte and a
-    * human friendly description.
-    *
-    * @param {array}    bytes      64 byte message as a Uint8Array
-    * @param {number}   offset     Index of door state  byte in message
-    *
-    * @param {object}   { value: byte, state: 'normally open', 'normally closed', 'controlled' or 'unknown' }
-    */
+   * Expands a door control byte into a composite object with both the original status byte and a
+   * human friendly description.
+   *
+   * @param {array}    bytes      64 byte message as a Uint8Array
+   * @param {number}   offset     Index of door state  byte in message
+   *
+   * @param {object}   { value: byte, state: 'normally open', 'normally closed', 'controlled' or 'unknown' }
+   */
   doorState: function (bytes, offset) {
     const byte = bytes.getUint8(offset, true)
 
     const control = {
-      value: byte
+      value: byte,
     }
 
     switch (byte) {
@@ -320,5 +320,5 @@ module.exports = {
     }
 
     return control
-  }
+  },
 }

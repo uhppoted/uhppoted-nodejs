@@ -13,12 +13,13 @@ describe('set-time-profile', function () {
         weekdays: ['Monday', 'Wednesday', 'Friday'],
         segments: [
           { start: '08:30', end: '11:45' },
-          { start: '13:15', end: '17:25' }
+          { start: '13:15', end: '17:25' },
         ],
-        linkedTo: 3
+        linkedTo: 3,
       }
 
-      return uhppoted.setTimeProfile({}, 0, profile)
+      return uhppoted
+        .setTimeProfile({}, 0, profile)
         .then(() => {
           assert.fail()
         })
@@ -34,12 +35,17 @@ describe('set-time-profile', function () {
         weekdays: ['Monday', 'Wednesday', 'Friday'],
         segments: [
           { start: '08:30', end: '11:45' },
-          { start: '13:15', end: '17:25' }
+          { start: '13:15', end: '17:25' },
         ],
-        linkedTo: 3
+        linkedTo: 3,
       }
 
-      return uhppoted.setTimeProfile({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' }, profile)
+      return uhppoted
+        .setTimeProfile(
+          {},
+          { id: 0, address: '192.168.1.125', protocol: 'tcp' },
+          profile,
+        )
         .then(() => {
           assert.fail()
         })
@@ -55,12 +61,13 @@ describe('set-time-profile', function () {
         weekdays: ['Monday', 'Wednesday', 'Friday'],
         segments: [
           { start: '08:30', end: '11:45' },
-          { start: '13:15', end: '17:25' }
+          { start: '13:15', end: '17:25' },
         ],
-        linkedTo: 3
+        linkedTo: 3,
       }
 
-      return uhppoted.setTimeProfile({}, 405419896, profile)
+      return uhppoted
+        .setTimeProfile({}, 405419896, profile)
         .then(() => {
           assert.fail()
         })
@@ -76,12 +83,13 @@ describe('set-time-profile', function () {
         weekdays: ['Monday', 'Wednesday', 'Friday'],
         segments: [
           { start: '08:30', end: '11:45' },
-          { start: '13:15', end: '17:25' }
+          { start: '13:15', end: '17:25' },
         ],
-        linkedTo: 3
+        linkedTo: 3,
       }
 
-      return uhppoted.setTimeProfile({}, 405419896, profile)
+      return uhppoted
+        .setTimeProfile({}, 405419896, profile)
         .then(() => {
           assert.fail()
         })
@@ -97,12 +105,13 @@ describe('set-time-profile', function () {
         weekdays: ['Monday', 'Wednesday', 'Friday'],
         segments: [
           { start: '08:30', end: '11:45' },
-          { start: '13:15', end: '17:25' }
+          { start: '13:15', end: '17:25' },
         ],
-        linkedTo: 3
+        linkedTo: 3,
       }
 
-      return uhppoted.setTimeProfile({}, 405419896, profile)
+      return uhppoted
+        .setTimeProfile({}, 405419896, profile)
         .then(() => {
           assert.fail()
         })

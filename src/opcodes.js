@@ -38,5 +38,5 @@ module.exports = {
 
   NormallyOpen: 0x01,
   NormallyClosed: 0x02,
-  Controlled: 0x03
+  Controlled: 0x03,
 }
