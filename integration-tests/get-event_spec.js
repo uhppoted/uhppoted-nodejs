@@ -1,3 +1,5 @@
+const { Buffer } = require('node:buffer')
+
 const describe = require('mocha').describe
 const before = require('mocha').before
 const after = require('mocha').after
@@ -105,7 +107,7 @@ describe('#getEvent(...)', function () {
   })
 })
 
-describe('#getEvent(...) with missing event', function (done) {
+describe('#getEvent(...) with missing event', function (_done) {
   let sock = null
 
   before(function () {
@@ -118,7 +120,7 @@ describe('#getEvent(...) with missing event', function (done) {
 
   it("should return 'missing' error for get-event with index after last event", function (done) {
     uhppoted.getEvent(ctx, 405419896, 200)
-      .then(response => {
+      .then(_response => {
         done(new Error('expected "405419896:200  event does not exist"'))
       })
       .catch(err => {
@@ -134,7 +136,7 @@ describe('#getEvent(...) with missing event', function (done) {
     }
 
     uhppoted.getEvent(alt, 405419896, 200)
-      .then(response => {
+      .then(_response => {
         done(new Error('expected "405419896:200  yav"'))
       })
       .catch(err => {
@@ -144,7 +146,7 @@ describe('#getEvent(...) with missing event', function (done) {
   })
 })
 
-describe('#getEvent(...) with overwritten event', function (done) {
+describe('#getEvent(...) with overwritten event', function (_done) {
   let sock = null
 
   before(function () {
@@ -157,7 +159,7 @@ describe('#getEvent(...) with overwritten event', function (done) {
 
   it("should return 'overwritten' error for get-event with index before first event", function (done) {
     uhppoted.getEvent(ctx, 201020304, 73)
-      .then(response => {
+      .then(_response => {
         done(new Error('expected "201020304:73  event overwritten"'))
       })
       .catch(err => {
@@ -173,7 +175,7 @@ describe('#getEvent(...) with overwritten event', function (done) {
     }
 
     uhppoted.getEvent(alt, 201020304, 73)
-      .then(response => {
+      .then(_response => {
         done(new Error('expected "201020304:73  jup"'))
       })
       .catch(err => {

@@ -308,7 +308,7 @@ module.exports = {
     *
     * @param {object}   Decoded response to a get-time-profile object
     */
-  GetTimeProfile: function (bytes, translator) {
+  GetTimeProfile: function (bytes, _translator) {
     const map = new Map([
       [17, 'Monday'],
       [18, 'Tuesday'],
@@ -377,7 +377,7 @@ module.exports = {
     *
     * @param {object}   Decoded set-time-profile response object
     */
-  SetTimeProfile: function (bytes, translator) {
+  SetTimeProfile: function (bytes, _translator) {
     return {
       deviceId: uint32(bytes, 4),
       updated: bool(bytes, 8)
@@ -393,7 +393,7 @@ module.exports = {
     *
     * @param {object}   Decoded clear-time-profiles response object
     */
-  ClearTimeProfiles: function (bytes, translator) {
+  ClearTimeProfiles: function (bytes, _translator) {
     return {
       deviceId: uint32(bytes, 4),
       cleared: bool(bytes, 8)
@@ -409,7 +409,7 @@ module.exports = {
     *
     * @param {object}   Decoded clear-task-list response object
     */
-  ClearTaskList: function (bytes, translator) {
+  ClearTaskList: function (bytes, _translator) {
     return {
       deviceId: uint32(bytes, 4),
       cleared: bool(bytes, 8)
@@ -425,7 +425,7 @@ module.exports = {
     *
     * @param {object}   Decoded add-task response object
     */
-  AddTask: function (bytes, translator) {
+  AddTask: function (bytes, _translator) {
     return {
       deviceId: uint32(bytes, 4),
       added: bool(bytes, 8)
@@ -441,7 +441,7 @@ module.exports = {
     *
     * @param {object}   Decoded refresh-task-list response object
     */
-  RefreshTaskList: function (bytes, translator) {
+  RefreshTaskList: function (bytes, _translator) {
     return {
       deviceId: uint32(bytes, 4),
       refreshed: bool(bytes, 8)

@@ -1,3 +1,4 @@
+const process = require('node:process')
 const expect = require('chai').expect
 const dgram = require('dgram')
 const net = require('net')

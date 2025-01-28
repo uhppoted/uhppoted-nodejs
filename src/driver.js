@@ -106,15 +106,15 @@ module.exports = {
   send: async function (ctx, deviceId, op, request, dest = null, protocol = 'udp') {
     const c = context(deviceId, ctx.config, ctx.logger)
 
-    const receiver = new Promise((resolve, reject) => {
+    const receiver = new Promise((resolve) => {
       resolve()
     })
 
-    const decode = function (reply) {
+    const decode = function (_reply) {
       return {}
     }
 
-    receiver.received = (message) => {}
+    receiver.received = (_message) => {}
     receiver.cancel = () => {}
 
     if (dest != null && `${dest}` !== '' && protocol === 'tcp') {
@@ -145,7 +145,7 @@ module.exports = {
     const c = context(0, ctx.config, ctx.logger)
     const replies = []
 
-    const receiver = new Promise((resolve, reject) => {
+    const receiver = new Promise((resolve) => {
       setTimeout(() => { resolve(replies) }, c.timeout)
     })
 

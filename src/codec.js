@@ -9,6 +9,7 @@ const opcodes = require('./opcodes.js')
 const errors = require('./errors.js')
 const encoder = require('./encoder.js')
 const decoder = require('./decoder.js')
+const { Buffer } = require('node:buffer')
 
 /**
   * Lookup table that maps op codes to the equivalent encoder function.

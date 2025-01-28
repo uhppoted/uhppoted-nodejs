@@ -3,7 +3,7 @@ const errors = require('./errors.js')
 const log = require('./logger.js')
 
 function initialise (ctx) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     let cfg = new config.Config()
     let locale = 'en-US'
 

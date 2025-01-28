@@ -1,3 +1,5 @@
+const { Buffer } = require('node:buffer')
+
 const describe = require('mocha').describe
 const before = require('mocha').before
 const after = require('mocha').after

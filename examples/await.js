@@ -1,7 +1,7 @@
 const uhppoted = require('uhppoted')
 const ctx = require('./common.js')
 
-async function GetDevices (id) {
+async function GetDevices (_id) {
   const devices = new Map()
   const response = await uhppoted.getDevices(ctx)
 

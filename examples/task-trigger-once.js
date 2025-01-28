@@ -12,9 +12,9 @@ const task = {
 
 uhppoted.clearTaskList(ctx, deviceID)
   .then(response => { return console.log('\nclear-task-list:\n', response) })
-  .then(b => { return uhppoted.addTask(ctx, deviceID, task) })
+  .then(() => { return uhppoted.addTask(ctx, deviceID, task) })
   .then(response => { return console.log('\nadd-task:\n', response) })
-  .then(b => { return uhppoted.refreshTaskList(ctx, deviceID) })
+  .then(() => { return uhppoted.refreshTaskList(ctx, deviceID) })
   .then(response => { return console.log('\nrefresh-task-list:\n', response) })
   .catch(err => {
     console.log(`\n   *** ERROR ${err.message}\n`)

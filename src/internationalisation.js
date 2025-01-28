@@ -89,7 +89,7 @@ function translate (object, locale) {
     dict = dictionaries.get(locale)
   }
 
-  const lookup = function (match, token, offset, string) {
+  const lookup = function (match, token, _offset, _string) {
     if (map.has(token)) {
       const key = map.get(token)
       if (dict.has(key)) {
