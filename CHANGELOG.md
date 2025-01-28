@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Unreleased
+## [0.8.10](https://github.com/uhppoted/uhppoted-nodejs/releases/tag/v0.8.10) - 2024-01-29
 
 ### Updated
 1. Added the auto-send interval to the _get-listener_ and _set-listener_ API functions.

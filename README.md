@@ -19,10 +19,9 @@ npm install uhppoted
 
 #### Current Release
 
-**[v0.8.9](https://github.com/uhppoted/uhppoted-nodejs/releases/tag/v0.8.9) - 2024-09-06**
+**[v0.8.10](https://github.com/uhppoted/uhppoted-nodejs/releases/tag/v0.8.10) - 2025-01-29**
 
-1. Added support for TCP connections to controllers.
-2. Removed dependency on _ip.js_.
+1. Added event _auto-send interval_ to the `get-listener` and `set-listener` API functions.
 
 
 ### API
