@@ -30,14 +30,7 @@ module.exports = {
    *
    * @param {object}   Decoded reply containing the received information
    */
-  get: async function (
-    ctx,
-    deviceId,
-    op,
-    request,
-    dest = null,
-    protocol = 'udp',
-  ) {
+  get: async function (ctx, deviceId, op, request, dest = null, protocol = 'udp') {
     const c = context(deviceId, ctx.config, ctx.logger, ctx.locale)
     const receiver = receiveAny(c.timeout, ctx.locale)
 
@@ -75,14 +68,7 @@ module.exports = {
    *
    * @param {object}  Decoded result of the operation
    */
-  set: async function (
-    ctx,
-    deviceId,
-    op,
-    request,
-    dest = null,
-    protocol = 'udp',
-  ) {
+  set: async function (ctx, deviceId, op, request, dest = null, protocol = 'udp') {
     const c = context(deviceId, ctx.config, ctx.logger)
     const receiver = receiveAny(c.timeout, ctx.locale)
 
@@ -117,14 +103,7 @@ module.exports = {
    * @param {string}   protocol Optional connection protocol ('udp' or 'tcp'). Defaults to
    *                            'udp' unless 'tcp'
    */
-  send: async function (
-    ctx,
-    deviceId,
-    op,
-    request,
-    dest = null,
-    protocol = 'udp',
-  ) {
+  send: async function (ctx, deviceId, op, request, dest = null, protocol = 'udp') {
     const c = context(deviceId, ctx.config, ctx.logger)
 
     const receiver = new Promise((resolve) => {
@@ -259,21 +238,14 @@ async function udp(ctx, op, request, receive) {
         sock.setBroadcast(true)
       }
 
-      sock.send(
-        new Uint8Array(rq),
-        0,
-        64,
-        ctx.addr.port,
-        ctx.addr.address,
-        (err, bytes) => {
-          if (err) {
-            reject(err)
-          } else {
-            log(ctx.debug, 'sent', rq, ctx.addr)
-            resolve(bytes)
-          }
-        },
-      )
+      sock.send(new Uint8Array(rq), 0, 64, ctx.addr.port, ctx.addr.address, (err, bytes) => {
+        if (err) {
+          reject(err)
+        } else {
+          log(ctx.debug, 'sent', rq, ctx.addr)
+          resolve(bytes)
+        }
+      })
     })
 
     sock.bind({
@@ -439,9 +411,7 @@ function log(debug, label, message, rinfo) {
     } else {
       const prefix = ' '.repeat(18)
       const pad = ' '.repeat(26)
-      console.log(
-        prefix + '[debug] ' + description + '\n' + pad + format(message, pad),
-      )
+      console.log(prefix + '[debug] ' + description + '\n' + pad + format(message, pad))
     }
   }
 }

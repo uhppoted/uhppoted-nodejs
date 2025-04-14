@@ -19,11 +19,7 @@ describe('set-time', function () {
 
     it('should fail with invalid controller ID', function () {
       return uhppoted
-        .setTime(
-          {},
-          { id: 0, address: '192.168.1.125', protocol: 'tcp' },
-          '2021-06-01 16:52:35',
-        )
+        .setTime({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' }, '2021-06-01 16:52:35')
         .then(() => {
           assert.fail()
         })

@@ -3,21 +3,22 @@ const ctx = require('./common.js')
 
 const deviceID = 405419896
 const addr = '192.168.1.100'
+const antipassback = 2
 
 async function run() {
   await uhppoted
-    .recordSpecialEvents(ctx, deviceID, true)
+    .setAntiPassback(ctx, deviceID, antipassback)
     .then((response) => {
-      console.log('\nrecord-special-events:\n', response)
+      console.log('\nset-antipassback:\n', response)
     })
     .catch((err) => {
       console.log(`\n   *** ERROR ${err.message}\n`)
     })
 
   await uhppoted
-    .recordSpecialEvents(ctx, { id: deviceID, address: addr, protocol: 'tcp' }, true)
+    .setAntiPassback(ctx, { id: deviceID, address: addr, protocol: 'tcp' }, antipassback)
     .then((response) => {
-      console.log('\nrecord-special-events:\n', response)
+      console.log('\nset-antipassback:\n', response)
     })
     .catch((err) => {
       console.log(`\n   *** ERROR ${err.message}\n`)

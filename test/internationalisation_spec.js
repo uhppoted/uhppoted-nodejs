@@ -43,10 +43,7 @@ describe('internationalisation', function () {
       const expected = { swipe: '** card swipe **' }
       const object = { swipe: '** {{card swipe}} **' }
 
-      const translated = translate(
-        object,
-        'ahdlfhauawroiuawbalsfjhbasuyeabdhbffy',
-      )
+      const translated = translate(object, 'ahdlfhauawroiuawbalsfjhbasuyeabdhbffy')
 
       expect(translated).to.deep.equal(expected)
     })
@@ -91,10 +88,7 @@ describe('internationalisation', function () {
       const expected = { swipe: '** swipe open **' }
       const object = { swipe: '** {{swipe open}} **' }
 
-      const translated = translate(
-        object,
-        'ahdlfhauawroiuawbalsfjhbasuyeabdhbffy',
-      )
+      const translated = translate(object, 'ahdlfhauawroiuawbalsfjhbasuyeabdhbffy')
 
       expect(translated).to.deep.equal(expected)
     })
@@ -139,10 +133,7 @@ describe('internationalisation', function () {
       const expected = { swipe: '** swipe close **' }
       const object = { swipe: '** {{swipe close}} **' }
 
-      const translated = translate(
-        object,
-        'ahdlfhauawroiuawbalsfjhbasuyeabdhbffy',
-      )
+      const translated = translate(object, 'ahdlfhauawroiuawbalsfjhbasuyeabdhbffy')
 
       expect(translated).to.deep.equal(expected)
     })
@@ -187,10 +178,7 @@ describe('internationalisation', function () {
       const expected = { invalidCardPIN: 'invalid card keypad PIN 1000000' }
       const object = { invalidCardPIN: '{{invalid card keypad PIN}} 1000000' }
 
-      const translated = translate(
-        object,
-        'ahdlfhauawroiuawbalsfjhbasuyeabdhbffy',
-      )
+      const translated = translate(object, 'ahdlfhauawroiuawbalsfjhbasuyeabdhbffy')
 
       expect(translated).to.deep.equal(expected)
     })

@@ -61,9 +61,7 @@ module.exports = {
 
     return validate({ controller: id }, ctx.locale)
       .then(() => initialise(ctx))
-      .then((context) =>
-        get(context, id, opcodes.GetDevice, {}, addr, protocol),
-      )
+      .then((context) => get(context, id, opcodes.GetDevice, {}, addr, protocol))
       .then((response) => translate(response, ctx.locale))
   },
 
@@ -96,16 +94,7 @@ module.exports = {
 
     return validate({ controller: id }, ctx.locale)
       .then(() => initialise(ctx))
-      .then((context) =>
-        send(
-          context,
-          id,
-          opcodes.SetIP,
-          { address, netmask, gateway },
-          addr,
-          protocol,
-        ),
-      )
+      .then((context) => send(context, id, opcodes.SetIP, { address, netmask, gateway }, addr, protocol))
       .then((response) => translate(response, ctx.locale))
   },
 
@@ -136,9 +125,7 @@ module.exports = {
 
     return validate({ controller: id }, ctx.locale)
       .then(() => initialise(ctx))
-      .then((context) =>
-        get(context, id, opcodes.GetListener, {}, addr, protocol),
-      )
+      .then((context) => get(context, id, opcodes.GetListener, {}, addr, protocol))
       .then((response) => translate(response, ctx.locale))
   },
 
@@ -174,16 +161,7 @@ module.exports = {
 
     return validate({ controller: id }, ctx.locale)
       .then(() => initialise(ctx))
-      .then((context) =>
-        set(
-          context,
-          id,
-          opcodes.SetListener,
-          { address, port, interval: autosend },
-          addr,
-          protocol,
-        ),
-      )
+      .then((context) => set(context, id, opcodes.SetListener, { address, port, interval: autosend }, addr, protocol))
       .then((response) => translate(response, ctx.locale))
   },
 
@@ -244,9 +222,7 @@ module.exports = {
 
     return validate({ controller: id }, ctx.locale)
       .then(() => initialise(ctx))
-      .then((context) =>
-        set(context, id, opcodes.SetTime, { datetime }, addr, protocol),
-      )
+      .then((context) => set(context, id, opcodes.SetTime, { datetime }, addr, protocol))
       .then((response) => translate(response, ctx.locale))
   },
 
@@ -277,9 +253,7 @@ module.exports = {
 
     return validate({ controller: id, door }, ctx.locale)
       .then(() => initialise(ctx))
-      .then((context) =>
-        get(context, id, opcodes.GetDoorControl, { door }, addr, protocol),
-      )
+      .then((context) => get(context, id, opcodes.GetDoorControl, { door }, addr, protocol))
       .then((response) => translate(response, ctx.locale))
       .then((response) => translate(response, ctx.locale))
   },
@@ -332,16 +306,7 @@ module.exports = {
 
     return validate({ controller: id, door }, ctx.locale)
       .then(() => initialise(ctx))
-      .then((context) =>
-        set(
-          context,
-          id,
-          opcodes.SetDoorControl,
-          { door, delay, control },
-          addr,
-          protocol,
-        ),
-      )
+      .then((context) => set(context, id, opcodes.SetDoorControl, { door, delay, control }, addr, protocol))
       .then((response) => translate(response, ctx.locale))
   },
 
@@ -371,16 +336,7 @@ module.exports = {
 
     return validate({ controller: id }, ctx.locale)
       .then(() => initialise(ctx))
-      .then((context) =>
-        set(
-          context,
-          id,
-          opcodes.RecordSpecialEvents,
-          { enable },
-          addr,
-          protocol,
-        ),
-      )
+      .then((context) => set(context, id, opcodes.RecordSpecialEvents, { enable }, addr, protocol))
       .then((response) => translate(response, ctx.locale))
   },
 
@@ -410,9 +366,7 @@ module.exports = {
 
     return validate({ controller: id }, ctx.locale)
       .then(() => initialise(ctx))
-      .then((context) =>
-        get(context, id, opcodes.GetStatus, {}, addr, protocol),
-      )
+      .then((context) => get(context, id, opcodes.GetStatus, {}, addr, protocol))
       .then((response) => translate(response, ctx.locale))
   },
 
@@ -473,9 +427,7 @@ module.exports = {
 
     return validate({ controller: id, cardNumber: card }, ctx.locale)
       .then(() => initialise(ctx))
-      .then((context) =>
-        get(context, id, opcodes.GetCardByID, { card }, addr, protocol),
-      )
+      .then((context) => get(context, id, opcodes.GetCardByID, { card }, addr, protocol))
       .then((response) => translate(response, ctx.locale))
   },
 
@@ -506,9 +458,7 @@ module.exports = {
 
     return validate({ controller: id, cardIndex: index }, ctx.locale)
       .then(() => initialise(ctx))
-      .then((context) =>
-        get(context, id, opcodes.GetCardByIndex, { index }, addr, protocol),
-      )
+      .then((context) => get(context, id, opcodes.GetCardByIndex, { index }, addr, protocol))
       .then((response) => translate(response, ctx.locale))
   },
 
@@ -544,16 +494,7 @@ module.exports = {
 
     return validate({ controller: id, cardNumber: card, doors }, ctx.locale)
       .then(() => initialise(ctx))
-      .then((context) =>
-        set(
-          context,
-          id,
-          opcodes.PutCard,
-          { card, from: validFrom, to: validUntil, doors, PIN },
-          addr,
-          protocol,
-        ),
-      )
+      .then((context) => set(context, id, opcodes.PutCard, { card, from: validFrom, to: validUntil, doors, PIN }, addr, protocol))
       .then((response) => translate(response, ctx.locale))
   },
 
@@ -584,9 +525,7 @@ module.exports = {
 
     return validate({ controller: id, cardNumber: card }, ctx.locale)
       .then(() => initialise(ctx))
-      .then((context) =>
-        set(context, id, opcodes.DeleteCard, { card }, addr, protocol),
-      )
+      .then((context) => set(context, id, opcodes.DeleteCard, { card }, addr, protocol))
       .then((response) => translate(response, ctx.locale))
   },
 
@@ -616,9 +555,7 @@ module.exports = {
 
     return validate({ controller: id }, ctx.locale)
       .then(() => initialise(ctx))
-      .then((context) =>
-        set(context, id, opcodes.DeleteCards, {}, addr, protocol),
-      )
+      .then((context) => set(context, id, opcodes.DeleteCards, {}, addr, protocol))
       .then((response) => translate(response, ctx.locale))
   },
 
@@ -649,16 +586,7 @@ module.exports = {
 
     return validate({ controller: id, profileId: profile }, ctx.locale)
       .then(() => initialise(ctx))
-      .then((context) =>
-        get(
-          context,
-          id,
-          opcodes.GetTimeProfile,
-          { profileId: profile },
-          addr,
-          protocol,
-        ),
-      )
+      .then((context) => get(context, id, opcodes.GetTimeProfile, { profileId: profile }, addr, protocol))
       .then((response) => translate(response, ctx.locale))
   },
 
@@ -689,9 +617,7 @@ module.exports = {
 
     return validate({ controller: id, profile }, ctx.locale)
       .then(() => initialise(ctx))
-      .then((context) =>
-        get(context, id, opcodes.SetTimeProfile, { profile }, addr, protocol),
-      )
+      .then((context) => get(context, id, opcodes.SetTimeProfile, { profile }, addr, protocol))
       .then((response) => translate(response, ctx.locale))
   },
 
@@ -721,9 +647,7 @@ module.exports = {
 
     return validate({ controller: id }, ctx.locale)
       .then(() => initialise(ctx))
-      .then((context) =>
-        get(context, id, opcodes.ClearTimeProfiles, {}, addr, protocol),
-      )
+      .then((context) => get(context, id, opcodes.ClearTimeProfiles, {}, addr, protocol))
       .then((response) => translate(response, ctx.locale))
   },
 
@@ -753,9 +677,7 @@ module.exports = {
 
     return validate({ controller: id }, ctx.locale)
       .then(() => initialise(ctx))
-      .then((context) =>
-        get(context, id, opcodes.ClearTaskList, {}, addr, protocol),
-      )
+      .then((context) => get(context, id, opcodes.ClearTaskList, {}, addr, protocol))
       .then((response) => translate(response, ctx.locale))
   },
 
@@ -787,9 +709,7 @@ module.exports = {
 
     return validate({ controller: id, task }, ctx.locale)
       .then(() => initialise(ctx))
-      .then((context) =>
-        get(context, id, opcodes.AddTask, { task }, addr, protocol),
-      )
+      .then((context) => get(context, id, opcodes.AddTask, { task }, addr, protocol))
       .then((response) => translate(response, ctx.locale))
   },
 
@@ -819,9 +739,7 @@ module.exports = {
 
     return validate({ controller: id }, ctx.locale)
       .then(() => initialise(ctx))
-      .then((context) =>
-        get(context, id, opcodes.RefreshTaskList, {}, addr, protocol),
-      )
+      .then((context) => get(context, id, opcodes.RefreshTaskList, {}, addr, protocol))
       .then((response) => translate(response, ctx.locale))
   },
 
@@ -851,22 +769,11 @@ module.exports = {
 
     const first = validate({ controller: id }, ctx.locale)
       .then(() => initialise(ctx))
-      .then((context) =>
-        get(context, id, opcodes.GetEvent, { index: 0 }, addr, protocol),
-      )
+      .then((context) => get(context, id, opcodes.GetEvent, { index: 0 }, addr, protocol))
 
     const last = validate({ controller: id }, ctx.locale)
       .then(() => initialise(ctx))
-      .then((context) =>
-        get(
-          context,
-          id,
-          opcodes.GetEvent,
-          { index: 0xffffffff },
-          addr,
-          protocol,
-        ),
-      )
+      .then((context) => get(context, id, opcodes.GetEvent, { index: 0xffffffff }, addr, protocol))
 
     const promise = Promise.all([first, last]).then(([p, q]) => {
       const object = { deviceId: id, first: 0, last: 0 }
@@ -912,17 +819,9 @@ module.exports = {
 
     return validate({ controller: id, eventIndex: index }, ctx.locale)
       .then(() => initialise(ctx))
-      .then((context) =>
-        get(context, id, opcodes.GetEvent, { index }, addr, protocol),
-      )
+      .then((context) => get(context, id, opcodes.GetEvent, { index }, addr, protocol))
       .then((response) => {
-        if (
-          response &&
-          response.event &&
-          response.event.type &&
-          response.event.type.code &&
-          response.event.type.code === 255
-        ) {
+        if (response && response.event && response.event.type && response.event.type.code && response.event.type.code === 255) {
           throw errors.EventOverwritten(controller, index, ctx.locale)
         }
 
@@ -960,9 +859,7 @@ module.exports = {
 
     return validate({ controller: id }, ctx.locale)
       .then(() => initialise(ctx))
-      .then((context) =>
-        get(context, id, opcodes.GetEventIndex, {}, addr, protocol),
-      )
+      .then((context) => get(context, id, opcodes.GetEventIndex, {}, addr, protocol))
       .then((response) => translate(response, ctx.locale))
   },
 
@@ -993,9 +890,7 @@ module.exports = {
 
     return validate({ controller: id, eventIndex: index }, ctx.locale)
       .then(() => initialise(ctx))
-      .then((context) =>
-        set(context, id, opcodes.SetEventIndex, { index }, addr, protocol),
-      )
+      .then((context) => set(context, id, opcodes.SetEventIndex, { index }, addr, protocol))
       .then((response) => translate(response, ctx.locale))
   },
 
@@ -1026,9 +921,7 @@ module.exports = {
 
     return validate({ controller: id, door }, ctx.locale)
       .then(() => initialise(ctx))
-      .then((context) =>
-        set(context, id, opcodes.OpenDoor, { door }, addr, protocol),
-      )
+      .then((context) => set(context, id, opcodes.OpenDoor, { door }, addr, protocol))
       .then((response) => translate(response, ctx.locale))
   },
 
@@ -1067,9 +960,7 @@ module.exports = {
 
     return validate({ controller: id }, ctx.locale)
       .then(() => initialise(ctx))
-      .then((context) =>
-        set(context, id, opcodes.SetPCControl, { enable }, addr, protocol),
-      )
+      .then((context) => set(context, id, opcodes.SetPCControl, { enable }, addr, protocol))
       .then((response) => translate(response, ctx.locale))
   },
 
@@ -1106,9 +997,7 @@ module.exports = {
 
     return validate({ controller: id }, ctx.locale)
       .then(() => initialise(ctx))
-      .then((context) =>
-        set(context, id, opcodes.SetInterlock, { interlock }, addr, protocol),
-      )
+      .then((context) => set(context, id, opcodes.SetInterlock, { interlock }, addr, protocol))
       .then((response) => translate(response, ctx.locale))
   },
 
@@ -1215,6 +1104,72 @@ module.exports = {
   },
 
   /**
+   * Retrieves the anti-passback mode from a controller.
+   *
+   * @param {object}      ctx         Context with configuration, locale (optional) and logger (optional).
+   * @param {uint|object} controller  Either a controller serial number (legacy implementation) or an
+   *                                  object of the form { controller, address, protocol }:
+   * @param {uint}        controller.id        Controller serial number
+   * @param {string}      controller.address   Optional controller IPv4 address. Defaults to UDP broadcast.
+   * @param {string}      controller.protocol  Optional connection protocol ('udp' or 'tcp'). Defaults to
+   *                                           'udp' unless 'tcp'
+   *
+   * @example
+   * uhppoted.getAntiPassback(ctx, 405419896)
+   *  .then(response => { console.log(response) })
+   *  .catch(err => { console.log(`${err.message}`)
+   *
+   * @example
+   * uhppoted.getAntiPassback(ctx, { id:405419896, address:'192.168.1.100', protocol:'tcp'})
+   *  .then(response => { console.log(response) })
+   *  .catch(err => { console.log(`${err.message}`)
+   */
+  getAntiPassback: function (ctx, controller) {
+    const { id, address: addr, protocol } = resolve(controller)
+
+    return validate({ controller: id }, ctx.locale)
+      .then(() => initialise(ctx))
+      .then((context) => set(context, id, opcodes.GetAntiPassback, {}, addr, protocol))
+      .then((response) => translate(response, ctx.locale))
+  },
+
+  /**
+   * Sets the anti-passback mode on a controller.
+   *
+   * @param {object}      ctx         Context with configuration, locale (optional) and logger (optional).
+   * @param {uint|object} controller  Either a controller serial number (legacy implementation) or an
+   *                                  object of the form { controller, address, protocol }:
+   * @param {uint}        controller.id        Controller serial number
+   * @param {string}      controller.address   Optional controller IPv4 address. Defaults to UDP broadcast.
+   * @param {string}      controller.protocol  Optional connection protocol ('udp' or 'tcp'). Defaults to
+   *                                           'udp' unless 'tcp'
+   * @param {uint}        antipassback  Anti-passback mode:
+   *                                    - 0: disabled
+   *                                    - 1: (1:2);(3:4)
+   *                                    - 2: (1,3):(2,4)
+   *                                    - 3: 1:(2,3)
+   *                                    - 4: 1:(2,3,4)
+   *
+   * @example
+   * uhppoted.setAntiPassback(ctx, 405419896, 2)
+   *  .then(response => { console.log(response) })
+   *  .catch(err => { console.log(`${err.message}`)
+   *
+   * @example
+   * uhppoted.setAntiPassback(ctx, { id:405419896, address:'192.168.1.100', protocol:'tcp'}, 2)
+   *  .then(response => { console.log(response) })
+   *  .catch(err => { console.log(`${err.message}`)
+   */
+  setAntiPassback: function (ctx, controller, antipassback) {
+    const { id, address: addr, protocol } = resolve(controller)
+
+    return validate({ controller: id }, ctx.locale)
+      .then(() => initialise(ctx))
+      .then((context) => get(context, id, opcodes.SetAntiPassback, { antipassback }, addr, protocol))
+      .then((response) => translate(response, ctx.locale))
+  },
+
+  /**
    * Resets the controller configuration to the manufacturer default settings.
    *
    * @param {object}      ctx         Context with configuration, locale (optional) and logger (optional).
@@ -1240,9 +1195,7 @@ module.exports = {
 
     return validate({ controller: id }, ctx.locale)
       .then(() => initialise(ctx))
-      .then((context) =>
-        set(context, id, opcodes.RestoreDefaultParameters, {}, addr, protocol),
-      )
+      .then((context) => set(context, id, opcodes.RestoreDefaultParameters, {}, addr, protocol))
       .then((response) => translate(response, ctx.locale))
   },
 

@@ -24,14 +24,12 @@ describe('put-card', function () {
 
     it('should fail with invalid controller ID', function () {
       return uhppoted
-        .putCard(
-          {},
-          { id: 0, address: '192.168.1.125', protocol: 'tcp' },
-          8165538,
-          '2021-01-01',
-          '2021-12-31',
-          { 1: true, 2: false, 3: true, 4: true },
-        )
+        .putCard({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' }, 8165538, '2021-01-01', '2021-12-31', {
+          1: true,
+          2: false,
+          3: true,
+          4: true,
+        })
         .then(() => {
           assert.fail()
         })
@@ -106,15 +104,7 @@ describe('put-card', function () {
 
     it('should fail with invalid PIN', function () {
       return uhppoted
-        .putCard(
-          {},
-          405419896,
-          8112345,
-          '2021-01-01',
-          '2021-12-31',
-          { 1: true, 2: false, 3: true, 4: true },
-          1000000,
-        )
+        .putCard({}, 405419896, 8112345, '2021-01-01', '2021-12-31', { 1: true, 2: false, 3: true, 4: true }, 1000000)
         .then(() => {
           assert.fail()
         })
@@ -125,15 +115,7 @@ describe('put-card', function () {
 
     it('should fail with invalid PIN', function () {
       return uhppoted
-        .putCard(
-          {},
-          405419896,
-          8112345,
-          '2021-01-01',
-          '2021-12-31',
-          { 1: true, 2: false, 3: true, 4: true },
-          -1,
-        )
+        .putCard({}, 405419896, 8112345, '2021-01-01', '2021-12-31', { 1: true, 2: false, 3: true, 4: true }, -1)
         .then(() => {
           assert.fail()
         })
@@ -144,15 +126,7 @@ describe('put-card', function () {
 
     it('should fail with invalid PIN', function () {
       return uhppoted
-        .putCard(
-          {},
-          405419896,
-          8112345,
-          '2021-01-01',
-          '2021-12-31',
-          { 1: true, 2: false, 3: true, 4: true },
-          'qwerty',
-        )
+        .putCard({}, 405419896, 8112345, '2021-01-01', '2021-12-31', { 1: true, 2: false, 3: true, 4: true }, 'qwerty')
         .then(() => {
           assert.fail()
         })

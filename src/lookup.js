@@ -321,4 +321,39 @@ module.exports = {
 
     return control
   },
+
+  /**
+   * Expands an antipassback byte into an object with antipassback code and internationalised mode
+   * description.
+   *
+   * @param {array}    bytes      64 byte message as a Uint8Array
+   * @param {number}   offset     Index of event direction byte in message
+   *
+   * @param {object}   { code: byte, mode: string }
+   *
+   * @exports
+   */
+  antipassback: function (bytes, offset) {
+    const byte = bytes.getUint8(offset, true)
+
+    switch (byte) {
+      case 0x00:
+        return '{{disabled}}'
+
+      case 0x01:
+        return '{{(1:2);(3:4)}}'
+
+      case 0x02:
+        return '{{(1,3):(2,4)}}'
+
+      case 0x03:
+        return '{{1:(2,3)}}'
+
+      case 0x04:
+        return '{{1:(2,3,4)}}'
+
+      default:
+        return '{{unknown}}'
+    }
+  },
 }

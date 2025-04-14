@@ -1,4 +1,5 @@
 const errors = require('./errors.js')
+const opcodes = require('./opcodes.js')
 const { Buffer } = require('node:buffer')
 
 module.exports = {
@@ -286,12 +287,7 @@ module.exports = {
         } else {
           const profileID = Number(permission)
 
-          if (
-            !Number.isNaN(profileID) &&
-            Number.isInteger(profileID) &&
-            profileID >= 2 &&
-            profileID <= 254
-          ) {
+          if (!Number.isNaN(profileID) && Number.isInteger(profileID) && profileID >= 2 && profileID <= 254) {
             request.writeUInt8(profileID, offset)
           }
         }
@@ -393,24 +389,14 @@ module.exports = {
       profileID = Number(profile.id)
     }
 
-    if (
-      Number.isNaN(profileID) ||
-      !Number.isInteger(profileID) ||
-      profileID < 2 ||
-      profileID > 254
-    ) {
+    if (Number.isNaN(profileID) || !Number.isInteger(profileID) || profileID < 2 || profileID > 254) {
       throw new Error(`invalid profile ID (${profile.id})`)
     }
 
     if (profile.linkedTo) {
       linked = Number(profile.linkedTo)
 
-      if (
-        Number.isNaN(linked) ||
-        !Number.isInteger(linked) ||
-        linked < 2 ||
-        linked > 254
-      ) {
+      if (Number.isNaN(linked) || !Number.isInteger(linked) || linked < 2 || linked > 254) {
         throw new Error(`invalid linked profile (${profile.linkedTo})`)
       }
     }
@@ -439,12 +425,7 @@ module.exports = {
       const re = /[0-9]{2}:[0-9]{2}/
       let offset = 24
       profile.segments.slice(0, 3).forEach((segment) => {
-        if (
-          segment.start &&
-          segment.end &&
-          re.test(segment.start) &&
-          re.test(segment.end)
-        ) {
+        if (segment.start && segment.end && re.test(segment.start) && re.test(segment.end)) {
           HHmm2bin(segment.start).copy(request, offset)
           HHmm2bin(segment.end).copy(request, offset + 2)
           offset = offset + 4
@@ -793,6 +774,47 @@ module.exports = {
   },
 
   /**
+   * Get anti-passback mode request.
+   *
+   * @param {number} controller Controller serial number
+   *
+   * @return {buffer} 64 byte NodeJS buffer with encoded restore-default-parameters request.
+   */
+  GetAntiPassback: function (controller) {
+    const request = Buffer.alloc(64)
+
+    request.writeUInt8(0x17, 0)
+    request.writeUInt8(opcodes.GetAntiPassback, 1)
+    request.writeUInt32LE(controller, 4)
+
+    return request
+  },
+
+  /**
+   * Set anti-passback mode request.
+   *
+   * @param {number} controller Controller serial number
+   * @param {number} antipassback Anti-passback mode:
+   *                 - 0: disabled
+   *                 - 1: (1:2);(3:4)
+   *                 - 2: (1,3);(2,4)
+   *                 - 3: 1:(2,3)
+   *                 - 4: 1:(2,3,4)
+   *
+   * @return {buffer} 64 byte NodeJS buffer with encoded restore-default-parameters request.
+   */
+  SetAntiPassback: function (controller, { antipassback }) {
+    const request = Buffer.alloc(64)
+
+    request.writeUInt8(0x17, 0)
+    request.writeUInt8(opcodes.SetAntiPassback, 1)
+    request.writeUInt32LE(controller, 4)
+    request.writeUInt8(antipassback, 8)
+
+    return request
+  },
+
+  /**
    * Restore default parameters request.
    *
    * @param {number} controller Controller serial number
@@ -841,8 +863,7 @@ function uint24(PIN) {
  */
 function datetime2bin(datetime) {
   const bytes = []
-  const re =
-    /([0-9]{2})([0-9]{2})-([0-9]{2})-([0-9]{2}) ([0-9]{2}):([0-9]{2}):([0-9]{2})/
+  const re = /([0-9]{2})([0-9]{2})-([0-9]{2})-([0-9]{2}) ([0-9]{2}):([0-9]{2}):([0-9]{2})/
   const match = datetime.match(re)
 
   for (const m of match.slice(1)) {

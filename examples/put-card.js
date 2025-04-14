@@ -20,15 +20,7 @@ async function run() {
     })
 
   await uhppoted
-    .putCard(
-      ctx,
-      { id: deviceID, address: addr, protocol: 'tcp' },
-      cardNumber,
-      validFrom,
-      validUntil,
-      doors,
-      PIN,
-    )
+    .putCard(ctx, { id: deviceID, address: addr, protocol: 'tcp' }, cardNumber, validFrom, validUntil, doors, PIN)
     .then((response) => {
       console.log('\nput-card:\n', response)
     })

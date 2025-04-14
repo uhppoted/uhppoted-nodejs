@@ -19,11 +19,7 @@ describe('delete-card', function () {
 
     it('should fail with invalid controller ID', function () {
       return uhppoted
-        .deleteCard(
-          {},
-          { id: 0, address: '192.168.1.125', protocol: 'tcp' },
-          8165538,
-        )
+        .deleteCard({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' }, 8165538)
         .then(() => {
           assert.fail()
         })

@@ -37,12 +37,7 @@ const onEvent = function (event) {
       uhppoted
         .openDoor(ctx, controller, door)
         .then((response) => {
-          console.log(
-            'open-door       ',
-            response.deviceId,
-            door,
-            response.opened ? 'opened' : 'error',
-          )
+          console.log('open-door       ', response.deviceId, door, response.opened ? 'opened' : 'error')
         })
         .catch((err) => {
           console.log(`\n   *** ERROR ${err.message}\n`)
@@ -72,11 +67,7 @@ if (listener) {
   uhppoted
     .setPCControl(ctx, deviceID, true)
     .then((response) => {
-      console.log(
-        'set-pc-control  ',
-        response.deviceId,
-        response.ok ? 'ok' : 'error',
-      )
+      console.log('set-pc-control  ', response.deviceId, response.ok ? 'ok' : 'error')
     })
     .catch((err) => {
       console.log(`\n   *** ERROR ${err.message}\n`)

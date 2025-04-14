@@ -175,12 +175,7 @@ function isValidPermission(door, permission) {
   }
 
   const profileID = Number(permission)
-  if (
-    Number.isNaN(profileID) ||
-    !Number.isInteger(profileID) ||
-    profileID < 2 ||
-    profileID > 254
-  ) {
+  if (Number.isNaN(profileID) || !Number.isInteger(profileID) || profileID < 2 || profileID > 254) {
     return false
   }
 

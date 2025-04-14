@@ -26,7 +26,12 @@
     "get-events": "get-events.js",
     "get-event": "get-event.js",
     "open-door": "node open-door.js",
+    "activate-keypads": "node activate-keypads.js",
     "set-interlock": "node set-interlock.js",
+    "set-door-passcodes": "node set-door-passcodes.js",
+    "get-antipassback": "node get-antipassback.js",
+    "set-antipassback": "node set-antipassback.js",
+    "restore-default-parameters": "node restore-default-parameters.js",
     "listen": "node listen.js"
   },
   "dependencies": {

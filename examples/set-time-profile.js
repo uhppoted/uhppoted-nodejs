@@ -25,11 +25,7 @@ async function run() {
     })
 
   await uhppoted
-    .setTimeProfile(
-      ctx,
-      { id: deviceID, address: addr, protocol: 'tcp' },
-      profile,
-    )
+    .setTimeProfile(ctx, { id: deviceID, address: addr, protocol: 'tcp' }, profile)
     .then((response) => {
       console.log('\nset-time-profile:\n', response)
     })

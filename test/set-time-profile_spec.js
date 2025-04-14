@@ -41,11 +41,7 @@ describe('set-time-profile', function () {
       }
 
       return uhppoted
-        .setTimeProfile(
-          {},
-          { id: 0, address: '192.168.1.125', protocol: 'tcp' },
-          profile,
-        )
+        .setTimeProfile({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' }, profile)
         .then(() => {
           assert.fail()
         })

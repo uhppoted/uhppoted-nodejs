@@ -25,15 +25,7 @@ describe('initialise', function () {
   describe('#initialise(ctx)', function () {
     it('should build a valid uhppoted context from a CTX object with just a config', function () {
       const ctx = {
-        config: new uhppoted.Config(
-          'examples',
-          '192.168.1.100',
-          '192.168.1.255:60000',
-          '192.168.1.100:60001',
-          5000,
-          [],
-          false,
-        ),
+        config: new uhppoted.Config('examples', '192.168.1.100', '192.168.1.255:60000', '192.168.1.100:60001', 5000, [], false),
       }
 
       return initialise(ctx)
@@ -51,15 +43,7 @@ describe('initialise', function () {
   describe('#initialise(ctx)', function () {
     it('should build a valid uhppoted context from a CTX object with a config and locale', function () {
       const ctx = {
-        config: new uhppoted.Config(
-          'examples',
-          '192.168.1.100',
-          '192.168.1.255:60000',
-          '192.168.1.100:60001',
-          5000,
-          [],
-          false,
-        ),
+        config: new uhppoted.Config('examples', '192.168.1.100', '192.168.1.255:60000', '192.168.1.100:60001', 5000, [], false),
         locale: 'klingon',
       }
 
@@ -88,9 +72,7 @@ describe('initialise', function () {
         .then((context) => {
           expect(context.config).to.deep.equal(ctx.config)
           expect(context.locale).to.equal('klingon')
-          expect(context.logger.toString()).to.deep.equal(
-            "function log (msg) { console.log('TEST: ', msg) }",
-          )
+          expect(context.logger.toString()).to.deep.equal("function log (msg) { console.log('TEST: ', msg) }")
         })
         .catch((err) => {
           assert.fail(err.message)

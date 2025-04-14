@@ -184,13 +184,19 @@ set-interlock: build
 activate-keypads: build
 	node examples/activate-keypads.js $(ARGS)
 
+get-antipassback: build
+	node examples/get-antipassback.js $(ARGS)
+
+set-antipassback: build
+	node examples/set-antipassback.js $(ARGS)
+
 restore-default-parameters: build
 	node examples/restore-default-parameters.js $(ARGS)
 
 listen: build
 	node examples/listen.js $(ARGS)
 
-set-pc-contro-listenl: build
+set-pc-control-listen: build
 	node examples/set-pc-control-listen.js $(ARGS)
 
 run-all: build

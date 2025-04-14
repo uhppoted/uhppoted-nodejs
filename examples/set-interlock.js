@@ -16,11 +16,7 @@ async function run() {
     })
 
   await uhppoted
-    .setInterlock(
-      ctx,
-      { id: deviceID, address: addr, protocol: 'tcp' },
-      interlock,
-    )
+    .setInterlock(ctx, { id: deviceID, address: addr, protocol: 'tcp' }, interlock)
     .then((response) => {
       console.log('\nset-interlock:\n', response)
     })

@@ -41,15 +41,7 @@ process.argv.slice(3).forEach((arg) => {
 })
 
 const ctx = {
-  config: new uhppoted.Config(
-    'integration-tests',
-    bind,
-    broadcast,
-    listen,
-    500,
-    [],
-    false,
-  ),
+  config: new uhppoted.Config('integration-tests', bind, broadcast, listen, 500, [], false),
 }
 
 function setup(request, replies, protocol = 'udp') {

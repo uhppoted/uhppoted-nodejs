@@ -34,6 +34,9 @@ module.exports = {
   SetEventIndex: 0xb2,
   GetEvent: 0xb0,
 
+  SetAntiPassback: 0x84,
+  GetAntiPassback: 0x86,
+
   RestoreDefaultParameters: 0xc8,
 
   NormallyOpen: 0x01,

@@ -81,6 +81,13 @@ const map = new Map([
   ['timeout', 'timeout'],
   ['event does not exist', 'eventMissing'],
   ['event overwritten', 'eventOverwritten'],
+
+  // antipassback
+  ['disabled', 'antipassbackDisabled'],
+  ['(1:2);(3:4)', 'antipassback12_34'],
+  ['(1,3):(2,4)', 'antipassback13_24'],
+  ['1:(2,3)', 'antipassback1_23'],
+  ['1:(2,3,4)', 'antipassback1_234'],
 ])
 
 function translate(object, locale) {

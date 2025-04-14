@@ -1,3 +1,5 @@
+const lookup = require('./lookup.js')
+
 module.exports = {
   /**
    * Decodes the response to a get-status request (function code 0x20).
@@ -6,8 +8,6 @@ module.exports = {
    * @return {object}   Decoded get-status response object
    */
   GetStatus: function (bytes) {
-    const lookup = require('./lookup.js')
-
     const evt = {
       index: uint32(bytes, 8),
       type: lookup.eventType(bytes, 12),
@@ -214,8 +214,6 @@ module.exports = {
    * @param {object}   Decoded set-door-control response object
    */
   SetDoorControl: function (bytes) {
-    const lookup = require('./lookup.js')
-
     return {
       deviceId: uint32(bytes, 4),
       doorControlState: {
@@ -234,8 +232,6 @@ module.exports = {
    * @param {object}   Decoded get-door-control response object
    */
   GetDoorControl: function (bytes) {
-    const lookup = require('./lookup.js')
-
     return {
       deviceId: uint32(bytes, 4),
       doorControlState: {
@@ -469,8 +465,6 @@ module.exports = {
    * @param {object}   Decoded event object
    */
   GetEvent: function (bytes) {
-    const lookup = require('./lookup.js')
-
     return {
       deviceId: uint32(bytes, 4),
       event: {
@@ -578,6 +572,37 @@ module.exports = {
    * @param {object}   Decoded set-super-passwords response object
    */
   SetDoorPasscodes: function (bytes) {
+    return {
+      deviceId: uint32(bytes, 4),
+      ok: bool(bytes, 8),
+    }
+  },
+
+  /**
+   * Decodes the response to a get-antipassback request (function code 0x86).
+   *
+   * @param {buffer}   bytes      64 byte array
+   *
+   * @param {object}   Decoded get-antipassback response object
+   */
+  GetAntiPassback: function (bytes) {
+    return {
+      deviceId: uint32(bytes, 4),
+      antipassback: {
+        code: uint8(bytes, 8),
+        mode: lookup.antipassback(bytes, 8),
+      },
+    }
+  },
+
+  /**
+   * Decodes the response to a set-antipassback request (function code 0x84).
+   *
+   * @param {buffer}   bytes      64 byte array
+   *
+   * @param {object}   Decoded set-antipassback response object
+   */
+  SetAntiPassback: function (bytes) {
     return {
       deviceId: uint32(bytes, 4),
       ok: bool(bytes, 8),
@@ -704,18 +729,8 @@ function bcd(bytes, offset, length) {
  */
 function yyyymmddHHmmss(bytes, offset) {
   const datetime = bcd(bytes, offset, 7)
-  const date =
-    datetime.substr(0, 4) +
-    '-' +
-    datetime.substr(4, 2) +
-    '-' +
-    datetime.substr(6, 2)
-  const time =
-    datetime.substr(8, 2) +
-    ':' +
-    datetime.substr(10, 2) +
-    ':' +
-    datetime.substr(12, 2)
+  const date = datetime.substr(0, 4) + '-' + datetime.substr(4, 2) + '-' + datetime.substr(6, 2)
+  const time = datetime.substr(8, 2) + ':' + datetime.substr(10, 2) + ':' + datetime.substr(12, 2)
 
   return date + ' ' + time
 }
@@ -736,18 +751,8 @@ function optionalTimestamp(bytes, offset) {
   if (datetime === '00000000000000') {
     return ''
   } else {
-    const date =
-      datetime.substr(0, 4) +
-      '-' +
-      datetime.substr(4, 2) +
-      '-' +
-      datetime.substr(6, 2)
-    const time =
-      datetime.substr(8, 2) +
-      ':' +
-      datetime.substr(10, 2) +
-      ':' +
-      datetime.substr(12, 2)
+    const date = datetime.substr(0, 4) + '-' + datetime.substr(4, 2) + '-' + datetime.substr(6, 2)
+    const time = datetime.substr(8, 2) + ':' + datetime.substr(10, 2) + ':' + datetime.substr(12, 2)
 
     return date + ' ' + time
   }

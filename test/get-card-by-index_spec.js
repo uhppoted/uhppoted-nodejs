@@ -19,11 +19,7 @@ describe('get-card-by-index', function () {
 
     it('should fail with invalid controller ID', function () {
       return uhppoted
-        .getCardByIndex(
-          {},
-          { id: 0, address: '192.168.1.125', protocol: 'tcp' },
-          3,
-        )
+        .getCardByIndex({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' }, 3)
         .then(() => {
           assert.fail()
         })

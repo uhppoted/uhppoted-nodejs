@@ -15,13 +15,7 @@ async function run() {
     })
 
   await uhppoted
-    .setListener(
-      ctx,
-      { id: deviceID, address: addr, protocol: 'tcp' },
-      '192.168.1.100',
-      60001,
-      15,
-    )
+    .setListener(ctx, { id: deviceID, address: addr, protocol: 'tcp' }, '192.168.1.100', 60001, 15)
     .then((response) => {
       console.log('\nset-listener:\n', response)
     })

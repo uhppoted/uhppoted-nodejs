@@ -12,8 +12,7 @@ const day = format(now.getDate(), 2)
 const hours = format(now.getHours(), 2)
 const minutes = format(now.getMinutes(), 2)
 const seconds = format(now.getSeconds(), 2)
-const datetime =
-  year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds
+const datetime = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds
 
 async function run() {
   await uhppoted

@@ -8,8 +8,7 @@ function log(msg) {
   const hours = format(now.getHours(), 2)
   const minutes = format(now.getMinutes(), 2)
   const seconds = format(now.getSeconds(), 2)
-  const timestamp =
-    year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds
+  const timestamp = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds
 
   console.log(timestamp, msg)
 }

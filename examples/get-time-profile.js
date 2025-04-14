@@ -16,11 +16,7 @@ async function run() {
     })
 
   await uhppoted
-    .getTimeProfile(
-      ctx,
-      { id: deviceID, address: addr, protocol: 'tcp' },
-      profile,
-    )
+    .getTimeProfile(ctx, { id: deviceID, address: addr, protocol: 'tcp' }, profile)
     .then((response) => {
       console.log('\nget-time-profile:\n', response)
     })

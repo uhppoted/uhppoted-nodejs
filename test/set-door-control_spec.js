@@ -19,13 +19,7 @@ describe('set-door-control', function () {
 
     it('should fail with invalid controller ID', function () {
       return uhppoted
-        .setDoorControl(
-          {},
-          { id: 0, address: '192.168.1.125', protocol: 'tcp' },
-          3,
-          4,
-          'normally closed',
-        )
+        .setDoorControl({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' }, 3, 4, 'normally closed')
         .then(() => {
           assert.fail()
         })

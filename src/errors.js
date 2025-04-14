@@ -17,9 +17,7 @@ function InvalidCardPIN(pin, locale) {
 }
 
 function InvalidProfileID(profileId, locale) {
-  return new Error(
-    translate(`{{invalid time profile ID}} '${profileId}'`, locale),
-  )
+  return new Error(translate(`{{invalid time profile ID}} '${profileId}'`, locale))
 }
 
 function InvalidDoor(door, locale) {
@@ -31,9 +29,7 @@ function InvalidEventIndex(index, locale) {
 }
 
 function InvalidFunctionCode(code, locale) {
-  return new Error(
-    translate(`{{invalid protocol function code}} ${code}`, locale),
-  )
+  return new Error(translate(`{{invalid protocol function code}} ${code}`, locale))
 }
 
 function InvalidDoorControl(control, locale) {
@@ -41,12 +37,7 @@ function InvalidDoorControl(control, locale) {
 }
 
 function InvalidPermission(door, permission, locale) {
-  return new Error(
-    translate(
-      `{{invalid time profile for door}} ${door} (${permission})`,
-      locale,
-    ),
-  )
+  return new Error(translate(`{{invalid time profile for door}} ${door} (${permission})`, locale))
 }
 
 function InvalidTaskType(task, locale) {
@@ -66,9 +57,7 @@ function NoReplyToBroadcast(locale) {
 }
 
 function InvalidBroadcastReply(locale) {
-  return new Error(
-    translate('{{invalid reply to broadcasted request}}', locale),
-  )
+  return new Error(translate('{{invalid reply to broadcasted request}}', locale))
 }
 
 function Timeout(locale) {
@@ -76,15 +65,11 @@ function Timeout(locale) {
 }
 
 function MissingEvent(deviceId, index, locale) {
-  return new Error(
-    translate(`${deviceId}:${index}  {{event does not exist}}`, locale),
-  )
+  return new Error(translate(`${deviceId}:${index}  {{event does not exist}}`, locale))
 }
 
 function EventOverwritten(deviceId, index, locale) {
-  return new Error(
-    translate(`${deviceId}:${index}  {{event overwritten}}`, locale),
-  )
+  return new Error(translate(`${deviceId}:${index}  {{event overwritten}}`, locale))
 }
 
 module.exports = {

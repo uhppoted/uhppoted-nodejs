@@ -6,18 +6,18 @@ const addr = '192.168.1.100'
 
 async function run() {
   await uhppoted
-    .recordSpecialEvents(ctx, deviceID, true)
+    .getAntiPassback(ctx, deviceID)
     .then((response) => {
-      console.log('\nrecord-special-events:\n', response)
+      console.log('\nget-time:\n', response)
     })
     .catch((err) => {
       console.log(`\n   *** ERROR ${err.message}\n`)
     })
 
   await uhppoted
-    .recordSpecialEvents(ctx, { id: deviceID, address: addr, protocol: 'tcp' }, true)
+    .getAntiPassback(ctx, { id: deviceID, address: addr, protocol: 'tcp' })
     .then((response) => {
-      console.log('\nrecord-special-events:\n', response)
+      console.log('\nget-time:\n', response)
     })
     .catch((err) => {
       console.log(`\n   *** ERROR ${err.message}\n`)

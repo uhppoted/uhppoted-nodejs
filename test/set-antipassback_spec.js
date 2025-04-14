@@ -4,11 +4,11 @@ const assert = require('chai').assert
 const expect = require('chai').expect
 const uhppoted = require('../index.js')
 
-describe('set-listener', function () {
-  describe('#set-listener with invalid parameters', function () {
+describe('set-antipassback', function () {
+  describe('#set-antipassback with invalid parameters', function () {
     it('should fail with invalid controller ID', function () {
       return uhppoted
-        .setListener({}, 0, '192.168.1.100', 60001, 15)
+        .setAntiPassback({}, 0, 2)
         .then(() => {
           assert.fail()
         })
@@ -19,7 +19,7 @@ describe('set-listener', function () {
 
     it('should fail with invalid controller ID', function () {
       return uhppoted
-        .setListener({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' }, '192.168.1.100', 60001, 15)
+        .setAntiPassback({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' }, 2)
         .then(() => {
           assert.fail()
         })

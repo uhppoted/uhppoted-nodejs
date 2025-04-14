@@ -15,13 +15,7 @@ async function run() {
     })
 
   await uhppoted
-    .setDoorControl(
-      ctx,
-      { id: deviceID, address: addr, protocol: 'tcp' },
-      3,
-      4,
-      'normally closed',
-    )
+    .setDoorControl(ctx, { id: deviceID, address: addr, protocol: 'tcp' }, 3, 4, 'normally closed')
     .then((response) => {
       console.log('\nset-door-control:\n', response)
     })

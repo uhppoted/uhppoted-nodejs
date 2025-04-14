@@ -27,11 +27,7 @@ async function run() {
     })
 
   await uhppoted
-    .getCardByIndex(
-      ctx,
-      { id: deviceID, address: addr, protocol: 'tcp' },
-      index,
-    )
+    .getCardByIndex(ctx, { id: deviceID, address: addr, protocol: 'tcp' }, index)
     .then((response) => {
       switch (response.card.number) {
         case 0:

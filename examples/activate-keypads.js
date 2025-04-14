@@ -21,11 +21,7 @@ async function run() {
     })
 
   await uhppoted
-    .activateKeypads(
-      ctx,
-      { id: deviceID, address: addr, protocol: 'tcp' },
-      keypads,
-    )
+    .activateKeypads(ctx, { id: deviceID, address: addr, protocol: 'tcp' }, keypads)
     .then((response) => {
       console.log('\nactivate-keypads:\n', response)
     })

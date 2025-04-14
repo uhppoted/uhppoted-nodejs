@@ -1,12 +1,4 @@
-function Config(
-  name,
-  bindAddr,
-  broadcastAddr,
-  listenAddr,
-  timeout,
-  controllers,
-  debug,
-) {
+function Config(name, bindAddr, broadcastAddr, listenAddr, timeout, controllers, debug) {
   this.name = 'uhppoted'
   this.bind = '0.0.0.0'
   this.broadcast = '255.255.255.255:60000'

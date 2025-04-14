@@ -19,11 +19,7 @@ describe('get-time-profile', function () {
 
     it('should fail with invalid controller ID', function () {
       return uhppoted
-        .getTimeProfile(
-          {},
-          { id: 0, address: '192.168.1.125', protocol: 'tcp' },
-          29,
-        )
+        .getTimeProfile({}, { id: 0, address: '192.168.1.125', protocol: 'tcp' }, 29)
         .then(() => {
           assert.fail()
         })

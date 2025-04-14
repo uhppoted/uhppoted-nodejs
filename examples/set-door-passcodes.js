@@ -17,12 +17,7 @@ async function run() {
     })
 
   await uhppoted
-    .setDoorPasscodes(
-      ctx,
-      { id: deviceID, address: addr, protocol: 'tcp' },
-      door,
-      passcodes,
-    )
+    .setDoorPasscodes(ctx, { id: deviceID, address: addr, protocol: 'tcp' }, door, passcodes)
     .then((response) => {
       console.log('\nset-door-passcodes:\n', response)
     })

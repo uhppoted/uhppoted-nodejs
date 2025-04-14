@@ -70,8 +70,13 @@ const dict = new Map([
   ['invalidBroadcastReply', 'invalid reply to broadcasted request'],
   ['timeout', 'timeout'],
   ['eventMissing', 'event does not exist'],
-  ['eventOverwritten', 'event overwritten']
+  ['eventOverwritten', 'event overwritten'],
 
+  ['antipassbackDisabled','disabled'    ],
+  ['antipassback12_34',   '(1:2);(3:4)' ],
+  ['antipassback13_24',   '(1,3):(2,4)' ],
+  ['antipassback1_23',    '1:(2,3)'     ],
+  ['antipassback1_234',   '1:(2,3,4)'   ],
 ])
 
 exports = module.exports = dict
