@@ -859,13 +859,13 @@ Gets the controller anti-passback mode.
 Anti-passback prevents the same card from being reused to _swipe in_ or _swipe out_. The controllers support
 the following modes:
 
-| Mode         | Description                                                                                                      |
-|--------------|------------------------------------------------------------------------------------------------------------------|
-| 0 disabled)  | Anti-passback disabled                                                                                           |
-| 1 (1:2);(3:4)| Doors 1 and door are anti-passbacked e.g. a swipe-in on Door 1 must be followed by a swipe-out on Door 2.        |
-| 2 (1,3):(2,4)| Doors  1 & 3 are anti-passbacked with doors 2 & 4, i.e. a swipe-in on either Door 1 or Door 3 must be followed by a swipe-out on either Door 2 or Door 4|
-| 3 1:(2,3)    | Door 1 is anti-passbacked with Doors 2 and 4 i. a swipe-in on Door 1 must be followed by a swipe-out on either Door 2 or Door 4 |
-| 4 1:(2,3,4)  | Door 1 is anti-passbacked with Doors 2,3 and 4 i. a swipe-in on Door 1 must be followed by a swipe-out on either Door 2 or Door 3 or Door 4 |
+| Mode           | Description                                                                                                      |
+|----------------|------------------------------------------------------------------------------------------------------------------|
+| 0 `disabled`   | Anti-passback disabled                                                                                           |
+| 1 `(1:2);(3:4)`| Doors 1 and door are anti-passbacked e.g. a swipe-in on Door 1 must be followed by a swipe-out on Door 2.        |
+| 2 `(1,3):(2,4)`| Doors  1 & 3 are anti-passbacked with doors 2 & 4, i.e. a swipe-in on either Door 1 or Door 3 must be followed by a swipe-out on either Door 2 or Door 4|
+| 3 `1:(2,3)`    | Door 1 is anti-passbacked with Doors 2 and 4 i. a swipe-in on Door 1 must be followed by a swipe-out on either Door 2 or Door 4 |
+| 4 `1:(2,3,4)`  | Door 1 is anti-passbacked with Doors 2,3 and 4 i. a swipe-in on Door 1 must be followed by a swipe-out on either Door 2 or Door 3 or Door 4 |
 
 
 ```
@@ -892,13 +892,13 @@ Sets the controller anti-passback mode.
 Anti-passback prevents the same card from being reused to _swipe in_ or _swipe out_. The controllers support
 the following modes:
 
-| Mode         | Description                                                                                                      |
-|--------------|------------------------------------------------------------------------------------------------------------------|
-| 0 disabled)  | Anti-passback disabled                                                                                           |
-| 1 (1:2);(3:4)| Doors 1 and door are anti-passbacked e.g. a swipe-in on Door 1 must be followed by a swipe-out on Door 2.        |
-| 2 (1,3):(2,4)| Doors  1 & 3 are anti-passbacked with doors 2 & 4, i.e. a swipe-in on either Door 1 or Door 3 must be followed by a swipe-out on either Door 2 or Door 4|
-| 3 1:(2,3)    | Door 1 is anti-passbacked with Doors 2 and 4 i. a swipe-in on Door 1 must be followed by a swipe-out on either Door 2 or Door 4 |
-| 4 1:(2,3,4)  | Door 1 is anti-passbacked with Doors 2,3 and 4 i. a swipe-in on Door 1 must be followed by a swipe-out on either Door 2 or Door 3 or Door 4 |
+| Mode           | Description                                                                                                      |
+|----------------|------------------------------------------------------------------------------------------------------------------|
+| 0 `disabled`   | Anti-passback disabled                                                                                           |
+| 1 `(1:2);(3:4)`| Doors 1 and door are anti-passbacked e.g. a swipe-in on Door 1 must be followed by a swipe-out on Door 2.        |
+| 2 `(1,3):(2,4)`| Doors  1 & 3 are anti-passbacked with doors 2 & 4, i.e. a swipe-in on either Door 1 or Door 3 must be followed by a swipe-out on either Door 2 or Door 4|
+| 3 `1:(2,3)`    | Door 1 is anti-passbacked with Doors 2 and 4 i. a swipe-in on Door 1 must be followed by a swipe-out on either Door 2 or Door 4 |
+| 4 `1:(2,3,4)`  | Door 1 is anti-passbacked with Doors 2,3 and 4 i. a swipe-in on Door 1 must be followed by a swipe-out on either Door 2 or Door 3 or Door 4 |
 
 
 ```
