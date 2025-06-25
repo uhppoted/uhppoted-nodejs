@@ -60,7 +60,7 @@ publish-npm: release
 	npm publish
 
 debug: build
-	npx mocha 'test/**/ipx_spec.js'
+	node examples/get-devices.js bind=$(BIND) broadcast=$(BROADCAST)
 
 error-handling: build
 	node examples/error-handling.js $(ARGS)
@@ -77,6 +77,12 @@ get-device-with-custom-logger: build
 
 get-device-with-device-specific-configuration: build
 	node examples/get-device-with-device-specific-configuration.js $(ARGS)
+
+get-all-controllers: build
+	node examples/get-devices.js $(ARGS)
+
+get-controller: build
+	node examples/get-device.js $(ARGS)
 
 set-ip: build
 	node examples/set-ip.js $(ARGS)

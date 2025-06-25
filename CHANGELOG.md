@@ -5,6 +5,9 @@
 ### Added
 1. `get/set-antipassback` API function to manage the controller anti-passback mode.
 
+### Updated
+1. Added check to prevent UDP broadcast-to-self
+
 
 ## [0.8.10](https://github.com/uhppoted/uhppoted-nodejs/releases/tag/v0.8.10) - 2024-01-29
 

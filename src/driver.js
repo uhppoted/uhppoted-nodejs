@@ -235,6 +235,13 @@ async function udp(ctx, op, request, receive) {
   const send = new Promise((resolve, reject) => {
     sock.on('listening', () => {
       if (ctx.forceBroadcast || isBroadcast(ctx.addr.address)) {
+        const bindAddr = sock.address()
+
+        // ... avoid broadcast-to-self
+        if (bindAddr.port === ctx.addr.port) {
+          reject(new Error(`invalid UDP bind address: port ${bindAddr.port} reserved for broadcast`))
+        }
+
         sock.setBroadcast(true)
       }
 
