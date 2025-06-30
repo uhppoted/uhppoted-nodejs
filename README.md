@@ -1,4 +1,4 @@
-![build](https://github.com/uhppoted/uhppoted-nodejs/workflows/build/badge.svg)
+![build](https://github.com/uhppoted/uhppoted-lib-nodejs/workflows/build/badge.svg)
 ![NPM version](https://badge.fury.io/js/uhppoted.svg)
 ![NPM](https://img.shields.io/npm/l/uhppoted)
 
@@ -7,7 +7,7 @@ NodeJS module that implements an API for interacting with a UHPPOTE TCP/IP Wiega
 #### Requirements:
 - `node.js` version 14.18.3+
 
-For the latest updates see the [CHANGELOG.md](https://github.com/uhppoted/uhppoted-nodejs/blob/master/CHANGELOG.md)
+For the latest updates see the [CHANGELOG.md](https://github.com/uhppoted/uhppoted-lib-nodejs/blob/master/CHANGELOG.md)
 
 #### Installation
 
@@ -19,9 +19,11 @@ npm install uhppoted
 
 #### Current Release
 
-**[v0.8.10](https://github.com/uhppoted/uhppoted-nodejs/releases/tag/v0.8.10) - 2025-01-29**
+**[v0.8.11](https://github.com/uhppoted/uhppoted-lib-nodejs/releases/tag/v0.8.11) - 2025-07-01**
 
-1. Added event _auto-send interval_ to the `get-listener` and `set-listener` API functions.
+1. Added `get/set-antipassback` API function to manage the controller anti-passback mode.
+2. Added check to prevent UDP broadcast-to-self.
+3. Renamed _github_ repository to _uhppoted-lib-nodejs_.
 
 
 ### API
@@ -94,7 +96,7 @@ uhppoted.getDevice(ctx, 405419896)
   })
 ```
 
-A minimal example showing the usage for each API can be found in the [_examples_](https://github.com/uhppoted/uhppoted-nodejs/tree/master/examples) folder. The _examples_ have `uhppoted` as a dependency - install either the published
+A minimal example showing the usage for each API can be found in the [_examples_](https://github.com/uhppoted/uhppoted-lib-nodejs/tree/master/examples) folder. The _examples_ have `uhppoted` as a dependency - install either the published
 `uhppoted` module in the examples folder:
 ```
 cd examples
@@ -469,7 +471,7 @@ Returns the card record at the index, e.g.:
 _Notes:_
 1. A card number of 0 is returned if the card at the index does not exist.
 2. A card number of 0xffffffff (4294967295) is returned if the card at the index has been deleted.
-   (e.g. [see examples/get-card-by-index.js](https://github.com/uhppoted/uhppoted-nodejs/blob/main/examples/get-card-by-index.js))
+   (e.g. [see examples/get-card-by-index.js](https://github.com/uhppoted/uhppoted-lib-nodejs/blob/main/examples/get-card-by-index.js))
 
 
 #### `putCard`
@@ -966,8 +968,8 @@ Example `event` object:
 
 ### Issues and Feature Requests
 
-Please create an issue in the [uhppoted-nodejs](https://github.com/uhppoted/uhppoted-nodejs) _github_ repository.
+Please create an issue in the [uhppoted-nodejs](https://github.com/uhppoted/uhppoted-lib-nodejs) _github_ repository.
 
 ### License
 
-[MIT](https://github.com/uhppoted/uhppoted-nodejs/blob/master/LICENSE)
+[MIT](https://github.com/uhppoted/uhppoted-lib-nodejs/blob/master/LICENSE)

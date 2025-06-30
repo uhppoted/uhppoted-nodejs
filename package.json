@@ -6,12 +6,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/uhppoted/uhppoted-nodejs.git"
+    "url": "git+https://github.com/uhppoted/uhppoted-lib-nodejs.git"
   },
   "bugs": {
-    "url": "https://github.com/uhppoted/uhppoted-nodejs/issues"
+    "url": "https://github.com/uhppoted/uhppoted-lib-nodejs/issues"
   },
-  "homepage": "https://github.com/uhppoted/uhppoted-nodejs#readme",
+  "homepage": "https://github.com/uhppoted/uhppoted-lib-nodejs#readme",
   "keywords": [
     "uhppote",
     "wiegand",
