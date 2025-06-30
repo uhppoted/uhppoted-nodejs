@@ -330,8 +330,6 @@ module.exports = {
    * @param {number}   offset     Index of event direction byte in message
    *
    * @param {object}   { code: byte, mode: string }
-   *
-   * @exports
    */
   antipassback: function (bytes, offset) {
     const byte = bytes.getUint8(offset, true)
